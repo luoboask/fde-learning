@@ -1,0 +1,26 @@
+{
+  "id": "03-gpu-basics/performance-bottleneck",
+  "title": "GPU 性能瓶颈分析",
+  "description": "理解 compute-bound vs memory-bound 是推理优化的核心能力，决定了你该优化计算还是优化带宽。",
+  "source": "@site/docs/03-gpu-basics/performance-bottleneck.md",
+  "sourceDirName": "03-gpu-basics",
+  "slug": "/03-gpu-basics/performance-bottleneck",
+  "permalink": "/03-gpu-basics/performance-bottleneck",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "GPU 显存模型",
+    "permalink": "/03-gpu-basics/memory-model"
+  },
+  "next": {
+    "title": "GPU 互联与多卡通信",
+    "permalink": "/03-gpu-basics/gpu-interconnect"
+  }
+}

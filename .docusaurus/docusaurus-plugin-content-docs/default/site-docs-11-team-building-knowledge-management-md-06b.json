@@ -1,0 +1,26 @@
+{
+  "id": "11-team-building/knowledge-management",
+  "title": "知识管理",
+  "description": "让经验沉淀为团队资产，而不是随着人员流动而流失",
+  "source": "@site/docs/11-team-building/knowledge-management.md",
+  "sourceDirName": "11-team-building",
+  "slug": "/11-team-building/knowledge-management",
+  "permalink": "/11-team-building/knowledge-management",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "培养机制",
+    "permalink": "/11-team-building/training-mechanism"
+  },
+  "next": {
+    "title": "招聘策略",
+    "permalink": "/11-team-building/hiring-strategy"
+  }
+}

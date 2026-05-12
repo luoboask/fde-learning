@@ -1,0 +1,26 @@
+{
+  "id": "10-interview/behavioral",
+  "title": "行为面试题",
+  "description": "用 STAR 法则 + 管理视角，把行为问题答出结构化和说服力",
+  "source": "@site/docs/10-interview/behavioral.md",
+  "sourceDirName": "10-interview",
+  "slug": "/10-interview/behavioral",
+  "permalink": "/10-interview/behavioral",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "项目故事（STAR 格式）",
+    "permalink": "/10-interview/project-stories"
+  },
+  "next": {
+    "title": "HR 面策略",
+    "permalink": "/10-interview/hr-round"
+  }
+}

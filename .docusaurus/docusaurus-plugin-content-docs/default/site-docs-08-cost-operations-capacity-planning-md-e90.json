@@ -1,0 +1,26 @@
+{
+  "id": "08-cost-operations/capacity-planning",
+  "title": "容量规划",
+  "description": "根据 QPS 预估、GPU 吞吐建模和 SLA 要求，精确计算需要多少 GPU 以及何时扩容。",
+  "source": "@site/docs/08-cost-operations/capacity-planning.md",
+  "sourceDirName": "08-cost-operations",
+  "slug": "/08-cost-operations/capacity-planning",
+  "permalink": "/08-cost-operations/capacity-planning",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "成本优化策略",
+    "permalink": "/08-cost-operations/optimization-strategies"
+  },
+  "next": {
+    "title": "自建 vs 云 API",
+    "permalink": "/08-cost-operations/self-hosted-vs-cloud"
+  }
+}

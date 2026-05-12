@@ -1,0 +1,373 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/",
+          "mainDocId": "01-ai-basics/index",
+          "docs": [
+            {
+              "id": "01-ai-basics/00-ai-history",
+              "path": "/01-ai-basics/00-ai-history",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "01-ai-basics/01-what-is-fde",
+              "path": "/01-ai-basics/01-what-is-fde",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "01-ai-basics/02-learning-path",
+              "path": "/01-ai-basics/02-learning-path",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "01-ai-basics/03-fde-types",
+              "path": "/01-ai-basics/03-fde-types",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "01-ai-basics/index",
+              "path": "/01-ai-basics/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "02-model-architecture/attention-mechanism",
+              "path": "/02-model-architecture/attention-mechanism",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "02-model-architecture/ffn-norm-pos",
+              "path": "/02-model-architecture/ffn-norm-pos",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "02-model-architecture/kv-cache",
+              "path": "/02-model-architecture/kv-cache",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "02-model-architecture/llm-finetuning",
+              "path": "/02-model-architecture/llm-finetuning",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "02-model-architecture/llm-training",
+              "path": "/02-model-architecture/llm-training",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "02-model-architecture/moe-architecture",
+              "path": "/02-model-architecture/moe-architecture",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "02-model-architecture/multimodal-llm",
+              "path": "/02-model-architecture/multimodal-llm",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "02-model-architecture/pre-post-training",
+              "path": "/02-model-architecture/pre-post-training",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "02-model-architecture/scaling-law",
+              "path": "/02-model-architecture/scaling-law",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "02-model-architecture/transformer-overview",
+              "path": "/02-model-architecture/transformer-overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "03-gpu-basics/gpu-interconnect",
+              "path": "/03-gpu-basics/gpu-interconnect",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "03-gpu-basics/gpu-overview",
+              "path": "/03-gpu-basics/gpu-overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "03-gpu-basics/memory-model",
+              "path": "/03-gpu-basics/memory-model",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "03-gpu-basics/performance-bottleneck",
+              "path": "/03-gpu-basics/performance-bottleneck",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "04-inference-optimization/engine-overview",
+              "path": "/04-inference-optimization/engine-overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "04-inference-optimization/kv-cache-quant",
+              "path": "/04-inference-optimization/kv-cache-quant",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "04-inference-optimization/quantization-basics",
+              "path": "/04-inference-optimization/quantization-basics",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "04-inference-optimization/quantization-schemes",
+              "path": "/04-inference-optimization/quantization-schemes",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "04-inference-optimization/sglang-deep-dive",
+              "path": "/04-inference-optimization/sglang-deep-dive",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "04-inference-optimization/trt-llm-deep-dive",
+              "path": "/04-inference-optimization/trt-llm-deep-dive",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "04-inference-optimization/vllm-deep-dive",
+              "path": "/04-inference-optimization/vllm-deep-dive",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "05-distributed-inference/distributed-overview",
+              "path": "/05-distributed-inference/distributed-overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "05-distributed-inference/moe-parallel",
+              "path": "/05-distributed-inference/moe-parallel",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "05-distributed-inference/pipeline-parallel",
+              "path": "/05-distributed-inference/pipeline-parallel",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "05-distributed-inference/tensor-parallel",
+              "path": "/05-distributed-inference/tensor-parallel",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "06-production-deployment/autoscaling",
+              "path": "/06-production-deployment/autoscaling",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "06-production-deployment/deployment-architecture",
+              "path": "/06-production-deployment/deployment-architecture",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "06-production-deployment/disaster-recovery",
+              "path": "/06-production-deployment/disaster-recovery",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "06-production-deployment/multi-tenant",
+              "path": "/06-production-deployment/multi-tenant",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "06-production-deployment/observability",
+              "path": "/06-production-deployment/observability",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "07-agent-architecture/index",
+              "path": "/07-agent-architecture/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "08-cost-operations/capacity-planning",
+              "path": "/08-cost-operations/capacity-planning",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "08-cost-operations/cost-breakdown",
+              "path": "/08-cost-operations/cost-breakdown",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "08-cost-operations/optimization-strategies",
+              "path": "/08-cost-operations/optimization-strategies",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "08-cost-operations/self-hosted-vs-cloud",
+              "path": "/08-cost-operations/self-hosted-vs-cloud",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "09-evaluation-frontier/fp8-inference",
+              "path": "/09-evaluation-frontier/fp8-inference",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "09-evaluation-frontier/frontier-eval-process",
+              "path": "/09-evaluation-frontier/frontier-eval-process",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "09-evaluation-frontier/frontier-overview",
+              "path": "/09-evaluation-frontier/frontier-overview",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "09-evaluation-frontier/speculative-decoding",
+              "path": "/09-evaluation-frontier/speculative-decoding",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "10-interview/behavioral",
+              "path": "/10-interview/behavioral",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "10-interview/checklist",
+              "path": "/10-interview/checklist",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "10-interview/hr-round",
+              "path": "/10-interview/hr-round",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "10-interview/interview-framework",
+              "path": "/10-interview/interview-framework",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "10-interview/project-stories",
+              "path": "/10-interview/project-stories",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "10-interview/self-intro",
+              "path": "/10-interview/self-intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "10-interview/technical-answers",
+              "path": "/10-interview/technical-answers",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "11-team-building/growth-path",
+              "path": "/11-team-building/growth-path",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "11-team-building/hiring-strategy",
+              "path": "/11-team-building/hiring-strategy",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "11-team-building/index",
+              "path": "/11-team-building/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "11-team-building/knowledge-management",
+              "path": "/11-team-building/knowledge-management",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "11-team-building/team-culture",
+              "path": "/11-team-building/team-culture",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "11-team-building/training-mechanism",
+              "path": "/11-team-building/training-mechanism",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "12-labs/batching-tuning",
+              "path": "/12-labs/batching-tuning",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "12-labs/index",
+              "path": "/12-labs/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "12-labs/oom-troubleshooting",
+              "path": "/12-labs/oom-troubleshooting",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "12-labs/profiling-workshop",
+              "path": "/12-labs/profiling-workshop",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "12-labs/quantization-workflow",
+              "path": "/12-labs/quantization-workflow",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "12-labs/tensor-parallel-lab",
+              "path": "/12-labs/tensor-parallel-lab",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "12-labs/vllm-7b-deploy",
+              "path": "/12-labs/vllm-7b-deploy",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "13-qna/index",
+              "path": "/13-qna/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "14-glossary/index",
+              "path": "/14-glossary/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "15-resources/index",
+              "path": "/15-resources/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "16-case-studies/index",
+              "path": "/16-case-studies/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "17-open-source-deep-dive/index",
+              "path": "/17-open-source-deep-dive/",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/01-ai-basics/",
+                "label": "01-ai-basics/index"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}

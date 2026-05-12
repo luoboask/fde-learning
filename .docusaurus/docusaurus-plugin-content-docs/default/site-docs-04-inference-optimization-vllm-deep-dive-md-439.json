@@ -1,0 +1,26 @@
+{
+  "id": "04-inference-optimization/vllm-deep-dive",
+  "title": "vLLM 深度解析",
+  "description": "一句话概括：vLLM 是目前生态最成熟、使用最广泛的开源 LLM 推理引擎，其核心创新 PagedAttention 将显存利用率从 ~60% 提升到 ~95%。",
+  "source": "@site/docs/04-inference-optimization/vllm-deep-dive.md",
+  "sourceDirName": "04-inference-optimization",
+  "slug": "/04-inference-optimization/vllm-deep-dive",
+  "permalink": "/04-inference-optimization/vllm-deep-dive",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "推理引擎概览",
+    "permalink": "/04-inference-optimization/engine-overview"
+  },
+  "next": {
+    "title": "TensorRT-LLM 深度解析",
+    "permalink": "/04-inference-optimization/trt-llm-deep-dive"
+  }
+}

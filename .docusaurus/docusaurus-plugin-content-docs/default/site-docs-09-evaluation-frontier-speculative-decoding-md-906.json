@@ -1,0 +1,26 @@
+{
+  "id": "09-evaluation-frontier/speculative-decoding",
+  "title": "Speculative Decoding",
+  "description": "用小模型快速生成 draft tokens，大模型并行验证，在几乎不损失精度的前提下实现 1.5-3x 加速。",
+  "source": "@site/docs/09-evaluation-frontier/speculative-decoding.md",
+  "sourceDirName": "09-evaluation-frontier",
+  "slug": "/09-evaluation-frontier/speculative-decoding",
+  "permalink": "/09-evaluation-frontier/speculative-decoding",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "前沿技术概述",
+    "permalink": "/09-evaluation-frontier/frontier-overview"
+  },
+  "next": {
+    "title": "FP8 推理",
+    "permalink": "/09-evaluation-frontier/fp8-inference"
+  }
+}

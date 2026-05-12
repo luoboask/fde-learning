@@ -1,0 +1,23 @@
+{
+  "id": "12-labs/index",
+  "title": "实战实验",
+  "description": "光看不够，必须动手。这些实验覆盖 FDE 核心技能。",
+  "source": "@site/docs/12-labs/index.md",
+  "sourceDirName": "12-labs",
+  "slug": "/12-labs/",
+  "permalink": "/12-labs/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "多租户与平台化",
+    "permalink": "/06-production-deployment/multi-tenant"
+  },
+  "next": {
+    "title": "实验：用 vLLM 部署 7B 模型",
+    "permalink": "/12-labs/vllm-7b-deploy"
+  }
+}

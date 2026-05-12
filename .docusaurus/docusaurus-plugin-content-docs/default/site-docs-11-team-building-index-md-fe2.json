@@ -1,0 +1,26 @@
+{
+  "id": "11-team-building/index",
+  "title": "管理篇概述",
+  "description": "FDE 团队培养体系建设方案 — 既是面试答题素材，也是入职后的团队建设蓝图",
+  "source": "@site/docs/11-team-building/index.md",
+  "sourceDirName": "11-team-building",
+  "slug": "/11-team-building/",
+  "permalink": "/11-team-building/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "面试问答库",
+    "permalink": "/13-qna/"
+  },
+  "next": {
+    "title": "团队文化",
+    "permalink": "/11-team-building/team-culture"
+  }
+}

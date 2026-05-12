@@ -1,0 +1,26 @@
+{
+  "id": "11-team-building/team-culture",
+  "title": "团队文化",
+  "description": "技术团队的文化决定了团队能不能持续产出高质量成果、留住优秀人才",
+  "source": "@site/docs/11-team-building/team-culture.md",
+  "sourceDirName": "11-team-building",
+  "slug": "/11-team-building/team-culture",
+  "permalink": "/11-team-building/team-culture",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "管理篇概述",
+    "permalink": "/11-team-building/"
+  },
+  "next": {
+    "title": "成长路径",
+    "permalink": "/11-team-building/growth-path"
+  }
+}

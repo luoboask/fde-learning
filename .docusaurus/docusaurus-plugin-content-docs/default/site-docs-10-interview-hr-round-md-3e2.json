@@ -1,0 +1,26 @@
+{
+  "id": "10-interview/hr-round",
+  "title": "HR 面策略",
+  "description": "通过 HR 面的核心是展现稳定性、文化匹配和职业规划清晰，同时合理争取薪资",
+  "source": "@site/docs/10-interview/hr-round.md",
+  "sourceDirName": "10-interview",
+  "slug": "/10-interview/hr-round",
+  "permalink": "/10-interview/hr-round",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 6,
+  "frontMatter": {
+    "sidebar_position": 6
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "行为面试题",
+    "permalink": "/10-interview/behavioral"
+  },
+  "next": {
+    "title": "面试前 Checklist",
+    "permalink": "/10-interview/checklist"
+  }
+}

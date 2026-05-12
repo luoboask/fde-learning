@@ -1,0 +1,26 @@
+{
+  "id": "12-labs/tensor-parallel-lab",
+  "title": "实验：多卡 TP 部署",
+  "description": "目标",
+  "source": "@site/docs/12-labs/tensor-parallel-lab.md",
+  "sourceDirName": "12-labs",
+  "slug": "/12-labs/tensor-parallel-lab",
+  "permalink": "/12-labs/tensor-parallel-lab",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "实验：连续批处理调优",
+    "permalink": "/12-labs/batching-tuning"
+  },
+  "next": {
+    "title": "实验：OOM 排查演练",
+    "permalink": "/12-labs/oom-troubleshooting"
+  }
+}

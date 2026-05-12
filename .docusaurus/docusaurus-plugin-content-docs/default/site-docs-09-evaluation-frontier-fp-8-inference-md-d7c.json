@@ -1,0 +1,26 @@
+{
+  "id": "09-evaluation-frontier/fp8-inference",
+  "title": "FP8 推理",
+  "description": "H100 原生支持 FP8 Tensor Core，在精度损失 < 1% 的前提下实现 1.5-2x 推理加速。",
+  "source": "@site/docs/09-evaluation-frontier/fp8-inference.md",
+  "sourceDirName": "09-evaluation-frontier",
+  "slug": "/09-evaluation-frontier/fp8-inference",
+  "permalink": "/09-evaluation-frontier/fp8-inference",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Speculative Decoding",
+    "permalink": "/09-evaluation-frontier/speculative-decoding"
+  },
+  "next": {
+    "title": "前沿技术评估流程",
+    "permalink": "/09-evaluation-frontier/frontier-eval-process"
+  }
+}

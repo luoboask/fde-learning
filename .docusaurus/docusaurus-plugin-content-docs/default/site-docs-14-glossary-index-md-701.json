@@ -1,0 +1,23 @@
+{
+  "id": "14-glossary/index",
+  "title": "FDE 术语 glossary",
+  "description": "面试中高频出现的专业术语，按领域分类",
+  "source": "@site/docs/14-glossary/index.md",
+  "sourceDirName": "14-glossary",
+  "slug": "/14-glossary/",
+  "permalink": "/14-glossary/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "招聘策略",
+    "permalink": "/11-team-building/hiring-strategy"
+  },
+  "next": {
+    "title": "推荐资源",
+    "permalink": "/15-resources/"
+  }
+}

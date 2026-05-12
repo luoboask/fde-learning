@@ -1,0 +1,26 @@
+{
+  "id": "10-interview/technical-answers",
+  "title": "技术答题框架",
+  "description": "用\"先定义、再分析、后总结\"的三段式结构，把每道技术题答出深度和条理",
+  "source": "@site/docs/10-interview/technical-answers.md",
+  "sourceDirName": "10-interview",
+  "slug": "/10-interview/technical-answers",
+  "permalink": "/10-interview/technical-answers",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "自我介绍模板",
+    "permalink": "/10-interview/self-intro"
+  },
+  "next": {
+    "title": "项目故事（STAR 格式）",
+    "permalink": "/10-interview/project-stories"
+  }
+}

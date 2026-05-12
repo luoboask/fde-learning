@@ -1,0 +1,26 @@
+{
+  "id": "06-production-deployment/multi-tenant",
+  "title": "多租户与平台化",
+  "description": "多租户是 LLM 推理平台化的核心挑战：如何在有限的 GPU 上安全、公平、可计量地服务多个业务方，是 FDE 面试中的高频场景。",
+  "source": "@site/docs/06-production-deployment/multi-tenant.md",
+  "sourceDirName": "06-production-deployment",
+  "slug": "/06-production-deployment/multi-tenant",
+  "permalink": "/06-production-deployment/multi-tenant",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "容灾与降级",
+    "permalink": "/06-production-deployment/disaster-recovery"
+  },
+  "next": {
+    "title": "实战实验",
+    "permalink": "/12-labs/"
+  }
+}

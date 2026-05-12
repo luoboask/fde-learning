@@ -1,0 +1,26 @@
+{
+  "id": "05-distributed-inference/pipeline-parallel",
+  "title": "流水线并行（PP）",
+  "description": "一句话概括核心：将 Transformer 的不同层分配到不同 GPU，通过 micro-batch 填充计算间隙，让多卡像流水线一样协同处理请求。",
+  "source": "@site/docs/05-distributed-inference/pipeline-parallel.md",
+  "sourceDirName": "05-distributed-inference",
+  "slug": "/05-distributed-inference/pipeline-parallel",
+  "permalink": "/05-distributed-inference/pipeline-parallel",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "张量并行（TP）",
+    "permalink": "/05-distributed-inference/tensor-parallel"
+  },
+  "next": {
+    "title": "MoE 并行",
+    "permalink": "/05-distributed-inference/moe-parallel"
+  }
+}

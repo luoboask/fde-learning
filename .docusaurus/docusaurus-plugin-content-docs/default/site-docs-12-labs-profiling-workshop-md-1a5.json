@@ -1,0 +1,26 @@
+{
+  "id": "12-labs/profiling-workshop",
+  "title": "实验：性能 Profiling 工作流",
+  "description": "目标",
+  "source": "@site/docs/12-labs/profiling-workshop.md",
+  "sourceDirName": "12-labs",
+  "slug": "/12-labs/profiling-workshop",
+  "permalink": "/12-labs/profiling-workshop",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "实验：量化部署工作流",
+    "permalink": "/12-labs/quantization-workflow"
+  },
+  "next": {
+    "title": "实验：连续批处理调优",
+    "permalink": "/12-labs/batching-tuning"
+  }
+}

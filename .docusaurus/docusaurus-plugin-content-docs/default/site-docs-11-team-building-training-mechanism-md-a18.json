@@ -1,0 +1,26 @@
+{
+  "id": "11-team-building/training-mechanism",
+  "title": "培养机制",
+  "description": "用技术轮转、实战训练营和持续反馈，让团队的能力持续进化",
+  "source": "@site/docs/11-team-building/training-mechanism.md",
+  "sourceDirName": "11-team-building",
+  "slug": "/11-team-building/training-mechanism",
+  "permalink": "/11-team-building/training-mechanism",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "成长路径",
+    "permalink": "/11-team-building/growth-path"
+  },
+  "next": {
+    "title": "知识管理",
+    "permalink": "/11-team-building/knowledge-management"
+  }
+}

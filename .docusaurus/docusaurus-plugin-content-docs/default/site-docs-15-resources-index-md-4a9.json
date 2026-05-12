@@ -1,0 +1,23 @@
+{
+  "id": "15-resources/index",
+  "title": "推荐资源",
+  "description": "论文、博客、代码仓库、工具，按主题分类",
+  "source": "@site/docs/15-resources/index.md",
+  "sourceDirName": "15-resources",
+  "slug": "/15-resources/",
+  "permalink": "/15-resources/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "FDE 术语 glossary",
+    "permalink": "/14-glossary/"
+  },
+  "next": {
+    "title": "案例研究",
+    "permalink": "/16-case-studies/"
+  }
+}

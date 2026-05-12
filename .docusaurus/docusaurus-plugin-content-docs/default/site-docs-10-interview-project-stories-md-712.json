@@ -1,0 +1,26 @@
+{
+  "id": "10-interview/project-stories",
+  "title": "项目故事（STAR 格式）",
+  "description": "用结构化的项目叙事框架，把你的技术经验变成面试官能记住的故事",
+  "source": "@site/docs/10-interview/project-stories.md",
+  "sourceDirName": "10-interview",
+  "slug": "/10-interview/project-stories",
+  "permalink": "/10-interview/project-stories",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "技术答题框架",
+    "permalink": "/10-interview/technical-answers"
+  },
+  "next": {
+    "title": "行为面试题",
+    "permalink": "/10-interview/behavioral"
+  }
+}

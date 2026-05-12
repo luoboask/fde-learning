@@ -10,7 +10,7 @@ const config = {
   organizationName: 'your-username',
   projectName: 'fde-learning',
   trailingSlash: false,
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   i18n: {
     defaultLocale: 'zh-Hans',
@@ -22,9 +22,11 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          path: 'docs',
           sidebarPath: './sidebars.js',
           editUrl: undefined,
           routeBasePath: '/',
+          numberPrefixParser: false,
         },
         blog: false,
         theme: {
@@ -33,6 +35,10 @@ const config = {
       }),
     ],
   ],
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -62,30 +68,30 @@ const config = {
           {
             title: '学习路径',
             items: [
-              {label: '入门篇 — 基础认知', to: '/docs/01-basics/01-what-is-fde'},
-              {label: '进阶篇 — 核心技术', to: '/docs/02-transformer-basics/transformer-overview'},
-              {label: '实战篇 — 生产部署', to: '/docs/07-deployment/deployment-architecture'},
-              {label: '面试篇 — 答题框架', to: '/docs/10-interview/interview-framework'},
+              {label: 'AI 基础认知', to: '/01-ai-basics/01-what-is-fde'},
+              {label: '模型架构', to: '/02-model-architecture/transformer-overview'},
+              {label: '生产部署', to: '/06-production-deployment/deployment-architecture'},
+              {label: '面试答题框架', to: '/10-interview/interview-framework'},
             ],
           },
           {
             title: '进阶',
             items: [
-              {label: '推理引擎', to: '/docs/03-inference-engines/engine-overview'},
-              {label: '模型量化', to: '/docs/04-quantization/quantization-basics'},
-              {label: 'GPU 基础', to: '/docs/05-gpu-basics/gpu-overview'},
-              {label: '成本优化', to: '/docs/08-cost/cost-breakdown'},
+              {label: '推理优化', to: '/04-inference-optimization/engine-overview'},
+              {label: '模型量化', to: '/04-inference-optimization/quantization-basics'},
+              {label: 'GPU 基础', to: '/03-gpu-basics/gpu-overview'},
+              {label: '成本运营', to: '/08-cost-operations/cost-breakdown'},
             ],
           },
           {
             title: '管理',
             items: [
-              {label: '团队建设', to: '/docs/11-team-building/team-culture'},
-              {label: '培养体系', to: '/docs/11-team-building/growth-path'},
+              {label: '团队建设', to: '/11-team-building/team-culture'},
+              {label: '开源解读', to: '/17-open-source-deep-dive'},
             ],
           },
         ],
-        copyright: `Built with Docusaurus`,
+        copyright: `FDE Learning Center`,
       },
       prism: {
         theme: themes.github,

@@ -1,0 +1,26 @@
+{
+  "id": "02-model-architecture/moe-architecture",
+  "title": "MoE 架构详解",
+  "description": "用稀疏激活实现\"大参数、小计算\"，但部署复杂度成倍增加",
+  "source": "@site/docs/02-model-architecture/moe-architecture.md",
+  "sourceDirName": "02-model-architecture",
+  "slug": "/02-model-architecture/moe-architecture",
+  "permalink": "/02-model-architecture/moe-architecture",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 5,
+  "frontMatter": {
+    "sidebar_position": 5
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "FFN、Normalization 与位置编码",
+    "permalink": "/02-model-architecture/ffn-norm-pos"
+  },
+  "next": {
+    "title": "多模态大模型",
+    "permalink": "/02-model-architecture/multimodal-llm"
+  }
+}

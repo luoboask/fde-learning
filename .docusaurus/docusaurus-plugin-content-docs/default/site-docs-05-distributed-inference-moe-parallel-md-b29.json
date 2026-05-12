@@ -1,0 +1,26 @@
+{
+  "id": "05-distributed-inference/moe-parallel",
+  "title": "MoE 并行",
+  "description": "一句话概括核心：Mix-of-Experts 通过路由机制让每个 token 只激活部分 Expert，结合 Expert Parallel 将不同 Expert 分布到不同 GPU，实现\"模型越大、激活越少\"的高效推理。",
+  "source": "@site/docs/05-distributed-inference/moe-parallel.md",
+  "sourceDirName": "05-distributed-inference",
+  "slug": "/05-distributed-inference/moe-parallel",
+  "permalink": "/05-distributed-inference/moe-parallel",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "流水线并行（PP）",
+    "permalink": "/05-distributed-inference/pipeline-parallel"
+  },
+  "next": {
+    "title": "部署架构设计",
+    "permalink": "/06-production-deployment/deployment-architecture"
+  }
+}

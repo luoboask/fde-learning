@@ -1,0 +1,26 @@
+{
+  "id": "06-production-deployment/observability",
+  "title": "可观测性体系",
+  "description": "没有可观测性的 LLM 服务就像在黑暗中开飞机，你不知道什么时候会坠毁。LLM 推理的可观测性需要覆盖 GPU 硬件、推理引擎、业务指标三个层次。",
+  "source": "@site/docs/06-production-deployment/observability.md",
+  "sourceDirName": "06-production-deployment",
+  "slug": "/06-production-deployment/observability",
+  "permalink": "/06-production-deployment/observability",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "弹性扩缩容",
+    "permalink": "/06-production-deployment/autoscaling"
+  },
+  "next": {
+    "title": "容灾与降级",
+    "permalink": "/06-production-deployment/disaster-recovery"
+  }
+}

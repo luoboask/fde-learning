@@ -1,0 +1,26 @@
+{
+  "id": "04-inference-optimization/engine-overview",
+  "title": "推理引擎概览",
+  "description": "一句话概括：推理引擎是大模型生产部署的核心基础设施，负责把训练好的权重转化为高吞吐、低延迟的在线服务。",
+  "source": "@site/docs/04-inference-optimization/engine-overview.md",
+  "sourceDirName": "04-inference-optimization",
+  "slug": "/04-inference-optimization/engine-overview",
+  "permalink": "/04-inference-optimization/engine-overview",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "GPU 互联与多卡通信",
+    "permalink": "/03-gpu-basics/gpu-interconnect"
+  },
+  "next": {
+    "title": "vLLM 深度解析",
+    "permalink": "/04-inference-optimization/vllm-deep-dive"
+  }
+}

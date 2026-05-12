@@ -1,0 +1,26 @@
+{
+  "id": "09-evaluation-frontier/frontier-eval-process",
+  "title": "前沿技术评估流程",
+  "description": "用系统化的四步法评估新技术：信息收集 → 环境搭建 → 基准测试 → 业务验证，确保技术选型有据可依。",
+  "source": "@site/docs/09-evaluation-frontier/frontier-eval-process.md",
+  "sourceDirName": "09-evaluation-frontier",
+  "slug": "/09-evaluation-frontier/frontier-eval-process",
+  "permalink": "/09-evaluation-frontier/frontier-eval-process",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "FP8 推理",
+    "permalink": "/09-evaluation-frontier/fp8-inference"
+  },
+  "next": {
+    "title": "开源项目深度解读",
+    "permalink": "/17-open-source-deep-dive/"
+  }
+}

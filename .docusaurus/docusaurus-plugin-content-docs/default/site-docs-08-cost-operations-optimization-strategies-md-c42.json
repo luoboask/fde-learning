@@ -1,0 +1,26 @@
+{
+  "id": "08-cost-operations/optimization-strategies",
+  "title": "成本优化策略",
+  "description": "通过量化、批处理、弹性伸缩和模型选择，可将 LLM 推理成本降低 50-90%。",
+  "source": "@site/docs/08-cost-operations/optimization-strategies.md",
+  "sourceDirName": "08-cost-operations",
+  "slug": "/08-cost-operations/optimization-strategies",
+  "permalink": "/08-cost-operations/optimization-strategies",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "成本拆解",
+    "permalink": "/08-cost-operations/cost-breakdown"
+  },
+  "next": {
+    "title": "容量规划",
+    "permalink": "/08-cost-operations/capacity-planning"
+  }
+}

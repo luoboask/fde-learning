@@ -1,0 +1,19 @@
+{
+  "id": "16-case-studies/index",
+  "title": "案例研究",
+  "description": "真实世界的推理部署案例，学习前人的经验教训",
+  "source": "@site/docs/16-case-studies/index.md",
+  "sourceDirName": "16-case-studies",
+  "slug": "/16-case-studies/",
+  "permalink": "/16-case-studies/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "推荐资源",
+    "permalink": "/15-resources/"
+  }
+}

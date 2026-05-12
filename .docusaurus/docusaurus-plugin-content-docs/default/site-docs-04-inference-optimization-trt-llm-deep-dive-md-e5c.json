@@ -1,0 +1,26 @@
+{
+  "id": "04-inference-optimization/trt-llm-deep-dive",
+  "title": "TensorRT-LLM 深度解析",
+  "description": "一句话概括：TensorRT-LLM 是 NVIDIA 官方的 LLM 推理加速库，通过编译时深度优化（kernel fusion、precision calibration）在 NVIDIA GPU 上提供业界最高的推理性能。",
+  "source": "@site/docs/04-inference-optimization/trt-llm-deep-dive.md",
+  "sourceDirName": "04-inference-optimization",
+  "slug": "/04-inference-optimization/trt-llm-deep-dive",
+  "permalink": "/04-inference-optimization/trt-llm-deep-dive",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 3,
+  "frontMatter": {
+    "sidebar_position": 3
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "vLLM 深度解析",
+    "permalink": "/04-inference-optimization/vllm-deep-dive"
+  },
+  "next": {
+    "title": "SGLang 深度解析",
+    "permalink": "/04-inference-optimization/sglang-deep-dive"
+  }
+}

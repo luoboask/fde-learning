@@ -1,0 +1,26 @@
+{
+  "id": "05-distributed-inference/tensor-parallel",
+  "title": "张量并行（TP）",
+  "description": "一句话概括核心：将 Transformer 每层的权重矩阵按行或按列切分到多块 GPU，每层计算完成后通过 AllReduce 同步结果，实现单层级别的细粒度并行。",
+  "source": "@site/docs/05-distributed-inference/tensor-parallel.md",
+  "sourceDirName": "05-distributed-inference",
+  "slug": "/05-distributed-inference/tensor-parallel",
+  "permalink": "/05-distributed-inference/tensor-parallel",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "分布式推理概述",
+    "permalink": "/05-distributed-inference/distributed-overview"
+  },
+  "next": {
+    "title": "流水线并行（PP）",
+    "permalink": "/05-distributed-inference/pipeline-parallel"
+  }
+}
