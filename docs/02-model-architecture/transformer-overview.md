@@ -8,7 +8,7 @@ sidebar_position: 1
 
 ## 前置知识
 
-建议先阅读 [什么是 FDE](../01-ai-basics/01-what-is-fde) 了解岗位定位。
+建议先阅读 [什么是 FDE](/01-ai-basics/01-what-is-fde) 了解岗位定位。
 
 ## 核心概念
 
@@ -287,5 +287,5 @@ Prefill 是 compute-bound：计算量远大于数据搬运。
 - 监控 GPU 利用率：decode 阶段低于 20% 是正常的（memory-bound 特性决定）
 - 选择 H100 而非 A100 做推理：HBM3 带宽提升 1.5x，对 decode 有直接收益
 
-*上一节：[入门篇](../01-ai-basics/)*
+*上一节：[入门篇](/01-ai-basics/)*
 *下一节：[Attention 机制深入](./attention-mechanism.md)*

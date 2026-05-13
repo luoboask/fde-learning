@@ -48,4 +48,4 @@ Week 11-12: 面试 + 管理 ── 答题框架、培养体系
 
 ---
 
-*下一步：进入 [进阶篇 — 模型架构](../02-model-architecture/transformer-overview)*
+*下一步：进入 [进阶篇 — 模型架构](/02-model-architecture/transformer-overview)*
