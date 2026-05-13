@@ -8,17 +8,46 @@ Copy any prompt below directly to Gemini 2.5 / DALL-E / Midjourney to generate t
 ## 1. FDE Full Knowledge Map
 
 ```
-A clean mind-map style infographic on light cream background, titled "FDE 前沿部署工程师 — 全栈知识体系" at top center in bold dark charcoal font. Four colored branches radiating from a central node "FDE Engineer":
+A clean journey-style timeline infographic on light cream background, titled "FDE 前沿部署工程师 — 知识成长路径" at top in bold dark charcoal font. Subtitle: "从入门到管理 12周完整路径" in smaller gray text.
 
-Branch 1 (blue, top-left) "基础认知": AI发展史与FDE岗位 / Transformer架构概述 / 模型训练与预训练后训练 / 学习路线图与能力模型
+A horizontal timeline arrow running left to right across the image, with four milestone circles along it:
 
-Branch 2 (green, top-right) "进阶技术": GPU架构A100/H100 / 推理引擎vLLM·TRT-LLM·SGLang / 模型量化FP16·INT8·INT4·FP8 / KV Cache优化 / 分布式并行TP·PP·MoE
+Milestone 1 "入门 L1" (blue circle, left): 
+Icon: lightbulb / open book.
+Under the milestone, a blue card with bullet points:
+• AI发展史与FDE岗位认知
+• Transformer架构概述
+• 模型训练与预训练/后训练
+• 学习路线图与五维能力模型
 
-Branch 3 (orange, bottom-left) "生产实战": K8s部署与自动扩缩 / 可观测性Metrics·Logging·Tracing / 成本优化自建vs云vsAPI / 多租户隔离
+Milestone 2 "进阶 L2" (green circle, center-left):
+Icon: GPU chip / engine gear.
+Under the milestone, a green card with bullet points:
+• GPU架构 A100/H100 显存模型
+• 推理引擎 vLLM·TRT-LLM·SGLang
+• 模型量化 FP16·INT8·INT4·FP8
+• KV Cache与Attention优化
 
-Branch 4 (red, bottom-right) "前沿与管理": Agent架构 / 投机解码与FP8推理 / 面试答题框架 / 团队建设与招聘
+Milestone 3 "实战 L3" (orange circle, center-right):
+Icon: server / deployment rocket.
+Under the milestone, an orange card with bullet points:
+• K8s部署与自动扩缩容
+• 可观测性 Metrics·Logging·Tracing
+• 成本优化 自建vs云vsAPI
+• 分布式并行 TP·PP·MoE·DP
 
-Each branch has 4-5 sub-items in smaller font. Clean connecting lines, minimalist icons for each sub-item. At the very bottom, a navy blue highlight bar: "从底层向上学 · 技术深度占面试40%". --ar 3:4
+Milestone 4 "管理 L4" (red circle, right):
+Icon: team / presentation board.
+Under the milestone, a red card with bullet points:
+• Agent架构 记忆+工具+规划
+• 前沿技术 投机解码·FP8推理
+• 面试答题框架与项目故事
+• 团队建设与招聘体系
+
+Between each milestone, a small arrow with week labels:
+"L1→L2: Week 3-4" / "L2→L3: Week 7-9" / "L3→L4: Week 10-12"
+
+At the very bottom, navy blue highlight bar: "技术深度占面试40% · 从底层向上学 不要反过来". Minimalist line art style, clean modern typography with generous spacing. --ar 3:4
 ```
 
 ---
