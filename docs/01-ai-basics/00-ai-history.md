@@ -4,7 +4,7 @@ sidebar_position: 0
 
 # 人工智能的发展历程
 
-> 从图灵测试到 GPT-4，了解 AI 是如何一步步走到今天的。理解历史，才能判断未来。
+> 从图灵测试到 Claude Opus 4.7，了解 AI 是如何一步步走到今天的。理解历史，才能判断未来。
 
 ## 为什么 FDE 需要了解 AI 历史
 
@@ -78,7 +78,9 @@ graph LR
     E --> F["2012\nAlexNet\nImageNet 突破"]
     F --> G["2017\nTransformer\n架构革命"]
     G --> H["2020\nGPT-3\n大语言模型时代"]
-    H --> I["2023\nGPT-4\n多模态"]
+    H --> I["2023\nChatGPT\nRLHF 对齐"]
+    I --> J["2025\nGPT-5 / Claude 4 / Gemini 3\n推理能力飞跃"]
+    J --> K["2026\nClaude Opus 4.7 / Gemini 3.1\nAgentic 软件工程"]
 ```
 
 ### 第二次寒冬（1987-1993）
@@ -169,6 +171,9 @@ Google 用 Transformer Encoder 做预训练，在 11 个 NLP 任务上达到 SOT
 | GPT-1 | 2018 | 117M | 预训练 + 微调范式 |
 | GPT-2 | 2019 | 1.5B | 无监督多任务能力，Zero-shot |
 | GPT-3 | 2020 | **175B** | In-context Learning，Few-shot |
+| GPT-4 | 2023 | ~1.8T | 多模态、复杂推理 |
+| GPT-5 | 2025 | 不公开 | 长链推理、代码生成、steerability |
+| Claude Opus 4.7 | 2026 | 不公开 | 软件工程能力飞跃，混合推理 |
 
 **GPT-3 的 In-context Learning 是范式转变**：不需要微调，只需在 prompt 里给几个例子，模型就能完成任务。
 
@@ -229,10 +234,12 @@ GPT-3 → InstructGPT → ChatGPT
 | Alpaca | Stanford | 用 52K 指令数据微调 Llama，效果接近 GPT-3.5 |
 | Mistral 7B | Mistral AI | 7B 参数超越 Llama 2 13B |
 | Qwen | 阿里 | 中文能力最强的开源模型之一 |
+| DeepSeek V3 | DeepSeek | 671B 参数 MoE，仅 37B 激活，开源标杆 |
+| LLaMA 4 | Meta | 2026 年开源旗舰，多模态 + MoE |
 
 ---
 
-## 多模态与 Agent 时代（2023-2026）
+## 多模态、Reasoning 与 Agent 时代（2023-2026）
 
 ### 多模态大模型
 
@@ -242,8 +249,20 @@ graph LR
     B --> C["LLaVA 2023\n简单的视觉语言对齐"]
     C --> D["GPT-4V 2023\n商业多模态"]
     D --> E["GPT-4o 2024\n原生多模态"]
-    E --> F["视频理解\n实时交互"]
+    E --> F["GPT-5 / Claude 4\n多模态 + 推理"]
+    F --> G["Gemini 3.1 Pro 2026\n视频 + 代码 + 推理"]
 ```
+
+### Reasoning 模型革命
+
+2025 年开始，模型从"直接回答"转向"先思考再回答"：
+
+- **Chain-of-Thought (CoT)**：模型生成中间推理步骤，大幅提升复杂任务准确率
+- **GPT-5 (2025)**：引入长链推理能力，代码生成和数学推理显著改善
+- **Claude Opus 4.7 (2026)**：混合推理模型，在软件工程等复杂任务上表现突出
+- **Gemini 3.1 Pro (2026)**：推理 + 多模态 + 编程三位一体
+
+**FDE 视角**：Reasoning 模型的思考过程产生大量隐藏 token（可达最终回答的 5-10x），TTFT 和 KV Cache 成为全新优化战场。
 
 ### Agent 系统
 
@@ -252,6 +271,7 @@ graph LR
 - **ReAct**：推理 + 行动的交替执行
 - **Tool Use**：模型调用外部工具（搜索、代码执行、API）
 - **Multi-Agent**：多个 Agent 协作完成复杂任务
+- **Agentic Coding (2025-2026)**：Claude Opus 4.7、GPT-5 Codex 等模型可以自主完成长周期软件开发任务
 
 ---
 
@@ -264,7 +284,7 @@ graph LR
 | 2020 前 | 模型服务化 | Docker、REST API |
 | 2020-2022 | 大规模推理 | GPU 集群、分布式 |
 | 2023-2024 | 推理优化 | vLLM、量化、KV Cache |
-| 2025-2026 | **全栈部署** | 多模态、Agent、成本控制 |
+| 2025-2026 | **推理规模化 + Agentic 部署** | Reasoning 优化、Agentic 架构、FP4 量化、端侧推理 |
 
 ### 每次技术变革带来的新优化点
 

@@ -28,8 +28,8 @@ sidebar_position: 4
 | 4 月 | 分布式推理 | Tensor Parallel、Pipeline Parallel、混合并行 | 分布式部署方案 |
 | 5 月 | GPU 底层 | CUDA 基础、显存模型、profiling 工具 | GPU 性能分析 |
 | 6 月 | 可观测性 | 监控体系、告警策略、故障排查 | 监控方案设计 |
-| 7 月 | 前沿技术 | Speculative Decoding、MoE、新注意力机制 | 前沿技术评估 |
-| 8 月 | 新模型适配 | Llama 3、Qwen、Mistral 等新模型部署 | 新模型部署文档 |
+| 7 月 | 前沿技术 | Reasoning 优化、Agentic 推理、FP4 量化 | 前沿技术评估 |
+| 8 月 | 新模型适配 | LLaMA 4、Qwen3、Claude 4 等新模型部署 | 新模型部署文档 |
 | 9 月 | 服务治理 | SLA 设计、容量规划、弹性伸缩 | 服务治理方案 |
 | 10 月 | 安全与合规 | 模型安全、数据安全、隐私保护 | 安全评估报告 |
 | 11 月 | 成本优化 | GPU 成本分析、Spot 实例、资源调度 | 成本优化方案 |

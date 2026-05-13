@@ -271,194 +271,181 @@ At the very bottom, navy blue bar with white text: "小量用API 中量用云GPU
 ## 09-01. 前沿技术总览
 
 ```
-A clean technology landscape infographic on light cream background (#FAF8F5), titled "LLM 推理加速技术全景 — 四层优化体系" at top in bold dark charcoal (#2D2D2D) 44px font.
+A clean technology landscape infographic on light cream background (#FAF8F5), titled "2026 LLM 推理加速技术全景 — 五层优化体系" at top in bold dark charcoal (#2D2D2D) 44px font.
 
-Four optimization layers (top to bottom):
+Five optimization layers (top to bottom):
 
 Layer 1 "算法层 — 改变生成方式" (purple):
 🧠 icon
-"投机解码 (Speculative Decoding): 小模型draft大模型验证 · 2-4x加速"
-"Medusa: 多头预测 · 一次生成多个token"
-"EAGLE-2/3: 特征级draft · 更高接受率"
-"Lookahead Decoding: 并行验证多个候选"
+"EAGLE-3 投机解码: 特征级预测 · 2-6x加速 · 生产标配"
+"SpecForge (2026): 灵活draft-target配对框架"
+"FLy 宽松推测: 放松验证标准 · 低确定性场景有效"
+"思考Token压缩: Reasoning模型专用 · 1.5-3x加速"
 
 Layer 2 "数值层 — 改变精度" (blue):
 📊 icon
-"FP8推理: H100原生FP8 Tensor Core · 2x吞吐"
-"INT4 KV Cache: 显存再降50%"
-"混合精度: Attention用FP16 FFN用FP8"
+"FP8推理: H100/B200原生支持 · 1.5-2x吞吐 · 生产标配"
+"FP4推理: Rubin(2026)原生50PFLOPS · 极致量化"
+"INT4/INT8: 通用量化 · 单卡部署70B+"
 
 Layer 3 "显存层 — 改变存储方式" (green):
 📦 icon
-"PagedAttention: 虚拟页→物理页映射 · 利用率90%+"
-"KV Cache压缩: 量化+PQ编码"
-"MLA (DeepSeek): 压缩KV Cache的Attention"
+"PagedAttention: 虚拟页→物理页映射 · 生产标配"
+"KV Cache压缩: INT8量化 · 显存降50-80%"
+"Reasoning KV压缩: 思考过程token的KV优化 · 2026新方向"
 
 Layer 4 "系统层 — 改变调度方式" (orange):
 🔄 icon
-"Continuous Batching: 动态请求合并"
-"Chunked Prefill: 长prompt分段"
-"DistServe: Prefill和Decode分离到不同GPU"
-"MoonCake: 分布式KV Cache存储"
+"Continuous Batching: 动态请求合并 · 生产标配"
+"Prefill-Decode分离: DistServe · 吞吐+2x · 大流量首选"
+"Agentic前缀缓存: 多轮工具调用的KV复用"
 
-Recent papers worth attention (2025-2026):
-"EAGLE-3: 接受率>80% 加速比3-4x"
-"FlashDecoding++: FlashAttention扩展到decode"
-"DistServe: Prefill/Decode分离 延迟降50%"
+Layer 5 "Reasoning/Agent层 — 2026新战场" (red, highlighted):
+🎯 icon (with red "2026 NEW" badge)
+"Chain-of-Thought优化: 思考token压缩+KV压缩"
+"思考/回答分离架构: 高精度思考+低精度回答"
+"多Agent并行调度: 独立子任务并行执行"
+"端侧推理(EdgeLLM): 手机/边缘设备LLM部署"
 
-At the very bottom, navy blue bar with white text: "保持技术敏感 但生产以稳定为先 · PagedAttention+量化+batching 足够用2年". --ar 3:4
+Technology maturity meter (gauge style):
+"已标配: PagedAttention, Continuous Batching, GQA, FlashAttention-3, INT8/INT4"
+"推广中: FP8, EAGLE-3, Prefill-Decode分离"
+"评估中: FP4(Rubin), FLy, Reasoning KV压缩"
+"观望中: EdgeLLM, 多Agent并行, 思考/回答分离"
+
+At the very bottom, navy blue bar with white text: "FP8+EAGLE-3是2026最优组合 · Reasoning优化是今年最大的新战场". --ar 3:4
 ```
 
 ## 09-02. 投机解码
 
 ```
-A clean technical infographic on light cream background (#FAF8F5), titled "投机解码 Speculative Decoding — 小模型draft 大模型验证" at top in bold dark charcoal (#2D2D2D) 44px font.
+A clean technical infographic on light cream background (#FAF8F5), titled "投机解码 2026 — EAGLE-3 2-6x 加速" at top in bold dark charcoal (#2D2D2D) 44px font.
 
 Algorithm flow (left to right):
 
 Step 1 "Draft" (blue):
-"小模型 (如 7B) 快速生成 γ 个 tokens"
-"速度: ~200 token/s (7B on A100)"
-"γ = 4 (典型值)"
+"小模型 或 EAGLE特征预测层 生成 γ 个 tokens"
+"EAGLE-3: 无需独立小模型 · 特征层直接预测"
+"γ = 4-6 (典型值)"
 
 Step 2 "Verify" (green):
-"大模型 (如 70B) 并行验证 γ 个 tokens"
-"计算每个draft token的接受概率"
-"速度: ~15 token/s (70B on A100)"
+"大模型 并行验证 γ 个 tokens"
+"计算每个draft token的接受概率 α=min(1, P_target/P_draft)"
+"一次前向验证所有候选"
 
 Step 3 "Accept/Reject" (orange):
-"概率 > threshold → 接受"
-"概率 < threshold → 拒绝 大模型重新采样"
-"连续接受则输出多个token"
-"拒绝后从小模型拒绝点重新draft"
+"概率 > threshold → 接受 · 连续接受则输出多个token"
+"概率 < threshold → 拒绝 · 大模型重新采样"
+"EAGLE-3 接受率: 70-85% (vs 早期 50-60%)"
 
 Speedup formula:
 "加速比 = 1 + γ × 接受率"
-"γ=4, 接受率60% → 1 + 4×0.6 = 3.4x 理论"
-"实际: 2-2.5x (考虑draft开销)"
+"γ=5, 接受率75% → 1 + 5×0.75 = 4.75x 理论"
+"实际: 2-6x (EAGLE-3 实测)"
 
-Medusa scheme (detail box):
-"Medusa: 在LLM上加多个'decoding heads'"
-"每个head预测第n步token"
-"一次前向 = 多个token预测"
-"不需要独立小模型 · 但需微调"
+2026 evolution timeline:
+"2023: Speculative Decoding (独立小模型 draft)"
+"2024: Medusa (多头扩展 · 无需小模型)"
+"2025: EAGLE-2 (特征预测 · 接受率70%+)"
+"2026: EAGLE-3 + SpecForge · 2-6x加速 · 生产标配"
 
-Acceptance rate analysis:
-"高接受率 (>70%): Draft和Target分布接近"
-"  如: 同系列小模型 → draft"
-"低接受率 (<30%): Draft和Target分布差异大"
-"  如: 不同类型小模型 → 收益有限"
-
-vLLM configuration:
-speculative_model = "small_model_path"
-num_speculative_tokens = 4
-speculative_draft_tensor_parallel_size = 1
+New 2026 methods (small cards):
+"SpecForge (2026-03): 自动搜索最优draft配置"
+"FLy (2025-12): 宽松验证标准 · 创意场景有效"
+"CAS-Spec (NeurIPS 2025): 级联自适应自推测"
+"EdgeLLM (2026): 端侧推理+推测解码"
 
 When to use:
-"✅ Draft模型和主模型同源 (如 Llama-7B draft Llama-70B)"
-"✅ 对延迟敏感 愿意用额外显存换速度"
-"❌ 接受率<40% 时收益不大"
+"✅ 代码补全(接受率80%+) / 结构化输出 / API文档"
+"❌ 创意写作(接受率<40%) / 极短回复(overhead过大)"
 
-At the very bottom, navy blue bar with white text: "投机解码接受率>60%时收益最大 · 关键是选择同源的小模型做draft". --ar 3:4
+At the very bottom, navy blue bar with white text: "EAGLE-3已成生产标配 · 代码场景接受率80%+ 加速4-6x". --ar 3:4
 ```
 
-## 09-03. FP8 推理
+## 09-03. FP8/FP4 推理
 
 ```
-A clean technical infographic on light cream background (#FAF8F5), titled "FP8 推理 — H100 的性能密码" at top in bold dark charcoal (#2D2D2D) 44px font.
+A clean technical infographic on light cream background (#FAF8F5), titled "FP8/FP4 推理 — 从 H100 到 Rubin 的精度进化" at top in bold dark charcoal (#2D2D2D) 44px font.
 
 Floating point format comparison:
 "FP32": 1bit符号 + 8bit指数 + 23bit尾数 · 范围±3.4×10³⁸
 "FP16": 1bit符号 + 5bit指数 + 10bit尾数 · 范围±65504
-"BF16": 1bit符号 + 8bit指数 + 7bit尾数 · 范围同FP38 精度低
-"FP8 E4M3": 1bit符号 + 4bit指数 + 3bit尾数 · 范围±448 (推理)
-"FP8 E5M2": 1bit符号 + 5bit指数 + 2bit尾数 · 范围±57344 (训练)
-"INT8": 0bit指数 + 8bit整数 · 范围-128~127 (对称)
+"BF16": 1bit符号 + 8bit指数 + 7bit尾数 · 范围同FP32 精度低
+"FP8 E4M3": 1bit符号 + 4bit指数 + 3bit尾数 · 范围±448 (推理标配)
+"FP4": 1bit符号 + 2bit指数 + 1bit尾数 · 极致量化 (2026)
+"INT8": 0bit指数 + 8bit整数 · 范围-128~127 (通用)
+
+GPU generation FP performance (bar chart):
+"A100 (2020)": FP16 312 TFLOPS · FP8 不支持
+"H100 (2022)": FP16 989 TFLOPS · FP8 1978 TFLOPS (2x)
+"B200 (2025)": FP16 2.5 PFLOPS · FP8 5 PFLOPS · FP4 实验
+"Rubin (2026)": FP4 50 PFLOPS · 288GB HBM4 · 单卡4-8个70B实例
 
 H100 FP8 Tensor Core (highlighted green box):
 ⚡ "FP8 Tensor Core: 1978 TFLOPS"
 "FP16 Tensor Core: 989 TFLOPS"
 "FP8 是 FP16 的 2 倍!"
-"原因: 8bit数据量减半 每次能处理2倍矩阵"
-
-Why FP8 is faster than A100 FP16:
-"A100 FP16: 312 TFLOPS"
-"H100 FP8: 1978 TFLOPS"
-"6.3x 差距! 不仅是FP8的功劳:"
-"FP8精度: 2x (数据量减半)"
-"Hopper架构: ~1.5x (架构改进)"
-"Tensor Core数量: ~2x"
-
-FP8 quantization schemes:
-"Dynamic Scaling: 每层运行时找scale"
-"Per-tensor: 整个张量1个scale"
-"Per-channel: 每通道1个scale (更精确)"
-
-Accuracy loss analysis:
-"FP8 vs FP16: 精度损失 0.5-1.5%"
-"FP8 vs INT8: FP8动态范围更大 对outlier更鲁棒"
-"FP8在Attention上可能不稳定 (softmax敏感)"
-
-NVIDIA Transformer Engine:
-"自动FP8/FP16混合精度"
-"前向FP8 后向FP16"
-"自动监控 精度不够自动切FP16"
 
 FP8 vs INT8 comparison:
-"FP8": 动态范围大 · 对outlier鲁棒 · H100专属
-"INT8": 动态范围小 · 兼容性广 · 所有GPU支持
+"FP8": 动态范围大 · 对outlier鲁棒 · H100+专属 · 损失0.5-1.5%
+"INT8": 动态范围小 · 兼容所有GPU · 损失1-3% · 校准复杂
 
-At the very bottom, navy blue bar with white text: "H100的FP8 Tensor Core是推理性能翻倍的关键 · E4M3适合推理 E5M2适合训练". --ar 3:4
+Accuracy loss analysis (table):
+"MMLU 70B": FP16 78.5% → FP8 77.8% (-0.7pp)
+"HumanEval": FP16 72.0% → FP8 70.5% (-1.5pp)
+"GSM8K": FP16 85.0% → FP8 83.8% (-1.2pp)
+
+FP8 quantization flow:
+"校准(少量数据) → 计算scale → FP8推理 → 在线更新scale"
+"Per-tensor: 整个张量1个scale (激活)"
+"Per-channel: 每通道1个scale (权重)"
+
+At the very bottom, navy blue bar with white text: "H100上FP8已成标配 损失<1% 加速1.5-2x · Rubin的FP4是下一代极致量化". --ar 3:4
 ```
 
 ## 09-04. 前沿技术评估流程
 
 ```
-A clean process infographic on light cream background (#FAF8F5), titled "前沿技术评估流程 — 怎么判断一个新技术值不值得用" at top in bold dark charcoal (#2D2D2D) 44px font. Subtitle: "四步评估法 从信息到上线" in gray 18px.
+A clean process infographic on light cream background (#FAF8F5), titled "2026 前沿技术评估流程 — 新技术值不值得用" at top in bold dark charcoal (#2D2D2D) 44px font. Subtitle: "四步评估法 从信息到上线" in gray 18px.
+
+2026 context badge (orange): "2026更新: Reasoning模型/Agentic/FP4评估维度"
 
 Step 1 "信息收集" (blue): 📖 icon
-"来源: 论文(Google Scholar) / 博客(GitHub) / 社区(Twitter)"
-"关注: arXiv上的cs.LG和cs.DC"
-"筛选标准:"
-"  是否有开源实现?"
-"  是否有benchmark数据?"
-"  是否有生产环境验证?"
+"来源: 论文(arXiv) / 博客 / 社区(GitHub/Discord)"
+"2026重点关注:"
+"  SpecForge (自动draft优化)"
+"  FLy (宽松推测解码)"
+"  Reasoning KV压缩技术"
+"  EdgeLLM端侧推理方案"
 "产出: 技术评估笔记 (1-2页)"
 
 Step 2 "环境搭建" (green): 🔧 icon
 "搭建隔离测试环境 (和production一致)"
-"安装依赖 · 配置benchmark数据集"
+"安装推理框架 vLLM/SGLang/TRT-LLM"
 "确保baseline (当前方案)可复现"
 "产出: 可重复的测试脚本"
 
 Step 3 "Benchmark 测试" (orange): 📊 icon
-五大评估维度:
+六大评估维度 (2026更新):
 "准确率: vs baseline 精度变化 <1%可接受"
 "性能: TTFT/TPS/吞吐 提升>20%才有价值"
-"兼容性: 是否支持现有模型/框架"
-"成本: 额外显存/CPU开销"
-"生态: 社区活跃度/维护频率/文档质量"
+"Reasoning开销: 思考token对TTFT的影响"
+"Agentic兼容: 多轮工具调用的前缀缓存"
+"成本: 额外显存/CPU/GPU数量"
+"生态: 框架支持/社区活跃度/文档质量"
 
 Step 4 "业务验证" (red): 🎯 icon
 "在真实业务流量上灰度测试"
 "5%流量 → 观察1周 → 指标正常 → 50% → 100%"
-"监控: 错误率/延迟/资源消耗"
+"监控: 错误率/延迟/资源消耗/GPU利用率"
 "产出: 评估报告 + 上线/回退决策"
-
-Evaluation report template:
-"技术名称 / 版本"
-"评估日期 / 评估人"
-"测试环境 (GPU/模型/数据)"
-"Baseline结果 vs 新技术结果"
-"结论: 推荐采用 / 继续观察 / 不推荐"
-"理由: (3-5条)"
 
 Automated evaluation pipeline:
 "GitHub CI: 每次commit自动跑benchmark"
-"Prometheus: 持续监控生产指标"
+"Prometheus+Grafana: 持续监控生产指标"
 "Dashboard: 实时对比新旧方案"
 
-At the very bottom, navy blue bar with white text: "新技术评估的核心原则: 数据说话 · 不盲目追新 · 生产稳定优先". --ar 3:4
+At the very bottom, navy blue bar with white text: "2026评估重点: 不仅测传统推理 还要测Reasoning开销和Agentic兼容性". --ar 3:4
 ```
 
 ---

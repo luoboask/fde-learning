@@ -27,7 +27,7 @@ graph TD
 
 | 维度 | 说明 |
 |------|------|
-| 单价 | GPT-4: $0.03/1K input + $0.06/1K output\nGPT-4o: $0.005/1K input + $0.015/1K output\nClaude Sonnet: $0.003/1K input + $0.015/1K output |
+| 单价 | GPT-5: $1.25/1M input + $10/1M output\nGPT-4o-mini: $0.00015/1K input + $0.0006/1K output\nClaude Sonnet 4: $0.003/1K input + $0.015/1K output\nGemini 3 Flash: $0.000075/1K input + $0.0003/1K output |
 | 启动成本 | $0 |
 | 运维 | 零运维 |
 | 弹性 | 自动，无限制 |
@@ -200,7 +200,7 @@ graph TD
     D -->|是| E
     D -->|否| F[云 GPU IaaS]
 
-    C --> C1[推荐: GPT-4o / Claude]
+    C --> C1[推荐: GPT-4o-mini / Claude Haiku / Gemini Flash]
     E --> E1[推荐: H100 + vLLM]
     F --> F1[推荐: AWS p5 / GCP A2]
 

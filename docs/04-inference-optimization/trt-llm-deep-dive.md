@@ -250,19 +250,17 @@ output_ids = runner.generate(
 
 ## 支持模型列表
 
-NVIDIA 持续扩展 TRT-LLM 的模型支持范围。截至 2024 年初，主要支持：
+NVIDIA 持续扩展 TRT-LLM 的模型支持范围。截至 2026 年中，主要支持：
 
 | 模型族 | 具体模型 | 备注 |
 |--------|---------|------|
-| **Llama** | Llama-2-7B/13B/70B, Llama-3-8B/70B | 主力支持，优化最好 |
-| **Mistral** | Mistral-7B, Mixtral 8x7B (MoE) | MoE 支持 |
-| **Falcon** | Falcon-7B/40B/180B | |
-| **Qwen** | Qwen-1.5/2 (7B/14B/72B) | 中文模型支持 |
-| **Baichuan** | Baichuan-7B/13B | |
-| **ChatGLM** | ChatGLM2/3-6B | |
-| **Phi** | Phi-2/Phi-3 | 小模型场景 |
-| **Gemma** | Gemma-2B/7B | Google 模型 |
-| **Starcoder** | Starcoder-15B | 代码模型 |
+| **Llama** | Llama-2/3/3.1/4 (7B-405B) | 主力支持，优化最好 |
+| **Mistral** | Mistral-7B, Mixtral 8x7B/8x22B, Mistral Large | MoE 支持 |
+| **Qwen** | Qwen2/2.5/3 (7B-72B) | 中文模型 |
+| **DeepSeek** | DeepSeek-V3 (MoE) | 671B 参数 MoE |
+| **Gemma** | Gemma-2B/7B/27B | Google 模型 |
+| **Phi** | Phi-3/Phi-4 | 小模型场景 |
+| **Claude** | 部分支持（需 API） | 有限支持 |
 
 **注意**：TRT-LLM 的模型支持需要针对每种架构编写优化代码，所以覆盖率不如 vLLM。部署新模型前，先查阅 TRT-LLM 的 [GitHub 支持列表](https://github.com/NVIDIA/TensorRT-LLM)。
 

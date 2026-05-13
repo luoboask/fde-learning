@@ -36,7 +36,7 @@ graph TD
 
 ```
 
-现代 LLM（Llama 3、Qwen2）采用 **Pre-Norm + SwiGLU + RoPE** 的组合。
+现代 LLM（Llama 3/4、Qwen2/3、Claude 4）采用 **Pre-Norm + SwiGLU + RoPE** 的组合。
 
 ### FFN 层详细计算
 

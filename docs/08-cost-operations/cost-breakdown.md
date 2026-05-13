@@ -161,9 +161,10 @@ graph LR
    - INT8：70B × 1 byte = 70GB → 1×H100 80GB（KV Cache 还需额外 ~10GB）
    - INT4：70B × 0.5 bytes = 35GB → 1×H100 80GB（余量充裕）
 
-2. **"OpenAI GPT-4 定价 $0.03/1K tokens 的成本是多少？"**
-   - 推测 GPT-4 级模型在优化集群上成本约 $0.005-$0.01/1K tokens
-   - 毛利约 65-80%（含基础设施摊销后）
+2. **"GPT-5 / Claude 4 级别模型的 API 成本是多少？"**
+   - GPT-5 input $1.25/1M tokens, output $10/1M tokens（2025 定价）
+   - 自建 70B 模型成本约 $0.001-0.003/1K tokens（H100 集群优化后）
+   - 自建 vs API 的盈亏平衡点约在月调用量 50M+ tokens
 
 3. **"如何降低单 token 成本？"**
    - 量化（FP16 → INT8 → FP8）

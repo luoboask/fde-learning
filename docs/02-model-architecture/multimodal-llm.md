@@ -23,10 +23,10 @@ sidebar_position: 7
 
 | 场景 | 输入 | 输出 | 代表模型 |
 |------|------|------|---------|
-| 图像问答 | 图片 + 文字问题 | 文字回答 | GPT-4V、Qwen-VL |
-| 图像生成 | 文字描述 | 图片 | DALL-E 3、Stable Diffusion |
-| 视频理解 | 视频 + 文字指令 | 文字回答 | Gemini、GPT-4o |
-| 语音交互 | 语音输入 | 语音回答 | GPT-4o、Gemini Live |
+| 图像问答 | 图片 + 文字问题 | 文字回答 | GPT-5、Claude 4、Qwen-VL-Max |
+| 图像生成 | 文字描述 | 图片 | DALL-E 3、Midjourney v7 |
+| 视频理解 | 视频 + 文字指令 | 文字回答 | Gemini 3.1 Pro、GPT-5 |
+| 语音交互 | 语音输入 | 语音回答 | GPT-5 Realtime、Gemini Live |
 
 ---
 
@@ -38,7 +38,8 @@ graph LR
     B --> C["LLaVA 2023\n简单的线性投影\n开源方案"]
     C --> D["LLaVA-1.5 2023\nMLP 投影\n多模态指令微调"]
     D --> E["LLaVA-NeXT 2024\n高分辨率支持"]
-    E --> F["原生多模态\nGPT-4o"]
+    E --> F["原生多模态\nGPT-4o / Claude 4"]
+    F --> G["多模态 + 推理\nGPT-5 / Gemini 3.1"]
 ```
 
 ---
@@ -88,7 +89,7 @@ graph TD
     F --> G[输出]
 ```
 
-### 架构三：原生多模态（GPT-4o 等）
+### 架构三：原生多模态（GPT-4o / Claude 4 / Gemini 3 等）
 
 ```
 不再拼接，而是从预训练阶段就混合多模态数据
@@ -220,10 +221,11 @@ graph TD
 | 模型 | 视觉编码器 | 参数量 | 最大图片数 | 部署特点 |
 |------|-----------|--------|-----------|---------|
 | LLaVA-1.5 | CLIP ViT-L/14 | 7B/13B | 1 | 最简单，易部署 |
-| Qwen-VL | ViT + Adapter | 7B | 多张 | 中文能力强 |
-| InternVL | ViT-H | 20B+ | 多张 | 视觉能力强 |
-| GPT-4V | 原生多模态 | 不公开 | 多张 | 需 API 调用 |
-| Gemini | 原生多模态 | 不公开 | 视频 | 支持视频理解 |
+| Qwen-VL-Max | ViT + Adapter | 7B+ | 多张 | 中文能力强 |
+| InternVL 2.5 | ViT-H | 20B+ | 多张 | 视觉能力强 |
+| GPT-5 | 原生多模态 | 不公开 | 多张 | API + Codex |
+| Claude 4/4.5 | 原生多模态 | 不公开 | 多张 | 强视觉分析 |
+| Gemini 3.1 Pro | 原生多模态 | 不公开 | 视频 | 视频 + 代码 + 推理 |
 
 ---
 
