@@ -6,10 +6,10 @@ const config = {
   tagline: 'AI 前沿部署工程师 — 从入门到面试的系统学习路径',
   favicon: 'img/favicon.ico',
   url: 'https://luoboask.github.io',
-  baseUrl: '/',
+  baseUrl: '/fde-learning/',
   organizationName: 'luoboask',
   projectName: 'fde-learning',
-  trailingSlash: false,
+  trailingSlash: true,
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   i18n: {
