@@ -120,6 +120,17 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'AI 工程核心技术栈',
+      items: [
+        '08-ai-engineering-tech-stack/index',
+        '08-ai-engineering-tech-stack/prompt-engineering',
+        '08-ai-engineering-tech-stack/rag-principles',
+        '08-ai-engineering-tech-stack/agent-architecture',
+        '08-ai-engineering-tech-stack/ai-evaluation',
+      ],
+    },
+    {
+      type: 'category',
       label: '前沿技术',
       items: [
         '09-evaluation-frontier/frontier-overview',

@@ -81,6 +81,7 @@ const config = {
               {label: '模型量化', to: '/04-inference-optimization/quantization-basics'},
               {label: 'GPU 基础', to: '/03-gpu-basics/gpu-overview'},
               {label: '成本运营', to: '/08-cost-operations/cost-breakdown'},
+              {label: 'AI 工程', to: '/08-ai-engineering-tech-stack/prompt-engineering'},
             ],
           },
           {
