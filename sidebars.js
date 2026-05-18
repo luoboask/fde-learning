@@ -136,6 +136,26 @@ const sidebars = {
         '12-labs/oom-troubleshooting',
       ],
     },
+    {
+      type: 'category',
+      label: 'AI 驱动业务流程',
+      link: { type: 'doc', id: '18-ai-business-workflows/index' },
+      items: [
+        '18-ai-business-workflows/workflow-orchestration',
+        '18-ai-business-workflows/enterprise-integration',
+        '18-ai-business-workflows/business-metrics',
+      ],
+    },
+    {
+      type: 'category',
+      label: '合规与安全',
+      link: { type: 'doc', id: '19-ai-compliance-security/index' },
+      items: [
+        '19-ai-compliance-security/data-privacy',
+        '19-ai-compliance-security/audit-explainability',
+        '19-ai-compliance-security/prompt-safety',
+      ],
+    },
     // ===== L5: 面试层 =====
     {
       type: 'html',
@@ -159,6 +179,15 @@ const sidebars = {
       label: '面试真题问答',
       link: { type: 'doc', id: '13-qna/index' },
       items: [],
+    },
+    {
+      type: 'category',
+      label: '变更管理与组织采纳',
+      link: { type: 'doc', id: '20-ai-change-adoption/index' },
+      items: [
+        '20-ai-change-adoption/rollout-strategy',
+        '20-ai-change-adoption/roi-measurement',
+      ],
     },
     // ===== 附录 =====
     {

@@ -2,13 +2,66 @@
 sidebar_position: 1
 ---
 
-# 部署架构设计
+# 生产环境部署架构
 
 > 生产级 LLM 部署需要完整的组件选型、K8s 编排、GPU 调度和模型生命周期管理，远不止 "启动一个 Docker 容器"。
 
-## 核心概念（含架构图）
+## 前置知识
 
-### 完整部署架构
+- [推理引擎概述](../04-inference-optimization/engine-overview.md) — 理解 vLLM/TRT-LLM 的工作原理
+- [分布式推理](../05-distributed-inference/distributed-overview.md) — 理解 TP/PP/DP 的通信需求
+- [Transformer Prefill/Decode](../02-model-architecture/transformer-overview.md) — 理解两阶段的计算特征差异
+
+## 为什么需要学这个
+
+模型调通不等于能上线。从 "本地跑通一个 vLLM" 到 "生产环境稳定服务" 之间隔着巨大的工程鸿沟：
+
+- **高可用性**：GPU 节点故障、模型加载超时、OOM——任何一个环节出错都不能影响用户
+- **弹性扩缩容**：流量波动 10x 时，如何自动扩缩而不浪费 GPU 资源？
+- **可观测性**：P99 延迟升高、吞吐量下降、GPU 利用率异常——如何第一时间发现并定位？
+- **灾难恢复**：主集群挂了怎么办？数据丢了怎么恢复？
+- **多租户隔离**：多个团队共用 GPU 集群，如何互相不影响？
+
+本模块覆盖从架构设计到日常运维的完整生产链路。
+
+## 本模块学习地图
+
+```mermaid
+flowchart TD
+    A["本模块概述\n部署架构全景"] --> B["Prefill-Decode 分离\n计算与存储解耦"]
+    B --> C["弹性扩缩容\n应对流量波动"]
+    C --> D["可观测性体系\n指标/日志/链路追踪"]
+    D --> E["灾难恢复\n故障切换与备份"]
+    E --> F["多租户隔离\n安全与资源配额"]
+
+    style A fill:#646cff,color:#fff
+    style B fill:#e8f5e9
+    style C fill:#e8f5e9
+    style D fill:#fff3e0
+    style E fill:#e3f2fd
+    style F fill:#fce4ec
+```
+
+学习顺序说明：
+1. **部署架构设计**（本文档）：先看全景图，理解所有组件和它们的职责
+2. **Prefill-Decode 分离**：理解 LLM 推理两阶段的计算差异，学习如何将它们解耦部署以优化成本
+3. **弹性扩缩容**：在分离部署的基础上，学习如何根据流量自动扩缩
+4. **可观测性体系**：扩缩容需要指标驱动，所以先学监控和告警
+5. **灾难恢复**：有了监控后，学习如何应对故障和灾难
+6. **多租户隔离**：最后学习如何在同一集群服务多个团队/业务线
+
+| 顺序 | 文档 | 解决什么问题 | 时长 |
+|------|------|-------------|------|
+| 1 | [部署架构设计](./deployment-architecture.md)（本文档） | 生产环境需要哪些组件？如何编排？ | 45 分钟 |
+| 2 | [Prefill-Decode 分离](./prefill-decode-separation.md) | 为什么两阶段应该分离部署？怎么拆分？ | 30 分钟 |
+| 3 | [弹性扩缩容](./autoscaling.md) | 流量波动时如何自动扩缩？HPA/KEDA 怎么用？ | 30 分钟 |
+| 4 | [可观测性体系](./observability.md) | 如何监控延迟、吞吐、GPU 利用率？告警怎么设？ | 45 分钟 |
+| 5 | [灾难恢复](./disaster-recovery.md) | 主集群挂了怎么办？数据怎么备份？ | 30 分钟 |
+| 6 | [多租户隔离](./multi-tenant.md) | 多个团队共用 GPU 集群如何互不影响？ | 30 分钟 |
+
+## 核心概念速览
+
+### 完整部署架构全景
 
 ```mermaid
 graph TD
@@ -20,25 +73,75 @@ graph TD
     E --> G["Embedding Service\nPod × M (GPU)"]
     E --> H["Router / Agent Service\nCPU Pod"]
 
-    F --> I["NVIDIA GPU\nA100 / H100 / L40S"]
+    F -.-> I["Model Registry\nS3 / MinIO"]
+    G -.-> I
 
-    F -.-> J["Model Registry\nS3 / MinIO"]
+    F -.-> J["Monitoring Stack\nPrometheus + Grafana"]
     G -.-> J
     H -.-> J
 
-    F -.-> K["Monitoring Stack\nPrometheus + Grafana"]
-    G -.-> K
-    H -.-> K
-
-    F -.-> L["Distributed Tracing\nOpenTelemetry → Jaeger"]
-    G -.-> L
-    H -.-> L
-
-    K -.-> M["AlertManager\n告警路由 → PagerDuty/飞书"]
-    L -.-> M
+    style A fill:#e8f5e9
+    style C fill:#42b883,color:#fff
+    style F fill:#646cff,color:#fff
+    style J fill:#f59e0b,color:#fff
 ```
 
-这张图展示了一个生产级 LLM 推理服务的全链路。每个组件的选型和职责如下：
+### 关键组件职责
+
+| 组件 | 代表产品 | 核心职责 | LLM 场景特殊要求 |
+|------|---------|---------|----------------|
+| **API Gateway** | Kong, APISIX | 统一入口、限流、认证、路由 | SSE 流式响应稳定传输、按模型路由 |
+| **Load Balancer** | Nginx, HAProxy, AWS ALB | TCP/HTTP 负载均衡、健康检查 | `least_conn` 优于 `round_robin`（LLM 请求时长差异大） |
+| **Inference Service** | vLLM, TRT-LLM, SGLang | 模型推理、批处理、KV Cache | GPU 显存管理、Continuous Batching |
+| **Model Registry** | S3, MinIO + MLflow | 模型版本管理、元数据记录 | 大文件分发（40GB+）、蓝绿部署双版本并存 |
+| **Monitoring** | Prometheus + Grafana | 指标采集、可视化、告警 | GPU 利用率、TTFT、TPOT、Token 吞吐 |
+
+### 模型生命周期管理
+
+```mermaid
+graph LR
+    A["HuggingFace\n下载基座"] --> B["量化转换\nAWQ/GPTQ/FP8"]
+    B --> C["精度验证\nPerplexity 对比"]
+    C --> D["上传 S3/MinIO\n带版本号"]
+    D --> E["CI/CD 触发部署\n滚动发布"]
+    E --> F["新 Pod 加载模型\nReadiness Probe"]
+    F --> G["流量切换"]
+
+    style A fill:#e8f5e9
+    style D fill:#fff9c4
+    style F fill:#ffcdd2
+    style G fill:#42b883,color:#fff
+```
+
+**70B AWQ INT4 模型加载时间线**（A100 80GB × 4）：
+
+| 阶段 | 耗时 |
+|------|------|
+| 模型从 S3 下载到本地 | ~30s |
+| 加载到显存（TP=4） | ~20s |
+| KV Cache 预分配 | ~5s |
+| Warmup 推理 | ~3s |
+| **总计** | **~60s** |
+
+### 部署策略
+
+| 策略 | 适用场景 | 优点 | 缺点 |
+|------|---------|------|------|
+| **滚动更新** | 小版本升级、配置变更 | 零停机、资源开销小 | 新旧版本并存期间可能不一致 |
+| **蓝绿部署** | 模型版本切换 | 秒级切换、快速回滚 | 需要双倍 GPU 资源 |
+| **金丝雀发布** | 大版本验证 | 逐步验证、风险可控 | 需要流量管理能力 |
+
+**金丝雀发布推荐步骤**：5% → 25% → 50% → 100%，每步观察 10-30 分钟，重点关注 TTFT 和输出质量。
+
+### K8s 关键配置要点
+
+- **GPU 资源声明**：`resources.limits.nvidia.com/gpu: 4`（Tensor Parallel 需要多卡）
+- **就绪探针**：`initialDelaySeconds: 120`（模型加载需要 60-90s）
+- **共享内存**：`/dev/shm` 至少 16GB（NCCL 进程间通信，默认 64M 不够）
+- **反亲和性**：同一模型的 Pod 分散到不同主机，避免单点故障
+- **滚动更新**：`maxUnavailable: 0` + `maxSurge: 1` 实现零停机
+
+> 完整的 K8s YAML 示例和各组件详细配置见下方 [部署视角](#部署视角)。
 
 ## 部署视角
 
@@ -76,8 +179,6 @@ Layer 4 (LVS) → Layer 7 (Nginx) → vLLM Pods
 
 #### 3. Inference Service（vLLM / TRT-LLM）
 
-LLM 推理引擎选择：
-
 | 引擎 | 特点 | 适用场景 |
 |------|------|----------|
 | vLLM | PagedAttention、高吞吐 | 通用推理、多模型 |
@@ -86,17 +187,6 @@ LLM 推理引擎选择：
 | SGLang | RadixAttention、KV Cache 共享 | 多轮对话、Agent 场景 |
 
 #### 4. Model Registry（模型注册中心）
-
-模型从训练到上线的标准流程：
-
-```mermaid
-graph LR
-    A["HuggingFace\n下载基座模型"] --> B["量化处理\nAWQ / GPTQ / FP8"]
-    B --> C["验证测试\n精度 + 性能"]
-    C --> D["上传到 S3/MinIO\n带版本号"]
-    D --> E["Model Registry 注册\n记录元数据"]
-    E --> F["CI/CD 触发部署\n滚动更新"]
-```
 
 **量化选型指南**：
 
@@ -107,44 +197,35 @@ graph LR
 | GPTQ INT4 | 4-bit | 4x | 较小 | 通用 |
 | FP8 | 8-bit 浮点 | 2x | 极小 | H100+ |
 
-#### 5. Monitoring Stack
+#### 5. GPU 节点配置
 
-见 [可观测性体系](./observability.md)。
+```bash
+# 安装 NVIDIA Device Plugin（K8s 自动发现 GPU）
+kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.14.1/deployments/static/nvidia-device-plugin.yml
+```
 
-### Kubernetes 部署 LLM 完整 YAML 示例
+安装后，K8s Node 自动报告 GPU 资源：
+```yaml
+Capacity:
+  nvidia.com/gpu: 8        # 8 张 A100
+Allocatable:
+  nvidia.com/gpu: 8
+```
+
+#### 6. Kubernetes 部署 LLM 核心 YAML
 
 ```yaml
----
-# ConfigMap：模型配置
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: vllm-config
-  namespace: llm-serving
-data:
-  MODEL_NAME: "Qwen2.5-72B-Instruct-AWQ"
-  MAX_MODEL_LEN: "8192"
-  GPU_MEMORY_UTILIZATION: "0.90"
-  ENFORCE_EAGER: "false"
-  MAX_NUM_SEQS: "256"
-  MAX_NUM_BATCHED_TOKENS: "32768"
-
----
-# Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: vllm-llm
   namespace: llm-serving
-  labels:
-    app: vllm
-    model: qwen2.5-72b
 spec:
   replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 0  # 零停机：先启动新 Pod
+      maxUnavailable: 0  # 零停机
       maxSurge: 1
   selector:
     matchLabels:
@@ -155,7 +236,6 @@ spec:
         app: vllm
         model: qwen2.5-72b
     spec:
-      # GPU 节点亲和性
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -174,9 +254,6 @@ spec:
                   operator: In
                   values: ["vllm"]
               topologyKey: kubernetes.io/hostname
-              # topologyKey 定义"什么维度相同的 Pod 被视为在同一位置"
-              # kubernetes.io/hostname = 同一台主机上的 Pod 尽量分散
-      # 容忍 GPU 节点的污点（防止非 GPU Pod 被调度到 GPU 节点）
       tolerations:
       - key: "nvidia.com/gpu"
         operator: "Exists"
@@ -189,18 +266,11 @@ spec:
         - "-m"
         - "vllm.entrypoints.openai.api_server"
         - "--model"
-        - "$(MODEL_NAME)"
+        - "Qwen2.5-72B-Instruct-AWQ"
         - "--tensor-parallel-size"
         - "4"
-        - "--max-model-len"
-        - "$(MAX_MODEL_LEN)"
         - "--gpu-memory-utilization"
-        - "$(GPU_MEMORY_UTILIZATION)"
-        - "--max-num-seqs"
-        - "$(MAX_NUM_SEQS)"
-        envFrom:
-        - configMapRef:
-            name: vllm-config
+        - "0.90"
         resources:
           requests:
             nvidia.com/gpu: 4
@@ -210,156 +280,23 @@ spec:
             nvidia.com/gpu: 4
             memory: "128Gi"
             cpu: "16"
-        ports:
-        - containerPort: 8000
-          protocol: TCP
-        # 就绪探针：模型加载完成后才接收流量
         readinessProbe:
           httpGet:
             path: /health
             port: 8000
-          initialDelaySeconds: 120  # 70B 模型加载约 60-90s
+          initialDelaySeconds: 120
           periodSeconds: 10
-          failureThreshold: 6
-        # 存活探针：死锁检测
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: 8000
-          initialDelaySeconds: 180
-          periodSeconds: 30
-          failureThreshold: 3
         volumeMounts:
-        - name: model-cache
-          mountPath: /root/.cache/huggingface
         - name: shm
           mountPath: /dev/shm
       volumes:
-      - name: model-cache
-        emptyDir:
-          medium: Memory
-          sizeLimit: "80Gi"  # 量化后模型 ~40GB，留余量
       - name: shm
         emptyDir:
           medium: Memory
-          sizeLimit: "16Gi"  # PyTorch DataLoader 和 NCCL 使用 /dev/shm 做进程间通信
-                              # Tensor Parallel 多进程间需要大共享内存，默认 64M 不够
-
----
-# Service
-apiVersion: v1
-kind: Service
-metadata:
-  name: vllm-service
-  namespace: llm-serving
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
-    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
-spec:
-  type: ClusterIP
-  selector:
-    app: vllm
-  ports:
-  - name: http
-    port: 80
-    targetPort: 8000
-    protocol: TCP
+          sizeLimit: "16Gi"
 ```
 
-### GPU 节点配置详解
-
-#### NVIDIA Device Plugin 安装
-
-```bash
-# 1. 安装 NVIDIA Container Toolkit
-curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | \
-  sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg
-curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
-  sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#' | \
-  sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
-sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
-
-# 2. 安装 Device Plugin（K8s 自动发现 GPU）
-kubectl apply -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/v0.14.1/deployments/static/nvidia-device-plugin.yml
-```
-
-安装后，K8s Node 自动报告 GPU 资源：
-
-```yaml
-# kubectl describe node gpu-node-01
-Capacity:
-  nvidia.com/gpu: 8        # 8 张 A100
-Allocatable:
-  nvidia.com/gpu: 8
-```
-
-#### Taints & Tolerations
-
-```yaml
-# 给 GPU 节点打污点（防止普通 Pod 调度到 GPU 节点）
-# 注意：污点的 key 必须和 Pod toleration 中的 key 一致
-kubectl taint nodes gpu-node-01 nvidia.com/gpu=:NoSchedule
-
-# Pod 需要声明容忍才能调度（与上方 taint 的 key 匹配）
-tolerations:
-- key: "nvidia.com/gpu"
-  operator: "Exists"
-  effect: "NoSchedule"
-```
-
-#### 多 GPU 拓扑感知调度
-
-> **注意**：K8s 原生不直接做 GPU 拓扑感知（如保证 NVLink 域内分配）。
-> PriorityClass 仅用于控制 Pod 的调度优先级，拓扑感知需要借助 NVIDIA GPU Operator 的 device-plugin 配置或自定义调度器（如 Volcano）。
-
-```yaml
-# PriorityClass 控制调度优先级，确保 GPU 推理 Pod 优先于普通 Pod 被调度
-# 真正的拓扑感知需要 NVIDIA Device Plugin 的 topology manager 配合
-apiVersion: scheduling.k8s.io/v1
-kind: PriorityClass
-metadata:
-  name: llm-high-priority
-value: 1000000
-globalDefault: false
-description: "LLM 推理服务，高优先级确保 GPU 资源优先分配"
-```
-
-### 模型加载流程
-
-```mermaid
-graph TD
-    A["HuggingFace 下载基座模型"] --> B["量化转换\nAWQ / GPTQ"]
-    B --> C["精度验证\nperplexity 对比"]
-    C --> D["上传到对象存储 S3/MinIO"]
-    D --> E["CI 流水线触发"]
-    E --> F["构建 vLLM Docker 镜像\n预打包模型权重"]
-    F --> G["更新 K8s Deployment\n滚动发布"]
-    G --> H["新 Pod 启动 → 加载模型到显存"]
-    H --> I["Readiness Probe 通过"]
-    I --> J["流量切换完成"]
-```
-
-**关键时间节点**（70B AWQ INT4，A100 80GB × 4）：
-
-| 阶段 | 耗时 |
-|------|------|
-| 模型从 S3 下载到本地 | ~30s |
-| 加载到显存（TP=4） | ~20s |
-| KV Cache 预分配 | ~5s |
-| Warmup 推理 | ~3s |
-| **总计** | **~60s** |
-
-### 多副本部署与滚动更新策略
-
-```yaml
-strategy:
-  type: RollingUpdate
-  rollingUpdate:
-    maxUnavailable: 0      # 零停机：不能减少可用 Pod 数
-    maxSurge: 1            # 最多允许超出期望 1 个 Pod
-```
-
-**滚动更新流程**：
+### 多副本部署与滚动更新
 
 ```mermaid
 sequenceDiagram
@@ -378,95 +315,52 @@ sequenceDiagram
     O->>O: 释放 GPU 显存
 ```
 
-### 蓝绿部署与金丝雀发布
+### 模型大文件分发优化
 
-#### 蓝绿部署（适合模型版本切换）
+**问题**：模型文件 ~40GB，每次部署都从 S3 下载太慢。
 
-```mermaid
-graph LR
-    A["Ingress"] --> B{路由规则}
-    B -->|Blue| C["vLLM v1\n70B 模型"]
-    B -->|Green| D["vLLM v2\n70B 新模型"]
-
-    C --> E["GPU 组 A"]
-    D --> F["GPU 组 B"]
-```
-
-```yaml
-# 初始：100% 流量 → Blue
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: llm-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/service-weight: |
-      vllm-blue: 100, vllm-green: 0
-
-# 切换后：100% 流量 → Green
-# nginx.ingress.kubernetes.io/service-weight: |
-#   vllm-blue: 0, vllm-green: 100
-```
-
-#### 金丝雀发布（逐步切流验证）
-
-```mermaid
-graph LR
-    A["Ingress"] --> B["vLLM v1\n95% 流量"]
-    A --> C["vLLM v2 金丝雀\n5% 流量"]
-
-    B --> D["GPU 组 A × 20"]
-    C --> E["GPU 组 B × 1"]
-
-```
-
-步骤：
-1. **5%** 流量 → 验证 P99 延迟、错误率
-2. **25%** 流量 → 观察 10 分钟
-3. **50%** 流量 → 观察 30 分钟
-4. **100%** 流量 → 全量上线，旧版本保留 1 小时可快速回滚
-
-**LLM 场景特别关注**：
-- 切换过程中监控 **首字延迟（TTFT）** 是否退化
-- 验证输出质量（可用 LLM-as-a-Judge 自动化检查）
-- 大模型切换需要 **双倍的 GPU 资源**（蓝 + 绿同时在线）
+| 方案 | 原理 | 优缺点 |
+|------|------|--------|
+| **镜像预打包** | 将模型权重打包到 Docker 镜像中 | 镜像较大，但启动快 |
+| **Init Container 预拉取** | 用 init container 提前下载模型到共享 volume | 灵活，支持动态模型 |
+| **P2P 分发** | Dragonfly / Kraken 等 P2P 系统 | 大规模集群最优方案 |
 
 ## 面试视角
 
 ### 面试题：描述生产部署一个 70B 模型的完整流程
 
-**标准答案**：
+**标准回答框架**：
 
-```mermaid
-graph TD
-    A["需求确认\n模型选型 + 精度要求"] --> B["模型量化\nAWQ INT4 / GPTQ"]
-    B --> C["离线验证\nperplexity + benchmark"]
-    C --> D["构建镜像\n预打包模型权重"]
-    D --> E["测试环境部署\n功能 + 性能测试"]
-    E --> F["金丝雀发布\n5% → 25% → 50% → 100%"]
-    F --> G["生产验证\nSLO 监控 + 告警"]
-    G --> H["全量上线"]
-```
+1. **需求确认**：模型选型 + 精度要求（FP16/INT4/FP8）
+2. **模型量化**：AWQ INT4 / GPTQ + 离线验证（perplexity + benchmark）
+3. **构建镜像**：预打包模型权重 + vLLM 环境
+4. **测试环境部署**：功能 + 性能测试
+5. **金丝雀发布**：5% → 25% → 50% → 100%，每步验证 SLO
+6. **生产验证**：SLO 监控 + 告警生效
+7. **全量上线**：旧版本保留 1 小时可快速回滚
 
-关键检查点：
-1. **资源评估**：70B INT4 ≈ 35GB，TP=4 需要 4 张 A100（考虑 KV Cache）
-2. **网络要求**：4 卡之间需要 NVLink / NVSwitch（PCIe 会导致通信瓶颈）
-3. **模型加载时间**：预留 readiness probe 的 initialDelaySeconds
-4. **回滚预案**：旧版本镜像保留，5 分钟内可回滚
-5. **监控就绪**：上线前确认 Grafana Dashboard 和 AlertManager 规则生效
+**关键检查点**：
+- 资源评估：70B INT4 ≈ 35GB，TP=4 需要 4 张 A100（考虑 KV Cache）
+- 网络要求：4 卡之间需要 NVLink / NVSwitch（PCIe 会导致通信瓶颈）
+- 模型加载时间：预留 readiness probe 的 initialDelaySeconds ≥ 120s
+- 回滚预案：旧版本镜像保留，5 分钟内可回滚
+- 监控就绪：上线前确认 Grafana Dashboard 和 AlertManager 规则生效
 
 ### 常见追问
 
-**Q: 模型文件很大（~40GB），每次部署都从 S3 下载太慢怎么办？**
+| 问题 | 回答要点 |
+|------|---------|
+| "滚动更新期间服务不中断怎么保证？" | `maxUnavailable: 0` + readinessProbe + 优雅退出 |
+| "GPU 利用率只有 30% 怎么优化？" | 增大 batch size、Continuous Batching、减少实例数 |
+| "Prefill 和 Decode 为什么要分离？" | 两阶段计算特征完全不同，分离部署可独立扩缩和优化 |
 
-A：三个方案：
-1. **镜像预打包**：将模型权重打包到 Docker 镜像中（镜像较大，但启动快）
-2. **Init Container 预拉取**：用 init container 提前下载模型到共享 volume
-3. **P2P 分发**：使用 Dragonfly / Kraken 等 P2P 镜像分发系统，减少 S3 压力
+## 学完本模块后，你应该能够...
 
-**Q: 如何保证滚动更新期间的服务不中断？**
+- [ ] 画出 LLM 生产部署的完整架构图
+- [ ] 解释为什么 Prefill 和 Decode 应该分离部署
+- [ ] 设计合理的 autoscaling 策略应对流量波动
+- [ ] 配置完整的可观测性 pipeline（指标、日志、链路追踪）
+- [ ] 制定灾难恢复方案和多租户隔离策略
+- [ ] 描述 70B 模型从量化到金丝雀发布的完整流程
 
-A：`maxUnavailable: 0` + `readinessProbe` 配合。新 Pod 完全加载模型并通过健康检查后才接收流量，旧 Pod 收到 SIGTERM 后继续处理完已有请求再退出。
-
----
-
-*下一节：[弹性扩缩容](./autoscaling.md)*
+*上一节：[用 LLM 构建应用](../08-ai-engineering-tech-stack/index.md) | 下一节：[Prefill-Decode 分离](./prefill-decode-separation.md)*
