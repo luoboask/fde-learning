@@ -27,6 +27,8 @@ const config = {
           editUrl: 'https://github.com/luoboask/fde-learning/edit/master/',
           routeBasePath: '/',
           numberPrefixParser: false,
+          sidebarCollapsed: true,
+          autoCollapseCategories: true,
         },
         blog: false,
         theme: {
