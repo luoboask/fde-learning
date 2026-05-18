@@ -8,9 +8,9 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'AI 基础认知',
+      label: '入门：什么是 FDE',
+      link: { type: 'doc', id: '01-ai-basics/index' },
       items: [
-        '01-ai-basics/index',
         '01-ai-basics/00-ai-history',
         '01-ai-basics/01-what-is-fde',
         '01-ai-basics/02-learning-path',
@@ -19,17 +19,20 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: '模型架构',
+      label: '模型是怎么工作的',
+      link: { type: 'doc', id: '02-model-architecture/transformer-overview' },
       items: [
-        '02-model-architecture/transformer-overview',
+        // 核心概念线
         '02-model-architecture/attention-mechanism',
         '02-model-architecture/kv-cache',
         '02-model-architecture/ffn-norm-pos',
         '02-model-architecture/decoding-strategies',
+        // 高级架构线
         '02-model-architecture/moe-architecture',
         '02-model-architecture/mla-deep-dive',
         '02-model-architecture/multimodal-llm',
         '02-model-architecture/thinking-models',
+        // 训练线
         '02-model-architecture/llm-training',
         '02-model-architecture/pre-post-training',
         '02-model-architecture/llm-finetuning',
@@ -43,9 +46,9 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'GPU 基础',
+      label: 'GPU：理解推理的物理载体',
+      link: { type: 'doc', id: '03-gpu-basics/gpu-overview' },
       items: [
-        '03-gpu-basics/gpu-overview',
         '03-gpu-basics/memory-model',
         '03-gpu-basics/performance-bottleneck',
         '03-gpu-basics/gpu-interconnect',
@@ -53,25 +56,25 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: '推理优化技术',
+      label: '让推理变快：推理引擎与量化',
+      link: { type: 'doc', id: '04-inference-optimization/engine-overview' },
       items: [
-        '04-inference-optimization/engine-overview',
         '04-inference-optimization/vllm-deep-dive',
         '04-inference-optimization/trt-llm-deep-dive',
         '04-inference-optimization/sglang-deep-dive',
         '04-inference-optimization/quantization-basics',
         '04-inference-optimization/quantization-schemes',
         '04-inference-optimization/kv-cache-quant',
-        // 前沿推理技术（原属 09 前沿技术模块）
+        // 前沿推理优化
         '09-evaluation-frontier/speculative-decoding',
         '09-evaluation-frontier/fp8-inference',
       ],
     },
     {
       type: 'category',
-      label: '分布式推理',
+      label: '大模型怎么部署到多块 GPU 上',
+      link: { type: 'doc', id: '05-distributed-inference/distributed-overview' },
       items: [
-        '05-distributed-inference/distributed-overview',
         '05-distributed-inference/tensor-parallel',
         '05-distributed-inference/pipeline-parallel',
         '05-distributed-inference/moe-parallel',
@@ -84,9 +87,9 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'AI 工程核心技术栈',
+      label: '用 LLM 构建应用',
+      link: { type: 'doc', id: '08-ai-engineering-tech-stack/index' },
       items: [
-        '08-ai-engineering-tech-stack/index',
         '08-ai-engineering-tech-stack/prompt-engineering',
         '08-ai-engineering-tech-stack/rag-principles',
         '08-ai-engineering-tech-stack/agent-architecture',
@@ -95,9 +98,9 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: '生产部署架构',
+      label: '生产环境部署架构',
+      link: { type: 'doc', id: '06-production-deployment/deployment-architecture' },
       items: [
-        '06-production-deployment/deployment-architecture',
         '06-production-deployment/prefill-decode-separation',
         '06-production-deployment/autoscaling',
         '06-production-deployment/observability',
@@ -112,9 +115,9 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: '成本运营',
+      label: '成本与运营',
+      link: { type: 'doc', id: '08-cost-operations/cost-breakdown' },
       items: [
-        '08-cost-operations/cost-breakdown',
         '08-cost-operations/optimization-strategies',
         '08-cost-operations/capacity-planning',
         '08-cost-operations/self-hosted-vs-cloud',
@@ -123,8 +126,8 @@ const sidebars = {
     {
       type: 'category',
       label: '动手实验',
+      link: { type: 'doc', id: '12-labs/index' },
       items: [
-        '12-labs/index',
         '12-labs/vllm-7b-deploy',
         '12-labs/quantization-workflow',
         '12-labs/profiling-workshop',
@@ -140,9 +143,9 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: '面试答题框架',
+      label: '面试答题方法',
+      link: { type: 'doc', id: '10-interview/interview-framework' },
       items: [
-        '10-interview/interview-framework',
         '10-interview/self-intro',
         '10-interview/technical-answers',
         '10-interview/project-stories',
@@ -153,10 +156,9 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: '面试问答库',
-      items: [
-        '13-qna/index',
-      ],
+      label: '面试真题问答',
+      link: { type: 'doc', id: '13-qna/index' },
+      items: [],
     },
     // ===== 附录 =====
     {
@@ -165,9 +167,9 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: '团队建设与管理',
+      label: '团队管理与建设',
+      link: { type: 'doc', id: '11-team-building/index' },
       items: [
-        '11-team-building/index',
         '11-team-building/team-culture',
         '11-team-building/growth-path',
         '11-team-building/training-mechanism',
@@ -178,16 +180,16 @@ const sidebars = {
     {
       type: 'category',
       label: '前沿技术参考',
+      link: { type: 'doc', id: '09-evaluation-frontier/frontier-overview' },
       items: [
-        '09-evaluation-frontier/frontier-overview',
         '09-evaluation-frontier/frontier-eval-process',
       ],
     },
     {
       type: 'category',
       label: '术语与资源',
+      link: { type: 'doc', id: '14-glossary/index' },
       items: [
-        '14-glossary/index',
         '15-resources/index',
         '16-case-studies/index',
       ],
@@ -195,9 +197,8 @@ const sidebars = {
     {
       type: 'category',
       label: '开源项目深度解读',
-      items: [
-        '17-open-source-deep-dive/index',
-      ],
+      link: { type: 'doc', id: '17-open-source-deep-dive/index' },
+      items: [],
     },
   ],
 };
