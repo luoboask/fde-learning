@@ -30,6 +30,9 @@ const sidebars = {
         '02-model-architecture/moe-architecture',
         '02-model-architecture/multimodal-llm',
         '02-model-architecture/llm-finetuning',
+        '02-model-architecture/thinking-models',
+        '02-model-architecture/decoding-strategies',
+        '02-model-architecture/mla-deep-dive',
       ],
     },
     {
@@ -78,6 +81,7 @@ const sidebars = {
       label: '生产部署架构',
       items: [
         '06-production-deployment/deployment-architecture',
+        '06-production-deployment/prefill-decode-separation',
         '06-production-deployment/autoscaling',
         '06-production-deployment/observability',
         '06-production-deployment/disaster-recovery',
