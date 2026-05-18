@@ -57,6 +57,11 @@ const config = {
             label: '学习路径',
           },
           {
+            to: '/17-open-source-deep-dive/',
+            label: '开源项目解读',
+            position: 'left',
+          },
+          {
             href: 'https://github.com/luoboask/fde-learning',
             label: 'GitHub',
             position: 'right',
@@ -89,7 +94,12 @@ const config = {
             title: '管理',
             items: [
               {label: '团队建设', to: '/11-team-building/team-culture'},
-              {label: '开源解读', to: '/17-open-source-deep-dive'},
+            ],
+          },
+          {
+            title: '其他',
+            items: [
+              {label: '开源项目解读', to: '/17-open-source-deep-dive/'},
             ],
           },
         ],

@@ -223,11 +223,11 @@ const sidebars = {
         '16-case-studies/index',
       ],
     },
+  ],
+  openSourceSidebar: [
     {
-      type: 'category',
-      label: '开源项目深度解读',
-      link: { type: 'doc', id: '17-open-source-deep-dive/index' },
-      items: [],
+      type: 'doc',
+      id: '17-open-source-deep-dive/index',
     },
   ],
 };
