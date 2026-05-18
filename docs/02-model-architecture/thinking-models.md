@@ -22,8 +22,8 @@ sidebar_position: 4
 
 ```mermaid
 graph LR
-    A[用户问题] --> B[传统模型<br/>直接生成回答]
-    A --> C[Thinking 模型<br/>先生成思考链]
+    A[用户问题] --> B[传统模型\n直接生成回答]
+    A --> C[Thinking 模型\n先生成思考链]
     C --> D[隐藏思考过程]
     C --> E[流式展示思考]
     D --> F[输出最终答案]
@@ -57,10 +57,10 @@ graph LR
 
 ```mermaid
 flowchart TD
-    A[SFT 基座模型] --> B[生成多个回答<br/>同一问题采样 N 次]
-    B --> C[自动评分<br/>用奖励模型/验证器打分]
-    C --> D[选择最优回答<br/>或排序后加权]
-    D --> E[强化学习优化<br/>GRPO / PPO / DPO]
+    A[SFT 基座模型] --> B[生成多个回答\n同一问题采样 N 次]
+    B --> C[自动评分\n用奖励模型/验证器打分]
+    C --> D[选择最优回答\n或排序后加权]
+    D --> E[强化学习优化\nGRPO / PPO / DPO]
     E --> F{是否收敛?}
     F -->|否| B
     F -->|是| G[Thinking 模型]
@@ -116,14 +116,14 @@ Thinking 模型：
 
 ```mermaid
 graph TD
-    A[Thinking 模型输出] --> B[思考部分<br/>2000-8000 tokens]
-    A --> C[答案部分<br/>100-500 tokens]
+    A[Thinking 模型输出] --> B[思考部分\n2000-8000 tokens]
+    A --> C[答案部分\n100-500 tokens]
 
     B --> D{策略选择}
-    D --> E["策略 1: 全缓存<br/>KV Cache 爆炸"]
-    D --> F["策略 2: 滑动窗口<br/>只缓存最近 N tokens"]
-    D --> G["策略 3: 丢弃思考<br/>只缓存答案的 KV"]
-    D --> H["策略 4: 压缩思考<br/>摘要后缓存"]
+    D --> E["策略 1: 全缓存\nKV Cache 爆炸"]
+    D --> F["策略 2: 滑动窗口\n只缓存最近 N tokens"]
+    D --> G["策略 3: 丢弃思考\n只缓存答案的 KV"]
+    D --> H["策略 4: 压缩思考\n摘要后缓存"]
 
     style E fill:#fce4ec
     style F fill:#e3f2fd

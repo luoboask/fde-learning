@@ -24,10 +24,10 @@ RAG = **R**etrieval（检索）+ **A**ugmented（增强）+ **G**eneration（生
 
 ```mermaid
 flowchart TD
-    A[用户问题] --> B[Embedding<br/>文本→向量]
-    B --> C[(向量数据库<br/>Milvus/Qdrant)]
-    C --> D[相似度检索<br/>Top-K]
-    D --> E[Prompt 组装<br/>System + 检索结果 + 问题]
+    A[用户问题] --> B[Embedding\n文本→向量]
+    B --> C[(向量数据库\nMilvus/Qdrant)]
+    C --> D[相似度检索\nTop-K]
+    D --> E[Prompt 组装\nSystem + 检索结果 + 问题]
     E --> F[LLM 推理服务]
     F --> G[最终回答]
 
@@ -59,15 +59,15 @@ flowchart TD
 ```mermaid
 graph TB
     subgraph "索引管线 Index Pipeline"
-        A1[文档收集] --> A2[文档解析<br/>PDF/Word/HTML]
-        A2 --> A3[文本分块<br/>Chunking]
-        A3 --> A4[Embedding 编码<br/>文本→向量]
-        A4 --> A5[(向量数据库<br/>存储索引)]
+        A1[文档收集] --> A2[文档解析\nPDF/Word/HTML]
+        A2 --> A3[文本分块\nChunking]
+        A3 --> A4[Embedding 编码\n文本→向量]
+        A4 --> A5[(向量数据库\n存储索引)]
     end
 
     subgraph "查询管线 Query Pipeline"
         Q1[用户问题] --> Q2[Embedding 编码]
-        Q2 --> Q3[向量检索<br/>Top-K 相似度]
+        Q2 --> Q3[向量检索\nTop-K 相似度]
         Q3 --> Q4[Prompt 组装器]
         Q4 --> Q5[LLM 推理]
         Q5 --> Q6[最终回答]
@@ -88,10 +88,10 @@ graph TB
 ```mermaid
 graph LR
     A["长文档...段落1。段落2。段落3。..."] --> B{分块策略}
-    B --> C["固定字符数<br/>每 500 字切分"]
-    B --> D["语义分块<br/>按段落/标题切分"]
-    B --> E["递归分块<br/>标题→段落→句子"]
-    B --> F["重叠分块<br/>chunk_size=500, overlap=50"]
+    B --> C["固定字符数\n每 500 字切分"]
+    B --> D["语义分块\n按段落/标题切分"]
+    B --> E["递归分块\n标题→段落→句子"]
+    B --> F["重叠分块\nchunk_size=500, overlap=50"]
 
     style C fill:#fff3e0
     style D fill:#e8f5e9
@@ -179,9 +179,9 @@ def euclidean_distance(a: np.ndarray, b: np.ndarray) -> float:
 
 ```mermaid
 flowchart LR
-    A[用户问题] --> B[向量检索<br/>语义匹配]
-    A --> C[BM25 检索<br/>关键词匹配]
-    B --> D[RRF 融合<br/>Reciprocal Rank Fusion]
+    A[用户问题] --> B[向量检索\n语义匹配]
+    A --> C[BM25 检索\n关键词匹配]
+    B --> D[RRF 融合\nReciprocal Rank Fusion]
     C --> D
     D --> E[排序后的 Top-K]
 ```
@@ -209,8 +209,8 @@ RRF(B) = 1/(60+3) + 1/(60+2) = 0.0159 + 0.0161 = 0.0320
 
 ```mermaid
 flowchart LR
-    A[用户问题] --> B[粗排<br/>向量检索 Top-20]
-    B --> C[精排<br/>Cross-Encoder Re-ranker]
+    A[用户问题] --> B[粗排\n向量检索 Top-20]
+    B --> C[精排\nCross-Encoder Re-ranker]
     C --> D[Top-5 给 LLM]
 ```
 
@@ -309,30 +309,30 @@ flowchart TB
     end
 
     subgraph "API 网关"
-        G[API Gateway<br/>Nginx/Kong]
+        G[API Gateway\nNginx/Kong]
     end
 
     subgraph "RAG 服务"
-        S1[Query Router<br/>意图识别]
-        S2[Retriever<br/>向量+混合检索]
-        S3[Re-ranker<br/>精排]
-        S4[Prompt Builder<br/>模板组装]
+        S1[Query Router\n意图识别]
+        S2[Retriever\n向量+混合检索]
+        S3[Re-ranker\n精排]
+        S4[Prompt Builder\n模板组装]
     end
 
     subgraph "索引服务"
         I1[文档解析器]
-        I2[Chunker<br/>分块]
-        I3[Embedding<br/>编码]
+        I2[Chunker\n分块]
+        I3[Embedding\n编码]
     end
 
     subgraph "存储层"
-        DB[(向量数据库<br/>Milvus/Qdrant)]
-        DOC[(原始文档<br/>S3/OSS)]
-        META[(元数据<br/>PostgreSQL)]
+        DB[(向量数据库\nMilvus/Qdrant)]
+        DOC[(原始文档\nS3/OSS)]
+        META[(元数据\nPostgreSQL)]
     end
 
     subgraph "LLM 推理"
-        LLM[vLLM / SGLang<br/>GPU 集群]
+        LLM[vLLM / SGLang\nGPU 集群]
     end
 
     U --> G --> S1 --> S2 --> S3 --> S4 --> LLM --> U

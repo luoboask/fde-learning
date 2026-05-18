@@ -29,12 +29,12 @@ Decoding 策略的作用：从这个向量中选出下一个 token
 
 ```mermaid
 graph LR
-    A["模型输出<br/>Logits (128K 个值)"] --> B["Softmax<br/>→ 概率分布"]
+    A["模型输出\nLogits (128K 个值)"] --> B["Softmax\n→ 概率分布"]
     B --> C{"Decoding 策略"}
-    C --> D[Greedy<br/>选概率最大的]
-    C --> E[Sampling<br/>按概率随机选]
-    C --> F[Beam Search<br/>维护 K 条候选]
-    C --> G[Top-k / Top-p<br/>截断后采样]
+    C --> D[Greedy\n选概率最大的]
+    C --> E[Sampling\n按概率随机选]
+    C --> F[Beam Search\n维护 K 条候选]
+    C --> G[Top-k / Top-p\n截断后采样]
 
     style A fill:#e8f5e9
     style B fill:#e3f2fd
@@ -288,15 +288,15 @@ for step in range(max_steps):
 ```mermaid
 graph LR
     subgraph "确定性策略"
-        A["Greedy<br/>T=0"]
-        B["Beam Search<br/>beam_width=k"]
+        A["Greedy\nT=0"]
+        B["Beam Search\nbeam_width=k"]
     end
 
     subgraph "随机性策略"
-        C["Sampling<br/>T>0"]
-        D["Top-k<br/>k=40"]
-        E["Top-p<br/>p=0.9"]
-        F["Top-k + Top-p<br/>k=50, p=0.95"]
+        C["Sampling\nT>0"]
+        D["Top-k\nk=40"]
+        E["Top-p\np=0.9"]
+        F["Top-k + Top-p\nk=50, p=0.95"]
     end
 
     A --> G["翻译 / 代码 / 数学"]

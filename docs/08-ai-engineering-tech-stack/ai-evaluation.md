@@ -40,24 +40,24 @@ graph TD
     A --> D[应用质量评测]
     A --> E[安全性评测]
 
-    B --> B1[通用知识<br/>MMLU/CMMLU]
-    B --> B2[推理能力<br/>GSM8K/BBH]
-    B --> B3[代码能力<br/>HumanEval/MBPP]
-    B --> B4[中文能力<br/>C-Eval/CEVAL]
+    B --> B1[通用知识\nMMLU/CMMLU]
+    B --> B2[推理能力\nGSM8K/BBH]
+    B --> B3[代码能力\nHumanEval/MBPP]
+    B --> B4[中文能力\nC-Eval/CEVAL]
 
-    C --> C1[推理延迟<br/>TTFT/TPOT]
-    C --> C2[吞吐量<br/>QPS/tokens/s]
-    C --> C3[并发能力<br/>最大连接数]
-    C --> C4[资源利用<br/>GPU/CPU/显存]
+    C --> C1[推理延迟\nTTFT/TPOT]
+    C --> C2[吞吐量\nQPS/tokens/s]
+    C --> C3[并发能力\n最大连接数]
+    C --> C4[资源利用\nGPU/CPU/显存]
 
-    D --> D1[RAG 质量<br/>RAGAS 指标]
+    D --> D1[RAG 质量\nRAGAS 指标]
     D --> D2[Agent 任务完成率]
-    D --> D3[对话体验<br/>用户满意度]
+    D --> D3[对话体验\n用户满意度]
 
-    E --> E1[幻觉率<br/>事实准确性]
-    E --> E2[安全风险<br/>注入攻击]
-    E --> E3[内容安全<br/>有毒输出]
-    E --> E4[隐私合规<br/>数据泄露]
+    E --> E1[幻觉率\n事实准确性]
+    E --> E2[安全风险\n注入攻击]
+    E --> E3[内容安全\n有毒输出]
+    E --> E4[隐私合规\n数据泄露]
 
     style A fill:#646cff,color:#fff
     style B fill:#e8f5e9
@@ -386,11 +386,11 @@ for r in results:
 
 ```mermaid
 flowchart TD
-    A[定义评测目标<br/>我要评估什么？] --> B[构建测试集<br/>100-500 条问答对]
-    B --> C[选择评测指标<br/>精度/性能/安全]
-    C --> D[搭建自动化 Pipeline<br/>CI/CD 集成]
-    D --> E[建立 Dashboard<br/>可视化追踪]
-    E --> F[定期执行评测<br/>每次变更都跑]
+    A[定义评测目标\n我要评估什么？] --> B[构建测试集\n100-500 条问答对]
+    B --> C[选择评测指标\n精度/性能/安全]
+    C --> D[搭建自动化 Pipeline\nCI/CD 集成]
+    D --> E[建立 Dashboard\n可视化追踪]
+    E --> F[定期执行评测\n每次变更都跑]
 
     style A fill:#e8f5e9
     style B fill:#e3f2fd

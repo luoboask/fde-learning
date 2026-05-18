@@ -12,9 +12,9 @@ sidebar_position: 0
 
 ```mermaid
 graph LR
-    A[Prompt Engineering<br/>提示词工程] --> B[RAG<br/>检索增强生成]
-    B --> C[Agent<br/>自主智能体]
-    C --> D[AI Evaluation<br/>评测体系]
+    A[Prompt Engineering\n提示词工程] --> B[RAG\n检索增强生成]
+    B --> C[Agent\n自主智能体]
+    C --> D[AI Evaluation\n评测体系]
     D -.反馈优化.-> A
 
     style A fill:#646cff,color:#fff
