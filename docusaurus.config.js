@@ -28,7 +28,6 @@ const config = {
           routeBasePath: '/',
           numberPrefixParser: false,
           sidebarCollapsed: true,
-          autoCollapseCategories: true,
         },
         blog: false,
         theme: {
@@ -99,6 +98,11 @@ const config = {
       prism: {
         theme: themes.github,
         darkTheme: themes.dracula,
+      },
+      docs: {
+        sidebar: {
+          autoCollapseCategories: true,
+        },
       },
     }),
 };
