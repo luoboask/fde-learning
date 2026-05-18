@@ -1,9 +1,10 @@
 // @ts-check
 const sidebars = {
   tutorialSidebar: [
+    // ===== L1: 基础层 =====
     {
       type: 'html',
-      value: '<div class="sidebar-stage">入门</div>',
+      value: '<div class="sidebar-stage">L1 基础</div>',
     },
     {
       type: 'category',
@@ -26,18 +27,19 @@ const sidebars = {
         '02-model-architecture/scaling-law',
         '02-model-architecture/attention-mechanism',
         '02-model-architecture/kv-cache',
+        '02-model-architecture/decoding-strategies',
         '02-model-architecture/ffn-norm-pos',
         '02-model-architecture/moe-architecture',
+        '02-model-architecture/mla-deep-dive',
         '02-model-architecture/multimodal-llm',
         '02-model-architecture/llm-finetuning',
         '02-model-architecture/thinking-models',
-        '02-model-architecture/decoding-strategies',
-        '02-model-architecture/mla-deep-dive',
       ],
     },
+    // ===== L2: 进阶层 =====
     {
       type: 'html',
-      value: '<div class="sidebar-stage">进阶</div>',
+      value: '<div class="sidebar-stage">L2 进阶</div>',
     },
     {
       type: 'category',
@@ -72,55 +74,10 @@ const sidebars = {
         '05-distributed-inference/moe-parallel',
       ],
     },
+    // ===== L3: 应用层 =====
     {
       type: 'html',
-      value: '<div class="sidebar-stage">实战</div>',
-    },
-    {
-      type: 'category',
-      label: '生产部署架构',
-      items: [
-        '06-production-deployment/deployment-architecture',
-        '06-production-deployment/prefill-decode-separation',
-        '06-production-deployment/autoscaling',
-        '06-production-deployment/observability',
-        '06-production-deployment/disaster-recovery',
-        '06-production-deployment/multi-tenant',
-      ],
-    },
-    {
-      type: 'category',
-      label: '动手实验',
-      items: [
-        '12-labs/index',
-        '12-labs/vllm-7b-deploy',
-        '12-labs/quantization-workflow',
-        '12-labs/profiling-workshop',
-        '12-labs/batching-tuning',
-        '12-labs/tensor-parallel-lab',
-        '12-labs/oom-troubleshooting',
-      ],
-    },
-    {
-      type: 'category',
-      label: '成本运营',
-      items: [
-        '08-cost-operations/cost-breakdown',
-        '08-cost-operations/optimization-strategies',
-        '08-cost-operations/capacity-planning',
-        '08-cost-operations/self-hosted-vs-cloud',
-      ],
-    },
-    {
-      type: 'html',
-      value: '<div class="sidebar-stage">扩展</div>',
-    },
-    {
-      type: 'category',
-      label: 'Agent 系统与架构',
-      items: [
-        '07-agent-architecture/index',
-      ],
+      value: '<div class="sidebar-stage">L3 应用</div>',
     },
     {
       type: 'category',
@@ -143,16 +100,50 @@ const sidebars = {
         '09-evaluation-frontier/frontier-eval-process',
       ],
     },
+    // ===== L4: 实战层 =====
+    {
+      type: 'html',
+      value: '<div class="sidebar-stage">L4 实战</div>',
+    },
     {
       type: 'category',
-      label: '开源项目深度解读',
+      label: '生产部署架构',
       items: [
-        '17-open-source-deep-dive/index',
+        '06-production-deployment/deployment-architecture',
+        '06-production-deployment/prefill-decode-separation',
+        '06-production-deployment/autoscaling',
+        '06-production-deployment/observability',
+        '06-production-deployment/disaster-recovery',
+        '06-production-deployment/multi-tenant',
       ],
     },
     {
+      type: 'category',
+      label: '成本运营',
+      items: [
+        '08-cost-operations/cost-breakdown',
+        '08-cost-operations/optimization-strategies',
+        '08-cost-operations/capacity-planning',
+        '08-cost-operations/self-hosted-vs-cloud',
+      ],
+    },
+    {
+      type: 'category',
+      label: '动手实验',
+      items: [
+        '12-labs/index',
+        '12-labs/vllm-7b-deploy',
+        '12-labs/quantization-workflow',
+        '12-labs/profiling-workshop',
+        '12-labs/batching-tuning',
+        '12-labs/tensor-parallel-lab',
+        '12-labs/oom-troubleshooting',
+      ],
+    },
+    // ===== L5: 面试层 =====
+    {
       type: 'html',
-      value: '<div class="sidebar-stage">面试</div>',
+      value: '<div class="sidebar-stage">L5 面试</div>',
     },
     {
       type: 'category',
@@ -186,9 +177,10 @@ const sidebars = {
         '11-team-building/hiring-strategy',
       ],
     },
+    // ===== 附录 =====
     {
       type: 'html',
-      value: '<div class="sidebar-stage">参考附录</div>',
+      value: '<div class="sidebar-stage">附录</div>',
     },
     {
       type: 'category',
@@ -209,6 +201,13 @@ const sidebars = {
       label: '案例研究',
       items: [
         '16-case-studies/index',
+      ],
+    },
+    {
+      type: 'category',
+      label: '开源项目深度解读',
+      items: [
+        '17-open-source-deep-dive/index',
       ],
     },
   ],
