@@ -229,6 +229,26 @@ const sidebars = {
       type: 'doc',
       id: '17-open-source-deep-dive/index',
     },
+    {
+      type: 'doc',
+      id: '17-open-source-deep-dive/nanogpt',
+    },
+    {
+      type: 'doc',
+      id: '17-open-source-deep-dive/llm-c',
+    },
+    {
+      type: 'doc',
+      id: '17-open-source-deep-dive/llama-cpp',
+    },
+    {
+      type: 'doc',
+      id: '17-open-source-deep-dive/vllm',
+    },
+    {
+      type: 'doc',
+      id: '17-open-source-deep-dive/sglang',
+    },
   ],
 };
 
