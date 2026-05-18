@@ -22,18 +22,18 @@ const sidebars = {
       label: '模型架构',
       items: [
         '02-model-architecture/transformer-overview',
-        '02-model-architecture/llm-training',
-        '02-model-architecture/pre-post-training',
-        '02-model-architecture/scaling-law',
         '02-model-architecture/attention-mechanism',
         '02-model-architecture/kv-cache',
-        '02-model-architecture/decoding-strategies',
         '02-model-architecture/ffn-norm-pos',
+        '02-model-architecture/decoding-strategies',
         '02-model-architecture/moe-architecture',
         '02-model-architecture/mla-deep-dive',
         '02-model-architecture/multimodal-llm',
-        '02-model-architecture/llm-finetuning',
         '02-model-architecture/thinking-models',
+        '02-model-architecture/llm-training',
+        '02-model-architecture/pre-post-training',
+        '02-model-architecture/llm-finetuning',
+        '02-model-architecture/scaling-law',
       ],
     },
     // ===== L2: 进阶层 =====
@@ -62,6 +62,9 @@ const sidebars = {
         '04-inference-optimization/quantization-basics',
         '04-inference-optimization/quantization-schemes',
         '04-inference-optimization/kv-cache-quant',
+        // 前沿推理技术（原属 09 前沿技术模块）
+        '09-evaluation-frontier/speculative-decoding',
+        '09-evaluation-frontier/fp8-inference',
       ],
     },
     {
@@ -92,21 +95,6 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: '前沿技术',
-      items: [
-        '09-evaluation-frontier/frontier-overview',
-        '09-evaluation-frontier/speculative-decoding',
-        '09-evaluation-frontier/fp8-inference',
-        '09-evaluation-frontier/frontier-eval-process',
-      ],
-    },
-    // ===== L4: 实战层 =====
-    {
-      type: 'html',
-      value: '<div class="sidebar-stage">L4 实战</div>',
-    },
-    {
-      type: 'category',
       label: '生产部署架构',
       items: [
         '06-production-deployment/deployment-architecture',
@@ -116,6 +104,11 @@ const sidebars = {
         '06-production-deployment/disaster-recovery',
         '06-production-deployment/multi-tenant',
       ],
+    },
+    // ===== L4: 实战层 =====
+    {
+      type: 'html',
+      value: '<div class="sidebar-stage">L4 实战</div>',
     },
     {
       type: 'category',
@@ -165,6 +158,11 @@ const sidebars = {
         '13-qna/index',
       ],
     },
+    // ===== 附录 =====
+    {
+      type: 'html',
+      value: '<div class="sidebar-stage">附录</div>',
+    },
     {
       type: 'category',
       label: '团队建设与管理',
@@ -177,29 +175,20 @@ const sidebars = {
         '11-team-building/hiring-strategy',
       ],
     },
-    // ===== 附录 =====
     {
-      type: 'html',
-      value: '<div class="sidebar-stage">附录</div>',
+      type: 'category',
+      label: '前沿技术参考',
+      items: [
+        '09-evaluation-frontier/frontier-overview',
+        '09-evaluation-frontier/frontier-eval-process',
+      ],
     },
     {
       type: 'category',
-      label: '术语表',
+      label: '术语与资源',
       items: [
         '14-glossary/index',
-      ],
-    },
-    {
-      type: 'category',
-      label: '推荐资源',
-      items: [
         '15-resources/index',
-      ],
-    },
-    {
-      type: 'category',
-      label: '案例研究',
-      items: [
         '16-case-studies/index',
       ],
     },
