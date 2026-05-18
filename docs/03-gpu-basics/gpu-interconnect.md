@@ -6,6 +6,11 @@ sidebar_position: 4
 
 > 单机多卡靠 NVLink，多机多卡靠 InfiniBand。互联带宽直接决定张量并行（TP）的可行性。
 
+## 前置知识
+
+- [GPU 架构概览](./gpu-overview.md) — 理解 GPU 内部结构
+- [张量并行](../05-distributed-inference/tensor-parallel.md) — 理解 TP 为什么需要高带宽通信
+
 ## 核心概念：GPU 互连拓扑
 
 ### 互联层级图

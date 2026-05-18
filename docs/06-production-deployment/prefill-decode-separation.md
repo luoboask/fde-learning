@@ -316,5 +316,5 @@ graph TD
 
 ---
 
-*上一节：[MLA 详解](./mla-deep-dive.md)*
-*下一节：[生产部署架构](../../06-production-deployment/deployment-architecture.md)*
+*上一节：[Autoscaling](./autoscaling.md)*
+*下一节：[可观测性体系](./observability.md)*

@@ -6,6 +6,11 @@ sidebar_position: 2
 
 > 一句话概括核心：将 Transformer 每层的权重矩阵按行或按列切分到多块 GPU，每层计算完成后通过 AllReduce 同步结果，实现单层级别的细粒度并行。
 
+## 前置知识
+
+- [分布式推理概述](./distributed-overview.md) — 理解并行策略全景
+- [GPU 互联](../03-gpu-basics/gpu-interconnect.md) — 理解 NVLink 带宽与 AllReduce 通信
+
 ## 核心概念
 
 ### TP 矩阵切分原理

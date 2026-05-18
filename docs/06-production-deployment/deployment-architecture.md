@@ -174,7 +174,9 @@ spec:
                   operator: In
                   values: ["vllm"]
               topologyKey: kubernetes.io/hostname
-      # 容忍 GPU 节点的污点
+              # topologyKey 定义"什么维度相同的 Pod 被视为在同一位置"
+              # kubernetes.io/hostname = 同一台主机上的 Pod 尽量分散
+      # 容忍 GPU 节点的污点（防止非 GPU Pod 被调度到 GPU 节点）
       tolerations:
       - key: "nvidia.com/gpu"
         operator: "Exists"
@@ -240,7 +242,8 @@ spec:
       - name: shm
         emptyDir:
           medium: Memory
-          sizeLimit: "16Gi"  # Tensor Parallel 需要大共享内存
+          sizeLimit: "16Gi"  # PyTorch DataLoader 和 NCCL 使用 /dev/shm 做进程间通信
+                              # Tensor Parallel 多进程间需要大共享内存，默认 64M 不够
 
 ---
 # Service
@@ -294,27 +297,31 @@ Allocatable:
 
 ```yaml
 # 给 GPU 节点打污点（防止普通 Pod 调度到 GPU 节点）
-kubectl taint nodes gpu-node-01 gpu=true:NoSchedule
+# 注意：污点的 key 必须和 Pod toleration 中的 key 一致
+kubectl taint nodes gpu-node-01 nvidia.com/gpu=:NoSchedule
 
-# Pod 需要声明容忍才能调度
+# Pod 需要声明容忍才能调度（与上方 taint 的 key 匹配）
 tolerations:
-- key: "gpu"
-  operator: "Equal"
-  value: "true"
+- key: "nvidia.com/gpu"
+  operator: "Exists"
   effect: "NoSchedule"
 ```
 
 #### 多 GPU 拓扑感知调度
 
+> **注意**：K8s 原生不直接做 GPU 拓扑感知（如保证 NVLink 域内分配）。
+> PriorityClass 仅用于控制 Pod 的调度优先级，拓扑感知需要借助 NVIDIA GPU Operator 的 device-plugin 配置或自定义调度器（如 Volcano）。
+
 ```yaml
-# 启用 GPU 拓扑感知调度，保证多卡分配在同一 PCIe/NVLink 域
+# PriorityClass 控制调度优先级，确保 GPU 推理 Pod 优先于普通 Pod 被调度
+# 真正的拓扑感知需要 NVIDIA Device Plugin 的 topology manager 配合
 apiVersion: scheduling.k8s.io/v1
 kind: PriorityClass
 metadata:
   name: llm-high-priority
 value: 1000000
 globalDefault: false
-description: "LLM 推理服务，需要 NVLink 拓扑感知调度"
+description: "LLM 推理服务，高优先级确保 GPU 资源优先分配"
 ```
 
 ### 模型加载流程

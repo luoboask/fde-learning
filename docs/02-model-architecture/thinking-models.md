@@ -12,7 +12,7 @@ sidebar_position: 4
 
 - [Transformer 架构](./transformer-overview.md)
 - [KV Cache](./kv-cache.md)
-- [RLHF vs DPO](./pre-post-training.md)
+- [大模型后训练范式](./pre-post-training.md)
 
 ---
 

@@ -6,6 +6,11 @@ sidebar_position: 1
 
 > 一句话概括核心：当单块 GPU 的显存放不下模型、算力撑不住吞吐时，必须通过并行策略把计算和存储切分到多块 GPU 上协同完成。
 
+## 前置知识
+
+- [Transformer 架构概述](../02-model-architecture/transformer-overview.md) — 理解模型结构和计算特征
+- [GPU 性能瓶颈分析](../03-gpu-basics/performance-bottleneck.md) — 理解 compute-bound vs memory-bound
+
 ## 为什么需要分布式
 
 ### 单卡放不下（Memory Wall）

@@ -6,6 +6,10 @@ sidebar_position: 2
 
 > 深入 AWQ、GPTQ、SmoothQuant、FP8 四大主流方案的原理、对比和选型策略
 
+## 前置知识
+
+- [模型量化基础](./quantization-basics.md) — 理解量化公式、PTQ vs QAT、精度损失来源
+
 ## 核心概念（含 Mermaid 图）
 
 ### 方案全景图
