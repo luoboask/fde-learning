@@ -6,6 +6,10 @@ sidebar_position: 2
 
 > LLM 推理的性能瓶颈不在算力，而在显存带宽。理解内存层级是优化的第一步。
 
+## 前置知识
+
+- [GPU 架构概览](./gpu-overview.md) — 理解 HBM、SRAM、L1/L2 缓存层级
+
 ## 核心概念：GPU 内存层级
 
 ### 内存层级图

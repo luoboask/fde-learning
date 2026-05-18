@@ -300,4 +300,4 @@ H100 有效算力 ≈ 400 TFLOPs（40% MFU）
 ---
 
 *上一节：[预训练与后训练](./pre-post-training.md)*
-*下一节：[Attention 机制深入](./attention-mechanism.md)*
+*下一节：[Thinking / Reasoning 模型](./thinking-models.md)*

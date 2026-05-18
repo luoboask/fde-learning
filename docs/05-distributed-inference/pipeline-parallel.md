@@ -6,6 +6,11 @@ sidebar_position: 3
 
 > 一句话概括核心：将 Transformer 的不同层分配到不同 GPU，通过 micro-batch 填充计算间隙，让多卡像流水线一样协同处理请求。
 
+## 前置知识
+
+- [分布式推理概述](./distributed-overview.md) — 理解并行策略分类
+- [Transformer 架构](../02-model-architecture/transformer-overview.md) — 理解 Transformer 多层结构
+
 ## 核心概念
 
 ### PP 分层放置原理

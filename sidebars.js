@@ -110,7 +110,9 @@ const sidebars = {
       label: '生产部署架构',
       items: [
         '06-production-deployment/deployment-architecture',
+        '06-production-deployment/inference-gateway',
         '06-production-deployment/prefill-decode-separation',
+        '06-production-deployment/multi-agent-deployment',
         '06-production-deployment/autoscaling',
         '06-production-deployment/observability',
         '06-production-deployment/disaster-recovery',

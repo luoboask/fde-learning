@@ -280,5 +280,5 @@ MoE 的吞吐优势只有在较大 batch 时才能体现。
 - vLLM 对 MoE 的支持不如 Dense 模型成熟，注意版本兼容性
 - Mixtral 8×7B 至少需要 2×A100 80G，不要尝试单卡部署
 
-*上一节：[KV Cache 详解](./kv-cache.md)*
-*下一节：[FFN、Normalization 与位置编码](./ffn-norm-pos.md)*
+*上一节：[FFN、Normalization 与位置编码](./ffn-norm-pos.md)*
+*下一节：[MLA 详解](./mla-deep-dive.md)*

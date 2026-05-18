@@ -29,6 +29,21 @@ sidebar_position: 3
   总复杂度：O(output_len^2)
 
 加速比: O(output_len) 倍。当 output_len = 1000，就是 1000 倍加速。
+
+---
+O(output_len^3) 推导:
+  生成第 1 个 token: Attention 计算 1×1 矩阵 = O(1^2)
+  生成第 2 个 token: Attention 计算 2×2 矩阵 = O(2^2)
+  ...
+  生成第 N 个 token: Attention 计算 N×N 矩阵 = O(N^2)
+
+  总计算量 = 1^2 + 2^2 + ... + N^2 = N(N+1)(2N+1)/6 ≈ O(N^3)
+
+  使用 KV Cache 后:
+  每步 Attention 只需 O(N)（Q 是 1×d，K_cache 是 N×d）
+  总计算量 = 1 + 2 + ... + N = O(N^2)
+
+  所以 KV Cache 将总计算量从 O(N^3) 降到 O(N^2)。
 ```
 
 ### KV Cache 详细计算公式
@@ -61,7 +76,7 @@ KV_Cache_Size = 2 × num_layers × batch_size × seq_len × num_kv_heads × head
 | DeepSeek-V3 | 671B | 61 | 128 (MLA) | 128 | 可变* | 复杂** |
 | GPT-3 175B | 175B | 96 | 96 (MHA) | 128 | 1.5 MB | ~708 GB |
 
-* DeepSeek-V3 使用 MLA（Multi-Latent Attention），KV Cache 结构特殊
+* DeepSeek-V3 使用 MLA（Multi-Latent Attention），KV Cache 结构特殊。详见 [MLA 架构深入](./mla-deep-dive.md)
 ** DeepSeek-V3 的 KV Cache 通过低秩压缩大幅减少，但计算复杂
 
 **关键观察**：

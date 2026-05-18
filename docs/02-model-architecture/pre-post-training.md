@@ -257,4 +257,4 @@ RLHF 的简化版本：不需要单独的 Reward Model 和 PPO
 ---
 
 *上一节：[大模型微调实践](./llm-finetuning.md)*
-*下一节：[Attention 机制深入](./attention-mechanism.md)*
+*下一节：[Scaling Law](./scaling-law.md)*

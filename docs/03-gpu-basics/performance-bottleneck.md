@@ -6,6 +6,11 @@ sidebar_position: 3
 
 > 理解 compute-bound vs memory-bound 是推理优化的核心能力，决定了你该优化计算还是优化带宽。
 
+## 前置知识
+
+- [GPU 架构概览](./gpu-overview.md) — 理解 SM、Tensor Core、HBM
+- [Transformer 推理两阶段](../02-model-architecture/transformer-overview.md) — 理解 prefill vs decode
+
 ## 核心概念：瓶颈类型判定
 
 ### Compute-Bound vs Memory-Bound 判定流程

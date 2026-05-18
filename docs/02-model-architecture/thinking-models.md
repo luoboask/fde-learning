@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 11
 ---
 
 # Thinking / Reasoning 模型 — 推理部署的新范式
@@ -12,7 +12,7 @@ sidebar_position: 4
 
 - [Transformer 架构](./transformer-overview.md)
 - [KV Cache](./kv-cache.md)
-- [RLHF vs DPO](./pre-post-training.md)
+- [大模型后训练范式](./pre-post-training.md)
 
 ---
 
@@ -43,10 +43,9 @@ graph LR
 2025.01  DeepSeek R1        — 首个开源全能力 Thinking 模型，效果追平 o1
 2025.02  Kimi k1.5          — 长上下文 + Thinking 结合
 2025.04  OpenAI o3          — 更强的 reasoning 能力
+2025.04  Claude 4 Opus      — 内置 extended thinking
 2025.05  QwQ (Qwen)         — 阿里开源 Thinking 模型
-2025.06  DeepSeek R2        — 第二代 Thinking 模型
-2025.09  Claude 4 Opus      — 内置 extended thinking
-2026.01  Gemini 2.5 Pro     — 原生 reasoning 能力
+2025.12  Gemini 2.5 Pro     — 原生 reasoning 能力
 ```
 
 ---

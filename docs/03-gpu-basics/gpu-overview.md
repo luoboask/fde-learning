@@ -6,6 +6,11 @@ sidebar_position: 1
 
 > GPU 是 LLM 推理的唯一载体，理解其架构是性能优化的前提。
 
+## 前置知识
+
+- [KV Cache 详解](../02-model-architecture/kv-cache.md) — 理解 KV Cache 显存计算
+- [Transformer 架构概述](../02-model-architecture/transformer-overview.md) — 理解 decode 阶段为什么 memory-bound
+
 ## 为什么 FDE 需要懂 GPU
 
 推理优化的最终战场在 GPU 上。从模型量化、算子融合、KV Cache 管理到多卡部署，每一项优化都建立在对 GPU 硬件的理解之上。面试中经常考察：为什么 decode 阶段是 memory-bound？为什么要用 Tensor Core？如何选 GPU 性价比最高？这些问题的答案都在架构细节里。

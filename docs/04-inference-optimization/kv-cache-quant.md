@@ -6,6 +6,11 @@ sidebar_position: 3
 
 > KV Cache 占据推理显存的 60-80%，量化 KV Cache 是提升吞吐和并发量的最有效手段之一
 
+## 前置知识
+
+- [模型量化基础](./quantization-basics.md) — 理解量化公式、scale、粒度概念
+- [KV Cache 详解](../02-model-architecture/kv-cache.md) — 理解 KV Cache 结构和显存计算
+
 ## 核心概念（含 Mermaid 图）
 
 ### 为什么 KV Cache 值得量化

@@ -259,5 +259,5 @@ KV Cache = 文本 KV + 视觉 KV
 
 ---
 
-*上一节：[大语言模型训练流程](./llm-training.md)*
-*下一节：[Attention 机制深入](./attention-mechanism.md)*
+*上一节：[MLA 详解](./mla-deep-dive.md)*
+*下一节：[大模型微调实践](./llm-finetuning.md)*

@@ -244,5 +244,5 @@ MLA 量化注意事项:
 
 ---
 
-*上一节：[Decoding 策略](./decoding-strategies.md)*
-*下一节：[FFN 与 Normalization](./ffn-norm-pos.md)*
+*上一节：[MoE 架构](./moe-architecture.md)*
+*下一节：[多模态大模型](./multimodal-llm.md)*

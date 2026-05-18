@@ -6,6 +6,11 @@ sidebar_position: 4
 
 > 一句话概括核心：Mix-of-Experts 通过路由机制让每个 token 只激活部分 Expert，结合 Expert Parallel 将不同 Expert 分布到不同 GPU，实现"模型越大、激活越少"的高效推理。
 
+## 前置知识
+
+- [分布式推理概述](./distributed-overview.md) — 理解并行策略分类
+- [MoE 架构](../02-model-architecture/moe-architecture.md) — 理解 Router + Expert 的工作原理
+
 ## 核心概念
 
 ### MoE 架构回顾

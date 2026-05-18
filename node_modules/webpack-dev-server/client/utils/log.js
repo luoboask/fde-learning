@@ -6,7 +6,7 @@ var defaultLevel = "info";
 
 // options new options, merge with old options
 /**
- * @param {false | true | "none" | "error" | "warn" | "info" | "log" | "verbose"} level
+ * @param {false | true | "none" | "error" | "warn" | "info" | "log" | "verbose"} level level
  * @returns {void}
  */
 function setLogLevel(level) {
@@ -16,20 +16,4 @@ function setLogLevel(level) {
 }
 setLogLevel(defaultLevel);
 var log = logger.getLogger(name);
-var logEnabledFeatures = function logEnabledFeatures(features) {
-  var enabledFeatures = Object.keys(features);
-  if (!features || enabledFeatures.length === 0) {
-    return;
-  }
-  var logString = "Server started:";
-
-  // Server started: Hot Module Replacement enabled, Live Reloading enabled, Overlay disabled.
-  for (var i = 0; i < enabledFeatures.length; i++) {
-    var key = enabledFeatures[i];
-    logString += " ".concat(key, " ").concat(features[key] ? "enabled" : "disabled", ",");
-  }
-  // replace last comma with a period
-  logString = logString.slice(0, -1).concat(".");
-  log.info(logString);
-};
-export { log, logEnabledFeatures, setLogLevel };
+export { log, setLogLevel };
