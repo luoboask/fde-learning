@@ -1,13 +1,40 @@
-/* ===== Hero Section (VitePress style) ===== */
+/* ===== Hero Section ===== */
 .fde-hero {
+  position: relative;
   padding: 6rem 2rem 4rem;
   text-align: center;
-  background: #ffffff;
+  background: linear-gradient(180deg, #fff 0%, var(--fde-bg-dark) 100%);
   color: var(--fde-text);
+  overflow: hidden;
+}
+
+/* 背景网格装饰 */
+.fde-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, var(--fde-border) 1px, transparent 0);
+  background-size: 32px 32px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* 顶部渐变光晕 */
+.fde-hero::after {
+  content: '';
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse, rgba(100, 108, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .fde-hero-content {
   position: relative;
+  z-index: 1;
   max-width: 960px;
   margin: 0 auto;
 }
@@ -39,10 +66,10 @@
 }
 
 .fde-hero-title {
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
+  font-size: 3.25rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
   margin-bottom: 1.25rem;
   color: var(--fde-text);
 }
@@ -79,7 +106,7 @@
   padding: 0.625rem 1.5rem;
   font-size: 0.95rem;
   font-weight: 600;
-  border-radius: 20px;
+  border-radius: 10px;
   text-decoration: none;
   transition: all 0.2s ease;
   border: none;
@@ -87,8 +114,9 @@
 }
 
 .fde-btn--lg {
-  padding: 0.75rem 2rem;
+  padding: 0.8rem 2.25rem;
   font-size: 1rem;
+  border-radius: 12px;
 }
 
 .fde-btn--primary {
@@ -100,7 +128,7 @@
 .fde-btn--primary:hover {
   background: var(--ifm-color-primary-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(100, 108, 255, 0.35);
+  box-shadow: 0 6px 20px rgba(100, 108, 255, 0.35);
 }
 
 .fde-btn--ghost {
@@ -178,9 +206,9 @@
 
 /* ===== Features ===== */
 .fde-features {
-  background: var(--fde-surface);
-  border-top: 1px solid var(--fde-border);
-  border-bottom: 1px solid var(--fde-border);
+  background: transparent;
+  border-top: none;
+  border-bottom: none;
 }
 
 .fde-features-grid {
@@ -191,7 +219,7 @@
 
 .feature-card {
   background: var(--ifm-card-background-color);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 1.5rem;
   border: 1px solid var(--fde-border);
   transition: all 0.2s ease;
@@ -224,10 +252,6 @@
 
 /* ===== Skill Tree ===== */
 .fde-skill-tree {
-  background: #fff;
-}
-
-[data-theme='dark'] .fde-skill-tree {
   background: var(--fde-bg-dark);
 }
 
@@ -241,7 +265,7 @@
   display: flex;
   gap: 0.75rem;
   padding: 1rem 1.25rem;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid var(--fde-border);
   background: var(--ifm-card-background-color);
   text-decoration: none;
@@ -276,7 +300,7 @@
   flex-shrink: 0;
   width: 2.25rem;
   height: 2.25rem;
-  border-radius: 6px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;

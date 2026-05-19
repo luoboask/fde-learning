@@ -103,6 +103,7 @@ const config = {
               { to: '/opensource/llama-cpp', label: 'llama.cpp' },
               { to: '/opensource/vllm', label: 'vLLM' },
               { to: '/opensource/sglang', label: 'SGLang' },
+              { to: '/opensource/claude-code/00-文档导航/', label: 'Claude Code 架构' },
             ],
           },
           {
