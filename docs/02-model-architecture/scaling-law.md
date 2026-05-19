@@ -162,7 +162,7 @@ Llama 1 的设计：
 
   加速比 = 1 + γ × 接受率
 
-见：[投机解码](../09-evaluation-frontier/speculative-decoding.md)
+见：[投机解码](../04-inference-optimization/speculative-decoding.md)
 ```
 
 ### 推理 Scaling：GPU 数量与延迟

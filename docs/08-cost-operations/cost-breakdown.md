@@ -10,7 +10,7 @@ sidebar_position: 1
 
 - [推理引擎概述](../04-inference-optimization/engine-overview.md) — 理解吞吐、延迟、batch size 的概念
 - [GPU 基础](../03-gpu-basics/gpu-overview.md) — 理解 GPU 硬件型号和显存模型
-- [生产部署架构](../06-production-deployment/deployment-architecture.md) — 理解生产环境的基础设施
+- [生产部署架构](../07-production-deployment/deployment-architecture.md) — 理解生产环境的基础设施
 
 ## 为什么需要学这个
 
@@ -98,4 +98,4 @@ flowchart TD
 - [ ] 根据调用量选择自建/云/API 方案
 - [ ] 建立成本监控和归因体系
 
-*上一节：[AI 工程核心技术栈](../08-ai-engineering-tech-stack/index.md) | 下一节：[优化策略](./optimization-strategies.md)*
+*上一节：[AI 工程核心技术栈](../06-ai-engineering/index.md) | 下一节：[优化策略](./optimization-strategies.md)*

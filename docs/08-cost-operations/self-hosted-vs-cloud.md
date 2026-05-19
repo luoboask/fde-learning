@@ -239,4 +239,4 @@ graph TD
 
 ---
 
-*成本优化完成 → 进入 [前沿技术](../09-evaluation-frontier/frontier-overview.md)*
+*成本优化完成 → 进入 [前沿技术](../04-inference-optimization/frontier-overview.md)*

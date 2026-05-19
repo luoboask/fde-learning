@@ -7,18 +7,18 @@ import Heading from '@theme/Heading';
 import './index.css';
 
 const SKILL_LEVELS = [
-  { level: 1, title: 'AI 基础认知', icon: '🧠', desc: '了解 FDE 岗位定位', color: '#10b981', to: '/01-ai-basics/01-what-is-fde', items: ['什么是 FDE', 'FDE 类型', '学习路径'] },
+  { level: 1, title: 'AI 基础认知', icon: '🧠', desc: '了解 FDE 岗位定位', color: '#10b981', to: '/01-basics/01-what-is-fde', items: ['什么是 FDE', 'FDE 类型', '学习路径'] },
   { level: 2, title: '模型架构', icon: '🏗️', desc: 'Transformer 内部机制', color: '#3b82f6', to: '/02-model-architecture/transformer-overview', items: ['Attention', 'KV Cache', 'MoE', 'FFN'] },
   { level: 3, title: 'GPU 底层', icon: '🎮', desc: '硬件与显存模型', color: '#06b6d4', to: '/03-gpu-basics/gpu-overview', items: ['GPU 架构', '显存层级', '性能瓶颈', '互联'] },
   { level: 4, title: '推理优化', icon: '⚡', desc: '让模型跑得快、省资源', color: '#f59e0b', to: '/04-inference-optimization/vllm-deep-dive', items: ['vLLM', 'TRT-LLM', '量化', 'KV Cache 量化'] },
   { level: 5, title: '分布式推理', icon: '🔗', desc: '多卡/多机并行', color: '#ef4444', to: '/05-distributed-inference/distributed-overview', items: ['TP', 'PP', 'MoE 并行'] },
-  { level: 6, title: '生产部署', icon: '🚀', desc: '从本地到线上服务', color: '#8b5cf6', to: '/06-production-deployment/deployment-architecture', items: ['K8s', '扩缩容', '可观测性', '容灾'] },
-  { level: 7, title: 'Agent 架构', icon: '🤖', desc: '记忆、工具、规划', color: '#ec4899', to: '/07-agent-architecture', items: ['记忆系统', 'RAG', 'Function Calling'] },
+  { level: 6, title: '生产部署', icon: '🚀', desc: '从本地到线上服务', color: '#8b5cf6', to: '/07-production-deployment/deployment-architecture', items: ['K8s', '扩缩容', '可观测性', '容灾'] },
+  { level: 7, title: 'Agent 架构', icon: '🤖', desc: '记忆、工具、规划', color: '#ec4899', to: '/06-ai-engineering/agent-architecture', items: ['记忆系统', 'RAG', 'Function Calling'] },
   { level: 8, title: '成本运营', icon: '💰', desc: '省钱与资源规划', color: '#14b8a6', to: '/08-cost-operations/cost-breakdown', items: ['成本拆解', '优化策略', '容量规划'] },
-  { level: 9, title: '前沿评估', icon: '🔭', desc: '新技术追踪与评估', color: '#6366f1', to: '/09-evaluation-frontier/frontier-overview', items: ['投机解码', 'FP8', '评估流程'] },
-  { level: 10, title: '面试通关', icon: '📝', desc: '答题框架与话术', color: '#a855f7', to: '/10-interview/interview-framework', items: ['自我介绍', '技术答题', '项目故事', 'HR 面'] },
-  { level: 11, title: '团队管理', icon: '👥', desc: '培养与建设', color: '#64748b', to: '/11-team-building/team-culture', items: ['团队文化', '成长路径', '招聘策略'] },
-  { level: 12, title: '动手实验', icon: '🧪', desc: '7 个实操练习', color: '#10b981', to: '/12-labs', items: ['vLLM 部署', '量化', 'Profiling', 'OOM'] },
+  { level: 9, title: '前沿评估', icon: '🔭', desc: '新技术追踪与评估', color: '#6366f1', to: '/04-inference-optimization/frontier-overview', items: ['投机解码', 'FP8', '评估流程'] },
+  { level: 10, title: '面试通关', icon: '📝', desc: '答题框架与话术', color: '#a855f7', to: '/12-interview/interview-framework', items: ['自我介绍', '技术答题', '项目故事', 'HR 面'] },
+  { level: 11, title: '团队管理', icon: '👥', desc: '培养与建设', color: '#64748b', to: '/14-team-building/team-culture', items: ['团队文化', '成长路径', '招聘策略'] },
+  { level: 12, title: '动手实验', icon: '🧪', desc: '7 个实操练习', color: '#10b981', to: '/09-labs', items: ['vLLM 部署', '量化', 'Profiling', 'OOM'] },
 ];
 
 const FEATURES = [
@@ -44,7 +44,7 @@ const FEATURES = [
   },
   {
     icon: '🏛️',
-    title: '开源项目解读',
+    title: '源码解读教程',
     desc: 'nanoGPT、llm.c、llama.cpp、vLLM 源码分析',
   },
   {
@@ -98,11 +98,11 @@ function HomepageHeader() {
           由浅入深，从模型原理到推理优化，从生产部署到面试通关。17 个阶段，63 篇文档，15000+ 字深度讲解。
         </p>
         <div className="fde-hero-actions">
-          <Link className="fde-btn fde-btn--primary fde-btn--lg" to="/01-ai-basics/01-what-is-fde">
+          <Link className="fde-btn fde-btn--primary fde-btn--lg" to="/01-basics/01-what-is-fde">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             开始学习
           </Link>
-          <Link className="fde-btn fde-btn--ghost fde-btn--lg" to="/10-interview/interview-framework">
+          <Link className="fde-btn fde-btn--ghost fde-btn--lg" to="/12-interview/interview-framework">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
             面试准备
           </Link>

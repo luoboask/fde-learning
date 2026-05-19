@@ -52,3 +52,5 @@
 | [Machine Learning Mastery](https://machinelearningmastery.com/) | ML 基础教程 |
 | [智源社区](https://hub.baai.ac.cn/) | 中文 AI 学习社区 |
 | [Datawhale](https://github.com/datawhalechina/) | 中文开源学习社区 |
+
+*上一节：[团队管理](/14-team-building/)*
