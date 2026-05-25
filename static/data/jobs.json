@@ -1,16 +1,16 @@
 {
   "last_updated": "2026-05-25",
-  "total_jobs": 28,
+  "total_jobs": 65,
   "categories": [
     {
       "name": "大模型推理/部署",
       "jobs": [
         {
-          "title": "大模型推理系统工程师",
+          "title": "大模型推理系统工程师（机器学习平台）",
           "company": "中国科学院计算技术研究所",
-          "url": "https://www.iguopin.com/job/detail?id=167617220212429481",
-          "source": "国聘",
-          "tags": ["大模型", "推理优化", "系统研发"]
+          "url": "https://www.zhipin.com/job_detail/0918c8ceb4488e670nZz2t65ElRT.html",
+          "source": "BOSS直聘",
+          "tags": ["大模型", "推理", "系统研发"]
         },
         {
           "title": "模型推理优化工程师",
@@ -41,7 +41,7 @@
           "tags": ["推理框架", "高级/资深"]
         },
         {
-          "title": "大模型推理部署工程师",
+          "title": "大模型推理部署工程师/高级工程师",
           "company": "上海 AI Lab",
           "url": "https://www.shlab.org.cn/joinus/detail/7511994333059418379?mode=social",
           "source": "上海AI Lab",
@@ -53,6 +53,83 @@
           "url": "https://jobs.niuqizp.com/job-vlm55t5ta.html",
           "source": "牛企",
           "tags": ["推理优化", "性能优化"]
+        },
+        {
+          "title": "大模型推理优化工程师",
+          "company": "智谱华章",
+          "url": "https://www.zhipin.com/job_detail/a9dd2c79b2d2abb30nZ42NS9F1pW.html",
+          "source": "BOSS直聘",
+          "tags": ["推理优化", "智谱"]
+        },
+        {
+          "title": "大模型推理优化专家",
+          "company": "快手",
+          "url": "https://www.zhipin.com/job_detail/bafb27f13976b4db1HF83ty4EFdW.html",
+          "source": "BOSS直聘",
+          "tags": ["推理优化", "专家"]
+        },
+        {
+          "title": "推理优化工程师（2026届）",
+          "company": "字节跳动",
+          "url": "https://www.zhipin.com/job_detail/94a9b5e7a47bc1e81HF82tS1GFJU.html",
+          "source": "BOSS直聘",
+          "tags": ["推理优化", "校招"]
+        },
+        {
+          "title": "AIGC-模型推理/训练优化工程师",
+          "company": "字节跳动",
+          "url": "https://www.zhipin.com/job_detail/8d87df18245cc2ae1Hd43ti1ElVT.html",
+          "source": "BOSS直聘",
+          "tags": ["推理优化", "训练优化"]
+        },
+        {
+          "title": "训练推理优化工程师",
+          "company": "Momenta",
+          "url": "https://m.zhipin.com/job_detail/c5e5326d89f97c3d03N709q4F1JZ.html",
+          "source": "BOSS直聘",
+          "tags": ["训练推理", "自动驾驶"]
+        },
+        {
+          "title": "大模型推理优化工程师",
+          "company": "某科技公司",
+          "url": "https://www.zhipin.com/job_detail/b2093524659d7a280nV539m1FVRZ.html",
+          "source": "BOSS直聘",
+          "tags": ["推理优化"]
+        },
+        {
+          "title": "AI推理优化工程师",
+          "company": "某科技公司",
+          "url": "https://www.zhipin.com/job_detail/74636d83f3b8e48c1H193dy_EFJQ.html",
+          "source": "BOSS直聘",
+          "tags": ["AI推理", "性能优化"]
+        },
+        {
+          "title": "大模型推理优化系统工程师",
+          "company": "阶跃星辰",
+          "url": "https://www.zhipin.com/job_detail/6c28f49ef4513feb03J939S4EFBS.html",
+          "source": "BOSS直聘",
+          "tags": ["推理优化", "系统"]
+        },
+        {
+          "title": "具身大模型推理优化工程师",
+          "company": "某科技公司",
+          "url": "https://www.zhipin.com/job_detail/1638bdce1b42f2430nR92ty1E1pQ.html",
+          "source": "BOSS直聘",
+          "tags": ["具身智能", "推理优化"]
+        },
+        {
+          "title": "Data语音-推理框架优化工程师",
+          "company": "字节跳动",
+          "url": "https://jobs.bytedance.com/campus/m/position/detail/7530662133869971719",
+          "source": "字节招聘",
+          "tags": ["推理框架", "语音"]
+        },
+        {
+          "title": "大模型推理工程师",
+          "company": "招商局集团",
+          "url": "https://cmhk.zhiye.com/custom/xq?JobAdName=%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E5%B7%A5%E7%A8%8B%E5%B8%88(J30056)",
+          "source": "招商局招聘",
+          "tags": ["大模型", "推理"]
         }
       ]
     },
@@ -102,11 +179,39 @@
           "tags": ["多模态", "推理引擎"]
         },
         {
-          "title": "大模型算法应用工程师（2026届校招）",
-          "company": "某大厂",
-          "url": "https://www.zhipin.com/job_detail/2b0a24e44eaa04790nV53t68E1RY.html",
+          "title": "大模型算法工程师/AI Agent",
+          "company": "某科技公司",
+          "url": "https://www.zhipin.com/job_detail/eca99e9f5c9f51fd03F_2d-1FVpW.html",
           "source": "BOSS直聘",
-          "tags": ["校招", "大模型应用"]
+          "tags": ["大模型", "AI Agent"]
+        },
+        {
+          "title": "大模型算法工程师-剪映",
+          "company": "字节跳动",
+          "url": "https://www.zhipin.com/job_detail/b9dedf743720d8fb03J93NS7EVtQ.html",
+          "source": "BOSS直聘",
+          "tags": ["大模型", "剪映"]
+        },
+        {
+          "title": "AI Agent 应用开发工程师（2026届）",
+          "company": "某公司",
+          "url": "https://www.shushuqiuzhi.com/position/270502",
+          "source": "数数求职",
+          "tags": ["AI Agent", "校招"]
+        },
+        {
+          "title": "AI数字人/RAG算法工程师（外企）",
+          "company": "某外企",
+          "url": "https://www.zhipin.com/job_detail/531bce12364b42550nR60tu7FlRY.html",
+          "source": "BOSS直聘",
+          "tags": ["RAG", "数字人"]
+        },
+        {
+          "title": "AI agent 优化工程师（2026届）",
+          "company": "某公司",
+          "url": "https://www.shushuqiuzhi.com/position/315519",
+          "source": "数数求职",
+          "tags": ["AI Agent", "优化"]
         }
       ]
     },
@@ -147,6 +252,62 @@
           "url": "https://www.liepin.com/zpllmdmxgcsw6e7s/",
           "source": "猎聘",
           "tags": ["LLM", "大模型"]
+        },
+        {
+          "title": "大模型算法工程师（模型数据与对齐）",
+          "company": "某科技公司",
+          "url": "https://www.zhipin.com/job_detail/16de0a6863c61ef703152d24FVpW.html",
+          "source": "BOSS直聘",
+          "tags": ["模型对齐", "数据"]
+        },
+        {
+          "title": "大模型算法工程师",
+          "company": "华为",
+          "url": "https://www.zhipin.com/job_detail/24503ea258720b160nZz3NW_FltQ",
+          "source": "BOSS直聘",
+          "tags": ["大模型", "华为"]
+        },
+        {
+          "title": "大模型算法应用工程师（2026届校招）",
+          "company": "某大厂",
+          "url": "https://www.zhipin.com/job_detail/2b0a24e44eaa04790nV53t68E1RY.html",
+          "source": "BOSS直聘",
+          "tags": ["校招", "大模型应用"]
+        },
+        {
+          "title": "大模型算法工程师",
+          "company": "美的",
+          "url": "https://www.zhipin.com/job_detail/bda3502e5a0f5d810nR-3NS8FVBT.html",
+          "source": "BOSS直聘",
+          "tags": ["大模型", "硬件"]
+        },
+        {
+          "title": "大模型算法工程师（可信方向）",
+          "company": "某科技公司",
+          "url": "https://www.zhipin.com/job_detail/2f8e7e2ed7e981600nR609y8FFpS.html",
+          "source": "BOSS直聘",
+          "tags": ["可信AI", "安全"]
+        },
+        {
+          "title": "大模型算法工程师（具身智能方向）",
+          "company": "某科技公司",
+          "url": "https://www.zhipin.com/job_detail/76738762c6e87f6f0nV729i1GVVT.html",
+          "source": "BOSS直聘",
+          "tags": ["具身智能", "机器人"]
+        },
+        {
+          "title": "Omni模型算法工程师",
+          "company": "腾讯",
+          "url": "https://careers.tencent.com/jobdesc.html?postId=2052321049734987776",
+          "source": "腾讯招聘",
+          "tags": ["多模态", "Omni"]
+        },
+        {
+          "title": "大模型算法工程师（北京/武汉）",
+          "company": "某公司",
+          "url": "https://www.nowcoder.com/jobs/detail/429543",
+          "source": "牛客",
+          "tags": ["校招", "大模型"]
         }
       ]
     },
@@ -180,6 +341,41 @@
           "url": "https://m.zhipin.com/zhaopin/9fe1fc60959e582c0nB509m8FA~~/",
           "source": "BOSS直聘",
           "tags": ["部署"]
+        },
+        {
+          "title": "AI模型推理加速/落地工程师（CUDA）",
+          "company": "海翼电子",
+          "url": "http://m.haolietou.com/j_289821",
+          "source": "好猎头",
+          "tags": ["CUDA", "推理加速"]
+        },
+        {
+          "title": "并行计算工程师（CUDA）",
+          "company": "NVIDIA",
+          "url": "https://www.zhipin.com/zhaopin/48aa4b48df3fc8063ndz2NS-/",
+          "source": "BOSS直聘",
+          "tags": ["CUDA", "NVIDIA"]
+        },
+        {
+          "title": "GPU工程师",
+          "company": "多公司",
+          "url": "https://www.zhipin.com/zhaopin/1c6d5c96162e54661nd93tm1/",
+          "source": "BOSS直聘",
+          "tags": ["GPU", "硬件"]
+        },
+        {
+          "title": "CUDA工程师",
+          "company": "多公司",
+          "url": "https://www.liepin.com/zpcudagcsp96l/",
+          "source": "猎聘",
+          "tags": ["CUDA"]
+        },
+        {
+          "title": "AI研发工程师-2026届（AI大模型平台）",
+          "company": "某公司",
+          "url": "https://weikezhijia.jobs.feishu.cn/MSXF0619/m/position/detail/7532787759050115366",
+          "source": "飞书招聘",
+          "tags": ["AI平台", "校招"]
         }
       ]
     },
@@ -199,6 +395,20 @@
           "url": "https://www.zhipin.com/zhaopin/25520c906cda39911X1-2dy8EA~~/",
           "source": "BOSS直聘",
           "tags": ["解决方案", "经理"]
+        },
+        {
+          "title": "金证优智大模型工程师",
+          "company": "金证优智",
+          "url": "https://www.zhipin.com/job_detail/eff65ba6eb5a53bc1HN529S6FFdS.html",
+          "source": "BOSS直聘",
+          "tags": ["大模型", "金融科技"]
+        },
+        {
+          "title": "LLM/AI大模型工程师",
+          "company": "宁波某公司",
+          "url": "https://www.lipind.com/position/detail/1024682.html",
+          "source": "猎聘",
+          "tags": ["LLM", "硬件"]
         }
       ]
     }
@@ -213,12 +423,15 @@
     ]
   },
   "hot_companies": [
-    "腾讯", "字节跳动", "大疆", "滴滴", "淘天", "快手",
-    "上海AI Lab", "中科院计算所", "京东科技"
+    "腾讯", "字节跳动", "大疆", "滴滴", "淘天", "快手", "智谱华章",
+    "阶跃星辰", "Momenta", "上海AI Lab", "中科院计算所", "京东科技",
+    "招商局集团", "美的", "华为", "NVIDIA"
   ],
   "hot_skills": [
-    "大模型推理", "vLLM", "TRT-LLM", "GPU优化", "量化",
-    "Agent", "RAG", "Prompt Engineering", "多模态", "CUDA",
-    "分布式部署", "MoE", "KV Cache", "FlashAttention"
+    "大模型推理", "vLLM", "TRT-LLM", "GPU优化", "量化", "CUDA",
+    "Agent", "RAG", "Prompt Engineering", "多模态",
+    "分布式部署", "MoE", "KV Cache", "FlashAttention",
+    "SGLang", "PagedAttention", "AWQ", "GPTQ",
+    "Function Calling", "具身智能"
   ]
 }
