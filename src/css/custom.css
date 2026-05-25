@@ -91,15 +91,37 @@ main[class*="mainWrapper"] {
   color: var(--ifm-color-primary);
 }
 
+/* 下拉触发区域 - 确保 hover 不断开 */
+.dropdown {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
 /* 下拉菜单 */
+.dropdown {
+  display: flex;
+  align-items: center;
+}
+
 .dropdown__menu {
   border: 1px solid var(--fde-border);
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   padding: 0.5rem;
-  margin-top: 0.5rem;
+  margin-top: -4px !important;
+  top: 100% !important;
   min-width: 180px;
   overflow: hidden;
+}
+
+/* 隐形桥接 - 防止鼠标移出时下拉消失 */
+.dropdown__menu::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 8px;
 }
 
 .dropdown__link {
