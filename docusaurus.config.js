@@ -112,6 +112,7 @@ const config = {
             position: 'left',
             items: [
               { to: '/tools/', label: '全部工具' },
+              { to: '/tools/agentic-ai/', label: 'Agentic AI 学习路线' },
             ],
           },
           {
