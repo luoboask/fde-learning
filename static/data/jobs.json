@@ -1,0 +1,224 @@
+{
+  "last_updated": "2026-05-25",
+  "total_jobs": 28,
+  "categories": [
+    {
+      "name": "大模型推理/部署",
+      "jobs": [
+        {
+          "title": "大模型推理系统工程师",
+          "company": "中国科学院计算技术研究所",
+          "url": "https://www.iguopin.com/job/detail?id=167617220212429481",
+          "source": "国聘",
+          "tags": ["大模型", "推理优化", "系统研发"]
+        },
+        {
+          "title": "模型推理优化工程师",
+          "company": "北京某科技公司",
+          "url": "https://m.liepin.com/job/1982160113.shtml",
+          "source": "猎聘",
+          "tags": ["模型推理", "性能优化"]
+        },
+        {
+          "title": "推理引擎研发工程师",
+          "company": "北京某科技公司",
+          "url": "https://www.zhipin.com/zhaopin/7ce899f18ddd18150nd80tu-GA~~/",
+          "source": "BOSS直聘",
+          "tags": ["推理引擎", "研发"]
+        },
+        {
+          "title": "大模型推理加速算法工程师",
+          "company": "平安健康保险",
+          "url": "https://bebee.com/cn/jobs/shenzhen-guangdong--theirstack-687341369",
+          "source": "bebee",
+          "tags": ["大模型", "推理加速"]
+        },
+        {
+          "title": "大模型推理框架研发工程师（高级/资深）",
+          "company": "滴滴",
+          "url": "https://talent.didiglobal.com/social/p/56340",
+          "source": "滴滴招聘",
+          "tags": ["推理框架", "高级/资深"]
+        },
+        {
+          "title": "大模型推理部署工程师",
+          "company": "上海 AI Lab",
+          "url": "https://www.shlab.org.cn/joinus/detail/7511994333059418379?mode=social",
+          "source": "上海AI Lab",
+          "tags": ["推理", "部署"]
+        },
+        {
+          "title": "大模型推理性能优化工程师",
+          "company": "腾讯",
+          "url": "https://jobs.niuqizp.com/job-vlm55t5ta.html",
+          "source": "牛企",
+          "tags": ["推理优化", "性能优化"]
+        }
+      ]
+    },
+    {
+      "name": "大模型应用/Agent",
+      "jobs": [
+        {
+          "title": "高级后端开发工程师（AI Agent方向）",
+          "company": "大疆 DJI",
+          "url": "https://we.dji.com/zh-CN/position/detail?positionId=1969004256605831168",
+          "source": "大疆招聘",
+          "tags": ["AI Agent", "后端开发"]
+        },
+        {
+          "title": "AI Agent 开发工程师-交易业务",
+          "company": "淘天集团",
+          "url": "https://talent.taotian.com/off-campus/position-detail?positionId=100011720021",
+          "source": "淘天招聘",
+          "tags": ["AI Agent", "电商"]
+        },
+        {
+          "title": "AI Agent研发工程师",
+          "company": "字节跳动",
+          "url": "https://jobs.bytedance.com/experienced/position/7571365864895072517/detail",
+          "source": "字节招聘",
+          "tags": ["AI Agent", "研发"]
+        },
+        {
+          "title": "AI Agent研发工程师",
+          "company": "浙江大学",
+          "url": "https://www.career.zju.edu.cn/jyxt/sczp/zpztgl/ckZpgwXq.zf?zpxxbh=4DE40BFF9E16CB11E0653A68DD0E9B18",
+          "source": "高校就业",
+          "tags": ["AI Agent", "研发"]
+        },
+        {
+          "title": "AI Agent开发工程师",
+          "company": "广电计量",
+          "url": "https://www.zhaopin.com/jobdetail/CC138044050J40905165212.htm",
+          "source": "智联招聘",
+          "tags": ["AI Agent"]
+        },
+        {
+          "title": "多模态推理引擎工程师",
+          "company": "快手",
+          "url": "https://www.nowcoder.com/jobs/detail/442121",
+          "source": "牛客",
+          "tags": ["多模态", "推理引擎"]
+        },
+        {
+          "title": "大模型算法应用工程师（2026届校招）",
+          "company": "某大厂",
+          "url": "https://www.zhipin.com/job_detail/2b0a24e44eaa04790nV53t68E1RY.html",
+          "source": "BOSS直聘",
+          "tags": ["校招", "大模型应用"]
+        }
+      ]
+    },
+    {
+      "name": "大模型算法/架构",
+      "jobs": [
+        {
+          "title": "大模型算法工程师/架构师",
+          "company": "京东科技",
+          "url": "https://www.zhipin.com/job_detail/f16a16d3cf85b1420nR53tS_E1FR.html",
+          "source": "BOSS直聘",
+          "tags": ["大模型", "架构师"]
+        },
+        {
+          "title": "大模型系统研发工程师",
+          "company": "上海 AI Lab",
+          "url": "http://www.slai.edu.cn/zh-hans/recruitment/382",
+          "source": "上海AI Lab",
+          "tags": ["系统研发", "大模型"]
+        },
+        {
+          "title": "AI System Engineer",
+          "company": "香港中文大学（深圳）",
+          "url": "https://www.cuhk.edu.cn/en/recruitment/15009",
+          "source": "CUHK深圳",
+          "tags": ["AI System", "科研"]
+        },
+        {
+          "title": "大模型算法研发工程师",
+          "company": "双深科技 Attrsense",
+          "url": "https://www.attrsense.com/careers/llm-engineer-campus",
+          "source": "Attrsense",
+          "tags": ["大模型", "校招"]
+        },
+        {
+          "title": "LLM大模型工程师",
+          "company": "多公司",
+          "url": "https://www.liepin.com/zpllmdmxgcsw6e7s/",
+          "source": "猎聘",
+          "tags": ["LLM", "大模型"]
+        }
+      ]
+    },
+    {
+      "name": "AI 平台/基础设施",
+      "jobs": [
+        {
+          "title": "中/高级运维工程师（AI平台）",
+          "company": "大疆 DJI",
+          "url": "https://we.dji.com/zh-CN/position/detail?positionId=2028734430659026944",
+          "source": "大疆招聘",
+          "tags": ["AI平台", "运维"]
+        },
+        {
+          "title": "部署工具开发工程师",
+          "company": "北京某科技公司",
+          "url": "https://m.zhipin.com/zhaopin/be4e56baedb8dbe20nB_3ty9Ew~~/",
+          "source": "BOSS直聘",
+          "tags": ["部署工具", "开发"]
+        },
+        {
+          "title": "系统部署工程师",
+          "company": "北京某科技公司",
+          "url": "https://m.zhipin.com/zhaopin/27cb274e8c504f7e1HJ82Nu7Ew~~/",
+          "source": "BOSS直聘",
+          "tags": ["系统部署"]
+        },
+        {
+          "title": "部署工程师",
+          "company": "深圳某科技公司",
+          "url": "https://m.zhipin.com/zhaopin/9fe1fc60959e582c0nB509m8FA~~/",
+          "source": "BOSS直聘",
+          "tags": ["部署"]
+        }
+      ]
+    },
+    {
+      "name": "AI 解决方案/架构",
+      "jobs": [
+        {
+          "title": "人工智能解决方案架构师",
+          "company": "某科技公司",
+          "url": "https://www.zhipin.com/zhaopin/47f89e01b6d3b8281nV-2t27Eg~~/",
+          "source": "BOSS直聘",
+          "tags": ["解决方案", "架构师"]
+        },
+        {
+          "title": "AI解决方案经理",
+          "company": "上海某公司",
+          "url": "https://www.zhipin.com/zhaopin/25520c906cda39911X1-2dy8EA~~/",
+          "source": "BOSS直聘",
+          "tags": ["解决方案", "经理"]
+        }
+      ]
+    }
+  ],
+  "salary_insights": {
+    "note": "薪资数据需要从职位详情页提取，BOSS直聘等需要登录才能查看完整信息",
+    "estimated_ranges": [
+      {"level": "初级 (1-3年)", "range": "20-40万/年"},
+      {"level": "中级 (3-5年)", "range": "40-70万/年"},
+      {"level": "高级 (5-10年)", "range": "70-120万/年"},
+      {"level": "专家/架构师", "range": "100-200万/年"}
+    ]
+  },
+  "hot_companies": [
+    "腾讯", "字节跳动", "大疆", "滴滴", "淘天", "快手",
+    "上海AI Lab", "中科院计算所", "京东科技"
+  ],
+  "hot_skills": [
+    "大模型推理", "vLLM", "TRT-LLM", "GPU优化", "量化",
+    "Agent", "RAG", "Prompt Engineering", "多模态", "CUDA",
+    "分布式部署", "MoE", "KV Cache", "FlashAttention"
+  ]
+}
