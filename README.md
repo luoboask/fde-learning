@@ -1,10 +1,33 @@
 # FDE 学习中心
 
-AI 前沿部署工程师（Frontier Deployment Engineer）—— 从入门到面试的系统学习路径。
+AI 前沿部署工程师（Frontier Deployment Engineer）—— 从入门到面试的一条龙平台。
 
-## 在线文档
+在线预览：[https://luoboask.github.io/fde-learning/](https://luoboask.github.io/fde-learning/)
 
-访问 [FDE 学习中心](https://luoboask.github.io/fde-learning/) 在线阅读。
+## 网站预览
+
+### 首页
+
+![首页](static/screenshots/home-dashboard.png)
+
+### FDE 系统学习
+
+![系统学习文档](static/screenshots/learn-doc.png)
+
+### Agentic AI 系统学习
+
+![Agentic AI 文档](static/screenshots/agentic-ai-doc.png)
+
+## 平台模块
+
+| 模块 | 路由 | 说明 |
+|------|------|------|
+| **FDE 系统学习** | `/` | 17 个阶段，从 AI 基础到团队管理 |
+| **Agentic AI 系统学习** | `/agentic-ai/` | L1-L5 智能体系统学习路径 |
+| **源码解读教程** | `/opensource/` | nanoGPT、llm.c、llama.cpp、vLLM、SGLang、Claude Code |
+| **工具教程** | `/tools/` | Cursor、Claude Code 等工具使用指南 |
+| **AI 行业趋势** | `/trends/` | AI 行业动态追踪（动态页面） |
+| **FDE 招聘动态** | `/jobs/` | 5 大类别岗位信息 |
 
 ## 本地运行
 
@@ -14,28 +37,6 @@ npm start
 ```
 
 打开 http://localhost:3000 即可查看。
-
-## 目录结构
-
-| 阶段 | 模块 | 说明 |
-|------|------|------|
-| 入门 | [01-ai-basics](docs/01-ai-basics) | AI 基础认知与学习路径 |
-| | [02-model-architecture](docs/02-model-architecture) | Transformer、MoE、多模态等模型架构 |
-| 进阶 | [03-gpu-basics](docs/03-gpu-basics) | GPU 架构、内存模型与性能分析 |
-| | [04-inference-optimization](docs/04-inference-optimization) | vLLM / TensorRT-LLM / SGLang 引擎与量化 |
-| | [05-distributed-inference](docs/05-distributed-inference) | 张量并行、流水线并行、MoE 并行 |
-| 实战 | [06-production-deployment](docs/06-production-deployment) | 生产部署、自动扩缩、可观测性 |
-| | [12-labs](docs/12-labs) | 动手实验（模型部署、量化、性能调优） |
-| | [08-cost-operations](docs/08-cost-operations) | 成本分析与容量规划 |
-| 扩展 | [07-agent-architecture](docs/07-agent-architecture) | Agent 系统架构 |
-| | [09-evaluation-frontier](docs/09-evaluation-frontier) | 投机解码、FP8 推理等前沿技术 |
-| | [17-open-source-deep-dive](docs/17-open-source-deep-dive) | 开源项目深度解读 |
-| 面试 | [10-interview](docs/10-interview) | 面试答题框架与技巧 |
-| | [13-qna](docs/13-qna) | 面试问答库 |
-| 附录 | [11-team-building](docs/11-team-building) | 团队建设与招聘 |
-| | [14-glossary](docs/14-glossary) | 术语表 |
-| | [15-resources](docs/15-resources) | 推荐资源 |
-| | [16-case-studies](docs/16-case-studies) | 案例研究 |
 
 ## 贡献
 

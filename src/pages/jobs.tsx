@@ -4,9 +4,11 @@ import Layout from '@theme/Layout';
 interface Job {
   title: string;
   company: string;
+  location: string;
   url: string;
   source: string;
   tags: string[];
+  salary?: string;
 }
 
 interface Category {
@@ -20,7 +22,8 @@ interface JobsData {
   categories: Category[];
   salary_insights: {
     note: string;
-    estimated_ranges: { level: string; range: string }[];
+    by_level: { level: string; range: string }[];
+    by_category: Record<string, string>;
   };
   hot_companies: string[];
   hot_skills: string[];
@@ -32,6 +35,7 @@ const CATEGORY_ICONS: Record<string, string> = {
   '大模型算法/架构': '🧠',
   'AI 平台/基础设施': '🔧',
   'AI 解决方案/架构': '📋',
+  'AI 前沿部署工程师': '🚀',
 };
 
 const CATEGORY_COLORS: Record<string, { bg: string; text: string; tag: string }> = {
@@ -40,6 +44,7 @@ const CATEGORY_COLORS: Record<string, { bg: string; text: string; tag: string }>
   '大模型算法/架构': { bg: '#ede9fe', text: '#5b21b6', tag: '#8b5cf6' },
   'AI 平台/基础设施': { bg: '#d1fae5', text: '#065f46', tag: '#10b981' },
   'AI 解决方案/架构': { bg: '#fce7f3', text: '#9d174d', tag: '#ec4899' },
+  'AI 前沿部署工程师': { bg: '#e0e7ff', text: '#3730a3', tag: '#6366f1' },
 };
 
 const ALL_CATEGORIES = '全部';
@@ -75,8 +80,24 @@ function JobCard({ job }: { job: Job }) {
           <h4 style={{ margin: 0, fontSize: '0.95rem', fontWeight: 600, color: 'var(--fde-text)' }}>
             {job.title}
           </h4>
-          <div style={{ marginTop: '0.375rem', fontSize: '0.85rem', color: 'var(--fde-text-light)' }}>
-            {job.company}
+          <div style={{ marginTop: '0.375rem', fontSize: '0.85rem', color: 'var(--fde-text-light)', display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+            <span>{job.company}</span>
+            {job.location && (
+              <span style={{ color: 'var(--fde-text-light)', opacity: 0.7 }}>·</span>
+            )}
+            {job.location && (
+              <span style={{ color: 'var(--ifm-color-primary-light)', fontSize: '0.8rem' }}>
+                {job.location}
+              </span>
+            )}
+            {job.salary && (
+              <>
+                <span style={{ color: 'var(--fde-text-light)', opacity: 0.7 }}>·</span>
+                <span style={{ color: '#059669', fontWeight: 600, fontSize: '0.8rem' }}>
+                  {job.salary}
+                </span>
+              </>
+            )}
           </div>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
@@ -169,7 +190,7 @@ function FilterBar({
   searchKeyword: string;
   onSearchChange: (kw: string) => void;
 }) {
-  const categoryNames = ['大模型推理/部署', '大模型应用/Agent', '大模型算法/架构', 'AI 平台/基础设施', 'AI 解决方案/架构'];
+  const categoryNames = ['大模型推理/部署', '大模型应用/Agent', '大模型算法/架构', 'AI 平台/基础设施', 'AI 解决方案/架构', 'AI 前沿部署工程师'];
 
   return (
     <div style={{
@@ -539,8 +560,8 @@ export default function JobsPage(): React.ReactElement {
           marginBottom: '2.5rem',
         }}>
           <h3 style={{ margin: '0 0 1rem', fontSize: '1.1rem', fontWeight: 700 }}>💰 薪资参考范围</h3>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
-            {jobsData.salary_insights.estimated_ranges.map((r) => (
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
+            {jobsData.salary_insights.by_level.map((r) => (
               <div
                 key={r.level}
                 style={{
@@ -555,6 +576,24 @@ export default function JobsPage(): React.ReactElement {
                 </div>
                 <div style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--fde-text)' }}>
                   {r.range}
+                </div>
+              </div>
+            ))}
+          </div>
+          <h4 style={{ margin: '0 0 0.75rem', fontSize: '0.95rem', fontWeight: 600 }}>按类别</h4>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '0.75rem' }}>
+            {Object.entries(jobsData.salary_insights.by_category).map(([cat, range]) => (
+              <div
+                key={cat}
+                style={{
+                  padding: '0.75rem 1rem',
+                  background: 'var(--fde-surface)',
+                  borderRadius: '8px',
+                }}
+              >
+                <div style={{ fontSize: '0.8rem', color: 'var(--fde-text-light)' }}>{cat}</div>
+                <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--fde-text)', marginTop: '0.25rem' }}>
+                  {range}
                 </div>
               </div>
             ))}

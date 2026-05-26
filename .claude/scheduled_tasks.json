@@ -1,0 +1,11 @@
+{
+  "jobs": [
+    {
+      "id": "a36a7d54",
+      "cron": "17 9 * * 1",
+      "prompt": "执行 FDE 岗位采集：运行 /job-collector skill。读取 static/data/jobs.json 已有数据，按照 skill 中的采集策略（6 大类别、BOSS直聘/猎聘/牛客等数据源、关键词搜索）采集新岗位，去重后更新 static/data/jobs.json，输出采集报告（新增数、各类别岗位数、热门变化）。",
+      "recurring": true,
+      "durable": true
+    }
+  ]
+}
