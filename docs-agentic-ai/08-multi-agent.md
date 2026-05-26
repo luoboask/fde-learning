@@ -548,11 +548,12 @@ for artifact in result.artifacts:
 
 | 模式 | 推荐框架 | 复杂度 | 场景 |
 |------|----------|--------|------|
-| Supervisor | LangGraph | ★★★ | 需要精细控制的多智能体 |
+| Supervisor | LangGraph / AgentScope | ★★★ | 需要精细控制的多智能体 |
 | Handoff | LangGraph + OpenAI Agent SDK | ★★ | Agent 交接场景 |
 | 角色团队 | CrewAI | ★★ | 定义明确的角色分工 |
 | 辩论 | AutoGen | ★★★ | 多角度分析、研究 |
 | 跨系统互操作 | A2A 协议 | ★★★★ | 不同系统的 Agent 协作 |
+| 分布式协作 | AgentScope (gRPC) | ★★★★ | 多 Agent 跨机器/跨进程协作 |
 
 ## 工程视角
 

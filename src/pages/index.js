@@ -7,48 +7,48 @@ import Heading from '@theme/Heading';
 import './index.css';
 
 const SKILL_LEVELS = [
-  { level: 1, title: 'AI 基础认知', icon: '\U0001f9e0', desc: '了解 FDE 岗位定位', color: '#10b981', to: '/01-basics/01-what-is-fde', items: ['什么是 FDE', 'FDE 类型', '学习路径'] },
-  { level: 2, title: '模型架构', icon: '\U0001f3d7\ufe0f', desc: 'Transformer 内部机制', color: '#3b82f6', to: '/02-model-architecture/transformer-overview', items: ['Attention', 'KV Cache', 'MoE', 'FFN'] },
-  { level: 3, title: 'GPU 底层', icon: '\U0001f3ae', desc: '硬件与显存模型', color: '#06b6d4', to: '/03-gpu-basics/gpu-overview', items: ['GPU 架构', '显存层级', '性能瓶颈', '互联'] },
+  { level: 1, title: 'AI 基础认知', icon: '\u{1f9e0}', desc: '了解 FDE 岗位定位', color: '#10b981', to: '/01-basics/01-what-is-fde', items: ['什么是 FDE', 'FDE 类型', '学习路径'] },
+  { level: 2, title: '模型架构', icon: '\u{1f3d7}\ufe0f', desc: 'Transformer 内部机制', color: '#3b82f6', to: '/02-model-architecture/transformer-overview', items: ['Attention', 'KV Cache', 'MoE', 'FFN'] },
+  { level: 3, title: 'GPU 底层', icon: '\u{1f3ae}', desc: '硬件与显存模型', color: '#06b6d4', to: '/03-gpu-basics/gpu-overview', items: ['GPU 架构', '显存层级', '性能瓶颈', '互联'] },
   { level: 4, title: '推理优化', icon: '\u26a1', desc: '让模型跑得快、省资源', color: '#f59e0b', to: '/04-inference-optimization/vllm-deep-dive', items: ['vLLM', 'TRT-LLM', '量化', 'KV Cache 量化'] },
-  { level: 5, title: '分布式推理', icon: '\U0001f517', desc: '多卡/多机并行', color: '#ef4444', to: '/05-distributed-inference/distributed-overview', items: ['TP', 'PP', 'MoE 并行'] },
-  { level: 6, title: '生产部署', icon: '\U0001f680', desc: '从本地到线上服务', color: '#8b5cf6', to: '/07-production-deployment/deployment-architecture', items: ['K8s', '扩缩容', '可观测性', '容灾'] },
-  { level: 7, title: 'Agent 架构', icon: '\U0001f916', desc: '记忆、工具、规划', color: '#ec4899', to: '/06-ai-engineering/agent-architecture', items: ['记忆系统', 'RAG', 'Function Calling'] },
-  { level: 8, title: '成本运营', icon: '\U0001f4b0', desc: '省钱与资源规划', color: '#14b8a6', to: '/08-cost-operations/cost-breakdown', items: ['成本拆解', '优化策略', '容量规划'] },
-  { level: 9, title: '前沿评估', icon: '\U0001f52d', desc: '新技术追踪与评估', color: '#6366f1', to: '/04-inference-optimization/frontier-overview', items: ['投机解码', 'FP8', '评估流程'] },
-  { level: 10, title: '面试通关', icon: '\U0001f4dd', desc: '答题框架与话术', color: '#a855f7', to: '/12-interview/interview-framework', items: ['自我介绍', '技术答题', '项目故事', 'HR 面'] },
-  { level: 11, title: '团队管理', icon: '\U0001f465', desc: '培养与建设', color: '#64748b', to: '/14-team-building/team-culture', items: ['团队文化', '成长路径', '招聘策略'] },
-  { level: 12, title: '动手实验', icon: '\U0001f9ea', desc: '7 个实操练习', color: '#10b981', to: '/09-labs', items: ['vLLM 部署', '量化', 'Profiling', 'OOM'] },
+  { level: 5, title: '分布式推理', icon: '\u{1f517}', desc: '多卡/多机并行', color: '#ef4444', to: '/05-distributed-inference/distributed-overview', items: ['TP', 'PP', 'MoE 并行'] },
+  { level: 6, title: '生产部署', icon: '\u{1f680}', desc: '从本地到线上服务', color: '#8b5cf6', to: '/07-production-deployment/deployment-architecture', items: ['K8s', '扩缩容', '可观测性', '容灾'] },
+  { level: 7, title: 'Agent 架构', icon: '\u{1f916}', desc: '记忆、工具、规划', color: '#ec4899', to: '/06-ai-engineering/agent-architecture', items: ['记忆系统', 'RAG', 'Function Calling'] },
+  { level: 8, title: '成本运营', icon: '\u{1f4b0}', desc: '省钱与资源规划', color: '#14b8a6', to: '/08-cost-operations/cost-breakdown', items: ['成本拆解', '优化策略', '容量规划'] },
+  { level: 9, title: '前沿评估', icon: '\u{1f52d}', desc: '新技术追踪与评估', color: '#6366f1', to: '/04-inference-optimization/frontier-overview', items: ['投机解码', 'FP8', '评估流程'] },
+  { level: 10, title: '面试通关', icon: '\u{1f4dd}', desc: '答题框架与话术', color: '#a855f7', to: '/12-interview/interview-framework', items: ['自我介绍', '技术答题', '项目故事', 'HR 面'] },
+  { level: 11, title: '团队管理', icon: '\u{1f465}', desc: '培养与建设', color: '#64748b', to: '/14-team-building/team-culture', items: ['团队文化', '成长路径', '招聘策略'] },
+  { level: 12, title: '动手实验', icon: '\u{1f9ea}', desc: '7 个实操练习', color: '#10b981', to: '/09-labs', items: ['vLLM 部署', '量化', 'Profiling', 'OOM'] },
 ];
 
 const FEATURES = [
   {
-    icon: '\U0001f4da',
+    icon: '\u{1f4da}',
     title: '63 篇技术文档',
     desc: '涵盖 15000+ 行深入讲解，从原理到实践',
   },
   {
-    icon: '\U0001f4ca',
+    icon: '\u{1f4ca}',
     title: '40+ 架构图',
     desc: 'Mermaid 图表直观展示，告别抽象概念',
   },
   {
-    icon: '\U0001f3af',
+    icon: '\u{1f3af}',
     title: '面试答题框架',
     desc: '每章配套面试视角，满分回答模板',
   },
   {
-    icon: '\U0001f4bb',
+    icon: '\u{1f4bb}',
     title: '7 个动手实验',
     desc: 'vLLM 部署、量化、Profiling 等真实操作',
   },
   {
-    icon: '\U0001f3db\ufe0f',
+    icon: '\u{1f3db}\ufe0f',
     title: '源码解读教程',
     desc: 'nanoGPT、llm.c、llama.cpp、vLLM 源码分析',
   },
   {
-    icon: '\U0001f4bc',
+    icon: '\u{1f4bc}',
     title: '真实案例',
     desc: '70B 模型上线、GPU 利用率优化等实战经验',
   },
@@ -57,7 +57,7 @@ const FEATURES = [
 const PATHWAYS = [
   {
     id: 'fde',
-    icon: '\U0001f680',
+    icon: '\u{1f680}',
     badge: '核心路径',
     title: 'FDE 系统学习',
     desc: '从模型原理到推理优化，从生产部署到面试通关，17 个阶段循序渐进。',
@@ -67,7 +67,7 @@ const PATHWAYS = [
   },
   {
     id: 'agentic',
-    icon: '\U0001f916',
+    icon: '\u{1f916}',
     badge: '新增',
     title: 'Agentic AI 系统学习',
     desc: 'L1-L5 完整路径，从 Python 基础到多智能体、生产部署、面试通关。',
