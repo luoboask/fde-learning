@@ -1,5 +1,5 @@
 // @ts-check
-// sidebars/agentic-ai.js — Agentic AI 工程师教程侧边栏
+// sidebars/agentic-ai.js — Agentic AI 系统学习侧边栏
 const sidebars = {
   agenticAiSidebar: [
     {

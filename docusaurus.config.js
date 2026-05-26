@@ -106,8 +106,8 @@ const config = {
             label: '系统学习',
             position: 'left',
             items: [
-              { to: '/', label: 'FDE 系统学习' },
-              { to: '/agentic-ai/', label: 'Agentic AI 工程师教程' },
+              { to: '/01-basics/', label: 'FDE 系统学习' },
+              { to: '/agentic-ai/', label: 'Agentic AI 系统学习' },
             ],
           },
           {
