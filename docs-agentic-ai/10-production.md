@@ -1,9 +1,9 @@
 ---
 sidebar_position: 19
-sidebar_label: 第九阶段 生产部署
+sidebar_label: 生产部署
 ---
 
-# 第九阶段：生产部署与可观测性——从 Demo 到产品
+# 生产部署与可观测性——从 Demo 到产品
 
 > 一个能在本地跑通的脚本，距离生产级应用还有巨大鸿沟。2026 年的生产级 Agent 系统需要：API 服务化、容器化、CI/CD、可观测性三件套、以及弹性伸缩。
 
@@ -856,4 +856,4 @@ curl -v -X POST http://localhost:8000/chat \
 
 ---
 
-*上一阶段：[← 安全与 Guardrails](/tools/agentic-ai/08-safety-guardrails) | [下一阶段：检查清单 →](/tools/agentic-ai/10-checklist-interview)*
+*上一阶段：[← 安全与 Guardrails](/agentic-ai/09-safety-guardrails) | [下一阶段：检查清单 →](/agentic-ai/11-checklist-interview)*

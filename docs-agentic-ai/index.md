@@ -6,7 +6,7 @@ sidebar_label: 导航图
 # 2026 Agentic AI 系统学习路线图
 
 > 综合多份 2026 年最新路线图（Lamhot Siagian 博士、roadmap.sh、Machine Learning Mastery、Scaler 等），
-> 结合行业最新实践（MCP 协议、A2A 协议、Agent 记忆工程、Guardrails），
+> 结合行业最新实践（Harness Engineering、MCP 协议、A2A 协议、Agent 记忆工程、Guardrails），
 > 为国内开发者梳理的一条清晰可落地的学习路径。
 
 ## 核心理念
@@ -29,56 +29,58 @@ Agentic AI 工程的本质不是"学框架"，而是理解**智能体如何安�
 
 | 阶段 | 内容 | 前置 |
 |------|------|------|
-| [第四阶段：框架与工具调用](/agentic-ai/04-frameworks-tools) | 框架选型、工具设计、MCP 协议 | 上下文工程 |
-| [第五阶段：RAG 系统实战](/agentic-ai/05-rag-system) | 分块、检索、重排序、评估 | 工具调用 |
+| [第四阶段：Harness 工程](/agentic-ai/04-harness-engineering) | 约束、反馈、验证、六层架构 | 上下文工程 |
+| [第五阶段：框架与工具调用](/agentic-ai/05-frameworks-tools) | 框架选型、工具设计、MCP 协议 | Harness 工程 |
+| [第六阶段：RAG 系统实战](/agentic-ai/06-rag-system) | 分块、检索、重排序、评估 | 工具调用 |
 
 ### 第 2 层：多智能体与记忆（4-6 周）
 
 | 阶段 | 内容 | 前置 |
 |------|------|------|
-| [第六阶段：Agent 记忆工程](/agentic-ai/06-agent-memory) | 短期/长期/共享记忆层、Mem0 | RAG 实战 |
-| [第七阶段：多智能体编排](/agentic-ai/07-multi-agent) | 6 大编排模式、A2A 协议 | 记忆工程 |
+| [第七阶段：Agent 记忆工程](/agentic-ai/07-agent-memory) | 短期/长期/共享记忆层、Mem0 | RAG 实战 |
+| [第八阶段：多智能体编排](/agentic-ai/08-multi-agent) | 6 大编排模式、A2A 协议 | 记忆工程 |
 
 ### 第 3 层：生产与安全（4-6 周）
 
 | 阶段 | 内容 | 前置 |
 |------|------|------|
-| [第八阶段：安全与 Guardrails](/agentic-ai/08-safety-guardrails) | 4 层护栏、OWASP Top 10 | 多智能体 |
-| [第九阶段：生产部署](/agentic-ai/09-production) | FastAPI、Docker、CI/CD、监控 | 安全与 Guardrails |
+| [第九阶段：安全与 Guardrails](/agentic-ai/09-safety-guardrails) | 4 层护栏、OWASP Top 10 | 多智能体 |
+| [第十阶段：生产部署](/agentic-ai/10-production) | FastAPI、Docker、CI/CD、监控 | 安全与 Guardrails |
 
 ### 第 4 层：面试与项目
 
 | 阶段 | 内容 |
 |------|------|
-| [学习检查清单与面试锦囊](/agentic-ai/10-checklist-interview) | 10 步清单、STAR 法则、高频考点 |
-| [评估与可观测性](/agentic-ai/11-evaluation-observability) | Langfuse、DeepEval、成本追踪、基准测试 |
+| [学习检查清单与面试锦囊](/agentic-ai/11-checklist-interview) | 10 步清单、STAR 法则、高频考点 |
+| [评估与可观测性](/agentic-ai/12-evaluation-observability) | Langfuse、DeepEval、成本追踪、基准测试 |
 
 ## 2026 技术栈总览
 
 ```
-Python ─→ LLM API ─→ Context Engineering ─→ MCP 协议 ─→ RAG
-                                                    │
-                                                    ▼
-                                            LangGraph / PydanticAI
-                                                    │
-                                ┌───────────────────┼───────────────────┐
-                                ▼                   ▼                   ▼
-                          Agent 记忆           多智能体编排          Guardrails
-                          (Mem0/GraphRAG)     (A2A 协议)           (4 层护栏)
-                                │                   │                   │
-                                └───────────────────┼───────────────────┘
-                                                    ▼
-                                        可观测性 + 评估 + 基准测试
-                                  (Langfuse / DeepEval / 成本追踪)
-                                                    │
-                                                    ▼
-                                            FastAPI + Docker + 云部署
+Python ─→ LLM API ─→ Context Eng ─→ Harness Eng ─→ 框架选型
+                                (约束/反馈/验证)       │
+                                                       ▼
+                                              MCP 协议 ─→ RAG
+                                                       │
+                                ┌──────────────────────┼──────────────────────┐
+                                ▼                      ▼                      ▼
+                          Agent 记忆              多智能体编排              Guardrails
+                        (Mem0/GraphRAG)          (A2A 协议)               (4 层护栏)
+                                │                      │                      │
+                                └──────────────────────┼──────────────────────┘
+                                                       ▼
+                                          可观测性 + 评估 + 基准测试
+                                    (Langfuse / DeepEval / 成本追踪)
+                                                       │
+                                                       ▼
+                                               FastAPI + Docker + 云部署
 ```
 
 ## 2026 年关键趋势
 
 | 趋势 | 说明 |
 |------|------|
+| Harness Engineering | 2026 年新范式：Agent = Model + Harness。OpenAI 3 人 5 个月 100 万行代码零手写 |
 | MCP 协议普及 | Anthropic 的 Model Context Protocol 已成为 Agent-Tool 连接的标准 |
 | A2A 协议崛起 | Google 的 Agent-to-Agent 协议被 50+ 公司支持，多智能体互操作成为现实 |
 | 记忆工程化 | Agent 记忆从"context stuffing"发展为有基准测试的独立工程领域 |

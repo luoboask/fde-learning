@@ -1,9 +1,9 @@
 ---
 sidebar_position: 11
-sidebar_label: 第一阶段 Python
+sidebar_label: Python 工程基础
 ---
 
-# 第一阶段：Python 工程基础——智能体的"骨骼支架"
+# Python 工程基础——智能体的"骨骼支架"
 
 > Python 不仅是 Agentic AI 开发的首选语言，更是将想法快速固化为可测试、可维护、可扩展的生产级代码的唯一途径。
 

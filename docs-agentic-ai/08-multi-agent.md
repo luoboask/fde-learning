@@ -1,9 +1,9 @@
 ---
 sidebar_position: 17
-sidebar_label: 第七阶段 多智能体
+sidebar_label: 多智能体编排
 ---
 
-# 第七阶段：多智能体编排——让多个 Agent 协作
+# 多智能体编排——让多个 Agent 协作
 
 > 2026 年，行业正从"单一智能 Agent"转向**分布式、可互操作的多智能体生态系统**。掌握 6 大编排模式和 A2A 协议是进阶关键。但记住：多智能体不是"越多越好"，而是"够用就好"。
 
@@ -766,4 +766,4 @@ print(f"Token 估算: ~{multi['iteration'] * 2000} tokens")
 
 ---
 
-*上一阶段：[← 记忆工程](/tools/agentic-ai/06-agent-memory) | [下一阶段：安全与 Guardrails →](/tools/agentic-ai/08-safety-guardrails)*
+*上一阶段：[← 记忆工程](/agentic-ai/07-agent-memory) | [下一阶段：安全与 Guardrails →](/agentic-ai/09-safety-guardrails)*

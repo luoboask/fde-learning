@@ -1,9 +1,9 @@
 ---
 sidebar_position: 13
-sidebar_label: 第三阶段 Context
+sidebar_label: Prompt 与 Context Engineering
 ---
 
-# 第三阶段：Prompt 与 Context Engineering——给智能体"装好上下文"
+# Prompt 与 Context Engineering——给智能体"装好上下文"
 
 > 2026 年，Prompt Engineering 已经进化为 Context Engineering——不只是写好提示词，而是系统性地将正确的信息在正确的时机传递给智能体。
 
@@ -154,7 +154,7 @@ flowchart LR
     style H fill:#646cff,color:#fff
 ```
 
-这部分的技术细节在 [第五阶段：RAG 系统实战](/agentic-ai/05-rag-system) 中详细展开。
+这部分的技术细节在 [第六阶段：RAG 系统实战](/agentic-ai/06-rag-system) 中详细展开。
 
 **Context Engineering 的视角**：RAG 的核心问题是**如何在有限的上下文窗口中注入最相关的知识**。
 
@@ -490,4 +490,4 @@ uv run python test_prompts.py
 
 ---
 
-*上一阶段：[← LLM 基础](/agentic-ai/02-llm-basics) | [下一阶段：框架与工具 →](/agentic-ai/04-frameworks-tools)*
+*上一阶段：[← LLM 基础](/agentic-ai/02-llm-basics) | [下一阶段：Harness 工程 →](/agentic-ai/04-harness-engineering)*

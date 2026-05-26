@@ -1,9 +1,9 @@
 ---
 sidebar_position: 18
-sidebar_label: 第八阶段 安全与 Guardrails
+sidebar_label: 安全与 Guardrails
 ---
 
-# 第八阶段：安全与 Guardrails——让智能体"安全运行"
+# 安全与 Guardrails——让智能体"安全运行"
 
 > 2026 年，生产级 Agent 系统需要 **4 层 Guardrails**。Gartner 预测 2027 年前 40% 的 Agentic AI 项目会被取消——缺乏工程实践是主因。安全不是"附加项"，而是"设计前提"。
 
@@ -742,4 +742,4 @@ uv run python test_security.py
 
 ---
 
-*上一阶段：[← 多智能体](/agentic-ai/07-multi-agent) | [下一阶段：生产部署 →](/agentic-ai/09-production)*
+*上一阶段：[← 多智能体](/agentic-ai/08-multi-agent) | [下一阶段：生产部署 →](/agentic-ai/10-production)*

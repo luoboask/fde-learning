@@ -8,7 +8,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: '第 0 层：基础（2-4 周）',
+      label: '基础',
       items: [
         '01-python-fundamentals',
         '02-llm-basics',
@@ -17,34 +17,35 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: '第 1 层：单智能体（4-6 周）',
+      label: '单智能体',
       items: [
-        '04-frameworks-tools',
-        '05-rag-system',
+        '04-harness-engineering',
+        '05-frameworks-tools',
+        '06-rag-system',
       ],
     },
     {
       type: 'category',
-      label: '第 2 层：多智能体与记忆（4-6 周）',
+      label: '多智能体与记忆',
       items: [
-        '06-agent-memory',
-        '07-multi-agent',
+        '07-agent-memory',
+        '08-multi-agent',
       ],
     },
     {
       type: 'category',
-      label: '第 3 层：生产与安全（4-6 周）',
+      label: '生产与安全',
       items: [
-        '08-safety-guardrails',
-        '09-production',
+        '09-safety-guardrails',
+        '10-production',
       ],
     },
     {
       type: 'category',
-      label: '第 4 层：面试与项目',
+      label: '面试与项目',
       items: [
-        '10-checklist-interview',
-        '11-evaluation-observability',
+        '11-checklist-interview',
+        '12-evaluation-observability',
       ],
     },
   ],

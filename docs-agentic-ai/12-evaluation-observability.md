@@ -1,9 +1,9 @@
 ---
 sidebar_position: 21
-sidebar_label: 第十一阶段 评估与可观测性
+sidebar_label: 评估与可观测性
 ---
 
-# 第十一阶段：Agent 评估与可观测性——让系统"看得见自己"
+# Agent 评估与可观测性——让系统"看得见自己"
 
 > 一个没有可观测性的 Agent 系统就是"盲飞"。2026 年，评估（Evaluation）、可观测性（Observability）、基准测试（Benchmarking）已成为三个独立的工程领域。Gartner 预测 40% 的 Agentic AI 项目失败——其中 70% 归因于缺乏评估和监控能力。
 
@@ -769,4 +769,4 @@ uv run python cost_tracker.py
 
 ---
 
-*上一阶段：[← 检查清单](/agentic-ai/10-checklist-interview) | [返回导航图](/agentic-ai/)*
+*上一阶段：[← 检查清单](/agentic-ai/11-checklist-interview) | [返回导航图](/agentic-ai/)*

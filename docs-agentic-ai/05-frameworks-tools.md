@@ -1,9 +1,9 @@
 ---
 sidebar_position: 14
-sidebar_label: 第四阶段 框架与工具
+sidebar_label: 框架与工具
 ---
 
-# 第四阶段：框架与工具调用——框架为用，架构为主
+# 框架与工具调用——框架为用，架构为主
 
 > 面对 20+ 个 Agent 框架，记住：工具是仆从，架构才是主人。2026 年还要掌握 MCP 协议——Agent 连接工具的行业标准。
 
@@ -496,4 +496,4 @@ print(result['answer'])
 
 ---
 
-*上一阶段：[← Context Engineering](/agentic-ai/03-context-engineering) | [下一阶段：RAG 系统 →](/agentic-ai/05-rag-system)*
+*上一阶段：[← Harness 工程](/agentic-ai/04-harness-engineering) | [下一阶段：RAG 系统 →](/agentic-ai/06-rag-system)*

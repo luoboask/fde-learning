@@ -1,9 +1,9 @@
 ---
 sidebar_position: 15
-sidebar_label: 第五阶段 RAG 系统
+sidebar_label: RAG 系统
 ---
 
-# 第五阶段：RAG 系统实战——给智能体"装上知识库"
+# RAG 系统实战——给智能体"装上知识库"
 
 > 2026 年，RAG 已从"向量搜索 + 拼接"进化为混合检索 + 自适应分块 + 重排序 + 评估的完整工程体系。RAG 不是"调 API"，而是"设计知识管道"。
 
@@ -564,4 +564,4 @@ print(results)
 
 ---
 
-*上一阶段：[← 框架与工具](/agentic-ai/04-frameworks-tools) | [下一阶段：Agent 记忆 →](/agentic-ai/06-agent-memory)*
+*上一阶段：[← 框架与工具](/agentic-ai/05-frameworks-tools) | [下一阶段：Agent 记忆 →](/agentic-ai/07-agent-memory)*

@@ -1,9 +1,9 @@
 ---
 sidebar_position: 16
-sidebar_label: 第六阶段 记忆工程
+sidebar_label: Agent 记忆
 ---
 
-# 第六阶段：Agent 记忆工程——让智能体"记住你"
+# Agent 记忆工程——让智能体"记住你"
 
 > 2026 年，Agent 记忆已从"context stuffing"发展为**有独立架构、工具和评测标准的工程领域**。Mem0 的诞生、LongMemEval 评测基准的发布、以及 LangGraph 的检查点机制，标志着记忆层正在成为 Agent 系统的标配。
 
@@ -534,4 +534,4 @@ print(r4)
 
 ---
 
-*上一阶段：[← RAG 系统](/tools/agentic-ai/05-rag-system) | [下一阶段：多智能体 →](/tools/agentic-ai/07-multi-agent)*
+*上一阶段：[← RAG 系统](/agentic-ai/06-rag-system) | [下一阶段：多智能体 →](/agentic-ai/08-multi-agent)*
