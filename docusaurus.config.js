@@ -70,6 +70,22 @@ const config = {
         exclude: ['**/_*.{js,jsx,ts,tsx}', '**/_*.json', '**/__tests__/**', '**/node_modules/**'],
       },
     ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'agentic-ai',
+        path: 'docs-agentic-ai',
+        routeBasePath: 'agentic-ai',
+        tagsBasePath: 'tags',
+        sidebarPath: './sidebars/agentic-ai.js',
+        editUrl: 'https://github.com/luoboask/fde-learning/edit/master/',
+        numberPrefixParser: false,
+        sidebarCollapsed: true,
+        includeCurrentVersion: true,
+        versions: {},
+        exclude: ['**/_*.{js,jsx,ts,tsx}', '**/_*.json', '**/__tests__/**', '**/node_modules/**'],
+      },
+    ],
   ],
   markdown: {
     mermaid: true,
@@ -91,7 +107,7 @@ const config = {
             position: 'left',
             items: [
               { to: '/', label: 'FDE 系统学习' },
-              { to: '/tools/agentic-ai/', label: 'Agentic AI 工程师教程' },
+              { to: '/agentic-ai/', label: 'Agentic AI 工程师教程' },
             ],
           },
           {
@@ -114,7 +130,6 @@ const config = {
             position: 'left',
             items: [
               { to: '/tools/', label: '全部工具' },
-              { to: '/tools/agentic-ai/', label: 'Agentic AI 工程师路线' },
             ],
           },
           {

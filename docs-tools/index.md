@@ -10,7 +10,6 @@ sidebar_position: 1
 
 | 教程 | 状态 | 说明 |
 |------|------|------|
-| [2026 Agentic AI 工程师学习路线](/tools/agentic-ai/) | ✅ 已上线 | 6 阶段完整教程：从 Python 基础到生产部署 |
 | Cursor 使用教程 | 🚧 编写中 | AI 代码编辑器的核心功能和高效使用技巧 |
 | Claude 使用指南 | 🚧 编写中 | Claude 的最佳实践和高级用法 |
 | vLLM 部署教程 | 🚧 编写中 | 从 0 到 1 部署 vLLM 推理服务 |
@@ -18,4 +17,4 @@ sidebar_position: 1
 
 ---
 
-*返回 [系统学习](/) | 前往 [开源解读](/opensource/)*
+*返回 [系统学习](/) | 前往 [Agentic AI 教程](/agentic-ai/) | 前往 [开源解读](/opensource/)*

@@ -6,46 +6,16 @@ const sidebars = {
       type: 'html',
       value: '<div class="sidebar-stage">推理引擎</div>',
     },
-    {
-      type: 'category',
-      label: 'nanoGPT',
-      link: { type: 'doc', id: 'nanogpt' },
-      items: ['nanogpt'],
-    },
-    {
-      type: 'category',
-      label: 'llm.c',
-      link: { type: 'doc', id: 'llm-c' },
-      items: ['llm-c'],
-    },
-    {
-      type: 'category',
-      label: 'llama.cpp',
-      link: { type: 'doc', id: 'llama-cpp' },
-      items: ['llama-cpp'],
-    },
-    {
-      type: 'category',
-      label: 'vLLM',
-      link: { type: 'doc', id: 'vllm' },
-      items: ['vllm'],
-    },
-    {
-      type: 'category',
-      label: 'SGLang',
-      link: { type: 'doc', id: 'sglang' },
-      items: ['sglang'],
-    },
+    'nanogpt',
+    'llm-c',
+    'llama-cpp',
+    'vllm',
+    'sglang',
     {
       type: 'html',
-      value: '<div class="sidebar-stage">Claude Code 源码解读</div>',
+      value: '<div class="sidebar-stage">Claude Code 架构解读</div>',
     },
-    {
-      type: 'category',
-      label: '文档导航',
-      link: { type: 'doc', id: 'claude-code/00-文档导航' },
-      items: ['claude-code/00-文档导航'],
-    },
+    'claude-code/00-文档导航',
     {
       type: 'category',
       label: '启动流程',
@@ -93,13 +63,7 @@ const sidebars = {
         'claude-code/05-记忆系统/03-记忆读取',
       ],
     },
-    {
-      type: 'category',
-      label: '状态管理',
-      items: [
-        'claude-code/06-状态管理/01-状态存储',
-      ],
-    },
+    'claude-code/06-状态管理/01-状态存储',
     {
       type: 'category',
       label: 'UI 渲染',
@@ -137,13 +101,7 @@ const sidebars = {
         'claude-code/10-安全系统/04-策略限制',
       ],
     },
-    {
-      type: 'category',
-      label: '对比与附录',
-      items: [
-        'claude-code/70-记忆系统对比',
-      ],
-    },
+    'claude-code/70-记忆系统对比',
   ],
 };
 
