@@ -1,0 +1,392 @@
+{
+  "last_updated": "2026-05-26",
+  "total_trends": 30,
+  "categories": [
+    {
+      "name": "模型发布",
+      "trends": [
+        {
+          "title": "DeepSeek V4 / V4-Flash 系列发布",
+          "source": "DeepSeek",
+          "url": "https://deepseek.com/blog/v4-release",
+          "date": "2026-04-24",
+          "category": "模型发布",
+          "summary": "DeepSeek 发布 V4 系列（1.6T 参数 MoE 架构），V4-Flash 主打低延迟，并宣布永久定价策略。",
+          "impact_level": "S",
+          "fde_relevance": "MoE 架构对分布式推理部署有重大影响，需更新 Expert Parallel 策略和路由配置。"
+        },
+        {
+          "title": "GPT-5.5 (Spud) 发布",
+          "source": "OpenAI Blog",
+          "url": "https://openai.com/index/gpt-5-5/",
+          "date": "2026-04-23",
+          "category": "模型发布",
+          "summary": "OpenAI 发布 GPT-5.5，在推理、编码、数学任务上相比 GPT-5.4 有显著提升，同时推出 Workspace Agents 功能。",
+          "impact_level": "A",
+          "fde_relevance": "GPT 系列每次大版本更新都影响 API 部署策略，需关注上下文窗口和吞吐变化。"
+        },
+        {
+          "title": "Claude Opus 4.7 + Mythos 发布",
+          "source": "Anthropic Blog",
+          "url": "https://www.anthropic.com/news/claude-4-7",
+          "date": "2026-04-15",
+          "category": "模型发布",
+          "summary": "Anthropic 同时发布 Opus 4.7 和新层级 Mythos（10T 参数），刷新多个 benchmark 记录。",
+          "impact_level": "A",
+          "fde_relevance": "Claude 模型更新直接影响 API 部署的成本和性能评估，需跟进 benchmark 对比。"
+        },
+        {
+          "title": "Meta Muse Spark：首个 Superintelligence Labs 模型",
+          "source": "Meta AI Blog",
+          "url": "https://ai.meta.com/blog/introducing-muse-spark-msl/",
+          "date": "2026-04-08",
+          "category": "模型发布",
+          "summary": "Meta 发布 Muse Spark，从开源 Llama 转向闭源路线，定位为个人超级智能模型。",
+          "impact_level": "S",
+          "fde_relevance": "Meta 从开源转向闭源，意味着 FDE 可自部署的开源选项少了一个重要来源。"
+        },
+        {
+          "title": "Gemini 3.5 Flash + Gemini Spark @ Google I/O 2026",
+          "source": "Google Blog",
+          "url": "https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/",
+          "date": "2026-05-19",
+          "category": "模型发布",
+          "summary": "Google I/O 2026 发布 Gemini 3.5 Flash 和 Gemini Spark 主动式 AI 助手，并宣布新 AI 芯片计划。",
+          "impact_level": "A",
+          "fde_relevance": "Flash 版本专为低延迟场景设计，Spark 展示了 Agent 化交互趋势。"
+        },
+        {
+          "title": "Qwen 3.7-Max 发布",
+          "source": "阿里通义实验室",
+          "url": "https://qwenlm.github.io/blog/qwen-3-7-max/",
+          "date": "2026-05-20",
+          "category": "模型发布",
+          "summary": "阿里通义实验室发布 Qwen 3.7-Max，API 可用，推理性能进一步提升。",
+          "impact_level": "B",
+          "fde_relevance": "Qwen 是国内 FDE 部署最常用的开源模型系列，新版本值得关注。"
+        },
+        {
+          "title": "Llama 4 系列正式可用（Scout + Maverick）",
+          "source": "Meta AI Blog",
+          "url": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+          "date": "2026-04-01",
+          "category": "模型发布",
+          "summary": "Llama 4 Scout（轻量级）和 Maverick（旗舰级）正式开源，原生多模态能力。",
+          "impact_level": "A",
+          "fde_relevance": "Llama 4 是 FDE 自部署的主力模型，需更新推理配置和量化方案。"
+        }
+      ]
+    },
+    {
+      "name": "研究论文",
+      "trends": [
+        {
+          "title": "Post Reasoning：零成本提升非推理模型性能 28%",
+          "source": "arXiv (2605.06165)",
+          "url": "https://arxiv.org/abs/2605.06165",
+          "date": "2026-05-07",
+          "category": "研究论文",
+          "summary": "让模型在生成答案后再解释推理过程，在 88% 的场景中平均提升 28%，且不增加延迟。",
+          "impact_level": "A",
+          "fde_relevance": "对推理服务部署有实际指导意义——可以不改模型架构就提升输出质量。"
+        },
+        {
+          "title": "Metacognition as Reward：用元认知强化 LLM 推理",
+          "source": "arXiv (2605.23384)",
+          "url": "https://arxiv.org/abs/2605.23384",
+          "date": "2026-05-25",
+          "category": "研究论文",
+          "summary": "提出元认知-inspired RL 框架，通过知识和调控信号引导 LLM 推理。",
+          "impact_level": "B",
+          "fde_relevance": "推理时强化学习是前沿方向，可能影响未来的推理引擎设计。"
+        },
+        {
+          "title": "LLMs Improving LLMs：Agent 驱动的 Test-Time Scaling",
+          "source": "arXiv (2605.08083)",
+          "url": "https://arxiv.org/abs/2605.08083",
+          "date": "2026-05-15",
+          "category": "研究论文",
+          "summary": "利用 LLM 自动发现策略来提升其他 LLM 的推理能力，探索测试时扩展。",
+          "impact_level": "B",
+          "fde_relevance": "Test-Time Scaling 是推理优化的前沿方向，与投机解码等优化策略相关。"
+        },
+        {
+          "title": "EverMemOS：自组织记忆操作系统",
+          "source": "arXiv (2601.02163) / HF Trending",
+          "url": "https://arxiv.org/abs/2601.02163",
+          "date": "2026-01-04",
+          "category": "研究论文",
+          "summary": "自组织记忆操作系统，支持结构化长程推理，Hugging Face 5 月趋势榜 91 upvote。",
+          "impact_level": "B",
+          "fde_relevance": "长程记忆对 Agent 部署至关重要，可能影响未来推理服务的 KV Cache 设计。"
+        },
+        {
+          "title": "LLM Reasoning Is Latent, Not the Chain of Thought",
+          "source": "arXiv (2604.15726)",
+          "url": "https://arxiv.org/abs/2604.15726",
+          "date": "2026-04-20",
+          "category": "研究论文",
+          "summary": "Position paper：推理不应只看 CoT 输出，而应研究为隐状态轨迹形成。",
+          "impact_level": "C",
+          "fde_relevance": "理论层面理解模型推理机制，有助于设计更好的 prompt 和评估方法。"
+        }
+      ]
+    },
+    {
+      "name": "开源项目",
+      "trends": [
+        {
+          "title": "SGLang 成为 LLM 推理事实标准（40 万+ GPU 部署）",
+          "source": "GitHub Trending",
+          "url": "https://github.com/sgl-project/sglang",
+          "date": "2026-05-01",
+          "category": "开源项目",
+          "summary": "SGLang 全球部署超 40 万 GPU，RadixAttention 等技术使其在生产环境领先。",
+          "impact_level": "S",
+          "fde_relevance": "SGLang 已成为推理部署的核心工具，面试和实战都应掌握。"
+        },
+        {
+          "title": "vLLM v0.20.1 发布：DeepSeek V4 支持 + 性能优化",
+          "source": "GitHub Release",
+          "url": "https://github.com/vllm-project/vllm/releases",
+          "date": "2026-05-10",
+          "category": "开源项目",
+          "summary": "vLLM 最新稳定版，包含 DeepSeek V4 支持和多项 Continuous Batching 优化。",
+          "impact_level": "A",
+          "fde_relevance": "vLLM 是最常用的开源推理引擎，版本更新直接影响部署配置。"
+        },
+        {
+          "title": "OpenAgents：首个原生支持 MCP + A2A 的框架",
+          "source": "OpenAgents Blog",
+          "url": "https://openagents.org/blog/posts/2026-02-23-open-source-ai-agent-frameworks-compared",
+          "date": "2026-04-23",
+          "category": "开源项目",
+          "summary": "OpenAgents 成为首个开箱即用支持 MCP 和 A2A 双协议的 Agent 框架。",
+          "impact_level": "B",
+          "fde_relevance": "快速搭建多 Agent 系统的利器，适合 PoC 和原型开发。"
+        },
+        {
+          "title": "Awesome-LLM-Inference 维护更新",
+          "source": "GitHub",
+          "url": "https://github.com/xlite-dev/Awesome-LLM-Inference",
+          "date": "2026-05-15",
+          "category": "开源项目",
+          "summary": "LLM 推理资源合集持续更新，涵盖量化、分布式、benchmark 等方向。",
+          "impact_level": "C",
+          "fde_relevance": "学习推理优化的资源入口，适合系统性学习。"
+        }
+      ]
+    },
+    {
+      "name": "行业动态",
+      "trends": [
+        {
+          "title": "Q1 2026 创纪录：$297B 风投，AI 占 80%",
+          "source": "Crunchbase / KPMG",
+          "url": "https://news.crunchbase.com/venture/record-breaking-funding-ai-global-q1-2026/",
+          "date": "2026-04-01",
+          "category": "行业动态",
+          "summary": "全球风投 Q1 2026 达 $297B，其中 AI 占 $242B（80%），OpenAI $122B 为史上最大融资轮。",
+          "impact_level": "S",
+          "fde_relevance": "AI 基础设施投资热潮意味着 FDE 岗位需求持续增长。"
+        },
+        {
+          "title": "OpenAI 发布 IPO 申请",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/video/salesforce-earnings-openai-ipo-filing-230000039.html",
+          "date": "2026-05-21",
+          "category": "行业动态",
+          "summary": "OpenAI 正式提交 IPO 申请，预计年内上市，将成为 AI 领域最大 IPO。",
+          "impact_level": "A",
+          "fde_relevance": "OpenAI 上市后可能改变 API 定价策略，影响 FDE 的部署成本核算。"
+        },
+        {
+          "title": "Anthropic $1000 亿投资承诺 + 五角大楼禁令争议",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/news/live/tech-stocks-today-anthropic-says-pentagon-ban-could-cost-it-billions-meta-announces-new-ai-chips-134456659.html",
+          "date": "2026-05-22",
+          "category": "行业动态",
+          "summary": "Anthropic 警告五角大楼禁令可能损失数十亿，同时承诺在 Amazon 投资下 10 年投入 $1000 亿。",
+          "impact_level": "A",
+          "fde_relevance": "Anthropic 的大规模基础设施投资意味着更多部署岗位需求。"
+        },
+        {
+          "title": "Cerebras IPO：2026 年最大 AI 芯片上市",
+          "source": "YouTube / 财经报道",
+          "url": "https://www.youtube.com/watch?v=w8DO0baoT1M",
+          "date": "2026-05-14",
+          "category": "行业动态",
+          "summary": "AI 芯片公司 Cerebras 正式上市，被视为 2026 年 AI 基础设施领域最大 IPO。",
+          "impact_level": "B",
+          "fde_relevance": "Cerebras WSE 芯片为推理提供新硬件选项，可能成为 A100/H100 之外的选择。"
+        },
+        {
+          "title": "SpaceX 拟 $600 亿收购 Cursor",
+          "source": "行业报道",
+          "url": "https://blog.mean.ceo/startup-funding-trends-april-2026/",
+          "date": "2026-04-15",
+          "category": "行业动态",
+          "summary": "SpaceX 宣布与 Cursor 战略合作并拥有 $600 亿收购期权，AI 编程工具估值创新高。",
+          "impact_level": "A",
+          "fde_relevance": "Cursor 成为 AI 生码领域的标杆产品，其收购估值印证了 AI 编程工具的市场价值。"
+        },
+        {
+          "title": "中国阻止 Meta $20 亿收购 Manus",
+          "source": "CNBC",
+          "url": "https://www.cnbc.com/2026/04/27/meta-manus-china-blocks-acquisition-ai-startup.html",
+          "date": "2026-04-27",
+          "category": "行业动态",
+          "summary": "中国以数据安全为由阻止 Meta 收购 AI Agent 公司 Manus，成为首起 AI Agent 跨国收购被阻案例。",
+          "impact_level": "B",
+          "fde_relevance": "AI Agent 领域的跨境并购监管趋严，影响 FDE 的国际部署策略。"
+        },
+        {
+          "title": "Meta 与 NVIDIA 长期合作：百万级 GPU 部署",
+          "source": "Meta Newsroom",
+          "url": "https://about.fb.com/news/2026/02/meta-nvidia-announce-long-term-infrastructure-partnership/",
+          "date": "2026-02-17",
+          "category": "行业动态",
+          "summary": "Meta 与 NVIDIA 宣布长期基础设施合作，部署百万级 GPU，2026 年资本支出 $115-135B。",
+          "impact_level": "A",
+          "fde_relevance": "大规模 GPU 集群部署经验是 FDE 的核心竞争力之一。"
+        },
+        {
+          "title": "Gartner：2028 年 50% GenAI 预算投入可观测性",
+          "source": "Gartner",
+          "url": "https://www.gartner.com/en/newsroom/press-releases/2026-03-30-gartner-predicts-by-2028-explainable-ai-will-drive-llm-observability-investments-to-50-percent-for-secure-genai-deployment",
+          "date": "2026-03-30",
+          "category": "行业动态",
+          "summary": "Gartner 预测到 2028 年，可解释 AI 将驱动 50% 的 GenAI 部署投资用于可观测性。",
+          "impact_level": "B",
+          "fde_relevance": "可观测性是 FDE 的核心职责之一，Gartner 背书说明市场需求强劲。"
+        }
+      ]
+    },
+    {
+      "name": "推理部署",
+      "trends": [
+        {
+          "title": "Q2 2026 推理引擎 Benchmark：vLLM vs SGLang vs TGI vs Triton",
+          "source": "行业基准测试",
+          "url": "https://iotdigitaltwinplm.com/llm-inference-benchmark-vllm-tgi-sglang-triton-q2-2026/",
+          "date": "2026-05-01",
+          "category": "推理部署",
+          "summary": "最新对比：vLLM 在密集模型上吞吐略高，SGLang 综合性能更强，Triton 在特定场景有优势。",
+          "impact_level": "A",
+          "fde_relevance": "选型 benchmark 是 FDE 日常工作的核心，需关注最新数据指导技术选型。"
+        },
+        {
+          "title": "MAX (Modular) 崛起为第三大推理引擎",
+          "source": "Modular",
+          "url": "https://modular.ai/",
+          "date": "2026-05-10",
+          "category": "推理部署",
+          "summary": "MAX 由 Modular 开发，在 vLLM 和 SGLang 之外成为新兴的第三选择，主打编译器优化。",
+          "impact_level": "B",
+          "fde_relevance": "多一个可选项意味着部署方案更灵活，值得关注其差异化优势。"
+        },
+        {
+          "title": "Google 自研推理芯片计划：挑战 NVIDIA 垄断",
+          "source": "Google Blog",
+          "url": "https://blog.google/innovation-and-ai/technology/ai/google-io-2026-all-our-announcements/",
+          "date": "2026-05-19",
+          "category": "推理部署",
+          "summary": "Google I/O 2026 宣布新一代 TPU 和推理专用芯片计划，降低对 NVIDIA GPU 的依赖。",
+          "impact_level": "A",
+          "fde_relevance": "硬件多元化是 FDE 必须关注的方向，TPU 上的推理优化可能成为新技能需求。"
+        },
+        {
+          "title": "Meta MTIA 自研芯片部署：2026-2027 路线图",
+          "source": "Meta AI Blog",
+          "url": "https://ai.meta.com/blog/meta-mtia-scale-ai-chips-for-billions/",
+          "date": "2026-03-15",
+          "category": "推理部署",
+          "summary": "Meta 公布自研 MTIA 芯片路线图，四年四代，用于推荐系统和推理工作负载。",
+          "impact_level": "B",
+          "fde_relevance": "大厂自研芯片趋势下，FDE 需要具备跨硬件平台的推理部署能力。"
+        }
+      ]
+    },
+    {
+      "name": "Agent 应用",
+      "trends": [
+        {
+          "title": "MCP + A2A 协议标准化完成，Agent 互操作进入新阶段",
+          "source": "freeCodeCamp / Google / Anthropic",
+          "url": "https://www.freecodecamp.org/news/how-to-build-a-multi-agent-ai-system-with-langgraph-mcp-and-a2a-full-book/",
+          "date": "2026-04-28",
+          "category": "Agent 应用",
+          "summary": "MCP 成为 Agent-Tool 连接标准，A2A 成为多智能体互操作标准，50+ 公司支持。",
+          "impact_level": "S",
+          "fde_relevance": "MCP 和 A2A 是 Agent 部署的基础设施，FDE 需要掌握协议细节和实现。"
+        },
+        {
+          "title": "LangGraph 成为 Agent 编排 #1 框架",
+          "source": "Alice Labs",
+          "url": "https://alicelabs.ai/en/insights/best-ai-agent-frameworks-2026",
+          "date": "2026-04-15",
+          "category": "Agent 应用",
+          "summary": "LangGraph 超越 CrewAI 成为 GitHub star 最多的 Agent 框架，生产部署排名第一。",
+          "impact_level": "A",
+          "fde_relevance": "LangGraph 是 Agentic AI 部署的首选框架，与 Harness Engineering 概念高度相关。"
+        },
+        {
+          "title": "中国发布全球首个 Agentic AI 国家政策框架",
+          "source": "Geopolitechs / 工信部",
+          "url": "https://www.geopolitechs.org/p/chinas-first-policy-framework-for",
+          "date": "2026-05-08",
+          "category": "Agent 应用",
+          "summary": "中国发布全球首个针对 AI Agent 的国家政策框架，采取先部署后治理模式。",
+          "impact_level": "A",
+          "fde_relevance": "Agent 部署需要考虑合规要求，政策框架直接影响国内 Agent 产品设计。"
+        },
+        {
+          "title": "EU AI Act 修订：延迟关键合规期限 + 简化要求",
+          "source": "Global Policy Watch",
+          "url": "https://www.globalpolicywatch.com/2026/05/eu-ai-act-update-timeline-relief-targeted-simplification-and-new-prohibitions/",
+          "date": "2026-05-07",
+          "category": "Agent 应用",
+          "summary": "EU AI Act 于 2026 年 8 月全面生效前，达成政治协议修订案：延迟部分合规期限、简化要求。",
+          "impact_level": "B",
+          "fde_relevance": "面向欧洲市场部署的 LLM 服务需要满足 EU AI Act 合规要求。"
+        },
+        {
+          "title": "OpenAI Workspace Agents + Codex 扩展",
+          "source": "OpenAI Blog",
+          "url": "https://openai.com/signals/research/2026q1-update/",
+          "date": "2026-04-22",
+          "category": "Agent 应用",
+          "summary": "OpenAI 推出 Workspace Agents 预制模板和 Codex 扩展，从编码代理走向工作空间代理。",
+          "impact_level": "B",
+          "fde_relevance": "Workspace Agents 展示了 Agent 从单一任务走向工作流编排的趋势。"
+        }
+      ]
+    }
+  ],
+  "highlights": [
+    {
+      "title": "本周 S 级亮点",
+      "items": [
+        "DeepSeek V4 系列：1.6T MoE 架构，重新定义开源模型性能天花板",
+        "Meta Muse Spark：从开源 Llama 转向闭源个人超级智能模型，战略大转变",
+        "SGLang 成为全球部署最广的 LLM 推理引擎（40 万+ GPU）",
+        "MCP + A2A 协议标准化完成，Agent 互操作进入新阶段",
+        "Q1 2026 创纪录：$297B 风投，AI 占 80%"
+      ]
+    },
+    {
+      "title": "A 级趋势速览",
+      "items": [
+        "GPT-5.5 / Claude Opus 4.7 + Mythos / Gemini 3.5 Flash / Qwen 3.7-Max 密集发布",
+        "Llama 4 系列开源可用，FDE 自部署主力更新",
+        "vLLM v0.20.1 + SGLang benchmark 对比更新",
+        "Google 自研推理芯片 + Meta MTIA，硬件多元化趋势",
+        "LangGraph 超越 CrewAI 成为 Agent 编排 #1",
+        "中国发布全球首个 Agentic AI 政策框架",
+        "OpenAI 提交 IPO 申请，Anthropic $1000 亿投资承诺",
+        "Post Reasoning：零成本提升模型性能 28%",
+        "SpaceX $600 亿收购 Cursor，AI 编程工具估值创新高"
+      ]
+    }
+  ]
+}

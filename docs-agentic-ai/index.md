@@ -86,6 +86,7 @@ Python ─→ LLM API ─→ Context Eng ─→ Harness Eng ─→ 框架选型
 | A2A 协议崛起 | Google 的 Agent-to-Agent 协议被 50+ 公司支持，多智能体互操作成为现实 |
 | 记忆工程化 | Agent 记忆从"context stuffing"发展为有基准测试的独立工程领域 |
 | 框架理性化 | LangGraph 生产部署 #1，AgentScope 分布式多智能体，PydanticAI 最佳 DX，SmolAgents 最快原型 |
+| AI 生码革命 | Karpathy 从 Vibe Coding 到 Agentic Engineering，Spec-Driven 开发成为最佳实践 |
 | 40% 项目失败 | Gartner 预测 2027 年前 40% 的 Agentic AI 项目会被取消——缺乏工程实践是主因 |
 | 4 层 Guardrails | 输入/行为/输出/运行时四层护栏成为生产部署标配 |
 | 可观测性标配化 | Langfuse、LangSmith 等 Agent 可观测性平台成为生产必备 |
