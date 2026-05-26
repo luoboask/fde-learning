@@ -542,6 +542,91 @@ def handle_injection(user_input: str):
         raise ValueError("输入包含潜在注入模式，已拒绝")
 ```
 
+### Agent 治理与责任（Governance）
+
+Gartner 预测 2027 年前 40% 的 Agentic AI 项目会被取消——**其中 70% 归因于缺乏治理机制**。治理不是技术问题，而是**组织层面的控制体系**。
+
+#### Agent 治理的 4 个核心问题
+
+| 问题 | 传统软件 | Agent 系统 | 治理方案 |
+|------|---------|-----------|---------|
+| **责任归属** | 开发者/运维方 | Agent 自主决策 | Agent 行为日志 + 人工审核 |
+| **审计追踪** | 操作日志 | 思考链 + 工具调用 + 输出 | Langfuse Trace + 不可变存储 |
+| **身份管理** | 用户/服务账号 | Agent 是"谁"在操作？ | Agent Identity + 权限分级 |
+| **合规性** | 代码审查 | Agent 行为不可预知 | Guardrails + 自动化检查 |
+
+#### Agent 身份与权限分级
+
+```python
+from enum import Enum
+
+class AgentIdentity:
+    """Agent 身份管理——明确"谁"在做什么。"""
+
+    class PermissionLevel(Enum):
+        READ_ONLY = "read_only"        # 只读：查询、搜索、浏览
+        READ_WRITE = "read_write"      # 读写：创建、修改、删除（需确认）
+        ADMIN = "admin"                # 管理：配置变更、权限修改
+
+    def __init__(self, agent_id: str, level: PermissionLevel, owner: str):
+        self.agent_id = agent_id          # Agent 唯一标识
+        self.level = level                # 权限级别
+        self.owner = owner                # 负责人（人类）
+        self.created_at = time.time()
+
+    def can_perform(self, action: str) -> bool:
+        """判断 Agent 是否有权限执行某操作。"""
+        admin_actions = ["delete_user", "change_config", "grant_access"]
+        write_actions = ["create", "update", "delete"]
+        read_actions = ["read", "search", "list"]
+
+        if action in admin_actions:
+            return self.level == self.PermissionLevel.ADMIN
+        if action in write_actions:
+            return self.level in (self.PermissionLevel.READ_WRITE, self.PermissionLevel.ADMIN)
+        if action in read_actions:
+            return True
+        return False
+
+    def audit_log(self, action: str, result: str) -> dict:
+        """生成审计日志——不可变记录。"""
+        return {
+            "agent_id": self.agent_id,
+            "owner": self.owner,
+            "action": action,
+            "permission_level": self.level.value,
+            "result": result,
+            "timestamp": time.time(),
+        }
+
+# 使用示例
+support_agent = AgentIdentity(
+    agent_id="support-bot-v2",
+    level=AgentIdentity.PermissionLevel.READ_ONLY,
+    owner="customer-service-team",
+)
+
+# Agent 尝试删除用户——权限不足
+if not support_agent.can_perform("delete_user"):
+    # 需要 escalate 到有权限的 Agent 或人工
+    pass
+```
+
+#### OWASP Top 10 for Agentic AI（2026）
+
+| # | 风险 | 说明 | 防御 |
+|---|------|------|------|
+| 1 | **过度权限** | Agent 拥有超出任务需要的权限 | 最小权限原则、动态权限 |
+| 2 | **提示注入** | 用户输入覆盖 Agent 指令 | 输入层 Guardrails |
+| 3 | **供应链攻击** | Agent 使用的工具/插件被篡改 | 工具签名验证、白名单 |
+| 4 | **数据泄漏** | Agent 将敏感数据传递给模型 | 数据脱敏、私有化部署 |
+| 5 | **授权绕过** | Agent 被诱导执行未授权操作 | 行为层 Guardrails |
+| 6 | **不可控自主性** | Agent 超出预设范围自主行动 | 运行层限制（循环、超时、预算） |
+| 7 | **人机混淆** | 用户无法区分 Agent 和人类 | 明确标识 Agent 身份 |
+| 8 | **数据/投毒** | Agent 使用的知识库被篡改 | 数据源验证、版本控制 |
+| 9 | **不安全输出** | Agent 输出有害/违法内容 | 输出层 Guardrails |
+| 10 | **机密信息泄漏** | Agent 在工具调用中暴露密钥 | 环境变量、密钥管理 |
+
 ## 面试视角
 
 ### Q: 如何防止 Agent 被 Prompt 注入攻击？

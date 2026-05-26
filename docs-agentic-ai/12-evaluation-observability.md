@@ -769,4 +769,4 @@ uv run python cost_tracker.py
 
 ---
 
-*上一阶段：[← 检查清单](/agentic-ai/11-checklist-interview) | [返回导航图](/agentic-ai/)*
+*上一阶段：[← 检查清单与面试](/agentic-ai/11-checklist-interview) | [下一阶段：设计模式 →](/agentic-ai/13-agent-design-patterns)*

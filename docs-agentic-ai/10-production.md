@@ -690,6 +690,132 @@ if query := st.chat_input("输入问题..."):
 | 监控（Grafana + Prometheus） | ~$0 | 自建 |
 | **总计** | **~$440/月** | |
 
+### Agent Token 成本优化
+
+2026 年行业数据：**Agent 比聊天多消耗 50 倍 token**。一个开发者 3 天花了 $4,200 的案例已不是孤例。以下是 10 个经实战验证的优化策略。
+
+#### 策略一：模型路由（Model Router）
+
+不同难度的任务用不同模型——**不要所有任务都用 GPT-4o**。
+
+```python
+def model_router(task: str) -> str:
+    """根据任务复杂度选择模型。"""
+    # 简单任务：分类、提取、格式化 → 轻量模型
+    simple_tasks = ["分类", "提取", "格式化", "翻译", "总结"]
+    if any(t in task for t in simple_tasks):
+        return "gpt-4o-mini"  # $0.15/M tokens
+
+    # 中等任务：代码生成、推理、RAG → 中等模型
+    if "代码" in task or "分析" in task:
+        return "gpt-4o"  # $2.50/M tokens
+
+    # 复杂任务：架构设计、安全审计 → 最强模型
+    return "gpt-4o"
+
+# 效果：60-80% 的请求走轻量模型，token 成本降低 40-60%
+```
+
+| 模型 | 输入价格 | 适合任务 | 成本占比目标 |
+|------|---------|---------|-------------|
+| GPT-4o-mini | $0.15/M | 分类、提取、格式化、简单 QA | 60-80% 的请求 |
+| Claude Sonnet | $3.00/M | 中等推理、代码 | 10-20% |
+| GPT-4o / Opus | $2.50-15/M | 复杂推理、架构、安全 | 5-10% |
+
+#### 策略二：Prompt Caching
+
+OpenAI 和 Anthropic 都支持 prompt caching——**重复的 prompt 前缀缓存后成本降低 50%**。
+
+```python
+# 好的做法：系统提示固定，只换用户输入
+system_prompt = """你是一个技术助手。遵循以下规则：
+1. 回答简洁
+2. 提供代码示例
+3. 引用文档链接
+"""  # ← 这部分会被缓存
+
+# 每个请求只发送变化的部分
+user_message = "如何部署 vLLM？"  # ← 只有这部分收费
+```
+
+#### 策略三：上下文裁剪（Context Trimming）
+
+**不要把所有历史消息都发给 Agent**。只保留必要上下文。
+
+```python
+def trim_context(messages: list, max_tokens: int = 3000) -> list:
+    """裁剪上下文到 token 上限。"""
+    # 1. 保留系统提示
+    system = messages[0]
+
+    # 2. 从最新消息开始保留，直到达到 token 上限
+    trimmed = []
+    token_count = 0
+    for msg in reversed(messages[1:]):
+        msg_tokens = estimate_tokens(msg["content"])
+        if token_count + msg_tokens > max_tokens:
+            break
+        trimmed.insert(0, msg)
+        token_count += msg_tokens
+
+    return [system] + trimmed
+
+# 效果：将 10k token 的上下文降到 3k，成本降低 70%
+```
+
+#### 策略四：输出长度控制
+
+**强制 Agent 简洁回答**，避免啰嗦浪费 token。
+
+```python
+response = client.chat.completions.create(
+    model="gpt-4o",
+    messages=messages,
+    max_tokens=500,        # 限制最大输出
+    temperature=0.1,       # 低温度减少变化
+)
+
+# 在系统提示中加入：
+# "回答控制在 200 字以内。代码除外。"
+```
+
+#### 策略五：Token 预算告警
+
+```python
+class TokenBudget:
+    """Token 预算管理——超支自动告警。"""
+
+    def __init__(self, daily_limit: int = 1_000_000):
+        self.daily_limit = daily_limit
+        self.used_today = 0
+        self.alert_threshold = 0.8  # 80% 时告警
+
+    def record_usage(self, tokens: int):
+        self.used_today += tokens
+        if self.used_today > self.daily_limit * self.alert_threshold:
+            print(f"⚠️ Token 使用已达 {self.used_today/self.daily_limit*100:.0f}%！")
+
+    def is_within_budget(self) -> bool:
+        return self.used_today < self.daily_limit
+
+# 生产实现：结合 Redis 按用户/团队追踪
+```
+
+#### 10 大策略汇总
+
+| # | 策略 | 节省比例 | 实现难度 |
+|---|------|---------|---------|
+| 1 | 模型路由 | 40-60% | ★ |
+| 2 | Prompt Caching | 50%（命中请求） | ★ |
+| 3 | 上下文裁剪 | 30-70% | ★ |
+| 4 | 输出长度控制 | 20-40% | ★ |
+| 5 | Token 预算告警 | 防止意外 | ★ |
+| 6 | 结果缓存（相同问题返回同样答案） | 20-30% | ★★ |
+| 7 | 批量处理（减少 API 调用次数） | 10-20% | ★★ |
+| 8 | 轻量模型做 Reflection | 50% vs 重模型 | ★★ |
+| 9 | 向量检索预过滤（减少无关文档注入） | 30-50% | ★★★ |
+| 10 | Agent 循环次数限制 | 防止无限消耗 | ★ |
+
 ## 面试视角
 
 ### Q: 如何将一个本地 Agent 脚本部署到生产环境？

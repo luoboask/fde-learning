@@ -53,6 +53,7 @@ Agentic AI 工程的本质不是"学框架"，而是理解**智能体如何安�
 |------|------|
 | [学习检查清单与面试锦囊](/agentic-ai/11-checklist-interview) | 10 步清单、STAR 法则、高频考点 |
 | [评估与可观测性](/agentic-ai/12-evaluation-observability) | Langfuse、DeepEval、成本追踪、基准测试 |
+| [Agent 设计模式](/agentic-ai/13-agent-design-patterns) | ReAct、Reflection、Router、HITL、Handoff |
 
 ## 2026 技术栈总览
 
