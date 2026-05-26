@@ -86,11 +86,13 @@ const config = {
         },
         items: [
           {
-            type: 'docSidebar',
-            docsPluginId: 'learn',
-            sidebarId: 'learnSidebar',
-            position: 'left',
+            type: 'dropdown',
             label: '系统学习',
+            position: 'left',
+            items: [
+              { to: '/', label: 'FDE 系统学习' },
+              { to: '/tools/agentic-ai/', label: 'Agentic AI 工程师教程' },
+            ],
           },
           {
             type: 'dropdown',
