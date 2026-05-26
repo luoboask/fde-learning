@@ -3,22 +3,45 @@
 const sidebars = {
   opensourceSidebar: [
     {
+      type: 'doc',
+      id: 'index',
+    },
+    {
       type: 'html',
       value: '<div class="sidebar-stage">推理引擎</div>',
     },
-    'nanogpt',
-    'llm-c',
-    'llama-cpp',
-    'vllm',
-    'sglang',
+    {
+      type: 'doc',
+      id: 'nanogpt',
+    },
+    {
+      type: 'doc',
+      id: 'llm-c',
+    },
+    {
+      type: 'doc',
+      id: 'llama-cpp',
+    },
+    {
+      type: 'doc',
+      id: 'vllm',
+    },
+    {
+      type: 'doc',
+      id: 'sglang',
+    },
     {
       type: 'html',
       value: '<div class="sidebar-stage">Claude Code 架构解读</div>',
     },
-    'claude-code/00-文档导航',
+    {
+      type: 'doc',
+      id: 'claude-code/00-文档导航',
+    },
     {
       type: 'category',
       label: '启动流程',
+      link: { type: 'doc', id: 'claude-code/01-启动流程/01-应用入口' },
       items: [
         'claude-code/01-启动流程/01-应用入口',
         'claude-code/01-启动流程/02-初始化状态',
@@ -27,6 +50,7 @@ const sidebars = {
     {
       type: 'category',
       label: 'Prompt 系统',
+      link: { type: 'doc', id: 'claude-code/02-Prompt系统/01-Prompt规范' },
       items: [
         'claude-code/02-Prompt系统/01-Prompt规范',
         'claude-code/02-Prompt系统/02-动态Prompt',
@@ -36,6 +60,7 @@ const sidebars = {
     {
       type: 'category',
       label: '核心引擎',
+      link: { type: 'doc', id: 'claude-code/03-核心引擎/01-查询编排' },
       items: [
         'claude-code/03-核心引擎/01-查询编排',
         'claude-code/03-核心引擎/02-引擎循环',
@@ -45,6 +70,7 @@ const sidebars = {
     {
       type: 'category',
       label: '工具系统',
+      link: { type: 'doc', id: 'claude-code/04-工具系统/01-工具基类' },
       items: [
         'claude-code/04-工具系统/01-工具基类',
         'claude-code/04-工具系统/02-工具注册',
@@ -57,16 +83,21 @@ const sidebars = {
     {
       type: 'category',
       label: '记忆系统',
+      link: { type: 'doc', id: 'claude-code/05-记忆系统/01-记忆概述' },
       items: [
         'claude-code/05-记忆系统/01-记忆概述',
         'claude-code/05-记忆系统/02-记忆写入',
         'claude-code/05-记忆系统/03-记忆读取',
       ],
     },
-    'claude-code/06-状态管理/01-状态存储',
+    {
+      type: 'doc',
+      id: 'claude-code/06-状态管理/01-状态存储',
+    },
     {
       type: 'category',
       label: 'UI 渲染',
+      link: { type: 'doc', id: 'claude-code/07-UI渲染/01-Ink引擎' },
       items: [
         'claude-code/07-UI渲染/01-Ink引擎',
         'claude-code/07-UI渲染/02-组件系统',
@@ -76,6 +107,7 @@ const sidebars = {
     {
       type: 'category',
       label: '服务集成',
+      link: { type: 'doc', id: 'claude-code/08-服务集成/01-MCP协议' },
       items: [
         'claude-code/08-服务集成/01-MCP协议',
         'claude-code/08-服务集成/02-LSP集成',
@@ -85,6 +117,7 @@ const sidebars = {
     {
       type: 'category',
       label: '扩展系统',
+      link: { type: 'doc', id: 'claude-code/09-扩展系统/01-Skills系统' },
       items: [
         'claude-code/09-扩展系统/01-Skills系统',
         'claude-code/09-扩展系统/02-Plugins系统',
@@ -94,6 +127,7 @@ const sidebars = {
     {
       type: 'category',
       label: '安全系统',
+      link: { type: 'doc', id: 'claude-code/10-安全系统/01-Bash安全' },
       items: [
         'claude-code/10-安全系统/01-Bash安全',
         'claude-code/10-安全系统/02-权限控制',
@@ -101,7 +135,10 @@ const sidebars = {
         'claude-code/10-安全系统/04-策略限制',
       ],
     },
-    'claude-code/70-记忆系统对比',
+    {
+      type: 'doc',
+      id: 'claude-code/70-记忆系统对比',
+    },
   ],
 };
 
