@@ -164,14 +164,16 @@ const sidebars = {
     {
       type: 'category',
       label: '面试答题方法',
-      link: { type: 'doc', id: '10-interview/interview-framework' },
+      link: { type: 'doc', id: '12-interview/index' },
       items: [
-        '10-interview/self-intro',
-        '10-interview/technical-answers',
-        '10-interview/project-stories',
-        '10-interview/behavioral',
-        '10-interview/hr-round',
-        '10-interview/checklist',
+        '12-interview/interview-framework',
+        '12-interview/self-intro',
+        '12-interview/technical-answers',
+        '12-interview/project-stories',
+        '12-interview/behavioral',
+        '12-interview/hr-round',
+        '12-interview/checklist',
+        '12-interview/system-design',
       ],
     },
     {
