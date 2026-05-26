@@ -26,6 +26,8 @@ const sidebars = {
         'agentic-ai/09-production',
         // 第 4 层：面试与项目
         'agentic-ai/10-checklist-interview',
+        // 第 5 层：可观测性（补充）
+        'agentic-ai/11-evaluation-observability',
       ],
     },
   ],
