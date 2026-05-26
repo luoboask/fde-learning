@@ -226,10 +226,10 @@ Ragas 适合评估 RAG 质量，但对于**端到端 Agent 评估**需要更全�
 ```mermaid
 flowchart TD
     A["评估需求"] --> B{评估什么?}
-    B -->|"RAG 质量"| C["Ragas<br/>Faithfulness / Relevancy"]
-    B -->|"端到端 Agent"| D["DeepEval<br/>任务完成率 / 正确性"]
-    B -->|"代码能力"| E["SWE-bench<br/>PR 通过率"]
-    B -->|"通用能力"| F["GAIA / WebArena<br/>任务完成率"]
+    B -->|"RAG 质量"| C["Ragas\nFaithfulness / Relevancy"]
+    B -->|"端到端 Agent"| D["DeepEval\n任务完成率 / 正确性"]
+    B -->|"代码能力"| E["SWE-bench\nPR 通过率"]
+    B -->|"通用能力"| F["GAIA / WebArena\n任务完成率"]
 
     style C fill:#646cff,color:#fff
     style D fill:#42b883,color:#fff
@@ -353,20 +353,20 @@ Gaming 方式：
 flowchart TD
     A["Agent 运行"] --> B["Token 计数"]
     B --> C{"成本分析"}
-    C --> D["模型成本<br/>$0.0012/次"]
-    C --> E["嵌入成本<br/>$0.0001/次"]
-    C --> F["重排序成本<br/>$0.0003/次"]
-    C --> G["记忆操作成本<br/>$0.0002/次"]
+    C --> D["模型成本\n$0.0012/次"]
+    C --> E["嵌入成本\n$0.0001/次"]
+    C --> F["重排序成本\n$0.0003/次"]
+    C --> G["记忆操作成本\n$0.0002/次"]
 
     G --> H["优化策略"]
     D --> H
     E --> H
     F --> H
 
-    H --> I["模型分级<br/>小模型处理简单任务"]
-    H --> J["上下文压缩<br/>减少无效 Token"]
-    H --> K["缓存高频查询<br/>减少重复调用"]
-    H --> L["工具描述精简<br/>减少 Schema Token"]
+    H --> I["模型分级\n小模型处理简单任务"]
+    H --> J["上下文压缩\n减少无效 Token"]
+    H --> K["缓存高频查询\n减少重复调用"]
+    H --> L["工具描述精简\n减少 Schema Token"]
 
     style C fill:#646cff,color:#fff
     style H fill:#42b883,color:#fff

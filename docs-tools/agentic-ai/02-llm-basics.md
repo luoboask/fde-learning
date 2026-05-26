@@ -19,10 +19,10 @@ sidebar_label: 第二阶段 LLM
 ```mermaid
 flowchart LR
     A[用户输入文本] --> B[分词器 Tokenizer]
-    B --> C[Token IDs<br/>[1234, 567, 890]]
-    C --> D[Transformer<br/>多层注意力计算]
-    D --> E[Logits<br/>词表概率分布]
-    E --> F[采样策略<br/>greedy/top-p/temp]
+    B --> C("Token IDs\n(1234, 567, 890)")
+    C --> D["Transformer\n多层注意力计算"]
+    D --> E["Logits\n词表概率分布"]
+    E --> F["采样策略\ngreedy / top-p / temp"]
     F --> G[生成下一个 Token]
     G --> H{完成?}
     H -->|否| C
@@ -112,23 +112,23 @@ Token 是模型处理文本的**最小单位**，不是字、不是词，而是�
 
 ```mermaid
 graph LR
-    subgraph 传统方式：自由文本
-        A[用户: 北京天气?] --> B[LLM: 我来帮你查...]
-        B --> C[模型自由生成文本]
-        C --> D[解析困难，不可靠]
+    subgraph 传统方式自由文本
+        A1[用户: 北京天气?] --> B1[LLM: 我来帮你查...]
+        B1 --> C1[模型自由生成文本]
+        C1 --> D1[解析困难不可靠]
     end
 
     subgraph 函数调用方式
-        E[用户: 北京天气?] --> F[LLM]
-        F --> G[输出结构化 JSON]
-        G --> H[Agent 解析并执行]
-        H --> I[工具返回结果]
-        I --> J[LLM 生成最终回复]
+        E1[用户: 北京天气?] --> F1[LLM]
+        F1 --> G1[输出结构化 JSON]
+        G1 --> H1[Agent 解析并执行]
+        H1 --> I1[工具返回结果]
+        I1 --> J1[LLM 生成最终回复]
     end
 
-    style C fill:#ef4444,color:#fff
-    style G fill:#42b883,color:#fff
-    style J fill:#42b883,color:#fff
+    style C1 fill:#ef4444,color:#fff
+    style G1 fill:#42b883,color:#fff
+    style J1 fill:#42b883,color:#fff
 ```
 
 #### 完整调用流程（Sequence Diagram）
@@ -143,7 +143,7 @@ sequenceDiagram
     U->>A: "北京今天天气怎么样？"
     A->>L: messages=[user_msg], tools=[weather_schema]
 
-    Note over L: LLM 分析意图，<br/>决定调用工具
+    Note over L: LLM 分析意图决定调用工具
     L-->>A: tool_calls=[{name:"get_weather", args:{city:"北京"}}]
 
     A->>A: 解析 tool_calls
@@ -151,7 +151,7 @@ sequenceDiagram
     T-->>A: {city:"北京", temp:25, desc:"晴天"}
 
     A->>L: messages=[...history, tool_result], tools=[...]
-    Note over L: LLM 基于工具结果<br/>生成自然语言回复
+    Note over L: LLM 基于工具结果生成自然语言回复
     L-->>A: "北京今天晴天，气温 25°C。"
     A-->>U: "北京今天晴天，气温 25°C。"
 ```
@@ -249,7 +249,7 @@ graph TD
     D[提示词模糊不清] --> B
     B --> E[幻觉输出]
     E --> F[看似合理但错误的内容]
-    E --> G[捏造的事实/引用/数据]
+    E --> G[捏造的事实或引用或数据]
 
     style E fill:#ef4444,color:#fff
     style F fill:#f59e0b

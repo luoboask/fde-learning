@@ -18,8 +18,8 @@ sidebar_label: 第三阶段 Context
 
 ```mermaid
 flowchart LR
-    A["Prompt Engineering<br/>2023-2024<br/>写好一个提示词"] --> B["Context Engineering<br/>2025-2026<br/>动态构建上下文"]
-    B --> C["Agentic Context Engineering<br/>2026+<br/>自我演进的上下文"]
+    A["Prompt Engineering\n2023-2024\n写好一个提示词"] --> B["Context Engineering\n2025-2026\n动态构建上下文"]
+    B --> C["Agentic Context Engineering\n2026+\n自我演进的上下文"]
 
     style A fill:#f59e0b
     style B fill:#646cff,color:#fff

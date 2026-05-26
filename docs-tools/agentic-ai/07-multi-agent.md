@@ -20,11 +20,11 @@ sidebar_label: 第七阶段 多智能体
 ```mermaid
 flowchart TD
     A["任务分析"] --> B{可以单步完成?}
-    B -->|是| C["单智能体 + 工具<br/>最简单、最可靠"]
+    B -->|是| C["单智能体 + 工具\n最简单最可靠"]
     B -->|否| D{需要专业知识分工?}
-    D -->|否| E["单智能体 + 多个工具<br/>或工作流编排"]
+    D -->|否| E["单智能体 + 多个工具\n或工作流编排"]
     D -->|是| F{需要并行处理?}
-    F -->|是| G["多智能体并行<br/>或 Parallelization 模式"]
+    F -->|是| G["多智能体并行\n或 Parallelization 模式"]
     F -->|否| H{需要迭代优化?}
     H -->|是| I["Evaluator-Optimizer 模式"]
     H -->|否| J["Chaining 或 Routing 模式"]
@@ -503,8 +503,8 @@ flowchart LR
         A2A_C["A2A Server"] --> C1["Agent C1"]
     end
 
-    A2A_A -.->|"A2A 协议\nHTTP/JSON"| A2A_B
-    A2A_A -.->|"A2A 协议\nHTTP/JSON"| A2A_C
+    A2A_A -.->|"A2A 协议"| A2A_B
+    A2A_A -.->|"A2A 协议"| A2A_C
 
     style A2A_A fill:#646cff,color:#fff
     style A2A_B fill:#42b883,color:#fff
