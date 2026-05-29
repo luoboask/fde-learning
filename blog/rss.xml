@@ -4,89 +4,151 @@
         <title>FDE 学习中心 Blog</title>
         <link>https://luoboask.github.io/fde-learning/blog/</link>
         <description>FDE 学习中心 Blog</description>
-        <lastBuildDate>Fri, 29 May 2026 06:51:17 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 29 May 2026 06:53:50 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-Hans</language>
         <item>
-            <title><![CDATA[把概率模型放进生产系统：AI Agent 安全与可靠性指南]]></title>
-            <link>https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/</link>
-            <guid>https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/</guid>
-            <pubDate>Fri, 29 May 2026 06:51:17 GMT</pubDate>
-            <description><![CDATA[模型很强，但系统不能只靠模型。安全不是模型的属性，是系统的属性。]]></description>
+            <title><![CDATA[Agentic Coding 之后：AI 如何走进物理世界]]></title>
+            <link>https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/</link>
+            <guid>https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/</guid>
+            <pubDate>Fri, 29 May 2026 06:53:50 GMT</pubDate>
+            <description><![CDATA[代码写完了只是开始。物理世界的挑战才是真正的试金石。]]></description>
             <content:encoded><![CDATA[<blockquote>
-<p>模型很强，但系统不能只靠模型。安全不是模型的属性，是系统的属性。</p>
+<p>代码写完了只是开始。物理世界的挑战才是真正的试金石。</p>
 </blockquote>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="前言">前言<a href="https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/#%E5%89%8D%E8%A8%80" class="hash-link" aria-label="前言的直接链接" title="前言的直接链接" translate="no">​</a></h2>
-<p>在上一篇"铁律"文章里，我提到了 Harness 的四层架构——连接、编排、效能、安全。当时说会专门写一篇文章展开这个话题。今天就来兑现。</p>
-<p>模型本身的能力在不断进化。但一个反复出现的模式是：你在实验中看到的模型表现，和它进入生产系统之后的表现，往往差距巨大。不是模型变笨了，是生产环境比实验室复杂得多。</p>
-<p>传统软件系统里，代码的行为是确定性的——同样的输入，同样的输出。但 AI 系统的核心组件是概率模型。同一个 prompt，两次调用的结果可能不同。模型可能被用户输入诱导，忽略系统指令。它可能在总结文档时把恶意命令当成更高优先级的指令。它可能调用了本该只读的工具，却因为参数组合触发了写操作。</p>
-<p>这些问题不是"等模型再聪明一点"就能解决的。只要模型的行为是不可完全预测的，系统就需要在模型之外建立确定的边界。这篇文章从连接、编排、效能、安全四个维度，完整呈现生产级 AI 系统的工程实践。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="前言">前言<a href="https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/#%E5%89%8D%E8%A8%80" class="hash-link" aria-label="前言的直接链接" title="前言的直接链接" translate="no">​</a></h2>
+<p>2026 年初，飞猪 CTO 线在一场 ATA 分享中抛出了一个判断：AI 已经解决了信息搜索和代码的问题，PMF 已经找到了。但我们认为，更大的机会在于物理世界的真实消费和生活。</p>
+<p>这个判断听起来有些激进。但它背后有一组非常扎眼的数据：OpenAI 的周活是 Anthropic 的 30 倍，但 Anthropic 的年收入（600 亿美金）是 OpenAI（250 亿美金）的 2.4 倍。为什么？因为 Anthropic 的用户在做 coding——每次对话消耗 300K 到 1.5M tokens，而普通聊天只有 25-40K tokens。</p>
+<p>Agentic Coding 不仅仅是一个工具升级，它是一个商业模式的颠覆者。而它指向的下一个方向——物理世界的真实消费——比 coding 更大，也更难。</p>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="一连接让模型的意图进入真实世界">一、连接——让模型的意图进入真实世界<a href="https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/#%E4%B8%80%E8%BF%9E%E6%8E%A5%E8%AE%A9%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%84%8F%E5%9B%BE%E8%BF%9B%E5%85%A5%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C" class="hash-link" aria-label="一、连接——让模型的意图进入真实世界的直接链接" title="一、连接——让模型的意图进入真实世界的直接链接" translate="no">​</a></h2>
-<p>模型的输入和输出都是 token，但生产环境不止是 token。数据库里有记录，文件系统里有路径，浏览器里有页面状态，业务系统里有流程和接口。模型可以生成"查一下这个订单"、"打开这个页面"、"让测试 Agent 跑一下"，但这些表达本身不会触发任何真实动作。</p>
-<p>连接层解决的就是这个问题：把外部能力变成模型可理解、可调用、可返回的语义接口。</p>
-<p>模型往外调用时，token 输出要被转换成外部系统能接收的调用——API 请求、文件读写、浏览器动作、shell 命令，或者对另一个 Agent 的语义化调用。返回给模型时，外部系统的状态和结果也要被转换成模型能继续理解的输入。</p>
-<p>Tool Calling、MCP、A2A、环境接口——它们面对的对象不同，但解决的是同一件事：把外部能力包装成模型可通讯的对象。从工程角度看，Harness 必须具备连接能力，是因为模型本身不会天然拥有这些通道。没有连接层，模型只能生成文本；有了连接层，已有的数字资产、运行环境和其他 Agent 才能被包装成模型可理解、可调用、可返回的语义接口。</p>
-<p>连接的力量有多大？一个团队用 Water 这个工具，通过 Agent 自动逆向还原了 Cursor 的完整 gRPC 协议与 Agent 架构。用 AI 分析 AI，用 Agent 理解 Agent——这在一年前是不可想象的。连接的威力在于，它让模型不仅能操作已知的系统，还能自主探索和理解未知的系统。</p>
-<p>但连接也是风险的入口。当模型可以调用任何外部系统时，一次错误的参数组合可能触发破坏性操作。这就是为什么连接层必须与安全层紧密配合——能连什么、能调什么、能改什么，都需要明确的权限约束。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="一agentic-coding-为什么是通向-agi-的第一道光">一、Agentic Coding 为什么是通向 AGI 的第一道光<a href="https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/#%E4%B8%80agentic-coding-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E9%80%9A%E5%90%91-agi-%E7%9A%84%E7%AC%AC%E4%B8%80%E9%81%93%E5%85%89" class="hash-link" aria-label="一、Agentic Coding 为什么是通向 AGI 的第一道光的直接链接" title="一、Agentic Coding 为什么是通向 AGI 的第一道光的直接链接" translate="no">​</a></h2>
+<p>唐杰教授在 2026 年 AGI-Next 前沿峰会上提出了一个精练的三维框架来描述 AI 技术演进的阶段性：</p>
+<p><strong>第一条：数据/参数 Scaling（系统一）。</strong> 大规模语料加 Transformer 参数堆叠，逼近模式匹配的上限。这是 2020-2024 的主旋律，现在已经进入收益递减区。</p>
+<p><strong>第二条：推理 Scaling（系统二）。</strong> 通过强化学习、思维链、Test-Time Compute 让模型"想得更深"。这是 2024-2025 的焦点——DeepSeek-R1、o1/o3 系列——仍在快速演进，但可预见天花板。</p>
+<p><strong>第三条：自学习环境 Scaling（Agent Scaling）。</strong> 让模型与外部世界持续交互、从环境反馈中自我进化。这条路指向的正是 Agent Scaling Law，是当下和未来 2-3 年的核心增长引擎。</p>
+<p>杨植麟在 GTC 2026 上用 Kimi K2.5 的实践将第三条路线具象化为三个工程维度的"共振"：Token 效率、长上下文、以及智能体集群。三个维度的乘积效应，构成了 Agent Scaling 的技术注解。</p>
+<p>这三条 Scaling Law 是递进关系。第一条已进入收益递减区；第二条仍在快速演进但可预见天花板；第三条——Agent Scaling Law——是当下真正的增长引擎。</p>
+<p>而 Agentic Coding 恰好是第三条路线的第一块试验田。代码世界天然适合 Agent：环境确定（编译器告诉你行不行）、反馈即时（测试跑不跑得通）、试错成本低（改完再跑就是了）。一旦 Agent 在代码世界验证了"自主执行 + 环境反馈 + 自我进化"这条链路，它就具备了走向更广阔物理世界的资格。</p>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="二编排为概率行为建立确定性的过程">二、编排——为概率行为建立确定性的过程<a href="https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/#%E4%BA%8C%E7%BC%96%E6%8E%92%E4%B8%BA%E6%A6%82%E7%8E%87%E8%A1%8C%E4%B8%BA%E5%BB%BA%E7%AB%8B%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%9A%84%E8%BF%87%E7%A8%8B" class="hash-link" aria-label="二、编排——为概率行为建立确定性的过程的直接链接" title="二、编排——为概率行为建立确定性的过程的直接链接" translate="no">​</a></h2>
-<p>短任务里，模型的一次回答、一次工具调用，和用户期待的结果之间距离很近，编排问题不明显。但如果让 Agent 修一个复杂 bug，情况就完全不同了。它要读代码、定位问题、修改实现、运行测试、根据失败日志继续修、更新文档、提交变更。</p>
-<p>这时候暴露出来的问题是：任务时间线无法只靠模型自己维持。它可能忘记已经尝试过哪些方案。在测试失败后回到错误路径。因为上下文被压缩，丢掉用户最初的约束。或者看见某个文件已修改，就误以为任务已经完成。</p>
-<p>编排层要做的，就是把这部分原本依赖人持续维持的过程控制，外化成系统结构。</p>
-<p>围绕任务推进的整个过程，有几个问题不会随着模型的发展而消失：</p>
-<p><strong>任务边界。</strong> 一个 Agent 任务不等于一轮聊天，也不等于一次模型调用。系统必须知道现在到底在执行哪件事：目标是什么，约束是什么，当前阶段在哪里，什么条件下算完成。没有任务边界，Agent 就很容易把局部动作误认为整体进展。</p>
-<p><strong>过程状态。</strong> 长任务需要一个外部状态机来记录任务推进到哪里：哪些步骤已经完成，哪些方案已经失败，哪些工具返回过什么结果，哪些约束仍然有效。只有这些状态被外部化，Agent 才不会在上下文变化、会话中断或压缩之后重新迷路。</p>
-<p><strong>下一步选择。</strong> 系统必须决定接下来往哪里走。这个决定可以由预定义流程给出，也可以由模型判断，也可以由规则、评估器、人类审批共同决定。Workflow、DAG、State Machine、ReAct、多 Agent 协作，都是不同时期对这个问题的实现方式。形式会变，但"下一步如何被选择"这个问题不会消失。</p>
-<p><strong>异常恢复。</strong> 长任务一定会遇到偏差：工具超时、权限不足、测试失败、上下文丢失、模型跑偏、外部系统状态变化。编排层必须能让任务暂停、重试、回滚、降级、切换路径、请求人工介入，而不是把每一次失败都变成从头再来。</p>
-<p><strong>结果验收。</strong> Agent 自己说"完成了"不一定可信。系统需要用测试、检查项、评估器、预算、超时、循环次数、外部反馈来判断任务是否应该继续。它们的作用不是节省推理成本，而是决定这一步能不能进入下一步、任务是否真的完成。</p>
-<p>在 Agent Harness Cluster 的架构中，编排层的作用更加关键——多个 Agent 之间的任务分配、依赖管理、状态同步，都需要一个中心化的编排机制来协调。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="二物理世界的问题有多难">二、物理世界的问题有多难<a href="https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/#%E4%BA%8C%E7%89%A9%E7%90%86%E4%B8%96%E7%95%8C%E7%9A%84%E9%97%AE%E9%A2%98%E6%9C%89%E5%A4%9A%E9%9A%BE" class="hash-link" aria-label="二、物理世界的问题有多难的直接链接" title="二、物理世界的问题有多难的直接链接" translate="no">​</a></h2>
+<p>但物理世界比代码世界难得多。</p>
+<p>Coding 和数学问题的特点是：Hard to solve，但 Easy to verify。你写一个哈希排序，对不对一眼就能看出来。而且它是一次性的、静态的——答案和 setup 永远不变。</p>
+<p>物理世界消费问题的特点是：同样 Hard to solve，但更头疼的是 Hard to verify。我出两个去巴黎七天的行程规划，或者美加墨看世界杯十天的行程，让两个模型各出一个方案——一眼很难看出谁好谁坏。</p>
+<p>还有高度时效性。今天搜酒店和明天搜，库存、价格完全不同，天气、打车能不能打到，都是不可控因素。这对 RL training 来说会引入大量噪声。</p>
+<p>还有主观性。我推荐两个景点，我推荐两台扫地机器人，每个人的评判角度都不一样。</p>
+<p>这就是用 Coding 方法解决真实物理世界消费问题时面临的核心挑战：你不仅需要解决"怎么做"，还需要解决"怎么判断做得好不好"。</p>
+<p>飞猪团队在实践中发现了三个架构创新：</p>
+<p><strong>Least Squares 模型合并。</strong> 现在很多 expert 模型相对于基座的权重更新彼此几乎是 disjoint 的——它们学到了不同的东西。基于这个观察，可以用一种更便宜的合并方式——用激活值信息做加权的最小二乘合并——把多个 expert 的能力拼起来，效果和昂贵的 OPD 蒸馏很接近。</p>
+<p><strong>用大模型取代小模型的 Quick Instruction。</strong> 以前用户 query 进来，先用小模型做意图识别、实体抽取、分流……维护一堆小模型。新的思路是：直接在 user prompt 后面加上语义 token，one-shot 给出意图、领域、是否需要搜索等信息，大模型一次推理全部搞定。对旅行电商来说，用户的画像和实时行为数据本来就很长，如果有 10 个小模型，Context prefill 10 次，可能 1 秒都出不来。</p>
+<p><strong>三层 KV Cache。</strong> 同一个 session 内，前两层保持不变，第三层实时更新。这对旅行购物场景的个性化非常关键。</p>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="三效能用确定性复用替代重复推理">三、效能——用确定性复用替代重复推理<a href="https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/#%E4%B8%89%E6%95%88%E8%83%BD%E7%94%A8%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%A4%8D%E7%94%A8%E6%9B%BF%E4%BB%A3%E9%87%8D%E5%A4%8D%E6%8E%A8%E7%90%86" class="hash-link" aria-label="三、效能——用确定性复用替代重复推理的直接链接" title="三、效能——用确定性复用替代重复推理的直接链接" translate="no">​</a></h2>
-<p>设想一个理想状态：你有一个足够强的大模型，也有一个非常耐心且懂业务的人类。这个人会不断给模型补充背景，纠正方向，解释团队习惯，提供资料，判断下一步该怎么走。再加上连接和编排，这个组合理论上可以解决所有问题。</p>
-<p>但问题也很明显：它的能量消耗太大了。不只是 token，还包括人类反复解释背景的时间，补充资料的时间，纠偏的注意力，模型处理长上下文的推理成本，以及每次从零规划带来的等待和返工。</p>
-<p>效能层的核心原则是：用确定性的复用，替代重复的人类劳动和重复的 GPU 推理。</p>
-<p><strong>上下文管理</strong>负责减少重复解释。Context Engineering 不是把信息塞满上下文窗口，而是决定每一步模型应该看什么、不该看什么、以什么结构看。好的上下文应该像一张结构化地图：让模型快速知道项目在哪里、规则是什么、当前任务处于什么位置，而不是依赖人类每轮重新铺背景。这和"铁律"文章中 Claude Code 的上下文压缩机制是同一问题的不同解法——Claude Code 在会话内部做压缩，而上下文管理在系统层面做分级。</p>
-<p><strong>记忆和 RAG</strong>负责减少人工找资料。Memory / RAG 的价值不是"让 Agent 什么都记住"，而是在需要时找回相关知识。长期记忆、短期状态、知识库检索、代码索引、历史任务记录，都是为了减少人类手动贴资料、补上下文、解释历史决策的次数。</p>
-<p><strong>缓存</strong>负责减少重复计算。Prompt Cache、Result Cache、Embedding Cache 都属于确定性复用。同样的系统提示、同样的检索结果、同样的工具元信息、同样的格式转换，不应该每次都重新付出完整推理成本。Prompt Cache 的工程实践表明，合理的缓存策略可以将重复任务的推理成本降低 60% 以上。</p>
-<p><strong>模型路由</strong>负责减少不必要的大模型调用。不是所有步骤都需要最强模型。格式修复、小段摘要、检索重排、上下文压缩、简单分类，可以交给更便宜更快的模型，甚至交给规则和脚本。复杂规划、关键判断、高风险生成，再交给强模型。Model Router 的意义，是让系统在效果、成本、延迟之间动态取平衡。</p>
-<p><strong>Skill</strong>负责固化人类经验。Skill 不是简单的 prompt 包，而是把人类过去反复指导模型的经验沉淀下来：这个任务通常怎么做，哪些文件要先看，哪些命令要运行，哪些约束不能破坏，什么样的结果算合格。当某类任务被反复验证，就应该沉淀成 Skill、脚本、Workflow 或模板。</p>
-<p><strong>规则和脚本</strong>负责把 GPU 推理卸载到 CPU 执行。很多事情不需要模型猜：字段校验、格式转换、权限判断、固定 SOP、批处理、数据搬运、测试命令执行，都可以由确定性程序完成。能用 CPU 上的确定性执行解决的，就不应该每次都让 GPU 上的大模型重新推理。</p>
-<p>效能层的本质是把高成本的人类指导和模型推理，沉淀为可复用、可执行、可缓存、可路由的确定性结构。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="三trip-bench把真实世界变成可训练的-simulator">三、Trip-Bench：把真实世界变成可训练的 simulator<a href="https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/#%E4%B8%89trip-bench%E6%8A%8A%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E5%8F%98%E6%88%90%E5%8F%AF%E8%AE%AD%E7%BB%83%E7%9A%84-simulator" class="hash-link" aria-label="三、Trip-Bench：把真实世界变成可训练的 simulator的直接链接" title="三、Trip-Bench：把真实世界变成可训练的 simulator的直接链接" translate="no">​</a></h2>
+<p>面对物理世界"hard to verify"的难题，飞猪团队给出的解法是 Trip-Bench——一个 Agentic-RL Pipeline for Physical-World Tasks。</p>
+<p>Trip-Bench 的核心思路是：把真实 Agent 的历史轨迹"冻结"为离线世界，让 Agent 自博弈来自动撰写评分器，再把这个评分器直接用作 RL 奖励函数。</p>
+<p>从真实的线上轨迹出发，把工具调用的输出冻结成一个离线 SQLite 数据库。用 Agent 自博弈来自动写评分器（rubric），让 RL 有一个确定性的、可复现的奖励信号。把物理世界"hard-to-verify"的问题，转化成了程序可执行的 coding 问题。</p>
+<p>但 Trip-Bench 目前还是局部的——数据来自单次 API 调用的快照，reward 信号仍然偏稀疏。下一步是 Shopping-Bench，目标是一个可以无限自我对弈的 world simulator：集成全部消费级 API（旅行、购物、地图、娱乐），让模型在更接近真实世界的环境里学习。</p>
+<p>Trip-Bench 最有趣的设计是 Agent self-play writes the grader——三个 Agent 自己跟自己玩：一个出题、一个解题、一个是老师，这样循环。当它达到一定的均衡——环境基本固化了，数据基本固化了，评判标准基本固化了——就认为这是最优的。</p>
+<p>这个思路的精妙之处在于：它用博弈论的思想解决了"怎么评判一个旅行规划好不好"这个主观问题。不是人写 rubric，而是 Agent 在自博弈中自然涌现出评判标准。这和"铁律"文章中讨论的确定性 vs 概率性问题一脉相承——Trip-Bench 的本质是把物理世界的概率性问题，转化为 coding 的确定性问题。</p>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="四安全四层防线把概率行为限制在确定边界内">四、安全四层防线——把概率行为限制在确定边界内<a href="https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/#%E5%9B%9B%E5%AE%89%E5%85%A8%E5%9B%9B%E5%B1%82%E9%98%B2%E7%BA%BF%E6%8A%8A%E6%A6%82%E7%8E%87%E8%A1%8C%E4%B8%BA%E9%99%90%E5%88%B6%E5%9C%A8%E7%A1%AE%E5%AE%9A%E8%BE%B9%E7%95%8C%E5%86%85" class="hash-link" aria-label="四、安全四层防线——把概率行为限制在确定边界内的直接链接" title="四、安全四层防线——把概率行为限制在确定边界内的直接链接" translate="no">​</a></h2>
-<p>安全一直是技术落地真实生产最基本的要求。特别是当 Agent 开始自主地处理企业数据、执行代码、调用内部系统、写数据库时，安全显得更加重要。</p>
-<p>一个团队对 15 款主流 Agent 模型做了安全与可用性实测，发现了一个关键事实：不同模型在安全性上的短板差异显著。有的模型安全认知较强，却更容易产生幻觉；有的模型对指令过度服从，可能导致破坏性越权行为。这意味着——即使是最强的模型，也不能把安全责任交给它自己。</p>
-<p>安全层需要建立四层防线：</p>
-<p><strong>第一层：输入侧防注入和上下文隔离。</strong> 用户输入、网页内容、检索文档、工具返回值，都不能天然等同于可信指令。Harness 需要区分指令与数据，标记不同上下文来源的可信等级，防止外部文本改变 Agent 的行为规则。如果系统只靠 prompt 告诉模型"不要这样做"，那其实是在把安全责任交给概率输出。生产系统不能这样设计。</p>
-<p><strong>第二层：输出侧结构化约束。</strong> Schema、parser、validator、guardrails 的意义，是让模型输出必须通过确定性检查才能进入下一步。模型可以生成概率内容，但进入系统边界时必须被转换成可验证的结构。一旦字段缺失、类型错误、越过枚举范围、违反业务规则，就应该被截断、修复或要求重试。</p>
-<p><strong>第三层：执行侧权限和沙箱。</strong> 工具调用真正落地时，必须受 Auth、Policy、Sandbox、Quota 约束。能读的不能写，能查个人数据的不一定能查全量数据，能运行脚本的不一定能访问网络，能创建草稿的不一定能发送邮件。即使模型输出了危险动作，执行环境也要把影响范围限制住。</p>
-<p><strong>第四层：高风险动作人在回路，全链路审计。</strong> Human-in-the-Loop 不是为了显得保守，而是因为很多业务动作的风险无法仅靠模型或规则判断。付款、删除、外发、权限变更、生产发布——这些动作需要审批点。Agent 可以准备材料、给出建议、生成 diff，但最终授权要由系统策略或人类确认。Audit Log 不是事后补丁，而是 Agent 能否进入生产的前提。</p>
-<p>安全层解决的问题是：当模型行为不可完全预测时，系统如何保证权限、数据、动作和责任边界仍然是确定的。安全决定了 Agent 停留在实验原型，还是能够进入生产系统。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="四从单域-expert-到跨域-virtuosoagent-harness-cluster">四、从单域 Expert 到跨域 Virtuoso——Agent Harness Cluster<a href="https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/#%E5%9B%9B%E4%BB%8E%E5%8D%95%E5%9F%9F-expert-%E5%88%B0%E8%B7%A8%E5%9F%9F-virtuosoagent-harness-cluster" class="hash-link" aria-label="四、从单域 Expert 到跨域 Virtuoso——Agent Harness Cluster的直接链接" title="四、从单域 Expert 到跨域 Virtuoso——Agent Harness Cluster的直接链接" translate="no">​</a></h2>
+<p>Agent Scaling Law 的真正目标是什么？是提升 Agent 集体的智力等级——从单域 Expert 到跨域 Virtuoso。</p>
+<p>Google DeepMind 的 Levels of AGI 框架定义了 AI 系统的智力分级。当前前沿系统（Claude Code、Cursor、Devin 等）在代码、写作、数据分析等结构化领域已经到达 Level 3（Expert）——达到第 90 百分位人类专家的水平。但从 Expert 到 Virtuoso（第 99 百分位）的跃迁，面临一个根本性的困难：</p>
+<p>Virtuoso 级别的决策，不是单个专家能独立完成的，而是需要多个不同领域专家团的协作寻优。这恰恰是单 Agent 加单 Harness 架构的物理极限。</p>
+<p>Agent Harness Cluster 的技术体系包含三个核心层：</p>
+<p><strong>Layer 1：Agent Harness Scale-Out。</strong> 能力横向扩展层，包含 Multi-Agent Scaling（拓扑优化、调度优化、Agent 动态生成）、Memory &amp; Skill Scaling（经验积累、技能组合、生命周期治理）、Meta-Harness Scaling（架构搜索、工作流自动生成）。</p>
+<p><strong>Layer 2：Data Scale-Out。</strong> 数据横向扩展层，数仓层到语义层到本体层。Agent 的智力不仅取决于模型能力，还取决于它能获取和理解的数据质量。</p>
+<p><strong>Layer 3：Agent Harness Runtime。</strong> 运行时支撑层，包含 Agent 生命周期管理、资源调度与隔离、可观测性与安全治理。</p>
+<p>Agent 数量的爆发是必然趋势。原因有三：context 隔离需要 Agent 分裂（按 context 边界切，不按问题类型切）；多视角决策寻优需要 Agent 扩增（多个 Agent 独立推理后综合，决策质量显著优于单 Agent 深度思考）；专精避免 tool 过载（单 Agent 持有超过 15 个工具时，调用正确率显著下降）。</p>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="五模型选型15-款-agent-模型的安全实测启示">五、模型选型——15 款 Agent 模型的安全实测启示<a href="https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/#%E4%BA%94%E6%A8%A1%E5%9E%8B%E9%80%89%E5%9E%8B15-%E6%AC%BE-agent-%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AE%89%E5%85%A8%E5%AE%9E%E6%B5%8B%E5%90%AF%E7%A4%BA" class="hash-link" aria-label="五、模型选型——15 款 Agent 模型的安全实测启示的直接链接" title="五、模型选型——15 款 Agent 模型的安全实测启示的直接链接" translate="no">​</a></h2>
-<p>回到那 15 款模型的实测。为什么要测这么多模型？因为大模型是 Agent 的"决策大脑"，而不同模型在安全性上的短板差异显著。</p>
-<p>测试发现了几类典型的安全模式：</p>
-<p><strong>安全认知强但幻觉倾向高。</strong> 这类模型知道什么是危险操作，能识别大部分越权请求，但在某些边界情况下会给出看似合理实际上错误的回答。幻觉在 Agent 场景中特别危险——因为模型不只是生成文本，还会基于幻觉内容执行真实操作。</p>
-<p><strong>过度服从指令。</strong> 这类模型对用户的几乎所有指令都会执行，包括破坏性的。在聊天场景中这可能只是输出不当内容，在 Agent 场景中这可能导致文件删除、数据泄露、系统破坏。</p>
-<p><strong>安全认知与执行能力不匹配。</strong> 这类模型能识别出某个操作有风险，但没有能力采取替代方案——它知道不能做 A，但不知道应该做 B。结果就是卡住或者给出无用的回答。</p>
-<p>这些发现对模型选型的启示是：Agent 场景的模型选型不能只看 benchmark 分数。安全性 profile——包括注入抵抗力、越权识别率、幻觉率、过度服从倾向——和推理能力同等重要。</p>
-<p>一个可行的选型方法是：先根据业务需求确定能力基线（代码质量、推理能力、工具调用准确率），然后在达标模型中比较安全性 profile，最后根据风险容忍度做权衡。高风险场景（金融、医疗、基础设施）应该优先安全性，低风险场景（个人工具、原型开发）可以优先能力。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="五组织升级ai-native-新基建与三层治理">五、组织升级——AI Native 新基建与三层治理<a href="https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/#%E4%BA%94%E7%BB%84%E7%BB%87%E5%8D%87%E7%BA%A7ai-native-%E6%96%B0%E5%9F%BA%E5%BB%BA%E4%B8%8E%E4%B8%89%E5%B1%82%E6%B2%BB%E7%90%86" class="hash-link" aria-label="五、组织升级——AI Native 新基建与三层治理的直接链接" title="五、组织升级——AI Native 新基建与三层治理的直接链接" translate="no">​</a></h2>
+<p>技术层面的升级，最终要落到组织层面。</p>
+<p>Yoho.AI 是阿里内部的一个 AI Native 基础设施项目，覆盖需求分析到设计到编码到验证到归档的全链路。它不是又一个 AI IDE 插件，而是一套完整的 AI Native 工作流。</p>
+<p>Yoho.AI 的设计哲学是 Harness，而非 Workflow。传统的 AI 编码工具采用 Workflow 思路——固定 A 到 B 到 C 的步骤。但在复杂业务场景中，这种"流水线上的螺丝钉"思路太脆弱了。Yoho 采用 Harness 模型：定义硬性不变量（改了代码就必须编译、编译不过不许安装），在不变量范围内，AI 有完全的战术决策自由。通过 Hook 系统实时感知 AI 行为，违规时硬性拦截。这就像赛车比赛——不规定你怎么开，但必须在赛道里。</p>
+<p>C3 不变量守卫系统（Compile-Commit-Check）是这套哲学的具体实现：改源码必须编译通过、进入下一阶段必须满足前置条件、AI 只能访问声明的工作空间、未完成必要阶段不许停止。这些守卫不是"建议"，是"法律"。</p>
+<p>在产品、设计、开发、测试四个角色全面面向 AI Native 升级的过程中，每种角色的核心产出都在发生变化：产品从需求文档变成 Agent 自然语言到结构化 Spec 的自动转换；设计从设计稿变成设计稿到代码的 Skill 链路；开发从写代码变成约束环境下的 AI 自主编码；测试从手动验证变成自动化加 AI 标定失败分类。</p>
+<p>一个有趣的信号是：已经有公司开始为 AI Agent 卖保险了。AGT-Lab 的行业调研显示，Mount Insure 推出了面向 AI Agent 的保险产品。当有人开始为 Agent 的行为卖保险时，说明这个生态正在从"实验玩具"走向"商业责任"——可靠性已经是可定价的商品。</p>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="结语">结语<a href="https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/#%E7%BB%93%E8%AF%AD" class="hash-link" aria-label="结语的直接链接" title="结语的直接链接" translate="no">​</a></h2>
-<p>模型很强，但系统不能只靠模型。</p>
-<p>连接让模型的意图进入真实世界，编排为概率行为建立确定性的过程，效能用确定性复用替代重复推理，安全把概率行为限制在确定边界内。这四根支柱——连接、编排、效能、安全——构成了把概率模型放进生产系统的完整框架。</p>
-<p>它们不是四个独立模块，而是交织在同一条执行链路上。纵向看，编排建立在连接之上，效能横跨两者。横向看，安全决定每一步能不能做。四层之间存在天然张力：效能追求复用，安全要求隔离；编排追求自主推进，安全要求关键节点停下来等人确认。好的设计不止是让四层各自最优，而是在张力中找到适合具体场景的平衡。</p>
-<p>模型在进化，很多今天需要精心编排的问题，明天可能被更强的推理能力自然消解。但这四类问题本身不会消失——只要你把概率模型放进生产系统，连接、编排、效能、安全就一定会以某种形式出现。</p>
-<p>如何围绕自己的业务场景，把这套框架落地，就是你的 Harness。</p>]]></content:encoded>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="结语">结语<a href="https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/#%E7%BB%93%E8%AF%AD" class="hash-link" aria-label="结语的直接链接" title="结语的直接链接" translate="no">​</a></h2>
+<p>Agentic Coding 不仅仅是"让 AI 写代码"。它是 Agent Scaling Law 的第一块试验田，是通向物理世界真实应用的第一道桥。</p>
+<p>Token Multiplier 的经济学证明了这条路走得通——coding 的 token 消耗是聊天的 10 倍到 50 倍，商业价值也是 10 倍量级。Trip-Bench 的 simulator 方法证明了物理世界的"hard to verify"可以被转化为 coding 的"easy to verify"。Harness Cluster 证明了从单域 Expert 到跨域 Virtuoso 的路径不是更好的单 Agent，而是多个专精 Agent 的协作寻优。</p>
+<p>代码写完了只是开始。物理世界的挑战——hard to verify、高度时效性、强主观性——才是真正的试金石。</p>
+<p>而那个在 Trip-Bench 中自博弈涌现评判标准的 Agent，那个在 Harness Cluster 中协作寻优的 Expert 团队，那个在 Yoho.AI 中被不变量约束的自主执行者——它们正在证明一件事：AI 走进物理世界，不是模型变得更聪明，而是系统变得更可靠。</p>]]></content:encoded>
+        </item>
+        <item>
+            <title><![CDATA[AI 编程的"铁律"：从工具到工作流的工程实践]]></title>
+            <link>https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/</link>
+            <guid>https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/</guid>
+            <pubDate>Fri, 29 May 2026 06:53:50 GMT</pubDate>
+            <description><![CDATA[工具用好了，代码还是会乱。纪律不是束缚，是让 AI 从"能干活"变成"干好活"。]]></description>
+            <content:encoded><![CDATA[<blockquote>
+<p>工具用好了，代码还是会乱。纪律不是束缚，是让 AI 从"能干活"变成"干好活"。</p>
+</blockquote>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="前言">前言<a href="https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/#%E5%89%8D%E8%A8%80" class="hash-link" aria-label="前言的直接链接" title="前言的直接链接" translate="no">​</a></h2>
+<p>过去几个月，AI 编程工具的普及速度超出了所有人的预期。Claude Code、Cursor、通义灵码、Qoder——每个工具都在承诺同一件事：你描述需求，AI 写代码。这确实是革命性的，但革命之后呢？</p>
+<p>大量团队卡在了一个共同的瓶颈上：编码快了，但交付没快多少。AI 两分钟写完一个功能，人类花二十分钟审查。产出速度远超审查速度，代码越堆越多，质量却越来越难保证。</p>
+<p>这里有一个容易被忽略的事实：问题不在工具，在纪律。当编码成本趋近于零，没有纪律的团队会被 AI 产出的速度淹死。这篇文章不讲工具怎么用——那些已经有很多人在写了。我想讲的是：工具用好之后，需要补的工程纪律是什么。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="一纪律从思考前置开始">一、纪律从思考前置开始<a href="https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/#%E4%B8%80%E7%BA%AA%E5%BE%8B%E4%BB%8E%E6%80%9D%E8%80%83%E5%89%8D%E7%BD%AE%E5%BC%80%E5%A7%8B" class="hash-link" aria-label="一、纪律从思考前置开始的直接链接" title="一、纪律从思考前置开始的直接链接" translate="no">​</a></h2>
+<p>Karpathy 提过一个概念叫 Think Before Coding。听起来像是废话——写代码之前不都应该先想清楚吗？但在 AI 编程的语境下，这件事比想象中重要得多。</p>
+<p>我在一个实际的 Claude Code 工作流中发现，最有价值的配置不是告诉 AI "怎么写代码"，而是四条规则：</p>
+<p><strong>第一条：思考前置。</strong> 让模型从原始需求、真实目标、客观约束和潜在风险出发进行分析。如果目标不清晰，先停下来讨论。如果路径不是最短、最简单、最稳妥的，直接指出。如果用户把表面症状当成核心问题，继续追问。这一段配置是最值钱的——它把模型从"执行者"提升到"顾问"，避免无脑跑完一个错误的方向。</p>
+<p><strong>第二条：Linus 人格。</strong> 让模型按 Linus Torvalds 的视角审视代码——简洁、零特殊情况、敢于拒绝烂设计。这是"个性化加强"，把抽象的规则换成一个有审美、敢拒绝的判断者。AI 默认太"礼貌"了，它需要一点"好品味"的锋利感。</p>
+<p><strong>第三条：可验证目标。</strong> 对应 Goal-Driven Execution。每个任务必须有清晰的验收标准，不是"大概实现了功能"，而是"这个接口在并发 1000 时延迟不超过 50ms，失败率低于 0.1%"。没有可验证目标的任务，AI 会自行定义"完成"——而它的定义往往和人类的不一样。</p>
+<p><strong>第四条：工具链集成。</strong> 把规则落到工具链的接口，而不是停留在对话里。规则如果不能被机器检查，就等于没写。</p>
+<p>这四条规则和我在"深水区"文章里提到的"约束前置"是一脉相承的。只不过那里讲的是流程，这里讲的是每个 AI 交互瞬间的纪律。</p>
+<p>Claude Code 和 Codex CLI 最近在 goal 模式上的分歧，恰好说明了思考前置的重要性。Claude Code 用轻量级独立评估器做会话级目标判定，Codex CLI 用 SQLite 状态机做持久化自主执行。两种方式各有优劣，但它们的共同点是：都需要在动手之前明确"目标是什么"。没有目标定义的自主执行，跑得越快偏得越远。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="二把约束变成可执行的规则">二、把约束变成可执行的规则<a href="https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/#%E4%BA%8C%E6%8A%8A%E7%BA%A6%E6%9D%9F%E5%8F%98%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%9A%84%E8%A7%84%E5%88%99" class="hash-link" aria-label="二、把约束变成可执行的规则的直接链接" title="二、把约束变成可执行的规则的直接链接" translate="no">​</a></h2>
+<p>思考前置只是第一步。更深一层的纪律是：把约束变成机器可执行、可验证的规则。</p>
+<p>Superpowers 是一个把 AI 编程从"凭感觉"变成"工程化"的典型案例。它的核心做法有三条：</p>
+<p><strong>子智能体隔离上下文。</strong> 每个任务用独立的子智能体执行，主会话只做"调度"。为什么要这样？因为 AI 编程最容易出的问题是上下文炸裂——一个 session 里塞了太多不相关的信息，模型开始混淆不同任务的约束和状态。子智能体隔离就像给每个任务一个独立的工作台，互不干扰。</p>
+<p><strong>TDD 是默认而不是可选。</strong> 红-绿-重构成为铁律，杜绝"事后补测试"。在 AI 编程中，测试不仅是质量保证，更是"AI 理解了对不对"的即时反馈。没有测试的 AI 产出，就像没有编译检查的代码——看起来没问题，跑起来全崩溃。</p>
+<p><strong>设计、计划、代码三者强一致。</strong> 设计文档、实施计划、代码 commit 互相引用、可追溯。这意味着 AI 生成的每一行代码都能回溯到设计文档中的某个需求，每一个 commit 都能关联到计划中的某个任务。不是"写了什么就提交什么"，而是"按计划写、按设计验、按约束审"。</p>
+<p>这和"深水区"里"把默契变成规则"的逻辑完全一致。但在 Superpowers 这里，规则不是写在文档里让人看的——它是嵌在工作流里让机器执行的。文档写得再漂亮，执行时没人逐条核对，等于没写。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="三从工具到服务">三、从工具到服务<a href="https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/#%E4%B8%89%E4%BB%8E%E5%B7%A5%E5%85%B7%E5%88%B0%E6%9C%8D%E5%8A%A1" class="hash-link" aria-label="三、从工具到服务的直接链接" title="三、从工具到服务的直接链接" translate="no">​</a></h2>
+<p>如果说 Superpowers 解决的是单任务的纪律问题，那么 QoderWake 解决的是整个 AI 编程生态的系统化问题。</p>
+<p>QoderWake 在 QoderCLI 之上做了 9 大工程模块，把一个"命令行工具"升级为一个"AI 数字员工平台"。这不是简单的功能叠加，而是 AI 编程从个人工具走向组织服务的必经之路。</p>
+<p><strong>Daemon 与生命周期管理。</strong> 把命令行工具升级为系统服务，标准的 PID/Port/Lock 文件加上心跳管理。AI 编程不再是一次性的交互式对话，而是可以 7×24 持续运行的服务。</p>
+<p><strong>Waker 数字员工系统。</strong> 每位 Waker 有独立的身份卡——PERSONA.md、TOOLS.md、WORK_STYLES.md——定义了它的角色、能力和工作方式。测试员工 Lily 被自动挂载 6 个内置技能：浏览器操作、变更日志管理、竞品分析、PRD 生成、需求池管理、用户反馈分析。这是从"AI 写代码"到"AI 做工作"的质变。</p>
+<p><strong>Trigger 触发器子系统。</strong> QoderCLI 等你敲键盘，QoderWake 让 AI 主动响应外部事件。定时任务、IM 消息、工单、Webhook——AI 不再被动等待，而是主动感知和响应。</p>
+<p><strong>Memory 运维。</strong> 不是日志记录（写完就忘），而是让记忆成为系统自我进化的载体。失败实验的记忆会在未来阻止相似方向的重复探索，成功实验的记忆会鼓励在此基础上的进一步组合。</p>
+<p><strong>安全守卫。</strong> 工具调用受 Auth、Policy、Sandbox 约束。能读的不让写，能查个人数据的不让查全量数据。即使 AI 输出了危险动作，执行环境也把影响范围限制住。</p>
+<p>从工具到服务的跃迁，意味着 AI 编程不再是个人效率问题，而是组织能力和治理问题。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="四流式输出与上下文压缩来自-claude-code-内部机制的启示">四、流式输出与上下文压缩——来自 Claude Code 内部机制的启示<a href="https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/#%E5%9B%9B%E6%B5%81%E5%BC%8F%E8%BE%93%E5%87%BA%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E5%8E%8B%E7%BC%A9%E6%9D%A5%E8%87%AA-claude-code-%E5%86%85%E9%83%A8%E6%9C%BA%E5%88%B6%E7%9A%84%E5%90%AF%E7%A4%BA" class="hash-link" aria-label="四、流式输出与上下文压缩——来自 Claude Code 内部机制的启示的直接链接" title="四、流式输出与上下文压缩——来自 Claude Code 内部机制的启示的直接链接" translate="no">​</a></h2>
+<p>理解 AI 编程工具的内部机制，有助于我们更好地使用它。通过分析 Claude Code 的 LLM 日志，可以发现一些非常有价值的工程启示。</p>
+<p><strong>工具注册机制。</strong> Claude Code 通过 system prompt 告诉模型有哪些工具可用。这些工具的定义方式——包括工具名称、参数 schema、执行方式——直接影响模型调用的准确率。工具定义不清晰，模型就会"幻觉"出不存在的 API。</p>
+<p><strong>上下文压缩与任务连贯性。</strong> 随着对话推进，上下文不断增长。Claude Code 的压缩策略不是简单的截断，而是结构化提取——保留语义骨架，摘要压缩核心结论，在紧急情况下截断参考信息但保留约束清单。这个机制告诉我们：上下文管理不是"窗口越大越好"，而是"按需加载、分级压缩"。</p>
+<p><strong>流式输出中的并行工具使用。</strong> Claude Code 在流式输出的过程中可以并行地使用多个工具，而不是等一个工具执行完再调下一个。这需要精巧的多指令分割和 JSON 格式完整性保证——在流式输出中完美分割多个指令，保证每个 JSON 结构完整不破裂。</p>
+<p><strong>System Prompt 的内容。</strong> Claude Code 的系统提示词包含了角色定义、工具列表、行为约束、安全规则、输出格式等大量信息。这些不是装饰性的——它们直接塑造了模型的每一次输出。理解 system prompt 的内容，就能理解为什么某些配置方式有效、某些无效。</p>
+<p><strong>Session 连续性。</strong> Claude Code 如何连续传递会话信息——即使上下文被压缩，关键的任务目标和约束也不会丢失。这是通过外部的状态管理实现的，而不是依赖模型自己的"记忆力"。</p>
+<p>这些内部机制揭示了一个事实：AI 编程工具不是魔法，它是一套精密的工程系统。理解它的机制，才能更好地驾驭它。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="五四层-harness把概率模型放进生产系统">五、四层 Harness——把概率模型放进生产系统<a href="https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/#%E4%BA%94%E5%9B%9B%E5%B1%82-harness%E6%8A%8A%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E6%94%BE%E8%BF%9B%E7%94%9F%E4%BA%A7%E7%B3%BB%E7%BB%9F" class="hash-link" aria-label="五、四层 Harness——把概率模型放进生产系统的直接链接" title="五、四层 Harness——把概率模型放进生产系统的直接链接" translate="no">​</a></h2>
+<p>写到这一步，你可能已经注意到一个模式：所有这些纪律——思考前置、约束可执行、工具服务化、上下文管理——最终都指向同一个概念：Harness。</p>
+<p>Harness 是把概率模型放进生产系统时自然生长出来的工程架构。它始终围绕四件事：</p>
+<p><strong>连接。</strong> 模型的输入和输出都是 token，但生产环境不止是 token。数据库里有记录，文件系统里有路径，浏览器里有页面状态。连接层解决的是模型如何与其他数字资产、其他 Agent 以及物理环境通讯。Tool Calling、MCP、A2A，本质上都是这种通讯关系的不同协议实现。</p>
+<p><strong>编排。</strong> 短任务里，模型的一次回答、一次工具调用，和用户期待的结果之间距离很近，编排问题不明显。但让 Agent 修一个复杂 bug，它要读代码、定位问题、修改实现、运行测试、根据失败日志继续修——任务时间线无法只靠模型自己维持。编排层要做的，就是把这部分原本依赖人持续维持的过程控制，外化成系统结构。</p>
+<p><strong>效能。</strong> 一个足够强的大模型加上一个非常耐心且懂业务的人类，理论上可以解决所有问题。但能量消耗太大了。效能层的核心原则是：用确定性的复用，替代重复的人类劳动和重复的 GPU 推理。上下文管理减少重复解释，Memory/RAG 减少人工找资料，缓存减少重复计算，模型路由减少不必要的大模型调用。能用 CPU 上的确定性执行解决的，就不应该每次都让 GPU 上的大模型重新推理。</p>
+<p><strong>安全。</strong> 当 Agent 开始自主地处理企业数据、执行代码、调用内部系统时，安全显得更加重要。输入侧防注入，输出侧结构化约束，执行侧权限和沙箱，高风险动作人在回路，全链路审计。安全层解决的问题是：当模型行为不可完全预测时，系统如何保证权限、数据、动作和责任边界仍然是确定的。</p>
+<p>四层之间存在天然张力：效能追求复用，安全要求隔离；编排追求自主推进，安全要求关键节点停下来等人确认。好的 Harness 设计不止是让四层各自最优，而是在张力中找到适合具体场景的平衡。</p>
+<p>关于"把概率模型放进生产系统"这个话题，我会在另一篇文章中专门展开——从连接的具体实现、安全四层防线的详细设计，到 15 款 Agent 模型的安全实测对比。那篇文章会从更技术化的角度，完整呈现生产级 AI 系统的全貌。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="结语">结语<a href="https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/#%E7%BB%93%E8%AF%AD" class="hash-link" aria-label="结语的直接链接" title="结语的直接链接" translate="no">​</a></h2>
+<p>AI 编程工具的革命性不在于它让编码变快了——而在于它暴露了一个一直被掩盖的事实：软件工程的基本功，之前都是被人兜底兜掉的。</p>
+<p>需求模糊，人靠经验补。上下文丢失，人靠记忆补。约束没说清，人靠默契补。代码有 bug，人靠测试补。当 AI 进入流程之后，这些成本全部暴露，而且回不去。</p>
+<p>纪律不是束缚，是让 AI 从"能干活"变成"干好活"。思考前置、约束可执行、工具服务化、上下文管理、Harness 四层架构——这些不是 AI 时代的新发明，是软件工程一直需要、但之前被人的灵活性掩盖了的基本功。</p>
+<p>AI 把这些基本功显式化了。不是 AI 要求你这么做，是 AI 让你没法再糊弄了。</p>]]></content:encoded>
         </item>
         <item>
             <title><![CDATA[AI 把活干了，人类工程师该做什么？]]></title>
             <link>https://luoboask.github.io/fde-learning/blog/ai-took-the-job/</link>
             <guid>https://luoboask.github.io/fde-learning/blog/ai-took-the-job/</guid>
-            <pubDate>Fri, 29 May 2026 06:51:12 GMT</pubDate>
+            <pubDate>Fri, 29 May 2026 06:53:50 GMT</pubDate>
             <description><![CDATA[10 天 37 组实验的 Agent 依然需要人类的灵感一击——这不是 Agent 的弱点，是人类价值的证明。]]></description>
             <content:encoded><![CDATA[<blockquote>
 <p>10 天 37 组实验的 Agent 依然需要人类的灵感一击——这不是 Agent 的弱点，是人类价值的证明。</p>
@@ -158,140 +220,78 @@
 <p>代码是 Agent 的事了。但往哪个方向走、走得对不对、出了事谁负责、用户真正想要什么——这些还是人类的事。</p>]]></content:encoded>
         </item>
         <item>
-            <title><![CDATA[Agentic Coding 之后：AI 如何走进物理世界]]></title>
-            <link>https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/</link>
-            <guid>https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/</guid>
-            <pubDate>Fri, 29 May 2026 06:51:06 GMT</pubDate>
-            <description><![CDATA[代码写完了只是开始。物理世界的挑战才是真正的试金石。]]></description>
+            <title><![CDATA[把概率模型放进生产系统：AI Agent 安全与可靠性指南]]></title>
+            <link>https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/</link>
+            <guid>https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/</guid>
+            <pubDate>Fri, 29 May 2026 06:53:50 GMT</pubDate>
+            <description><![CDATA[模型很强，但系统不能只靠模型。安全不是模型的属性，是系统的属性。]]></description>
             <content:encoded><![CDATA[<blockquote>
-<p>代码写完了只是开始。物理世界的挑战才是真正的试金石。</p>
+<p>模型很强，但系统不能只靠模型。安全不是模型的属性，是系统的属性。</p>
 </blockquote>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="前言">前言<a href="https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/#%E5%89%8D%E8%A8%80" class="hash-link" aria-label="前言的直接链接" title="前言的直接链接" translate="no">​</a></h2>
-<p>2026 年初，飞猪 CTO 线在一场 ATA 分享中抛出了一个判断：AI 已经解决了信息搜索和代码的问题，PMF 已经找到了。但我们认为，更大的机会在于物理世界的真实消费和生活。</p>
-<p>这个判断听起来有些激进。但它背后有一组非常扎眼的数据：OpenAI 的周活是 Anthropic 的 30 倍，但 Anthropic 的年收入（600 亿美金）是 OpenAI（250 亿美金）的 2.4 倍。为什么？因为 Anthropic 的用户在做 coding——每次对话消耗 300K 到 1.5M tokens，而普通聊天只有 25-40K tokens。</p>
-<p>Agentic Coding 不仅仅是一个工具升级，它是一个商业模式的颠覆者。而它指向的下一个方向——物理世界的真实消费——比 coding 更大，也更难。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="前言">前言<a href="https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/#%E5%89%8D%E8%A8%80" class="hash-link" aria-label="前言的直接链接" title="前言的直接链接" translate="no">​</a></h2>
+<p>在上一篇"铁律"文章里，我提到了 Harness 的四层架构——连接、编排、效能、安全。当时说会专门写一篇文章展开这个话题。今天就来兑现。</p>
+<p>模型本身的能力在不断进化。但一个反复出现的模式是：你在实验中看到的模型表现，和它进入生产系统之后的表现，往往差距巨大。不是模型变笨了，是生产环境比实验室复杂得多。</p>
+<p>传统软件系统里，代码的行为是确定性的——同样的输入，同样的输出。但 AI 系统的核心组件是概率模型。同一个 prompt，两次调用的结果可能不同。模型可能被用户输入诱导，忽略系统指令。它可能在总结文档时把恶意命令当成更高优先级的指令。它可能调用了本该只读的工具，却因为参数组合触发了写操作。</p>
+<p>这些问题不是"等模型再聪明一点"就能解决的。只要模型的行为是不可完全预测的，系统就需要在模型之外建立确定的边界。这篇文章从连接、编排、效能、安全四个维度，完整呈现生产级 AI 系统的工程实践。</p>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="一agentic-coding-为什么是通向-agi-的第一道光">一、Agentic Coding 为什么是通向 AGI 的第一道光<a href="https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/#%E4%B8%80agentic-coding-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E9%80%9A%E5%90%91-agi-%E7%9A%84%E7%AC%AC%E4%B8%80%E9%81%93%E5%85%89" class="hash-link" aria-label="一、Agentic Coding 为什么是通向 AGI 的第一道光的直接链接" title="一、Agentic Coding 为什么是通向 AGI 的第一道光的直接链接" translate="no">​</a></h2>
-<p>唐杰教授在 2026 年 AGI-Next 前沿峰会上提出了一个精练的三维框架来描述 AI 技术演进的阶段性：</p>
-<p><strong>第一条：数据/参数 Scaling（系统一）。</strong> 大规模语料加 Transformer 参数堆叠，逼近模式匹配的上限。这是 2020-2024 的主旋律，现在已经进入收益递减区。</p>
-<p><strong>第二条：推理 Scaling（系统二）。</strong> 通过强化学习、思维链、Test-Time Compute 让模型"想得更深"。这是 2024-2025 的焦点——DeepSeek-R1、o1/o3 系列——仍在快速演进，但可预见天花板。</p>
-<p><strong>第三条：自学习环境 Scaling（Agent Scaling）。</strong> 让模型与外部世界持续交互、从环境反馈中自我进化。这条路指向的正是 Agent Scaling Law，是当下和未来 2-3 年的核心增长引擎。</p>
-<p>杨植麟在 GTC 2026 上用 Kimi K2.5 的实践将第三条路线具象化为三个工程维度的"共振"：Token 效率、长上下文、以及智能体集群。三个维度的乘积效应，构成了 Agent Scaling 的技术注解。</p>
-<p>这三条 Scaling Law 是递进关系。第一条已进入收益递减区；第二条仍在快速演进但可预见天花板；第三条——Agent Scaling Law——是当下真正的增长引擎。</p>
-<p>而 Agentic Coding 恰好是第三条路线的第一块试验田。代码世界天然适合 Agent：环境确定（编译器告诉你行不行）、反馈即时（测试跑不跑得通）、试错成本低（改完再跑就是了）。一旦 Agent 在代码世界验证了"自主执行 + 环境反馈 + 自我进化"这条链路，它就具备了走向更广阔物理世界的资格。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="一连接让模型的意图进入真实世界">一、连接——让模型的意图进入真实世界<a href="https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/#%E4%B8%80%E8%BF%9E%E6%8E%A5%E8%AE%A9%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%84%8F%E5%9B%BE%E8%BF%9B%E5%85%A5%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C" class="hash-link" aria-label="一、连接——让模型的意图进入真实世界的直接链接" title="一、连接——让模型的意图进入真实世界的直接链接" translate="no">​</a></h2>
+<p>模型的输入和输出都是 token，但生产环境不止是 token。数据库里有记录，文件系统里有路径，浏览器里有页面状态，业务系统里有流程和接口。模型可以生成"查一下这个订单"、"打开这个页面"、"让测试 Agent 跑一下"，但这些表达本身不会触发任何真实动作。</p>
+<p>连接层解决的就是这个问题：把外部能力变成模型可理解、可调用、可返回的语义接口。</p>
+<p>模型往外调用时，token 输出要被转换成外部系统能接收的调用——API 请求、文件读写、浏览器动作、shell 命令，或者对另一个 Agent 的语义化调用。返回给模型时，外部系统的状态和结果也要被转换成模型能继续理解的输入。</p>
+<p>Tool Calling、MCP、A2A、环境接口——它们面对的对象不同，但解决的是同一件事：把外部能力包装成模型可通讯的对象。从工程角度看，Harness 必须具备连接能力，是因为模型本身不会天然拥有这些通道。没有连接层，模型只能生成文本；有了连接层，已有的数字资产、运行环境和其他 Agent 才能被包装成模型可理解、可调用、可返回的语义接口。</p>
+<p>连接的力量有多大？一个团队用 Water 这个工具，通过 Agent 自动逆向还原了 Cursor 的完整 gRPC 协议与 Agent 架构。用 AI 分析 AI，用 Agent 理解 Agent——这在一年前是不可想象的。连接的威力在于，它让模型不仅能操作已知的系统，还能自主探索和理解未知的系统。</p>
+<p>但连接也是风险的入口。当模型可以调用任何外部系统时，一次错误的参数组合可能触发破坏性操作。这就是为什么连接层必须与安全层紧密配合——能连什么、能调什么、能改什么，都需要明确的权限约束。</p>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="二物理世界的问题有多难">二、物理世界的问题有多难<a href="https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/#%E4%BA%8C%E7%89%A9%E7%90%86%E4%B8%96%E7%95%8C%E7%9A%84%E9%97%AE%E9%A2%98%E6%9C%89%E5%A4%9A%E9%9A%BE" class="hash-link" aria-label="二、物理世界的问题有多难的直接链接" title="二、物理世界的问题有多难的直接链接" translate="no">​</a></h2>
-<p>但物理世界比代码世界难得多。</p>
-<p>Coding 和数学问题的特点是：Hard to solve，但 Easy to verify。你写一个哈希排序，对不对一眼就能看出来。而且它是一次性的、静态的——答案和 setup 永远不变。</p>
-<p>物理世界消费问题的特点是：同样 Hard to solve，但更头疼的是 Hard to verify。我出两个去巴黎七天的行程规划，或者美加墨看世界杯十天的行程，让两个模型各出一个方案——一眼很难看出谁好谁坏。</p>
-<p>还有高度时效性。今天搜酒店和明天搜，库存、价格完全不同，天气、打车能不能打到，都是不可控因素。这对 RL training 来说会引入大量噪声。</p>
-<p>还有主观性。我推荐两个景点，我推荐两台扫地机器人，每个人的评判角度都不一样。</p>
-<p>这就是用 Coding 方法解决真实物理世界消费问题时面临的核心挑战：你不仅需要解决"怎么做"，还需要解决"怎么判断做得好不好"。</p>
-<p>飞猪团队在实践中发现了三个架构创新：</p>
-<p><strong>Least Squares 模型合并。</strong> 现在很多 expert 模型相对于基座的权重更新彼此几乎是 disjoint 的——它们学到了不同的东西。基于这个观察，可以用一种更便宜的合并方式——用激活值信息做加权的最小二乘合并——把多个 expert 的能力拼起来，效果和昂贵的 OPD 蒸馏很接近。</p>
-<p><strong>用大模型取代小模型的 Quick Instruction。</strong> 以前用户 query 进来，先用小模型做意图识别、实体抽取、分流……维护一堆小模型。新的思路是：直接在 user prompt 后面加上语义 token，one-shot 给出意图、领域、是否需要搜索等信息，大模型一次推理全部搞定。对旅行电商来说，用户的画像和实时行为数据本来就很长，如果有 10 个小模型，Context prefill 10 次，可能 1 秒都出不来。</p>
-<p><strong>三层 KV Cache。</strong> 同一个 session 内，前两层保持不变，第三层实时更新。这对旅行购物场景的个性化非常关键。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="二编排为概率行为建立确定性的过程">二、编排——为概率行为建立确定性的过程<a href="https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/#%E4%BA%8C%E7%BC%96%E6%8E%92%E4%B8%BA%E6%A6%82%E7%8E%87%E8%A1%8C%E4%B8%BA%E5%BB%BA%E7%AB%8B%E7%A1%AE%E5%AE%9A%E6%80%A7%E7%9A%84%E8%BF%87%E7%A8%8B" class="hash-link" aria-label="二、编排——为概率行为建立确定性的过程的直接链接" title="二、编排——为概率行为建立确定性的过程的直接链接" translate="no">​</a></h2>
+<p>短任务里，模型的一次回答、一次工具调用，和用户期待的结果之间距离很近，编排问题不明显。但如果让 Agent 修一个复杂 bug，情况就完全不同了。它要读代码、定位问题、修改实现、运行测试、根据失败日志继续修、更新文档、提交变更。</p>
+<p>这时候暴露出来的问题是：任务时间线无法只靠模型自己维持。它可能忘记已经尝试过哪些方案。在测试失败后回到错误路径。因为上下文被压缩，丢掉用户最初的约束。或者看见某个文件已修改，就误以为任务已经完成。</p>
+<p>编排层要做的，就是把这部分原本依赖人持续维持的过程控制，外化成系统结构。</p>
+<p>围绕任务推进的整个过程，有几个问题不会随着模型的发展而消失：</p>
+<p><strong>任务边界。</strong> 一个 Agent 任务不等于一轮聊天，也不等于一次模型调用。系统必须知道现在到底在执行哪件事：目标是什么，约束是什么，当前阶段在哪里，什么条件下算完成。没有任务边界，Agent 就很容易把局部动作误认为整体进展。</p>
+<p><strong>过程状态。</strong> 长任务需要一个外部状态机来记录任务推进到哪里：哪些步骤已经完成，哪些方案已经失败，哪些工具返回过什么结果，哪些约束仍然有效。只有这些状态被外部化，Agent 才不会在上下文变化、会话中断或压缩之后重新迷路。</p>
+<p><strong>下一步选择。</strong> 系统必须决定接下来往哪里走。这个决定可以由预定义流程给出，也可以由模型判断，也可以由规则、评估器、人类审批共同决定。Workflow、DAG、State Machine、ReAct、多 Agent 协作，都是不同时期对这个问题的实现方式。形式会变，但"下一步如何被选择"这个问题不会消失。</p>
+<p><strong>异常恢复。</strong> 长任务一定会遇到偏差：工具超时、权限不足、测试失败、上下文丢失、模型跑偏、外部系统状态变化。编排层必须能让任务暂停、重试、回滚、降级、切换路径、请求人工介入，而不是把每一次失败都变成从头再来。</p>
+<p><strong>结果验收。</strong> Agent 自己说"完成了"不一定可信。系统需要用测试、检查项、评估器、预算、超时、循环次数、外部反馈来判断任务是否应该继续。它们的作用不是节省推理成本，而是决定这一步能不能进入下一步、任务是否真的完成。</p>
+<p>在 Agent Harness Cluster 的架构中，编排层的作用更加关键——多个 Agent 之间的任务分配、依赖管理、状态同步，都需要一个中心化的编排机制来协调。</p>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="三trip-bench把真实世界变成可训练的-simulator">三、Trip-Bench：把真实世界变成可训练的 simulator<a href="https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/#%E4%B8%89trip-bench%E6%8A%8A%E7%9C%9F%E5%AE%9E%E4%B8%96%E7%95%8C%E5%8F%98%E6%88%90%E5%8F%AF%E8%AE%AD%E7%BB%83%E7%9A%84-simulator" class="hash-link" aria-label="三、Trip-Bench：把真实世界变成可训练的 simulator的直接链接" title="三、Trip-Bench：把真实世界变成可训练的 simulator的直接链接" translate="no">​</a></h2>
-<p>面对物理世界"hard to verify"的难题，飞猪团队给出的解法是 Trip-Bench——一个 Agentic-RL Pipeline for Physical-World Tasks。</p>
-<p>Trip-Bench 的核心思路是：把真实 Agent 的历史轨迹"冻结"为离线世界，让 Agent 自博弈来自动撰写评分器，再把这个评分器直接用作 RL 奖励函数。</p>
-<p>从真实的线上轨迹出发，把工具调用的输出冻结成一个离线 SQLite 数据库。用 Agent 自博弈来自动写评分器（rubric），让 RL 有一个确定性的、可复现的奖励信号。把物理世界"hard-to-verify"的问题，转化成了程序可执行的 coding 问题。</p>
-<p>但 Trip-Bench 目前还是局部的——数据来自单次 API 调用的快照，reward 信号仍然偏稀疏。下一步是 Shopping-Bench，目标是一个可以无限自我对弈的 world simulator：集成全部消费级 API（旅行、购物、地图、娱乐），让模型在更接近真实世界的环境里学习。</p>
-<p>Trip-Bench 最有趣的设计是 Agent self-play writes the grader——三个 Agent 自己跟自己玩：一个出题、一个解题、一个是老师，这样循环。当它达到一定的均衡——环境基本固化了，数据基本固化了，评判标准基本固化了——就认为这是最优的。</p>
-<p>这个思路的精妙之处在于：它用博弈论的思想解决了"怎么评判一个旅行规划好不好"这个主观问题。不是人写 rubric，而是 Agent 在自博弈中自然涌现出评判标准。这和"铁律"文章中讨论的确定性 vs 概率性问题一脉相承——Trip-Bench 的本质是把物理世界的概率性问题，转化为 coding 的确定性问题。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="三效能用确定性复用替代重复推理">三、效能——用确定性复用替代重复推理<a href="https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/#%E4%B8%89%E6%95%88%E8%83%BD%E7%94%A8%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%A4%8D%E7%94%A8%E6%9B%BF%E4%BB%A3%E9%87%8D%E5%A4%8D%E6%8E%A8%E7%90%86" class="hash-link" aria-label="三、效能——用确定性复用替代重复推理的直接链接" title="三、效能——用确定性复用替代重复推理的直接链接" translate="no">​</a></h2>
+<p>设想一个理想状态：你有一个足够强的大模型，也有一个非常耐心且懂业务的人类。这个人会不断给模型补充背景，纠正方向，解释团队习惯，提供资料，判断下一步该怎么走。再加上连接和编排，这个组合理论上可以解决所有问题。</p>
+<p>但问题也很明显：它的能量消耗太大了。不只是 token，还包括人类反复解释背景的时间，补充资料的时间，纠偏的注意力，模型处理长上下文的推理成本，以及每次从零规划带来的等待和返工。</p>
+<p>效能层的核心原则是：用确定性的复用，替代重复的人类劳动和重复的 GPU 推理。</p>
+<p><strong>上下文管理</strong>负责减少重复解释。Context Engineering 不是把信息塞满上下文窗口，而是决定每一步模型应该看什么、不该看什么、以什么结构看。好的上下文应该像一张结构化地图：让模型快速知道项目在哪里、规则是什么、当前任务处于什么位置，而不是依赖人类每轮重新铺背景。这和"铁律"文章中 Claude Code 的上下文压缩机制是同一问题的不同解法——Claude Code 在会话内部做压缩，而上下文管理在系统层面做分级。</p>
+<p><strong>记忆和 RAG</strong>负责减少人工找资料。Memory / RAG 的价值不是"让 Agent 什么都记住"，而是在需要时找回相关知识。长期记忆、短期状态、知识库检索、代码索引、历史任务记录，都是为了减少人类手动贴资料、补上下文、解释历史决策的次数。</p>
+<p><strong>缓存</strong>负责减少重复计算。Prompt Cache、Result Cache、Embedding Cache 都属于确定性复用。同样的系统提示、同样的检索结果、同样的工具元信息、同样的格式转换，不应该每次都重新付出完整推理成本。Prompt Cache 的工程实践表明，合理的缓存策略可以将重复任务的推理成本降低 60% 以上。</p>
+<p><strong>模型路由</strong>负责减少不必要的大模型调用。不是所有步骤都需要最强模型。格式修复、小段摘要、检索重排、上下文压缩、简单分类，可以交给更便宜更快的模型，甚至交给规则和脚本。复杂规划、关键判断、高风险生成，再交给强模型。Model Router 的意义，是让系统在效果、成本、延迟之间动态取平衡。</p>
+<p><strong>Skill</strong>负责固化人类经验。Skill 不是简单的 prompt 包，而是把人类过去反复指导模型的经验沉淀下来：这个任务通常怎么做，哪些文件要先看，哪些命令要运行，哪些约束不能破坏，什么样的结果算合格。当某类任务被反复验证，就应该沉淀成 Skill、脚本、Workflow 或模板。</p>
+<p><strong>规则和脚本</strong>负责把 GPU 推理卸载到 CPU 执行。很多事情不需要模型猜：字段校验、格式转换、权限判断、固定 SOP、批处理、数据搬运、测试命令执行，都可以由确定性程序完成。能用 CPU 上的确定性执行解决的，就不应该每次都让 GPU 上的大模型重新推理。</p>
+<p>效能层的本质是把高成本的人类指导和模型推理，沉淀为可复用、可执行、可缓存、可路由的确定性结构。</p>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="四从单域-expert-到跨域-virtuosoagent-harness-cluster">四、从单域 Expert 到跨域 Virtuoso——Agent Harness Cluster<a href="https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/#%E5%9B%9B%E4%BB%8E%E5%8D%95%E5%9F%9F-expert-%E5%88%B0%E8%B7%A8%E5%9F%9F-virtuosoagent-harness-cluster" class="hash-link" aria-label="四、从单域 Expert 到跨域 Virtuoso——Agent Harness Cluster的直接链接" title="四、从单域 Expert 到跨域 Virtuoso——Agent Harness Cluster的直接链接" translate="no">​</a></h2>
-<p>Agent Scaling Law 的真正目标是什么？是提升 Agent 集体的智力等级——从单域 Expert 到跨域 Virtuoso。</p>
-<p>Google DeepMind 的 Levels of AGI 框架定义了 AI 系统的智力分级。当前前沿系统（Claude Code、Cursor、Devin 等）在代码、写作、数据分析等结构化领域已经到达 Level 3（Expert）——达到第 90 百分位人类专家的水平。但从 Expert 到 Virtuoso（第 99 百分位）的跃迁，面临一个根本性的困难：</p>
-<p>Virtuoso 级别的决策，不是单个专家能独立完成的，而是需要多个不同领域专家团的协作寻优。这恰恰是单 Agent 加单 Harness 架构的物理极限。</p>
-<p>Agent Harness Cluster 的技术体系包含三个核心层：</p>
-<p><strong>Layer 1：Agent Harness Scale-Out。</strong> 能力横向扩展层，包含 Multi-Agent Scaling（拓扑优化、调度优化、Agent 动态生成）、Memory &amp; Skill Scaling（经验积累、技能组合、生命周期治理）、Meta-Harness Scaling（架构搜索、工作流自动生成）。</p>
-<p><strong>Layer 2：Data Scale-Out。</strong> 数据横向扩展层，数仓层到语义层到本体层。Agent 的智力不仅取决于模型能力，还取决于它能获取和理解的数据质量。</p>
-<p><strong>Layer 3：Agent Harness Runtime。</strong> 运行时支撑层，包含 Agent 生命周期管理、资源调度与隔离、可观测性与安全治理。</p>
-<p>Agent 数量的爆发是必然趋势。原因有三：context 隔离需要 Agent 分裂（按 context 边界切，不按问题类型切）；多视角决策寻优需要 Agent 扩增（多个 Agent 独立推理后综合，决策质量显著优于单 Agent 深度思考）；专精避免 tool 过载（单 Agent 持有超过 15 个工具时，调用正确率显著下降）。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="四安全四层防线把概率行为限制在确定边界内">四、安全四层防线——把概率行为限制在确定边界内<a href="https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/#%E5%9B%9B%E5%AE%89%E5%85%A8%E5%9B%9B%E5%B1%82%E9%98%B2%E7%BA%BF%E6%8A%8A%E6%A6%82%E7%8E%87%E8%A1%8C%E4%B8%BA%E9%99%90%E5%88%B6%E5%9C%A8%E7%A1%AE%E5%AE%9A%E8%BE%B9%E7%95%8C%E5%86%85" class="hash-link" aria-label="四、安全四层防线——把概率行为限制在确定边界内的直接链接" title="四、安全四层防线——把概率行为限制在确定边界内的直接链接" translate="no">​</a></h2>
+<p>安全一直是技术落地真实生产最基本的要求。特别是当 Agent 开始自主地处理企业数据、执行代码、调用内部系统、写数据库时，安全显得更加重要。</p>
+<p>一个团队对 15 款主流 Agent 模型做了安全与可用性实测，发现了一个关键事实：不同模型在安全性上的短板差异显著。有的模型安全认知较强，却更容易产生幻觉；有的模型对指令过度服从，可能导致破坏性越权行为。这意味着——即使是最强的模型，也不能把安全责任交给它自己。</p>
+<p>安全层需要建立四层防线：</p>
+<p><strong>第一层：输入侧防注入和上下文隔离。</strong> 用户输入、网页内容、检索文档、工具返回值，都不能天然等同于可信指令。Harness 需要区分指令与数据，标记不同上下文来源的可信等级，防止外部文本改变 Agent 的行为规则。如果系统只靠 prompt 告诉模型"不要这样做"，那其实是在把安全责任交给概率输出。生产系统不能这样设计。</p>
+<p><strong>第二层：输出侧结构化约束。</strong> Schema、parser、validator、guardrails 的意义，是让模型输出必须通过确定性检查才能进入下一步。模型可以生成概率内容，但进入系统边界时必须被转换成可验证的结构。一旦字段缺失、类型错误、越过枚举范围、违反业务规则，就应该被截断、修复或要求重试。</p>
+<p><strong>第三层：执行侧权限和沙箱。</strong> 工具调用真正落地时，必须受 Auth、Policy、Sandbox、Quota 约束。能读的不能写，能查个人数据的不一定能查全量数据，能运行脚本的不一定能访问网络，能创建草稿的不一定能发送邮件。即使模型输出了危险动作，执行环境也要把影响范围限制住。</p>
+<p><strong>第四层：高风险动作人在回路，全链路审计。</strong> Human-in-the-Loop 不是为了显得保守，而是因为很多业务动作的风险无法仅靠模型或规则判断。付款、删除、外发、权限变更、生产发布——这些动作需要审批点。Agent 可以准备材料、给出建议、生成 diff，但最终授权要由系统策略或人类确认。Audit Log 不是事后补丁，而是 Agent 能否进入生产的前提。</p>
+<p>安全层解决的问题是：当模型行为不可完全预测时，系统如何保证权限、数据、动作和责任边界仍然是确定的。安全决定了 Agent 停留在实验原型，还是能够进入生产系统。</p>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="五组织升级ai-native-新基建与三层治理">五、组织升级——AI Native 新基建与三层治理<a href="https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/#%E4%BA%94%E7%BB%84%E7%BB%87%E5%8D%87%E7%BA%A7ai-native-%E6%96%B0%E5%9F%BA%E5%BB%BA%E4%B8%8E%E4%B8%89%E5%B1%82%E6%B2%BB%E7%90%86" class="hash-link" aria-label="五、组织升级——AI Native 新基建与三层治理的直接链接" title="五、组织升级——AI Native 新基建与三层治理的直接链接" translate="no">​</a></h2>
-<p>技术层面的升级，最终要落到组织层面。</p>
-<p>Yoho.AI 是阿里内部的一个 AI Native 基础设施项目，覆盖需求分析到设计到编码到验证到归档的全链路。它不是又一个 AI IDE 插件，而是一套完整的 AI Native 工作流。</p>
-<p>Yoho.AI 的设计哲学是 Harness，而非 Workflow。传统的 AI 编码工具采用 Workflow 思路——固定 A 到 B 到 C 的步骤。但在复杂业务场景中，这种"流水线上的螺丝钉"思路太脆弱了。Yoho 采用 Harness 模型：定义硬性不变量（改了代码就必须编译、编译不过不许安装），在不变量范围内，AI 有完全的战术决策自由。通过 Hook 系统实时感知 AI 行为，违规时硬性拦截。这就像赛车比赛——不规定你怎么开，但必须在赛道里。</p>
-<p>C3 不变量守卫系统（Compile-Commit-Check）是这套哲学的具体实现：改源码必须编译通过、进入下一阶段必须满足前置条件、AI 只能访问声明的工作空间、未完成必要阶段不许停止。这些守卫不是"建议"，是"法律"。</p>
-<p>在产品、设计、开发、测试四个角色全面面向 AI Native 升级的过程中，每种角色的核心产出都在发生变化：产品从需求文档变成 Agent 自然语言到结构化 Spec 的自动转换；设计从设计稿变成设计稿到代码的 Skill 链路；开发从写代码变成约束环境下的 AI 自主编码；测试从手动验证变成自动化加 AI 标定失败分类。</p>
-<p>一个有趣的信号是：已经有公司开始为 AI Agent 卖保险了。AGT-Lab 的行业调研显示，Mount Insure 推出了面向 AI Agent 的保险产品。当有人开始为 Agent 的行为卖保险时，说明这个生态正在从"实验玩具"走向"商业责任"——可靠性已经是可定价的商品。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="五模型选型15-款-agent-模型的安全实测启示">五、模型选型——15 款 Agent 模型的安全实测启示<a href="https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/#%E4%BA%94%E6%A8%A1%E5%9E%8B%E9%80%89%E5%9E%8B15-%E6%AC%BE-agent-%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%AE%89%E5%85%A8%E5%AE%9E%E6%B5%8B%E5%90%AF%E7%A4%BA" class="hash-link" aria-label="五、模型选型——15 款 Agent 模型的安全实测启示的直接链接" title="五、模型选型——15 款 Agent 模型的安全实测启示的直接链接" translate="no">​</a></h2>
+<p>回到那 15 款模型的实测。为什么要测这么多模型？因为大模型是 Agent 的"决策大脑"，而不同模型在安全性上的短板差异显著。</p>
+<p>测试发现了几类典型的安全模式：</p>
+<p><strong>安全认知强但幻觉倾向高。</strong> 这类模型知道什么是危险操作，能识别大部分越权请求，但在某些边界情况下会给出看似合理实际上错误的回答。幻觉在 Agent 场景中特别危险——因为模型不只是生成文本，还会基于幻觉内容执行真实操作。</p>
+<p><strong>过度服从指令。</strong> 这类模型对用户的几乎所有指令都会执行，包括破坏性的。在聊天场景中这可能只是输出不当内容，在 Agent 场景中这可能导致文件删除、数据泄露、系统破坏。</p>
+<p><strong>安全认知与执行能力不匹配。</strong> 这类模型能识别出某个操作有风险，但没有能力采取替代方案——它知道不能做 A，但不知道应该做 B。结果就是卡住或者给出无用的回答。</p>
+<p>这些发现对模型选型的启示是：Agent 场景的模型选型不能只看 benchmark 分数。安全性 profile——包括注入抵抗力、越权识别率、幻觉率、过度服从倾向——和推理能力同等重要。</p>
+<p>一个可行的选型方法是：先根据业务需求确定能力基线（代码质量、推理能力、工具调用准确率），然后在达标模型中比较安全性 profile，最后根据风险容忍度做权衡。高风险场景（金融、医疗、基础设施）应该优先安全性，低风险场景（个人工具、原型开发）可以优先能力。</p>
 <hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="结语">结语<a href="https://luoboask.github.io/fde-learning/blog/agentic-coding-physical-world/#%E7%BB%93%E8%AF%AD" class="hash-link" aria-label="结语的直接链接" title="结语的直接链接" translate="no">​</a></h2>
-<p>Agentic Coding 不仅仅是"让 AI 写代码"。它是 Agent Scaling Law 的第一块试验田，是通向物理世界真实应用的第一道桥。</p>
-<p>Token Multiplier 的经济学证明了这条路走得通——coding 的 token 消耗是聊天的 10 倍到 50 倍，商业价值也是 10 倍量级。Trip-Bench 的 simulator 方法证明了物理世界的"hard to verify"可以被转化为 coding 的"easy to verify"。Harness Cluster 证明了从单域 Expert 到跨域 Virtuoso 的路径不是更好的单 Agent，而是多个专精 Agent 的协作寻优。</p>
-<p>代码写完了只是开始。物理世界的挑战——hard to verify、高度时效性、强主观性——才是真正的试金石。</p>
-<p>而那个在 Trip-Bench 中自博弈涌现评判标准的 Agent，那个在 Harness Cluster 中协作寻优的 Expert 团队，那个在 Yoho.AI 中被不变量约束的自主执行者——它们正在证明一件事：AI 走进物理世界，不是模型变得更聪明，而是系统变得更可靠。</p>]]></content:encoded>
-        </item>
-        <item>
-            <title><![CDATA[AI 编程的"铁律"：从工具到工作流的工程实践]]></title>
-            <link>https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/</link>
-            <guid>https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/</guid>
-            <pubDate>Fri, 29 May 2026 06:51:01 GMT</pubDate>
-            <description><![CDATA[工具用好了，代码还是会乱。纪律不是束缚，是让 AI 从"能干活"变成"干好活"。]]></description>
-            <content:encoded><![CDATA[<blockquote>
-<p>工具用好了，代码还是会乱。纪律不是束缚，是让 AI 从"能干活"变成"干好活"。</p>
-</blockquote>
-<hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="前言">前言<a href="https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/#%E5%89%8D%E8%A8%80" class="hash-link" aria-label="前言的直接链接" title="前言的直接链接" translate="no">​</a></h2>
-<p>过去几个月，AI 编程工具的普及速度超出了所有人的预期。Claude Code、Cursor、通义灵码、Qoder——每个工具都在承诺同一件事：你描述需求，AI 写代码。这确实是革命性的，但革命之后呢？</p>
-<p>大量团队卡在了一个共同的瓶颈上：编码快了，但交付没快多少。AI 两分钟写完一个功能，人类花二十分钟审查。产出速度远超审查速度，代码越堆越多，质量却越来越难保证。</p>
-<p>这里有一个容易被忽略的事实：问题不在工具，在纪律。当编码成本趋近于零，没有纪律的团队会被 AI 产出的速度淹死。这篇文章不讲工具怎么用——那些已经有很多人在写了。我想讲的是：工具用好之后，需要补的工程纪律是什么。</p>
-<hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="一纪律从思考前置开始">一、纪律从思考前置开始<a href="https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/#%E4%B8%80%E7%BA%AA%E5%BE%8B%E4%BB%8E%E6%80%9D%E8%80%83%E5%89%8D%E7%BD%AE%E5%BC%80%E5%A7%8B" class="hash-link" aria-label="一、纪律从思考前置开始的直接链接" title="一、纪律从思考前置开始的直接链接" translate="no">​</a></h2>
-<p>Karpathy 提过一个概念叫 Think Before Coding。听起来像是废话——写代码之前不都应该先想清楚吗？但在 AI 编程的语境下，这件事比想象中重要得多。</p>
-<p>我在一个实际的 Claude Code 工作流中发现，最有价值的配置不是告诉 AI "怎么写代码"，而是四条规则：</p>
-<p><strong>第一条：思考前置。</strong> 让模型从原始需求、真实目标、客观约束和潜在风险出发进行分析。如果目标不清晰，先停下来讨论。如果路径不是最短、最简单、最稳妥的，直接指出。如果用户把表面症状当成核心问题，继续追问。这一段配置是最值钱的——它把模型从"执行者"提升到"顾问"，避免无脑跑完一个错误的方向。</p>
-<p><strong>第二条：Linus 人格。</strong> 让模型按 Linus Torvalds 的视角审视代码——简洁、零特殊情况、敢于拒绝烂设计。这是"个性化加强"，把抽象的规则换成一个有审美、敢拒绝的判断者。AI 默认太"礼貌"了，它需要一点"好品味"的锋利感。</p>
-<p><strong>第三条：可验证目标。</strong> 对应 Goal-Driven Execution。每个任务必须有清晰的验收标准，不是"大概实现了功能"，而是"这个接口在并发 1000 时延迟不超过 50ms，失败率低于 0.1%"。没有可验证目标的任务，AI 会自行定义"完成"——而它的定义往往和人类的不一样。</p>
-<p><strong>第四条：工具链集成。</strong> 把规则落到工具链的接口，而不是停留在对话里。规则如果不能被机器检查，就等于没写。</p>
-<p>这四条规则和我在"深水区"文章里提到的"约束前置"是一脉相承的。只不过那里讲的是流程，这里讲的是每个 AI 交互瞬间的纪律。</p>
-<p>Claude Code 和 Codex CLI 最近在 goal 模式上的分歧，恰好说明了思考前置的重要性。Claude Code 用轻量级独立评估器做会话级目标判定，Codex CLI 用 SQLite 状态机做持久化自主执行。两种方式各有优劣，但它们的共同点是：都需要在动手之前明确"目标是什么"。没有目标定义的自主执行，跑得越快偏得越远。</p>
-<hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="二把约束变成可执行的规则">二、把约束变成可执行的规则<a href="https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/#%E4%BA%8C%E6%8A%8A%E7%BA%A6%E6%9D%9F%E5%8F%98%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%9A%84%E8%A7%84%E5%88%99" class="hash-link" aria-label="二、把约束变成可执行的规则的直接链接" title="二、把约束变成可执行的规则的直接链接" translate="no">​</a></h2>
-<p>思考前置只是第一步。更深一层的纪律是：把约束变成机器可执行、可验证的规则。</p>
-<p>Superpowers 是一个把 AI 编程从"凭感觉"变成"工程化"的典型案例。它的核心做法有三条：</p>
-<p><strong>子智能体隔离上下文。</strong> 每个任务用独立的子智能体执行，主会话只做"调度"。为什么要这样？因为 AI 编程最容易出的问题是上下文炸裂——一个 session 里塞了太多不相关的信息，模型开始混淆不同任务的约束和状态。子智能体隔离就像给每个任务一个独立的工作台，互不干扰。</p>
-<p><strong>TDD 是默认而不是可选。</strong> 红-绿-重构成为铁律，杜绝"事后补测试"。在 AI 编程中，测试不仅是质量保证，更是"AI 理解了对不对"的即时反馈。没有测试的 AI 产出，就像没有编译检查的代码——看起来没问题，跑起来全崩溃。</p>
-<p><strong>设计、计划、代码三者强一致。</strong> 设计文档、实施计划、代码 commit 互相引用、可追溯。这意味着 AI 生成的每一行代码都能回溯到设计文档中的某个需求，每一个 commit 都能关联到计划中的某个任务。不是"写了什么就提交什么"，而是"按计划写、按设计验、按约束审"。</p>
-<p>这和"深水区"里"把默契变成规则"的逻辑完全一致。但在 Superpowers 这里，规则不是写在文档里让人看的——它是嵌在工作流里让机器执行的。文档写得再漂亮，执行时没人逐条核对，等于没写。</p>
-<hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="三从工具到服务">三、从工具到服务<a href="https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/#%E4%B8%89%E4%BB%8E%E5%B7%A5%E5%85%B7%E5%88%B0%E6%9C%8D%E5%8A%A1" class="hash-link" aria-label="三、从工具到服务的直接链接" title="三、从工具到服务的直接链接" translate="no">​</a></h2>
-<p>如果说 Superpowers 解决的是单任务的纪律问题，那么 QoderWake 解决的是整个 AI 编程生态的系统化问题。</p>
-<p>QoderWake 在 QoderCLI 之上做了 9 大工程模块，把一个"命令行工具"升级为一个"AI 数字员工平台"。这不是简单的功能叠加，而是 AI 编程从个人工具走向组织服务的必经之路。</p>
-<p><strong>Daemon 与生命周期管理。</strong> 把命令行工具升级为系统服务，标准的 PID/Port/Lock 文件加上心跳管理。AI 编程不再是一次性的交互式对话，而是可以 7×24 持续运行的服务。</p>
-<p><strong>Waker 数字员工系统。</strong> 每位 Waker 有独立的身份卡——PERSONA.md、TOOLS.md、WORK_STYLES.md——定义了它的角色、能力和工作方式。测试员工 Lily 被自动挂载 6 个内置技能：浏览器操作、变更日志管理、竞品分析、PRD 生成、需求池管理、用户反馈分析。这是从"AI 写代码"到"AI 做工作"的质变。</p>
-<p><strong>Trigger 触发器子系统。</strong> QoderCLI 等你敲键盘，QoderWake 让 AI 主动响应外部事件。定时任务、IM 消息、工单、Webhook——AI 不再被动等待，而是主动感知和响应。</p>
-<p><strong>Memory 运维。</strong> 不是日志记录（写完就忘），而是让记忆成为系统自我进化的载体。失败实验的记忆会在未来阻止相似方向的重复探索，成功实验的记忆会鼓励在此基础上的进一步组合。</p>
-<p><strong>安全守卫。</strong> 工具调用受 Auth、Policy、Sandbox 约束。能读的不让写，能查个人数据的不让查全量数据。即使 AI 输出了危险动作，执行环境也把影响范围限制住。</p>
-<p>从工具到服务的跃迁，意味着 AI 编程不再是个人效率问题，而是组织能力和治理问题。</p>
-<hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="四流式输出与上下文压缩来自-claude-code-内部机制的启示">四、流式输出与上下文压缩——来自 Claude Code 内部机制的启示<a href="https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/#%E5%9B%9B%E6%B5%81%E5%BC%8F%E8%BE%93%E5%87%BA%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E5%8E%8B%E7%BC%A9%E6%9D%A5%E8%87%AA-claude-code-%E5%86%85%E9%83%A8%E6%9C%BA%E5%88%B6%E7%9A%84%E5%90%AF%E7%A4%BA" class="hash-link" aria-label="四、流式输出与上下文压缩——来自 Claude Code 内部机制的启示的直接链接" title="四、流式输出与上下文压缩——来自 Claude Code 内部机制的启示的直接链接" translate="no">​</a></h2>
-<p>理解 AI 编程工具的内部机制，有助于我们更好地使用它。通过分析 Claude Code 的 LLM 日志，可以发现一些非常有价值的工程启示。</p>
-<p><strong>工具注册机制。</strong> Claude Code 通过 system prompt 告诉模型有哪些工具可用。这些工具的定义方式——包括工具名称、参数 schema、执行方式——直接影响模型调用的准确率。工具定义不清晰，模型就会"幻觉"出不存在的 API。</p>
-<p><strong>上下文压缩与任务连贯性。</strong> 随着对话推进，上下文不断增长。Claude Code 的压缩策略不是简单的截断，而是结构化提取——保留语义骨架，摘要压缩核心结论，在紧急情况下截断参考信息但保留约束清单。这个机制告诉我们：上下文管理不是"窗口越大越好"，而是"按需加载、分级压缩"。</p>
-<p><strong>流式输出中的并行工具使用。</strong> Claude Code 在流式输出的过程中可以并行地使用多个工具，而不是等一个工具执行完再调下一个。这需要精巧的多指令分割和 JSON 格式完整性保证——在流式输出中完美分割多个指令，保证每个 JSON 结构完整不破裂。</p>
-<p><strong>System Prompt 的内容。</strong> Claude Code 的系统提示词包含了角色定义、工具列表、行为约束、安全规则、输出格式等大量信息。这些不是装饰性的——它们直接塑造了模型的每一次输出。理解 system prompt 的内容，就能理解为什么某些配置方式有效、某些无效。</p>
-<p><strong>Session 连续性。</strong> Claude Code 如何连续传递会话信息——即使上下文被压缩，关键的任务目标和约束也不会丢失。这是通过外部的状态管理实现的，而不是依赖模型自己的"记忆力"。</p>
-<p>这些内部机制揭示了一个事实：AI 编程工具不是魔法，它是一套精密的工程系统。理解它的机制，才能更好地驾驭它。</p>
-<hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="五四层-harness把概率模型放进生产系统">五、四层 Harness——把概率模型放进生产系统<a href="https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/#%E4%BA%94%E5%9B%9B%E5%B1%82-harness%E6%8A%8A%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E6%94%BE%E8%BF%9B%E7%94%9F%E4%BA%A7%E7%B3%BB%E7%BB%9F" class="hash-link" aria-label="五、四层 Harness——把概率模型放进生产系统的直接链接" title="五、四层 Harness——把概率模型放进生产系统的直接链接" translate="no">​</a></h2>
-<p>写到这一步，你可能已经注意到一个模式：所有这些纪律——思考前置、约束可执行、工具服务化、上下文管理——最终都指向同一个概念：Harness。</p>
-<p>Harness 是把概率模型放进生产系统时自然生长出来的工程架构。它始终围绕四件事：</p>
-<p><strong>连接。</strong> 模型的输入和输出都是 token，但生产环境不止是 token。数据库里有记录，文件系统里有路径，浏览器里有页面状态。连接层解决的是模型如何与其他数字资产、其他 Agent 以及物理环境通讯。Tool Calling、MCP、A2A，本质上都是这种通讯关系的不同协议实现。</p>
-<p><strong>编排。</strong> 短任务里，模型的一次回答、一次工具调用，和用户期待的结果之间距离很近，编排问题不明显。但让 Agent 修一个复杂 bug，它要读代码、定位问题、修改实现、运行测试、根据失败日志继续修——任务时间线无法只靠模型自己维持。编排层要做的，就是把这部分原本依赖人持续维持的过程控制，外化成系统结构。</p>
-<p><strong>效能。</strong> 一个足够强的大模型加上一个非常耐心且懂业务的人类，理论上可以解决所有问题。但能量消耗太大了。效能层的核心原则是：用确定性的复用，替代重复的人类劳动和重复的 GPU 推理。上下文管理减少重复解释，Memory/RAG 减少人工找资料，缓存减少重复计算，模型路由减少不必要的大模型调用。能用 CPU 上的确定性执行解决的，就不应该每次都让 GPU 上的大模型重新推理。</p>
-<p><strong>安全。</strong> 当 Agent 开始自主地处理企业数据、执行代码、调用内部系统时，安全显得更加重要。输入侧防注入，输出侧结构化约束，执行侧权限和沙箱，高风险动作人在回路，全链路审计。安全层解决的问题是：当模型行为不可完全预测时，系统如何保证权限、数据、动作和责任边界仍然是确定的。</p>
-<p>四层之间存在天然张力：效能追求复用，安全要求隔离；编排追求自主推进，安全要求关键节点停下来等人确认。好的 Harness 设计不止是让四层各自最优，而是在张力中找到适合具体场景的平衡。</p>
-<p>关于"把概率模型放进生产系统"这个话题，我会在另一篇文章中专门展开——从连接的具体实现、安全四层防线的详细设计，到 15 款 Agent 模型的安全实测对比。那篇文章会从更技术化的角度，完整呈现生产级 AI 系统的全貌。</p>
-<hr>
-<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="结语">结语<a href="https://luoboask.github.io/fde-learning/blog/ai-coding-iron-rules/#%E7%BB%93%E8%AF%AD" class="hash-link" aria-label="结语的直接链接" title="结语的直接链接" translate="no">​</a></h2>
-<p>AI 编程工具的革命性不在于它让编码变快了——而在于它暴露了一个一直被掩盖的事实：软件工程的基本功，之前都是被人兜底兜掉的。</p>
-<p>需求模糊，人靠经验补。上下文丢失，人靠记忆补。约束没说清，人靠默契补。代码有 bug，人靠测试补。当 AI 进入流程之后，这些成本全部暴露，而且回不去。</p>
-<p>纪律不是束缚，是让 AI 从"能干活"变成"干好活"。思考前置、约束可执行、工具服务化、上下文管理、Harness 四层架构——这些不是 AI 时代的新发明，是软件工程一直需要、但之前被人的灵活性掩盖了的基本功。</p>
-<p>AI 把这些基本功显式化了。不是 AI 要求你这么做，是 AI 让你没法再糊弄了。</p>]]></content:encoded>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="结语">结语<a href="https://luoboask.github.io/fde-learning/blog/probabilistic-models-in-production/#%E7%BB%93%E8%AF%AD" class="hash-link" aria-label="结语的直接链接" title="结语的直接链接" translate="no">​</a></h2>
+<p>模型很强，但系统不能只靠模型。</p>
+<p>连接让模型的意图进入真实世界，编排为概率行为建立确定性的过程，效能用确定性复用替代重复推理，安全把概率行为限制在确定边界内。这四根支柱——连接、编排、效能、安全——构成了把概率模型放进生产系统的完整框架。</p>
+<p>它们不是四个独立模块，而是交织在同一条执行链路上。纵向看，编排建立在连接之上，效能横跨两者。横向看，安全决定每一步能不能做。四层之间存在天然张力：效能追求复用，安全要求隔离；编排追求自主推进，安全要求关键节点停下来等人确认。好的设计不止是让四层各自最优，而是在张力中找到适合具体场景的平衡。</p>
+<p>模型在进化，很多今天需要精心编排的问题，明天可能被更强的推理能力自然消解。但这四类问题本身不会消失——只要你把概率模型放进生产系统，连接、编排、效能、安全就一定会以某种形式出现。</p>
+<p>如何围绕自己的业务场景，把这套框架落地，就是你的 Harness。</p>]]></content:encoded>
         </item>
         <item>
             <title><![CDATA[2026 年了，人类工程师到底该做什么]]></title>
