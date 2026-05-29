@@ -30,7 +30,16 @@ const config = {
           numberPrefixParser: false,
           sidebarCollapsed: true,
         },
-        blog: false,
+        blog: {
+          routeBasePath: 'blog',
+          showReadingTime: false,
+          postsPerPage: 20,
+          blogSidebarTitle: '全部文章',
+          blogSidebarCount: 'ALL',
+          feedOptions: {
+            type: ['rss', 'atom'],
+          },
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -133,6 +142,11 @@ const config = {
             ],
           },
           {
+            to: '/blog/',
+            label: '博客',
+            position: 'left',
+          },
+          {
             type: 'dropdown',
             label: '趋势与招聘',
             position: 'left',
@@ -173,6 +187,7 @@ const config = {
           {
             title: '更多',
             items: [
+              {label: '博客文章', to: '/blog/'},
               {label: 'AI 行业趋势', to: '/trends/'},
               {label: 'FDE 招聘动态', to: '/jobs/'},
               {label: '团队建设', to: '/14-team-building/'},
