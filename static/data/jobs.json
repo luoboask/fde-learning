@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-05-26",
-  "total_jobs": 111,
+  "last_updated": "2026-06-01",
+  "total_jobs": 153,
   "categories": [
     {
       "name": "大模型推理/部署",
@@ -11,7 +11,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/0918c8ceb4488e670nZz2t65ElRT.html",
           "source": "BOSS直聘",
-          "tags": ["大模型", "推理", "系统研发"]
+          "tags": [
+            "大模型",
+            "推理",
+            "系统研发"
+          ]
         },
         {
           "title": "模型推理优化工程师",
@@ -19,7 +23,10 @@
           "location": "北京",
           "url": "https://m.liepin.com/job/1982160113.shtml",
           "source": "猎聘",
-          "tags": ["模型推理", "性能优化"]
+          "tags": [
+            "模型推理",
+            "性能优化"
+          ]
         },
         {
           "title": "推理引擎研发工程师",
@@ -27,7 +34,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/zhaopin/7ce899f18ddd18150nd80tu-GA~~/",
           "source": "BOSS直聘",
-          "tags": ["推理引擎", "研发"]
+          "tags": [
+            "推理引擎",
+            "研发"
+          ]
         },
         {
           "title": "大模型推理加速算法工程师",
@@ -35,7 +45,10 @@
           "location": "深圳",
           "url": "https://bebee.com/cn/jobs/shenzhen-guangdong--theirstack-687341369",
           "source": "bebee",
-          "tags": ["大模型", "推理加速"]
+          "tags": [
+            "大模型",
+            "推理加速"
+          ]
         },
         {
           "title": "大模型推理框架研发工程师（高级/资深）",
@@ -43,7 +56,10 @@
           "location": "北京",
           "url": "https://talent.didiglobal.com/social/p/56340",
           "source": "滴滴招聘",
-          "tags": ["推理框架", "高级/资深"]
+          "tags": [
+            "推理框架",
+            "高级/资深"
+          ]
         },
         {
           "title": "大模型推理部署工程师/高级工程师",
@@ -51,7 +67,10 @@
           "location": "上海",
           "url": "https://www.shlab.org.cn/joinus/detail/7511994333059418379?mode=social",
           "source": "上海AI Lab",
-          "tags": ["推理", "部署"]
+          "tags": [
+            "推理",
+            "部署"
+          ]
         },
         {
           "title": "大模型推理性能优化工程师",
@@ -59,7 +78,10 @@
           "location": "深圳",
           "url": "https://jobs.niuqizp.com/job-vlm55t5ta.html",
           "source": "牛企",
-          "tags": ["推理优化", "性能优化"]
+          "tags": [
+            "推理优化",
+            "性能优化"
+          ]
         },
         {
           "title": "大模型推理优化工程师",
@@ -67,7 +89,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/a9dd2c79b2d2abb30nZ42NS9F1pW.html",
           "source": "BOSS直聘",
-          "tags": ["推理优化", "智谱"]
+          "tags": [
+            "推理优化",
+            "智谱"
+          ]
         },
         {
           "title": "大模型推理优化专家",
@@ -75,7 +100,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/bafb27f13976b4db1HF83ty4EFdW.html",
           "source": "BOSS直聘",
-          "tags": ["推理优化", "专家"]
+          "tags": [
+            "推理优化",
+            "专家"
+          ]
         },
         {
           "title": "推理优化工程师（2026届）",
@@ -83,7 +111,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/94a9b5e7a47bc1e81HF82tS1GFJU.html",
           "source": "BOSS直聘",
-          "tags": ["推理优化", "校招"]
+          "tags": [
+            "推理优化",
+            "校招"
+          ]
         },
         {
           "title": "AIGC-模型推理/训练优化工程师",
@@ -91,7 +122,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/8d87df18245cc2ae1Hd43ti1ElVT.html",
           "source": "BOSS直聘",
-          "tags": ["推理优化", "训练优化"]
+          "tags": [
+            "推理优化",
+            "训练优化"
+          ]
         },
         {
           "title": "训练推理优化工程师",
@@ -99,7 +133,10 @@
           "location": "北京",
           "url": "https://m.zhipin.com/job_detail/c5e5326d89f97c3d03N709q4F1JZ.html",
           "source": "BOSS直聘",
-          "tags": ["训练推理", "自动驾驶"]
+          "tags": [
+            "训练推理",
+            "自动驾驶"
+          ]
         },
         {
           "title": "大模型推理优化工程师",
@@ -107,7 +144,9 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/b2093524659d7a280nV539m1FVRZ.html",
           "source": "BOSS直聘",
-          "tags": ["推理优化"]
+          "tags": [
+            "推理优化"
+          ]
         },
         {
           "title": "AI推理优化工程师",
@@ -115,7 +154,10 @@
           "location": "深圳",
           "url": "https://www.zhipin.com/job_detail/74636d83f3b8e48c1H193dy_EFJQ.html",
           "source": "BOSS直聘",
-          "tags": ["AI推理", "性能优化"]
+          "tags": [
+            "AI推理",
+            "性能优化"
+          ]
         },
         {
           "title": "大模型推理优化系统工程师",
@@ -123,7 +165,10 @@
           "location": "上海",
           "url": "https://www.zhipin.com/job_detail/6c28f49ef4513feb03J939S4EFBS.html",
           "source": "BOSS直聘",
-          "tags": ["推理优化", "系统"]
+          "tags": [
+            "推理优化",
+            "系统"
+          ]
         },
         {
           "title": "具身大模型推理优化工程师",
@@ -131,7 +176,10 @@
           "location": "深圳",
           "url": "https://www.zhipin.com/job_detail/1638bdce1b42f2430nR92ty1E1pQ.html",
           "source": "BOSS直聘",
-          "tags": ["具身智能", "推理优化"]
+          "tags": [
+            "具身智能",
+            "推理优化"
+          ]
         },
         {
           "title": "Data语音-推理框架优化工程师",
@@ -139,7 +187,10 @@
           "location": "深圳",
           "url": "https://jobs.bytedance.com/campus/m/position/detail/7530662133869971719",
           "source": "字节招聘",
-          "tags": ["推理框架", "语音"]
+          "tags": [
+            "推理框架",
+            "语音"
+          ]
         },
         {
           "title": "大模型推理工程师",
@@ -147,7 +198,10 @@
           "location": "深圳",
           "url": "https://cmhk.zhiye.com/custom/xq?JobAdName=%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8E%A8%E7%90%86%E5%B7%A5%E7%A8%8B%E5%B8%88(J30056)",
           "source": "招商局招聘",
-          "tags": ["大模型", "推理"]
+          "tags": [
+            "大模型",
+            "推理"
+          ]
         },
         {
           "title": "【北斗】大模型推理引擎工程师",
@@ -155,7 +209,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/3b078bca30bd1ba41HZ_3dm7FlZU.html",
           "source": "BOSS直聘",
-          "tags": ["LLM", "推理引擎", "编译优化"]
+          "tags": [
+            "LLM",
+            "推理引擎",
+            "编译优化"
+          ]
         },
         {
           "title": "大模型推理优化工程师",
@@ -163,7 +221,10 @@
           "location": "北京/上海",
           "url": "https://m.zhipin.com/job_detail/42b6beb5be7e2b1b031929-9FVRU.html",
           "source": "BOSS直聘",
-          "tags": ["推理优化", "GPU/NPU"]
+          "tags": [
+            "推理优化",
+            "GPU/NPU"
+          ]
         },
         {
           "title": "大模型推理优化工程师",
@@ -171,7 +232,11 @@
           "location": "北京",
           "url": "https://m.zhipin.com/job_detail/d70fde6053cdd8d003V83dy-EVtQ.html",
           "source": "BOSS直聘",
-          "tags": ["CUDA", "量化", "分布式推理"]
+          "tags": [
+            "CUDA",
+            "量化",
+            "分布式推理"
+          ]
         },
         {
           "title": "大模型推理优化专家（京东云）",
@@ -179,7 +244,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/6d237a804469607e03Fz2t6-GVZZ.html",
           "source": "BOSS直聘",
-          "tags": ["MoE", "推理引擎", "CUDA"]
+          "tags": [
+            "MoE",
+            "推理引擎",
+            "CUDA"
+          ]
         },
         {
           "title": "大模型推理优化工程师（云侧）",
@@ -187,7 +256,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/303915987f51e1e903V_2t-7GVFS.html",
           "source": "BOSS直聘",
-          "tags": ["KV Cache", "动态Batching", "投机预测"]
+          "tags": [
+            "KV Cache",
+            "动态Batching",
+            "投机预测"
+          ]
         },
         {
           "title": "大模型推理优化实习生",
@@ -195,7 +268,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/006ed538be50d34d1Hx82tW_FlBT.html",
           "source": "BOSS直聘",
-          "tags": ["推理框架", "视频生成"]
+          "tags": [
+            "推理框架",
+            "视频生成"
+          ]
         },
         {
           "title": "大模型推理优化工程师",
@@ -203,7 +279,121 @@
           "location": "杭州",
           "url": "https://www.zhipin.com/job_detail/e4d8d324da10525103V82dS-FVtT.html",
           "source": "BOSS直聘",
-          "tags": ["VLM", "端侧推理"]
+          "tags": [
+            "VLM",
+            "端侧推理"
+          ]
+        },
+        {
+          "title": "大模型推理部署工程师/专家",
+          "company": "某大型互联网公司",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/5d422cbce92033b803V63Nq4F1BQ.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型",
+            "推理部署",
+            "GPU资源调度"
+          ]
+        },
+        {
+          "title": "云端大模型推理加速工程师",
+          "company": "理想汽车",
+          "location": "北京",
+          "url": "https://m.zhipin.com/job_detail/b4578ef37eb2209403x50tm9E1pX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "vLLM",
+            "SGLang",
+            "TRT-LLM",
+            "推理加速"
+          ]
+        },
+        {
+          "title": "大模型AI Infra工程师",
+          "company": "某公司",
+          "location": "深圳",
+          "url": "https://www.zhipin.com/zhaopin/dd2aca304a53c5440nB729q4Fw~~/",
+          "source": "BOSS直聘",
+          "tags": [
+            "推理框架",
+            "模型量化",
+            "国产硬件适配"
+          ]
+        },
+        {
+          "title": "AI部署工具/推理引擎开发工程师",
+          "company": "某半导体公司",
+          "location": "上海",
+          "url": "https://www.zhipin.com/job_detail/d153f208cd46dbfa03B92N-6FlVY.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "推理引擎",
+            "部署工具",
+            "AI芯片"
+          ]
+        },
+        {
+          "title": "大模型推理加速工程师",
+          "company": "Dobot",
+          "location": "上海",
+          "url": "https://www.zhipin.com/job_detail/32c8fb7dd507a76803Z53925FlRX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "模型裁剪",
+            "量化",
+            "推理加速"
+          ]
+        },
+        {
+          "title": "大模型推理加速研究员（顶尖实习-MiMo）",
+          "company": "MiMo",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/ab6896dfed58060f0nZz0tm-EVdS.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "vLLM",
+            "SGLang",
+            "推理引擎核心"
+          ]
+        },
+        {
+          "title": "大模型推理部署优化工程师",
+          "company": "蚂蚁集团",
+          "location": "杭州",
+          "url": "https://www.zhipin.com/job_detail/aadc91e36b28b42d1HJ43t28EVJX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "推理优化",
+            "vLLM",
+            "模型部署"
+          ]
+        },
+        {
+          "title": "大模型推理框架优化专家",
+          "company": "超聚变技术",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/9d4a42fae19c21e61HF83t6-EltQ.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "Ascend",
+            "Intel",
+            "PyTorch",
+            "MindSpore"
+          ]
+        },
+        {
+          "title": "AI算法工程师",
+          "company": "某公司",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/1ae855631000da9c03Jy2N60EVZX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "MegatronLM",
+            "SGLang",
+            "vLLM",
+            "RL"
+          ]
         }
       ]
     },
@@ -216,7 +406,10 @@
           "location": "深圳",
           "url": "https://we.dji.com/zh-CN/position/detail?positionId=1969004256605831168",
           "source": "大疆招聘",
-          "tags": ["AI Agent", "后端开发"]
+          "tags": [
+            "AI Agent",
+            "后端开发"
+          ]
         },
         {
           "title": "AI Agent 开发工程师-交易业务",
@@ -224,7 +417,10 @@
           "location": "杭州",
           "url": "https://talent.taotian.com/off-campus/position-detail?positionId=100011720021",
           "source": "淘天招聘",
-          "tags": ["AI Agent", "电商"]
+          "tags": [
+            "AI Agent",
+            "电商"
+          ]
         },
         {
           "title": "AI Agent研发工程师",
@@ -232,7 +428,10 @@
           "location": "北京",
           "url": "https://jobs.bytedance.com/experienced/position/7571365864895072517/detail",
           "source": "字节招聘",
-          "tags": ["AI Agent", "研发"]
+          "tags": [
+            "AI Agent",
+            "研发"
+          ]
         },
         {
           "title": "AI Agent研发工程师",
@@ -240,7 +439,10 @@
           "location": "杭州",
           "url": "https://www.career.zju.edu.cn/jyxt/sczp/zpztgl/ckZpgwXq.zf?zpxxbh=4DE40BFF9E16CB11E0653A68DD0E9B18",
           "source": "高校就业",
-          "tags": ["AI Agent", "研发"]
+          "tags": [
+            "AI Agent",
+            "研发"
+          ]
         },
         {
           "title": "AI Agent开发工程师",
@@ -248,7 +450,9 @@
           "location": "广州",
           "url": "https://www.zhaopin.com/jobdetail/CC138044050J40905165212.htm",
           "source": "智联招聘",
-          "tags": ["AI Agent"]
+          "tags": [
+            "AI Agent"
+          ]
         },
         {
           "title": "多模态推理引擎工程师",
@@ -256,7 +460,10 @@
           "location": "北京",
           "url": "https://www.nowcoder.com/jobs/detail/442121",
           "source": "牛客",
-          "tags": ["多模态", "推理引擎"]
+          "tags": [
+            "多模态",
+            "推理引擎"
+          ]
         },
         {
           "title": "大模型算法工程师/AI Agent",
@@ -264,7 +471,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/eca99e9f5c9f51fd03F_2d-1FVpW.html",
           "source": "BOSS直聘",
-          "tags": ["大模型", "AI Agent"]
+          "tags": [
+            "大模型",
+            "AI Agent"
+          ]
         },
         {
           "title": "大模型算法工程师-剪映",
@@ -272,7 +482,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/b9dedf743720d8fb03J93NS7EVtQ.html",
           "source": "BOSS直聘",
-          "tags": ["大模型", "剪映"]
+          "tags": [
+            "大模型",
+            "剪映"
+          ]
         },
         {
           "title": "AI Agent 应用开发工程师（2026届）",
@@ -280,7 +493,10 @@
           "location": "上海",
           "url": "https://www.shushuqiuzhi.com/position/270502",
           "source": "数数求职",
-          "tags": ["AI Agent", "校招"]
+          "tags": [
+            "AI Agent",
+            "校招"
+          ]
         },
         {
           "title": "AI数字人/RAG算法工程师（外企）",
@@ -288,7 +504,10 @@
           "location": "上海",
           "url": "https://www.zhipin.com/job_detail/531bce12364b42550nR60tu7FlRY.html",
           "source": "BOSS直聘",
-          "tags": ["RAG", "数字人"]
+          "tags": [
+            "RAG",
+            "数字人"
+          ]
         },
         {
           "title": "AI agent 优化工程师（2026届）",
@@ -296,7 +515,10 @@
           "location": "上海",
           "url": "https://www.shushuqiuzhi.com/position/315519",
           "source": "数数求职",
-          "tags": ["AI Agent", "优化"]
+          "tags": [
+            "AI Agent",
+            "优化"
+          ]
         },
         {
           "title": "大模型Agent研发专家/工程师",
@@ -304,7 +526,11 @@
           "location": "上海/北京/广州/深圳/杭州",
           "url": "https://www.zhipin.com/job_detail/ed37da048923d13c031-3tu7FVdX.html",
           "source": "BOSS直聘",
-          "tags": ["DeepResearch", "PlanExecutor", "Agent框架"]
+          "tags": [
+            "DeepResearch",
+            "PlanExecutor",
+            "Agent框架"
+          ]
         },
         {
           "title": "AI Agent开发实习生-豆包手机助手",
@@ -312,7 +538,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/13f7fbd24654e9870nZ72N--EVFQ.html",
           "source": "BOSS直聘",
-          "tags": ["AI Agent", "手机助手"]
+          "tags": [
+            "AI Agent",
+            "手机助手"
+          ]
         },
         {
           "title": "测试开发工程师（大模型AI Agent方向）",
@@ -320,7 +549,11 @@
           "location": "上海",
           "url": "https://www.zhipin.com/job_detail/25-50K15薪-抖音-Agent",
           "source": "BOSS直聘",
-          "tags": ["AI Agent", "测试开发", "抖音"]
+          "tags": [
+            "AI Agent",
+            "测试开发",
+            "抖音"
+          ]
         },
         {
           "title": "AI Agent研发工程师",
@@ -328,7 +561,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/6ffe9d10ab0e763c03B62ti8GVdS.html",
           "source": "BOSS直聘",
-          "tags": ["AI Agent", "房产科技"]
+          "tags": [
+            "AI Agent",
+            "房产科技"
+          ]
         },
         {
           "title": "大模型应用技术专家",
@@ -336,7 +572,136 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/375a5b1ff592711a03B739u5FFJR.html",
           "source": "BOSS直聘",
-          "tags": ["大模型", "应用技术"]
+          "tags": [
+            "大模型",
+            "应用技术"
+          ]
+        },
+        {
+          "title": "AI应用开发工程师",
+          "company": "力维智联",
+          "location": "深圳",
+          "url": "https://www.zhipin.com/job_detail/5518f66bc3ce09d303J_3d21EFFT.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI Agent",
+            "多智能体协作",
+            "大模型应用"
+          ]
+        },
+        {
+          "title": "大模型应用工程师",
+          "company": "工匠行科技",
+          "location": "深圳",
+          "url": "https://www.zhipin.com/job_detail/c713ff10d5f6f2ce0nVy2ti7FldY.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "LangGraph",
+            "LlamaIndex",
+            "多Agent协同",
+            "Redis"
+          ]
+        },
+        {
+          "title": "AI应用工程师",
+          "company": "浩旅河山",
+          "location": "广州",
+          "url": "https://m.zhipin.com/job_detail/5045dda293d4139903V93N2-ElpR.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "RAG",
+            "Agent",
+            "LangChain",
+            "大模型微调"
+          ]
+        },
+        {
+          "title": "AI Agent应用开发工程师",
+          "company": "当贝网络",
+          "location": "杭州",
+          "url": "https://www.zhipin.com/job_detail/d17009c71e27b7c403N72967EFJX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI Agent",
+            "大模型应用"
+          ]
+        },
+        {
+          "title": "AI应用Agent开发工程师（AIGC方向）",
+          "company": "头部短剧平台",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/44150ac9a41e44870nV629-0FFtS.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "RAG",
+            "Milvus",
+            "多Agent架构",
+            "短剧创作"
+          ]
+        },
+        {
+          "title": "AI智能体工程师",
+          "company": "新潮传媒",
+          "location": "杭州",
+          "url": "https://www.zhipin.com/job_detail/91046ad8db8f3a4c03J439q_GFBR.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "LangGraph",
+            "多智能体协作",
+            "状态机工作流"
+          ]
+        },
+        {
+          "title": "Agent智能体平台和应用研发工程师",
+          "company": "阿里巴巴智能信息事业群",
+          "location": "杭州",
+          "url": "https://www.zhipin.com/job_detail/4a61d8f08f0778480nR83dm6EFVW.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "通义千问",
+            "Agent平台",
+            "LLM应用"
+          ]
+        },
+        {
+          "title": "AI Agent开发工程师",
+          "company": "某公司",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/e6889f67453b4d9f0nRy29m0F1tY.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "多智能体协作",
+            "自主规划",
+            "工具调用"
+          ]
+        },
+        {
+          "title": "九阳AI开发工程师",
+          "company": "九阳",
+          "location": "杭州",
+          "url": "https://www.zhipin.com/job_detail/8b5a89ccb7f71eee0nV43Nm1FVFV.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "SFT",
+            "DPO",
+            "RLHF",
+            "RAG",
+            "智能Agent"
+          ]
+        },
+        {
+          "title": "大模型应用服务端开发",
+          "company": "华粹星光",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/3057169d8fe727651Hx72NW-F1tU.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "Agent",
+            "RAG",
+            "Java",
+            "Python",
+            "HTTP/WebSocket"
+          ]
         }
       ]
     },
@@ -349,7 +714,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/f16a16d3cf85b1420nR53tS_E1FR.html",
           "source": "BOSS直聘",
-          "tags": ["大模型", "架构师"]
+          "tags": [
+            "大模型",
+            "架构师"
+          ]
         },
         {
           "title": "大模型系统研发工程师",
@@ -357,7 +725,10 @@
           "location": "上海",
           "url": "http://www.slai.edu.cn/zh-hans/recruitment/382",
           "source": "上海AI Lab",
-          "tags": ["系统研发", "大模型"]
+          "tags": [
+            "系统研发",
+            "大模型"
+          ]
         },
         {
           "title": "AI System Engineer",
@@ -365,7 +736,10 @@
           "location": "深圳",
           "url": "https://www.cuhk.edu.cn/en/recruitment/15009",
           "source": "CUHK深圳",
-          "tags": ["AI System", "科研"]
+          "tags": [
+            "AI System",
+            "科研"
+          ]
         },
         {
           "title": "大模型算法研发工程师",
@@ -373,7 +747,10 @@
           "location": "深圳",
           "url": "https://www.attrsense.com/careers/llm-engineer-campus",
           "source": "Attrsense",
-          "tags": ["大模型", "校招"]
+          "tags": [
+            "大模型",
+            "校招"
+          ]
         },
         {
           "title": "LLM大模型工程师",
@@ -381,7 +758,10 @@
           "location": "全国",
           "url": "https://www.liepin.com/zpllmdmxgcsw6e7s/",
           "source": "猎聘",
-          "tags": ["LLM", "大模型"]
+          "tags": [
+            "LLM",
+            "大模型"
+          ]
         },
         {
           "title": "大模型算法工程师（模型数据与对齐）",
@@ -389,7 +769,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/16de0a6863c61ef703152d24FVpW.html",
           "source": "BOSS直聘",
-          "tags": ["模型对齐", "数据"]
+          "tags": [
+            "模型对齐",
+            "数据"
+          ]
         },
         {
           "title": "大模型算法工程师",
@@ -397,7 +780,10 @@
           "location": "深圳",
           "url": "https://www.zhipin.com/job_detail/24503ea258720b160nZz3NW_FltQ",
           "source": "BOSS直聘",
-          "tags": ["大模型", "华为"]
+          "tags": [
+            "大模型",
+            "华为"
+          ]
         },
         {
           "title": "大模型算法应用工程师（2026届校招）",
@@ -405,7 +791,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/2b0a24e44eaa04790nV53t68E1RY.html",
           "source": "BOSS直聘",
-          "tags": ["校招", "大模型应用"]
+          "tags": [
+            "校招",
+            "大模型应用"
+          ]
         },
         {
           "title": "大模型算法工程师",
@@ -413,7 +802,10 @@
           "location": "佛山",
           "url": "https://www.zhipin.com/job_detail/bda3502e5a0f5d810nR-3NS8FVBT.html",
           "source": "BOSS直聘",
-          "tags": ["大模型", "硬件"]
+          "tags": [
+            "大模型",
+            "硬件"
+          ]
         },
         {
           "title": "大模型算法工程师（可信方向）",
@@ -421,7 +813,10 @@
           "location": "深圳",
           "url": "https://www.zhipin.com/job_detail/2f8e7e2ed7e981600nR609y8FFpS.html",
           "source": "BOSS直聘",
-          "tags": ["可信AI", "安全"]
+          "tags": [
+            "可信AI",
+            "安全"
+          ]
         },
         {
           "title": "大模型算法工程师（具身智能方向）",
@@ -429,7 +824,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/76738762c6e87f6f0nV729i1GVVT.html",
           "source": "BOSS直聘",
-          "tags": ["具身智能", "机器人"]
+          "tags": [
+            "具身智能",
+            "机器人"
+          ]
         },
         {
           "title": "Omni模型算法工程师",
@@ -437,7 +835,10 @@
           "location": "深圳",
           "url": "https://careers.tencent.com/jobdesc.html?postId=2052321049734987776",
           "source": "腾讯招聘",
-          "tags": ["多模态", "Omni"]
+          "tags": [
+            "多模态",
+            "Omni"
+          ]
         },
         {
           "title": "大模型算法工程师（北京/武汉）",
@@ -445,7 +846,10 @@
           "location": "北京/武汉",
           "url": "https://www.nowcoder.com/jobs/detail/429543",
           "source": "牛客",
-          "tags": ["校招", "大模型"]
+          "tags": [
+            "校招",
+            "大模型"
+          ]
         },
         {
           "title": "大模型算法负责人",
@@ -453,7 +857,12 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/4adfe3aa294136111HR43t61GVVY.html",
           "source": "BOSS直聘",
-          "tags": ["Pretrain", "SFT", "RLHF", "团队管理"]
+          "tags": [
+            "Pretrain",
+            "SFT",
+            "RLHF",
+            "团队管理"
+          ]
         },
         {
           "title": "大模型算法工程师-2026届",
@@ -461,7 +870,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/f992f16d8fe0b46f03d939y0FFNX.html",
           "source": "BOSS直聘",
-          "tags": ["大模型", "校招", "基座模型"]
+          "tags": [
+            "大模型",
+            "校招",
+            "基座模型"
+          ]
         },
         {
           "title": "大模型算法工程师（基座模型）",
@@ -469,7 +882,10 @@
           "location": "北京",
           "url": "https://m.bosszhipin.com/job_detail/cec291ac6a39a20c0nd709i7EVFV.html",
           "source": "BOSS直聘",
-          "tags": ["基座模型", "北京"]
+          "tags": [
+            "基座模型",
+            "北京"
+          ]
         },
         {
           "title": "大模型算法工程师（具身智能方向）",
@@ -477,7 +893,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/76738762c6e87f6f0nV729i1GVVT.html",
           "source": "BOSS直聘",
-          "tags": ["VLA", "机器人", "具身智能"]
+          "tags": [
+            "VLA",
+            "机器人",
+            "具身智能"
+          ]
         },
         {
           "title": "LLM算法工程师",
@@ -485,7 +905,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/20eb98194c5056c71X1-2Nu6EVBT.html",
           "source": "BOSS直聘",
-          "tags": ["LLM", "算法"]
+          "tags": [
+            "LLM",
+            "算法"
+          ]
         },
         {
           "title": "大模型算法工程师（荣耀）",
@@ -493,7 +916,11 @@
           "location": "深圳",
           "url": "https://www.zhipin.com/job_detail/cf2c882d49b7a1091HJ-39q1F1BZ.html",
           "source": "BOSS直聘",
-          "tags": ["大模型", "手机AI", "Prompt Engineering"]
+          "tags": [
+            "大模型",
+            "手机AI",
+            "Prompt Engineering"
+          ]
         },
         {
           "title": "AIGC大模型算法专家",
@@ -501,7 +928,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/bfc2b0683308ede31HV_3d--GFRW.html",
           "source": "BOSS直聘",
-          "tags": ["AIGC", "大模型", "专家"]
+          "tags": [
+            "AIGC",
+            "大模型",
+            "专家"
+          ]
         },
         {
           "title": "具身操作算法工程师",
@@ -509,7 +940,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/2acb194beea7f8490nV70ty7GFBS.html",
           "source": "BOSS直聘",
-          "tags": ["具身智能", "操作算法"]
+          "tags": [
+            "具身智能",
+            "操作算法"
+          ]
         },
         {
           "title": "大模型算法专家（检索增强&Agent）",
@@ -517,7 +951,11 @@
           "location": "北京",
           "url": "https://m.zhipin.com/job_detail/f23bbc35707da5d31HF83t65GVFU.html",
           "source": "BOSS直聘",
-          "tags": ["RAG", "Agent", "专家"]
+          "tags": [
+            "RAG",
+            "Agent",
+            "专家"
+          ]
         },
         {
           "title": "TET管培生-多模态大模型算法开发",
@@ -525,7 +963,114 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/2b2f06fd29a5006203J73d27F1pR.html",
           "source": "BOSS直聘",
-          "tags": ["多模态", "管培生", "校招"]
+          "tags": [
+            "多模态",
+            "管培生",
+            "校招"
+          ]
+        },
+        {
+          "title": "原生多模态大模型算法",
+          "company": "蚂蚁集团",
+          "location": "北京/杭州",
+          "url": "https://www.zhipin.com/job_detail/808a193f005a32ad03Zy09q8FltT.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "多模态",
+            "预训练",
+            "后训练"
+          ]
+        },
+        {
+          "title": "多模态大模型工程师",
+          "company": "某大型消费电子公司",
+          "location": "上海",
+          "url": "https://m.zhipin.com/job_detail/caed9730efb3107803J72Nu8FVBX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "预训练",
+            "指令微调",
+            "分布式训练",
+            "混合精度"
+          ]
+        },
+        {
+          "title": "大模型实习生",
+          "company": "智谱华章",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/f5cdf199ef6b810d03N709u5FFBX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "预训练",
+            "SFT",
+            "DPO",
+            "RLHF",
+            "量化",
+            "投机采样"
+          ]
+        },
+        {
+          "title": "算法工程师（模型/算法/产品化）",
+          "company": "智谱华章",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/c0cdf92423f729f8031509q-E1BQ.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型",
+            "算法",
+            "产品化"
+          ]
+        },
+        {
+          "title": "大模型算法工程师实习生",
+          "company": "某公司",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/6cfd717721f7f0e803V43tu_GVBQ.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "LLM",
+            "算法",
+            "大模型"
+          ]
+        },
+        {
+          "title": "大语言模型算法工程师",
+          "company": "泰康科技",
+          "location": "北京",
+          "url": "https://m.zhipin.com/job_detail/35b4e03083f34b8d03V809m7EFpW.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "LLM",
+            "多模态",
+            "Megatron",
+            "分布式训练"
+          ]
+        },
+        {
+          "title": "大模型算法工程师（语音方向）",
+          "company": "鸿普森",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/fb58be8f0736c4a603d40929EVBQ.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "Transformer",
+            "MoE",
+            "语音",
+            "大模型"
+          ]
+        },
+        {
+          "title": "大模型算法工程师实习生",
+          "company": "摩尔线程",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/ed2ad71313a7115203xz2Nm5FVNR.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "摩尔GPU",
+            "多模态",
+            "MoE",
+            "视频生成"
+          ]
         }
       ]
     },
@@ -538,7 +1083,10 @@
           "location": "深圳",
           "url": "https://we.dji.com/zh-CN/position/detail?positionId=2028734430659026944",
           "source": "大疆招聘",
-          "tags": ["AI平台", "运维"]
+          "tags": [
+            "AI平台",
+            "运维"
+          ]
         },
         {
           "title": "部署工具开发工程师",
@@ -546,7 +1094,10 @@
           "location": "北京",
           "url": "https://m.zhipin.com/zhaopin/be4e56baedb8dbe20nB_3ty9Ew~~/",
           "source": "BOSS直聘",
-          "tags": ["部署工具", "开发"]
+          "tags": [
+            "部署工具",
+            "开发"
+          ]
         },
         {
           "title": "系统部署工程师",
@@ -554,7 +1105,9 @@
           "location": "北京",
           "url": "https://m.zhipin.com/zhaopin/27cb274e8c504f7e1HJ82Nu7Ew~~/",
           "source": "BOSS直聘",
-          "tags": ["系统部署"]
+          "tags": [
+            "系统部署"
+          ]
         },
         {
           "title": "部署工程师",
@@ -562,7 +1115,9 @@
           "location": "深圳",
           "url": "https://m.zhipin.com/zhaopin/9fe1fc60959e582c0nB509m8FA~~/",
           "source": "BOSS直聘",
-          "tags": ["部署"]
+          "tags": [
+            "部署"
+          ]
         },
         {
           "title": "AI模型推理加速/落地工程师（CUDA）",
@@ -570,7 +1125,10 @@
           "location": "深圳",
           "url": "http://m.haolietou.com/j_289821",
           "source": "好猎头",
-          "tags": ["CUDA", "推理加速"]
+          "tags": [
+            "CUDA",
+            "推理加速"
+          ]
         },
         {
           "title": "并行计算工程师（CUDA）",
@@ -578,7 +1136,10 @@
           "location": "北京/上海",
           "url": "https://www.zhipin.com/zhaopin/48aa4b48df3fc8063ndz2NS-/",
           "source": "BOSS直聘",
-          "tags": ["CUDA", "NVIDIA"]
+          "tags": [
+            "CUDA",
+            "NVIDIA"
+          ]
         },
         {
           "title": "GPU工程师",
@@ -586,7 +1147,10 @@
           "location": "全国",
           "url": "https://www.zhipin.com/zhaopin/1c6d5c96162e54661nd93tm1/",
           "source": "BOSS直聘",
-          "tags": ["GPU", "硬件"]
+          "tags": [
+            "GPU",
+            "硬件"
+          ]
         },
         {
           "title": "CUDA工程师",
@@ -594,7 +1158,9 @@
           "location": "全国",
           "url": "https://www.liepin.com/zpcudagcsp96l/",
           "source": "猎聘",
-          "tags": ["CUDA"]
+          "tags": [
+            "CUDA"
+          ]
         },
         {
           "title": "AI研发工程师-2026届（AI大模型平台）",
@@ -602,7 +1168,10 @@
           "location": "上海",
           "url": "https://weikezhijia.jobs.feishu.cn/MSXF0619/m/position/detail/7532787759050115366",
           "source": "飞书招聘",
-          "tags": ["AI平台", "校招"]
+          "tags": [
+            "AI平台",
+            "校招"
+          ]
         },
         {
           "title": "CUDA研发工程师",
@@ -610,7 +1179,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/zhaopin/951d32cd8392ecf10nd83NS_GA~~/",
           "source": "BOSS直聘",
-          "tags": ["CUDA", "高性能计算", "北京"]
+          "tags": [
+            "CUDA",
+            "高性能计算",
+            "北京"
+          ]
         },
         {
           "title": "大模型算子开发工程师",
@@ -618,7 +1191,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/b80c124d733d70681X140t-9FFdX.html",
           "source": "BOSS直聘",
-          "tags": ["算子优化", "异构硬件", "高性能计算"]
+          "tags": [
+            "算子优化",
+            "异构硬件",
+            "高性能计算"
+          ]
         },
         {
           "title": "AI Infra 网络系统开发",
@@ -626,7 +1203,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/3ad71cba1e241857031y3dW6FlRQ.html",
           "source": "BOSS直聘",
-          "tags": ["AI Infra", "网络系统"]
+          "tags": [
+            "AI Infra",
+            "网络系统"
+          ]
         },
         {
           "title": "智算研发技术专家",
@@ -634,7 +1214,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/f842fa24d88e73bb0nR-2du_FVFS.html",
           "source": "BOSS直聘",
-          "tags": ["GPU虚拟化", "安全容器", "大规模集群"]
+          "tags": [
+            "GPU虚拟化",
+            "安全容器",
+            "大规模集群"
+          ]
         },
         {
           "title": "云原生架构师（AI基础设施方向）",
@@ -642,7 +1226,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/f8cd0bc731bfd3771Xd92NW_GFZU.html",
           "source": "BOSS直聘",
-          "tags": ["K8s", "HPC", "云原生"]
+          "tags": [
+            "K8s",
+            "HPC",
+            "云原生"
+          ]
         },
         {
           "title": "【北斗】大模型Infra工程师",
@@ -650,7 +1238,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/ada551c3cd28c89503Jz29q6FlVW.html",
           "source": "BOSS直聘",
-          "tags": ["大模型", "Infra", "博士"]
+          "tags": [
+            "大模型",
+            "Infra",
+            "博士"
+          ]
         },
         {
           "title": "GPU并行开发工程师（26届校招）",
@@ -658,7 +1250,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/50b345dae1d4b84b03x_2NW5EFJZ.html",
           "source": "BOSS直聘",
-          "tags": ["GPU", "并行计算", "校招"]
+          "tags": [
+            "GPU",
+            "并行计算",
+            "校招"
+          ]
         },
         {
           "title": "高性能计算实习生",
@@ -666,7 +1262,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/zhaopin/7f3e762c66750a8c0nR73N-5GQ~~/",
           "source": "BOSS直聘",
-          "tags": ["高性能计算", "端侧部署", "实习生"]
+          "tags": [
+            "高性能计算",
+            "端侧部署",
+            "实习生"
+          ]
         },
         {
           "title": "GPU计算工程师",
@@ -674,7 +1274,99 @@
           "location": "北京",
           "url": "https://www.zhipin.com/zhaopin/hy-gpu-hpc",
           "source": "BOSS直聘",
-          "tags": ["GPU", "高性能计算", "国产芯片"]
+          "tags": [
+            "GPU",
+            "高性能计算",
+            "国产芯片"
+          ]
+        },
+        {
+          "title": "机器学习平台工程师",
+          "company": "摩尔线程",
+          "location": "北京",
+          "url": "https://m.zhipin.com/job_detail/ee462393a06e1f3c03d63dy8FlpQ.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "PyTorch",
+            "Paddle",
+            "vLLM",
+            "CUDA",
+            "大模型训练"
+          ]
+        },
+        {
+          "title": "GPU通用计算与AI软件工程师/架构师",
+          "company": "摩尔线程",
+          "location": "北京",
+          "url": "https://m.zhipin.com/job_detail/9d22bc9df083802603Z43tm-E1BS.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "GPU",
+            "AI",
+            "科学计算",
+            "数字孪生",
+            "架构师"
+          ]
+        },
+        {
+          "title": "AI Infra研发工程师",
+          "company": "阿里云",
+          "location": "杭州",
+          "url": "https://www.zhipin.com/zhaopin/4e9f005056ae5c5b3nR_2N21/",
+          "source": "BOSS直聘",
+          "tags": [
+            "千卡/万卡",
+            "AI基础设施",
+            "大模型部署"
+          ]
+        },
+        {
+          "title": "DevTech专家-AI",
+          "company": "摩尔线程",
+          "location": "北京/上海/杭州",
+          "url": "https://www.zhipin.com/job_detail/c027c8fd3e1a911603V52961E1pW.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI算法",
+            "SOTA模型",
+            "客户场景"
+          ]
+        },
+        {
+          "title": "大模型可信算法工程师/青年研究员",
+          "company": "上海人工智能创新中心",
+          "location": "上海",
+          "url": "https://www.zhipin.com/job_detail/05ba266a5ccbfce003x-09i0EldX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI安全",
+            "可信AI",
+            "大模型对齐"
+          ]
+        },
+        {
+          "title": "AI可信智能体青年研究员/算法工程师",
+          "company": "上海人工智能创新中心",
+          "location": "上海",
+          "url": "https://www.zhipin.com/job_detail/04a88e679da19eb903x82Nq0GVRW.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "多模态",
+            "安全",
+            "推理逻辑监控"
+          ]
+        },
+        {
+          "title": "并行计算工程师",
+          "company": "云道智造",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/144a104f759f532e1nB829m1EVRX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "GPU原生",
+            "多物理统一架构",
+            "并行计算"
+          ]
         }
       ]
     },
@@ -687,7 +1379,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/zhaopin/47f89e01b6d3b8281nV-2t27Eg~~/",
           "source": "BOSS直聘",
-          "tags": ["解决方案", "架构师"]
+          "tags": [
+            "解决方案",
+            "架构师"
+          ]
         },
         {
           "title": "AI解决方案经理",
@@ -695,7 +1390,10 @@
           "location": "上海",
           "url": "https://www.zhipin.com/zhaopin/25520c906cda39911X1-2dy8EA~~/",
           "source": "BOSS直聘",
-          "tags": ["解决方案", "经理"]
+          "tags": [
+            "解决方案",
+            "经理"
+          ]
         },
         {
           "title": "金证优智大模型工程师",
@@ -703,7 +1401,10 @@
           "location": "深圳",
           "url": "https://www.zhipin.com/job_detail/eff65ba6eb5a53bc1HN529S6FFdS.html",
           "source": "BOSS直聘",
-          "tags": ["大模型", "金融科技"]
+          "tags": [
+            "大模型",
+            "金融科技"
+          ]
         },
         {
           "title": "LLM/AI大模型工程师",
@@ -711,7 +1412,10 @@
           "location": "宁波",
           "url": "https://www.lipind.com/position/detail/1024682.html",
           "source": "猎聘",
-          "tags": ["LLM", "硬件"]
+          "tags": [
+            "LLM",
+            "硬件"
+          ]
         },
         {
           "title": "大模型智算解决方案架构师",
@@ -719,7 +1423,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/1ac6db3536d4e10e1HV73N2_GVtX.html",
           "source": "BOSS直聘",
-          "tags": ["智算", "解决方案", "阿里云"]
+          "tags": [
+            "智算",
+            "解决方案",
+            "阿里云"
+          ]
         },
         {
           "title": "大模型解决方案架构师",
@@ -727,7 +1435,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/6145648a9c969ec31HF509m9FlBV.html",
           "source": "BOSS直聘",
-          "tags": ["大模型", "解决方案"]
+          "tags": [
+            "大模型",
+            "解决方案"
+          ]
         },
         {
           "title": "豆包AI大模型产品解决方案架构师",
@@ -735,7 +1446,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/c4ef97268553756d0nV739y_FVdU.html",
           "source": "BOSS直聘",
-          "tags": ["豆包", "火山方舟", "解决方案"]
+          "tags": [
+            "豆包",
+            "火山方舟",
+            "解决方案"
+          ]
         },
         {
           "title": "AI大模型产品解决方案工程师",
@@ -743,7 +1458,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/1c7ec75403428f511Xx83Nm-EVFR.html",
           "source": "BOSS直聘",
-          "tags": ["大模型", "产品解决方案"]
+          "tags": [
+            "大模型",
+            "产品解决方案"
+          ]
         },
         {
           "title": "AI解决方案架构师",
@@ -751,7 +1469,10 @@
           "location": "北京",
           "url": "https://m.zhipin.com/job_detail/548988fd06f44e1b0nR42tS4F1VR.html",
           "source": "BOSS直聘",
-          "tags": ["AI解决方案", "企业数字化"]
+          "tags": [
+            "AI解决方案",
+            "企业数字化"
+          ]
         },
         {
           "title": "大模型-产品解决方案架构师（PDSA）",
@@ -759,7 +1480,105 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/27c8fd4e94b7eb2b1Hx909-9GFFY.html",
           "source": "BOSS直聘",
-          "tags": ["PDSA", "产品解决方案"]
+          "tags": [
+            "PDSA",
+            "产品解决方案"
+          ]
+        },
+        {
+          "title": "AI大模型-解决方案架构师",
+          "company": "中科紫东太初",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/5b11f4594061760603Ry09m4FVZS.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型",
+            "城市底座",
+            "解决方案"
+          ]
+        },
+        {
+          "title": "AI解决方案架构师",
+          "company": "阿里云",
+          "location": "杭州",
+          "url": "https://m.zhipin.com/job_detail/2f5a1c882571839503163NW4ElJY.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI场景",
+            "需求分析",
+            "解决方案"
+          ]
+        },
+        {
+          "title": "AI解决方案专家",
+          "company": "中软国际",
+          "location": "北京",
+          "url": "https://m.zhipin.com/job_detail/d197446f86eab456031509m5FFpW.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI解决方案",
+            "业务转化"
+          ]
+        },
+        {
+          "title": "豆包AI大模型产品解决方案架构师",
+          "company": "火山方舟",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/e621c821663bf2e50nV739y_FFZR.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "豆包",
+            "MaaS",
+            "火山方舟"
+          ]
+        },
+        {
+          "title": "豆包AI大模型产品解决方案架构师",
+          "company": "火山方舟",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/3353a4a5f66dd7020nR40tq7F1dR.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "豆包",
+            "MaaS",
+            "火山方舟"
+          ]
+        },
+        {
+          "title": "AI技术架构师",
+          "company": "圆通速递",
+          "location": "上海",
+          "url": "https://www.zhipin.com/job_detail/a11c42a002eef81e03V93dq5EltY.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI技术中台",
+            "高可用",
+            "可扩展"
+          ]
+        },
+        {
+          "title": "具身AI架构师",
+          "company": "荣耀",
+          "location": "深圳",
+          "url": "https://www.zhipin.com/job_detail/b17de3f399f271f503Z92ti6FFtW.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "多模态",
+            "大模型智能体",
+            "具身AI"
+          ]
+        },
+        {
+          "title": "人工智能架构师",
+          "company": "拓恒技术",
+          "location": "深圳",
+          "url": "https://www.zhipin.com/job_detail/a37b985ab8ac3d670nR52NS8FFNZ.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "LLMOps",
+            "RAG",
+            "Agent框架"
+          ]
         }
       ]
     },
@@ -772,7 +1591,11 @@
           "location": "杭州",
           "url": "https://www.zhipin.com/job_detail/055f87214807b6541X183NS4FVVT.html",
           "source": "BOSS直聘",
-          "tags": ["AGI", "核心系统", "深度求索"]
+          "tags": [
+            "AGI",
+            "核心系统",
+            "深度求索"
+          ]
         },
         {
           "title": "AGI大模型-数据百晓生实习生",
@@ -780,7 +1603,11 @@
           "location": "杭州",
           "url": "https://www.zhipin.com/job_detail/adb6fe85395c2ed31HJ83tq4GFFR.html",
           "source": "BOSS直聘",
-          "tags": ["AGI", "数据", "实习生"]
+          "tags": [
+            "AGI",
+            "数据",
+            "实习生"
+          ]
         },
         {
           "title": "大模型对齐算法工程师（Alignment）",
@@ -788,7 +1615,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/6e1778b9847375471Hd43t24E1ZX.html",
           "source": "BOSS直聘",
-          "tags": ["AI对齐", "Alignment", "算法"]
+          "tags": [
+            "AI对齐",
+            "Alignment",
+            "算法"
+          ]
         },
         {
           "title": "大模型强化学习专家",
@@ -796,7 +1627,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/c64f5fe7f666b39803B70tW6FVBW.html",
           "source": "BOSS直聘",
-          "tags": ["强化学习", "RLHF", "专家"]
+          "tags": [
+            "强化学习",
+            "RLHF",
+            "专家"
+          ]
         },
         {
           "title": "人工智能安全研究员",
@@ -804,7 +1639,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/zhaopin/c1ac0645bbf063381n162Nu0FQ~~/",
           "source": "BOSS直聘",
-          "tags": ["AI安全", "安全研究"]
+          "tags": [
+            "AI安全",
+            "安全研究"
+          ]
         },
         {
           "title": "人工智能策略与企业安全专家",
@@ -812,7 +1650,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/zhaopin/2855cd5514aaf8ad33N409q_/",
           "source": "BOSS直聘",
-          "tags": ["AI安全", "策略", "企业安全"]
+          "tags": [
+            "AI安全",
+            "策略",
+            "企业安全"
+          ]
         },
         {
           "title": "人工智能研究员",
@@ -820,7 +1662,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/zhaopin/7d4ecb35d510c14d0nN639W-/",
           "source": "BOSS直聘",
-          "tags": ["前沿研究", "AI理论"]
+          "tags": [
+            "前沿研究",
+            "AI理论"
+          ]
         },
         {
           "title": "AI应用安全策略专家",
@@ -828,7 +1673,11 @@
           "location": "北京",
           "url": "https://www.zhipin.com/zhaopin/f9679b9cadabb5051nFz3t21Eg~~/",
           "source": "BOSS直聘",
-          "tags": ["AI安全", "内容安全", "策略"]
+          "tags": [
+            "AI安全",
+            "内容安全",
+            "策略"
+          ]
         },
         {
           "title": "大模型数据训练师",
@@ -836,7 +1685,10 @@
           "location": "北京",
           "url": "https://www.zhipin.com/job_detail/e6871c5ba5b7841e1HZz2t-5EVRW.html",
           "source": "BOSS直聘",
-          "tags": ["数据训练", "数据合成"]
+          "tags": [
+            "数据训练",
+            "数据合成"
+          ]
         },
         {
           "title": "人工智能高级工程师",
@@ -844,7 +1696,118 @@
           "location": "北京",
           "url": "https://www.zhipin.com/zhaopin/475c2286ce604fee1nJ82NS4/",
           "source": "BOSS直聘",
-          "tags": ["AI", "高级工程师"]
+          "tags": [
+            "AI",
+            "高级工程师"
+          ]
+        },
+        {
+          "title": "研究员（AI安全方向）",
+          "company": "智源人工智能研究院",
+          "location": "北京",
+          "url": "https://m.zhipin.com/job_detail/ee3ab1f669b5a9d203F43du_FVdY.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI安全",
+            "大模型安全对齐",
+            "算法"
+          ]
+        },
+        {
+          "title": "可信AI算法青年研究员",
+          "company": "上海人工智能创新中心",
+          "location": "上海",
+          "url": "https://m.zhipin.com/job_detail/24dc00d31ff731a703x63Nu-GFtU.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "Make Safe AI",
+            "大模型安全",
+            "对齐"
+          ]
+        },
+        {
+          "title": "多模态模型安全&对齐研究员",
+          "company": "SenseTime",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/b144868606a7fb691Hx-39-0FFVT.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "安全围栏",
+            "SFT/RLHF",
+            "安全评测"
+          ]
+        },
+        {
+          "title": "大模型算法研究员-AI安全方向",
+          "company": "京东集团",
+          "location": "北京",
+          "url": "https://m.zhipin.com/job_detail/7f088df6e08e48c403x80tq8GVpY.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI安全评估",
+            "多模态融合",
+            "安全对齐"
+          ]
+        },
+        {
+          "title": "深度学习研究员-AGI（校招&实习）",
+          "company": "DeepSeek",
+          "location": "北京",
+          "url": "https://www.zhipin.com/zhaopin/0561a893801b61201nJ73di1/",
+          "source": "BOSS直聘",
+          "tags": [
+            "AGI",
+            "多模态",
+            "AI安全与隐私"
+          ]
+        },
+        {
+          "title": "大模型Post train算法工程师/研究员",
+          "company": "阶跃星辰",
+          "location": "北京/上海",
+          "url": "https://www.zhipin.com/zhaopin/841631a6bd2c51cb3nJ-290~/",
+          "source": "BOSS直聘",
+          "tags": [
+            "Alignment",
+            "后训练",
+            "大模型"
+          ]
+        },
+        {
+          "title": "多模态大模型算法研究员-AI安全与治理",
+          "company": "中国电信",
+          "location": "北京/上海",
+          "url": "https://www.zhipin.com/zhaopin/bfa7fca87fea85aa1nJ_2tm1Fg~~/",
+          "source": "BOSS直聘",
+          "tags": [
+            "AGI",
+            "安全治理",
+            "多模态"
+          ]
+        },
+        {
+          "title": "车用大模型安全工程师",
+          "company": "吉利研究院",
+          "location": "宁波",
+          "url": "https://m.zhipin.com/job_detail/f1251716afc402e203B_2dS_ElJW.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "价值对齐",
+            "鲁棒性",
+            "车载大模型"
+          ]
+        },
+        {
+          "title": "顶尖实习-大模型安全能力研究员-MiMo",
+          "company": "小米",
+          "location": "北京",
+          "url": "https://www.zhipin.com/zhaopin/93ad7626e3977c641n153dq1Fg~~/",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型安全",
+            "对齐",
+            "评测"
+          ]
         }
       ]
     }
@@ -852,10 +1815,22 @@
   "salary_insights": {
     "note": "薪资数据来自BOSS直聘等公开招聘信息，实际薪资以岗位为准",
     "by_level": [
-      {"level": "初级 (1-3年)", "range": "20-40K·14-16薪"},
-      {"level": "中级 (3-5年)", "range": "30-60K·15-16薪"},
-      {"level": "高级 (5-10年)", "range": "40-70K·15-16薪"},
-      {"level": "资深/专家", "range": "50-80K·14-20薪"}
+      {
+        "level": "初级 (1-3年)",
+        "range": "20-40K·14-16薪"
+      },
+      {
+        "level": "中级 (3-5年)",
+        "range": "30-60K·15-16薪"
+      },
+      {
+        "level": "高级 (5-10年)",
+        "range": "40-70K·15-16薪"
+      },
+      {
+        "level": "资深/专家",
+        "range": "50-80K·14-20薪"
+      }
     ],
     "by_category": {
       "大模型推理/部署": "30-80K，专家岗可达60-80K·18薪",
@@ -867,19 +1842,92 @@
     }
   },
   "hot_companies": [
-    "腾讯", "字节跳动", "大疆", "滴滴", "淘天", "快手", "智谱华章",
-    "阶跃星辰", "Momenta", "上海AI Lab", "中科院计算所", "京东科技",
-    "招商局集团", "美的", "华为", "NVIDIA", "美团", "MiniMax",
-    "阿里云", "软通动力", "幻方-深度求索", "贝壳", "荣耀", "小米",
-    "海光信息", "元石", "联汇科技"
+    "字节跳动",
+    "北京某科技公司",
+    "快手",
+    "美团",
+    "摩尔线程",
+    "智谱华章",
+    "京东科技",
+    "阿里云",
+    "上海人工智能创新中心",
+    "上海 AI Lab",
+    "腾讯",
+    "阶跃星辰",
+    "智源人工智能研究院",
+    "蚂蚁集团",
+    "大疆 DJI",
+    "荣耀",
+    "京东集团",
+    "云道智造",
+    "小米",
+    "火山方舟",
+    "幻方-深度求索",
+    "中国科学院计算技术研究所",
+    "平安健康保险",
+    "滴滴",
+    "Momenta",
+    "招商局集团",
+    "元石",
+    "联汇科技",
+    "某大型互联网公司",
+    "理想汽车",
+    "某半导体公司",
+    "Dobot",
+    "MiMo",
+    "超聚变技术",
+    "淘天集团"
   ],
   "hot_skills": [
-    "大模型推理", "vLLM", "TRT-LLM", "GPU优化", "量化", "CUDA",
-    "Agent", "RAG", "Prompt Engineering", "多模态",
-    "分布式部署", "MoE", "KV Cache", "FlashAttention",
-    "SGLang", "PagedAttention", "AWQ", "GPTQ",
-    "Function Calling", "具身智能", "AGI", "AI对齐",
-    "AI安全", "强化学习", "RLHF", "Pretrain", "SFT",
-    "DeepResearch", "PlanExecutor", "VLA", "端侧推理"
+    "AI Agent",
+    "推理优化",
+    "多模态",
+    "CUDA",
+    "RAG",
+    "解决方案",
+    "推理引擎",
+    "vLLM",
+    "AI安全",
+    "推理加速",
+    "推理框架",
+    "具身智能",
+    "RLHF",
+    "GPU",
+    "高性能计算",
+    "AGI",
+    "推理",
+    "性能优化",
+    "研发",
+    "量化",
+    "MoE",
+    "SGLang",
+    "多智能体协作",
+    "大模型应用",
+    "Agent",
+    "SFT",
+    "硬件",
+    "预训练",
+    "豆包",
+    "火山方舟",
+    "系统研发",
+    "部署",
+    "语音",
+    "视频生成",
+    "部署工具",
+    "PyTorch",
+    "Agent框架",
+    "LangGraph",
+    "DPO",
+    "数据",
+    "可信AI",
+    "安全",
+    "机器人",
+    "基座模型",
+    "后训练",
+    "分布式训练",
+    "AI平台",
+    "并行计算",
+    "实习生",
+    "产品解决方案"
   ]
 }
