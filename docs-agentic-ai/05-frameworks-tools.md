@@ -582,9 +582,11 @@ result = agent.run("比较 AAPL 和 GOOGL 的股价，哪个更高？")
 
 ---
 
-### LangGraph 详解（生产首选）
+### LangGraph 概述（生产首选框架）
 
-#### 核心概念：显式状态图
+> **LangGraph 的完整深指南已移至独立章节**：[LangGraph 深度指南](./langgraph-deep-dive.md)。本章保留概述，详细内容请前往专章学习。
+
+LangGraph 的核心思想：**将 Agent 的行为建模为显式的状态图**。每个节点做一件事，每条边决定下一步去哪，条件边实现分支逻辑。
 
 ```mermaid
 graph TD
@@ -603,98 +605,19 @@ graph TD
     style F fill:#42b883,color:#fff
 ```
 
-LangGraph 的核心思想：**将 Agent 的行为建模为显式的状态图**。
+**五大组件：** StateGraph（图容器）、State（Agent 记忆）、Node（节点函数）、Edge（确定边）、Conditional Edge（条件边）。
 
-```python
-from langgraph.graph import StateGraph, END
-from typing import TypedDict, Literal
-from pydantic import BaseModel, Field
-
-# 1. 定义状态——这是 Agent 的"记忆"
-class AgentState(TypedDict):
-    query: str           # 用户查询
-    results: list[dict]  # 检索结果
-    answer: str          # 最终答案
-    sources: list[str]   # 引用来源
-    history: list[str]   # 执行日志
-
-# 2. 定义节点函数——每个节点做一件事
-def retrieve(state: AgentState) -> dict:
-    """检索节点：从知识库搜索相关信息。"""
-    query = state["query"]
-    results = mock_search(query)  # 替换为实际检索
-    history = state["history"] + [f"检索: {query} → {len(results)} 条结果"]
-    return {"results": results, "history": history}
-
-def synthesize(state: AgentState) -> dict:
-    """综合节点：用 LLM 基于检索结果生成答案。"""
-    context = "\n".join(r["content"] for r in state["results"])
-    answer = mock_llm_answer(state["query"], context)
-    sources = [r["title"] for r in state["results"]]
-    history = state["history"] + [f"生成答案: {answer[:30]}..."]
-    return {"answer": answer, "sources": sources, "history": history}
-
-def apologize(state: AgentState) -> dict:
-    """道歉节点：无结果时返回。"""
-    history = state["history"] + ["无检索结果，返回道歉信息"]
-    return {
-        "answer": "抱歉，我目前没有相关信息。",
-        "sources": [],
-        "history": history,
-    }
-
-# 3. 定义路由函数——决定下一步
-def router(state: AgentState) -> Literal["synthesize", "apologize"]:
-    """根据检索结果决定走哪条路径。"""
-    if state["results"]:
-        return "synthesize"
-    return "apologize"
-
-# 4. 构建图
-graph = StateGraph(AgentState)
-
-# 添加节点
-graph.add_node("retrieve", retrieve)
-graph.add_node("synthesize", synthesize)
-graph.add_node("apologize", apologize)
-
-# 添加边
-graph.set_entry_point("retrieve")
-graph.add_conditional_edges(
-    "retrieve",       # 从 retrieve 节点出来
-    router,           # 用 router 函数决定去哪
-    {                 # 映射：router 返回值 → 目标节点
-        "synthesize": "synthesize",
-        "apologize": "apologize",
-    },
-)
-graph.add_edge("synthesize", END)
-graph.add_edge("apologize", END)
-
-# 5. 编译并运行
-app = graph.compile()
-
-result = app.invoke({
-    "query": "什么是 KV Cache？",
-    "results": [],
-    "answer": "",
-    "sources": [],
-    "history": [],
-})
-
-print(result["answer"])
-print("执行路径:", result["history"])
-```
-
-#### 为什么 LangGraph 适合生产
+**为什么 LangGraph 适合生产：**
 
 | 特性 | 说明 | 生产价值 |
 |------|------|----------|
 | **可观测性** | 每个节点、每条边的执行都有日志 | 问题定位精确到节点 |
-| **可恢复性** | MemorySaver 检查点，断点恢复 | 长时间运行任务不丢失状态 |
+| **可恢复性** | MemorySaver/PostgresSaver 检查点 | 长时间运行不丢失状态 |
 | **可控性** | 显式条件分支，无黑盒 | 避免死循环、无限重试 |
-| **可测试性** | 每个节点是纯函数（输入→输出） | 单元测试覆盖 |
-| **多智能体** | 原生支持 supervisor/handoff 模式 | 无需换框架 |
+| **可测试性** | 每个节点是纯函数 | 单元测试覆盖 |
+| **多智能体** | 原生支持 supervisor/handoff | 无需换框架 |
+
+**专章内容速览：** 状态设计模式（TypedDict/Reducer）、图结构模式（线性/条件/循环/子图/并行）、Memory 与持久化、Streaming 与可观测、Interrupt 人在回路、多智能体编排、Tool Calling 深度、错误处理与重试、FastAPI 生产部署、完整 RAG Agent 实战、面试考点。详见 [LangGraph 深度指南](./langgraph-deep-dive.md)。
 
 ---
 

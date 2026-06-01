@@ -1,0 +1,319 @@
+---
+sidebar_position: 22
+sidebar_label: 学习路线图
+---
+
+# 从 JD 提取的学习路线图：2026 AI 岗位技能全解
+
+> 基于 14 个真实 JD（淘天、公安部一所、上海 AI Lab、平安保险、滴滴、腾讯、字节跳动、快手等），
+> 将岗位需求拆解为 6 层知识体系，每章附 JD 原文引用和学习优先级。
+
+## 一、编程语言基础（所有岗位都要求）
+
+### 1.1 Python（必学，100% 要求）
+
+**JD 原文引用：**
+- 淘天："精通 TypeScript / Node.js / Python 中至少一门语言"
+- 公安部一所："熟悉 Linux + C++ / Python 开发环境"
+- 平安保险："熟练掌握 C/C++、Python、Rust 中的一种或多种"
+- 上海AI Lab："优秀的编程能力 (Python/C++)"
+
+**需要掌握：**
+- Python 异步编程（asyncio）—— Agent 调用 LLM API 必须
+- 面向对象设计 —— 框架扩展、工具封装
+- 类型注解（typing）—— 大型项目可维护性
+- 性能优化（Cython、multiprocessing）—— 推理服务并发
+
+### 1.2 C++ / Rust（推理方向必学）
+
+**JD 原文引用：**
+- 平安保险："熟练掌握 C/C++、Python、Rust 中的一种或多种，工程素养扎实"
+- 上海AI Lab："针对硬件（GPU/昇腾）特性进行底层优化"
+- 公安部一所："熟悉 Linux + C++ / Python 开发环境"
+
+**需要掌握：**
+- C++ 内存管理、模板编程 —— 推理引擎底层
+- 跨平台编译（Linux 为主）
+- Rust 基础（加分项，平安保险明确提到）
+
+### 1.3 TypeScript / Node.js（Agent 应用方向）
+
+**JD 原文引用：**
+- 淘天："精通 TypeScript / Node.js / Python 中至少一门语言"
+- 淘天："熟悉 Vue / React 等主流前端框架"
+
+**需要掌握：**
+- TypeScript 类型系统 —— AI Native 应用前端
+- Node.js 服务端 —— Agent 后端 API
+- React/Vue 框架 —— AI 产品交互界面
+
+---
+
+## 二、深度学习与 Transformer 基础
+
+### 2.1 深度学习框架
+
+**JD 原文引用：**
+- 公安部一所："熟悉深度学习框架（如 PyTorch / TensorFlow）"
+- 上海AI Lab："深入理解 Verl/vLLM/Megatron 底层机制"
+
+**需要掌握：**
+- PyTorch 核心概念（Tensor、autograd、nn.Module）
+- 模型定义、训练循环、评估流程
+- DataLoader、Dataset —— 数据处理管线
+
+### 2.2 Transformer 架构（必学）
+
+**JD 原文引用：**
+- 上海AI Lab："扎实的算法基础，熟悉 Transformer 架构及大模型关键技术 (如 KV Cache, Flash Attention)"
+- 平安保险："熟悉 Transformer 架构及主流大模型结构（Qwen、DeepSeek 等），理解前向推理计算流程"
+
+**需要掌握：**
+- Self-Attention 机制（QKV、多头注意力）
+- Position Encoding（RoPE 等）
+- LayerNorm、FFN、残差连接
+- Decoder-only vs Encoder-Decoder
+- **KV Cache**（3 个 JD 都提到）
+- **Flash Attention**（上海AI Lab 明确要求）
+
+### 2.3 主流大模型结构
+
+**JD 原文引用：**
+- 平安保险："理解前向推理计算流程"（Qwen、DeepSeek 等）
+
+**需要了解：**
+- Qwen 系列架构特点
+- DeepSeek 系列架构特点（MoE、DeepSeek-V2/V3 的 MLA）
+- Llama 系列架构
+
+---
+
+## 三、推理框架与优化（最高频技能）
+
+### 3.1 推理框架（至少精通一个）
+
+**JD 原文引用：**
+- 公安部一所："参与模型部署与推理框架优化，包括但不限于 TensorRT、ONNX Runtime、vLLM、Triton 等"
+- 平安保险："基于 vLLM、SGLang、TensorRT-LLM 等框架，建设和优化推理服务能力"
+- 上海AI Lab："开发或改进大模型框架（如Verl、vLLM、Megatron等）"
+- 平安保险加分项："有 vLLM、SGLang、TensorRT-LLM 二次开发或开源贡献经验"
+
+| 框架 | 适用场景 | 学习优先级 |
+|------|---------|-----------|
+| **vLLM** | 大模型推理服务，PagedAttention | ★★★★★ 必学 |
+| **SGLang** | 结构化生成、推理编排 | ★★★★ 重点 |
+| **TensorRT-LLM** | NVIDIA GPU 高性能推理 | ★★★★ 重点 |
+| **Triton Inference Server** | 生产级模型服务化 | ★★★ 重要 |
+| **ONNX Runtime** | 跨平台推理 | ★★★ 重要 |
+| **Megatron** | 分布式训练/推理 | ★★★ 重要 |
+| **Verl** | 强化学习后训练 | ★★ 进阶 |
+
+### 3.2 推理优化技术
+
+**JD 原文引用：**
+- 公安部一所："负责模型量化、剪枝、蒸馏、算子融合等推理加速技术的落地"
+- 公安部一所："优化 GPU / CPU / NPU 等硬件上的模型推理效率，包括显存、延迟、吞吐量优化"
+- 公安部一所："参与大模型推理架构设计，例如 KV Cache、Batching、流水线并行等优化策略"
+- 平安保险："熟悉常见推理优化技术，如 PagedAttention、Prefix Cache、Speculative Decoding、量化等"
+- 平安保险加分项："有 PD 分离、Expert Parallel、KV Cache 优化等实战经验"
+
+**需要掌握（按优先级）：**
+
+| 技术 | 说明 | JD 出现次数 | 首次提到公司 |
+|------|------|------------|------------|
+| **量化**（INT8/FP16/FP8） | 降低精度换速度 | 7 次 | 公安部一所、滴滴、腾讯 |
+| **vLLM** | 主流推理框架 | 9 次 | 所有推理岗 |
+| **CUDA Kernel 开发** | GPU 底层编程 | 6 次 | 滴滴、上海AI Lab、字节跳动 |
+| **Triton（编程框架）** | Python 写 GPU kernel | 5 次 | 字节跳动、腾讯、快手 |
+| **KV Cache 优化** | 减少重复计算 | 5 次 | 上海AI Lab、字节跳动、腾讯 |
+| **SGLang** | 结构化生成推理 | 5 次 | 字节跳动、腾讯、快手、滴滴 |
+| **PagedAttention** | vLLM 核心优化 | 3 次 | 平安、滴滴 |
+| **FlashAttention** | 注意力加速 | 3 次 | 滴滴、上海AI Lab |
+| **Continuous Batching** | 高并发推理 | 3 次 | 滴滴 |
+| **Speculative Decoding** | 推测解码加速 | 2 次 | 上海AI Lab（浦东） |
+| **PD 分离**（Prefill/Decode） | 推理两阶段分离 | 1 次 | 平安保险 |
+| **MoE 推理** | 混合专家架构 | 2 次 | 上海AI Lab（浦东）、腾讯 |
+| **算子融合** | 减少 kernel launch 开销 | 2 次 | 公安部一所 |
+| **Tensor Parallel** | 张量并行 | 2 次 | 平安保险 |
+| **Pipeline Parallel** | 流水线并行 | 1 次 | 平安保险 |
+| **Expert Parallel** | MoE 专家并行 | 1 次 | 平安保险 |
+| **LoRA/DPO/RLHF** | 模型微调/对齐 | 3 次 | 双深科技、上海AI Lab |
+
+### 3.3 GPU / 底层优化（加分但高薪必备）
+
+**JD 原文引用：**
+- 公安部一所："优化 GPU / CPU / NPU 等硬件上的模型推理效率"
+- 上海AI Lab："精通 CUDA、OpenAI Triton 或 Ascend C，能进行内核级性能优化"
+- 上海AI Lab："解决大模型在训练/推理中的瓶颈问题（如计算、存储、通信）"
+- 平安保险加分项："有 CUDA/Triton Kernel 开发或 GPU 架构级性能调优经验"
+
+**需要掌握：**
+- CUDA 基础编程（kernel 编写、内存管理）
+- OpenAI Triton（Python 写 GPU kernel）
+- GPU 架构基础（SM、显存层级、warp）
+- NCCL 通信库（分布式训练/推理）
+
+---
+
+## 四、Agent 工程（应用方向核心）
+
+### 4.1 Agent 核心能力
+
+**JD 原文引用：**
+- 淘天："参与 AI Agent 系统的设计与研发，探索基于大模型的任务理解、工具调用与流程编排能力"
+- 钉钉："参与Agent设计、开发和维护，完成从需求到设计、开发和上线等全项目周期工作"
+- 钉钉："负责将Agent落地到实际业务场景，包括但不限于Prompt工程、RAG优化、Multi-Agent构建、Memory系统、RL系统、流程编排、知识库建设、内容生成及业务流程自动化等"
+- 钉钉："熟练掌握Agent架构核心组件设计原理和调优方案，对开源的 Agent 框架了解者优先，包含而不限于ADK，Prompt 调优，Function Calling，RAG，上下文工程及压缩等"
+
+**需要掌握：**
+
+| 能力 | 对应技术 | 相关章节 |
+|------|---------|---------|
+| **任务理解** | Prompt Engineering、ReAct 模式 | [03-context-engineering](/agentic-ai/03-context-engineering) |
+| **工具调用** | LangChain @tool、MCP 协议、Function Calling | [05-frameworks-tools](/agentic-ai/05-frameworks-tools) |
+| **流程编排** | LangGraph StateGraph、条件分支、ADK | [LangGraph 深度指南](/agentic-ai/langgraph-deep-dive) |
+| **多轮对话** | MemorySaver、PostgresSaver、Memory 系统 | [07-agent-memory](/agentic-ai/07-agent-memory) |
+| **人在回路** | interrupt_before、update_state | [LangGraph 深度指南](/agentic-ai/langgraph-deep-dive) |
+| **多智能体** | Supervisor/Handoff 模式、Multi-Agent 构建 | [08-multi-agent](/agentic-ai/08-multi-agent) |
+| **上下文压缩** | 上下文工程、Context Compression | [03-context-engineering](/agentic-ai/03-context-engineering) |
+| **RL 系统** | 强化学习后训练、RLHF | [模型微调/增训](#43-模型微调增训) |
+
+### 4.2 RAG 系统
+
+**JD 原文引用：**
+- 淘天："对大模型技术（如 Agent、RAG、Prompt Engineering、模型推理等）有实践或深入理解"
+- 淘天加分项："有 AI Agent、RAG 系统或 AI 自动化工具等相关项目经验"
+- 上海AI Lab加分项："熟悉 LLM 生态工具链 (如 Hugging Face, LangChain, LoRA)"
+
+**需要掌握：**
+- 文档分块策略（按段落、按语义、固定长度）
+- 向量数据库（Milvus、Chroma、FAISS）
+- 检索策略（BM25 + 向量混合检索）
+- 重排序（Cross-encoder Reranker）
+- RAG 评估（RAGAS、DeepEval）
+
+相关章节：[06-rag-system](/agentic-ai/06-rag-system)
+
+### 4.3 模型微调/增训
+
+**JD 原文引用：**
+- 上海AI Lab："预训练、增训微调、强化学习后训练、高性能推理落地的全流程工作"
+- 上海AI Lab加分项："熟悉 LLM 生态工具链 (如 Hugging Face, LangChain, LoRA)"
+
+**需要了解：**
+- LoRA / QLoRA 微调
+- SFT（Supervised Fine-Tuning）
+- RLHF（Reinforcement Learning from Human Feedback）
+- Hugging Face Transformers 库
+
+---
+
+## 五、生产部署与工程实践
+
+### 5.1 服务化与部署
+
+**JD 原文引用：**
+- 公安部一所："设计并实现高性能推理服务，支持大规模并发请求"
+- 公安部一所："熟悉推理服务框架（如 Triton、vLLM、Ray Serve、FastAPI 等）优先"
+- 上海AI Lab："设计容错、弹性伸缩的推理平台，支持多租户、高并发场景需求"
+- 上海AI Lab："熟悉 Linux 开发环境与容器化技术 (Docker/K8s)"
+- 平安保险："熟悉 Docker/Kubernetes，有模型服务容器化部署经验"
+
+**需要掌握：**
+
+| 技术 | 用途 | 学习优先级 |
+|------|------|-----------|
+| **FastAPI** | 快速构建 API 服务 | ★★★★★ 必学 |
+| **Docker** | 容器化部署 | ★★★★★ 必学 |
+| **Kubernetes** | 集群编排、弹性伸缩 | ★★★★ 重要 |
+| **Triton Inference Server** | 模型服务化 | ★★★ 重要 |
+| **Ray Serve** | 分布式推理服务 | ★★ 进阶 |
+| **Nginx / API Gateway** | 反向代理、负载均衡 | ★★★ 重要 |
+
+### 5.2 分布式通信
+
+**JD 原文引用：**
+- 上海AI Lab："熟悉 NCCL、RDMA、MPI 等通信协议，有大规模分布式训练调优经验"
+- 上海AI Lab："优化分布式计算、显存管理、通信效率等关键模块"
+- 平安保险："了解分布式推理（TP/PP/EP）及 NCCL 等通信库"
+
+**需要了解：**
+- NCCL（NVIDIA 集合通信库）
+- Tensor Parallel / Pipeline Parallel / Expert Parallel
+- RDMA 基础概念
+
+### 5.3 工程素养
+
+**JD 原文引用：**
+- 淘天："具备良好的工程设计能力与代码质量意识"
+- 淘天："具备良好的系统设计能力与技术前瞻性"
+- 淘天："能够在快速变化的 AI 技术环境中持续迭代系统能力"
+- 公安部一所："具备良好的工程能力和性能调优经验"
+- 平安保险："认真负责，主动性强，有担当，愿意处理排障、调试、验证等基础但关键的工作"
+
+**需要掌握：**
+- Git 工作流
+- 单元测试 / 集成测试
+- CI/CD 基础
+- 性能 profiling（cProfile、py-spy）
+- 日志与监控（Prometheus、Grafana）
+- 错误处理与重试机制
+
+---
+
+## 六、加分项（拉开薪资差距的关键）
+
+| 加分项 | 出现 JD | 对应学习方向 |
+|--------|---------|------------|
+| **CUDA / Triton Kernel 开发** | 平安、上海AI Lab、滴滴、海翼电子 | GPU 编程 |
+| **vLLM / SGLang / TensorRT-LLM 二次开发或开源贡献** | 平安、滴滴、字节跳动 | 推理框架源码 |
+| **百亿以上参数大模型训练/推理落地经验** | 上海AI Lab | 分布式训练/推理 |
+| **MLSys / NeurIPS / OSDI 顶会论文** | 上海AI Lab、双深科技、腾讯 | 学术研究 |
+| **AI Agent / RAG 系统相关项目经验** | 淘天、钉钉 | 项目实战（本路线图第 14-17 阶段） |
+| **模型部署、推理优化、向量数据库、RAG 架构** | 淘天 | 全栈 AI 工程 |
+| **AI Coding 工具熟练使用** | 平安 | Claude Code / Cursor |
+| **大规模推理系统经验** | 字节跳动、滴滴 | 分布式推理 |
+| **GPU/NPU 异构计算算子优化** | 滴滴、腾讯、上海AI Lab | GPU 底层编程 |
+| **LoRA/DPO/RLHF 大模型微调** | 双深科技、上海AI Lab | 模型增训 |
+| **ACM/Kaggle 竞赛获奖** | 钉钉（阿里） | 编程竞赛 |
+| **NPU/DSP 嵌入式部署** | 海翼电子（Anker） | 边缘计算 |
+| **EDA 领域大模型** | 宁波数字孪生 | 垂直行业 |
+
+---
+
+## 学习路径映射
+
+基于 JD 分析，Agentic AI 系统学习路线图的覆盖情况：
+
+| 路线图阶段 | 覆盖的 JD 需求 | 覆盖度 |
+|-----------|--------------|-------|
+| 01-Python 工程基础 | 所有岗位的基础要求 | ✅ 100% |
+| 02-LLM 基础 | Transformer、KV Cache、主流模型 | ✅ 100% |
+| 03-Context Engineering | Prompt Engineering、RAG | ✅ 100% |
+| 04-Harness Engineering | 工程质量、约束验证 | ✅ 100% |
+| 05-框架与工具 | 工具调用、MCP 协议 | ✅ 100% |
+| LangGraph 深度指南 | Agent 系统设计与编排 | ✅ 100% |
+| 06-RAG 系统 | RAG 全流程 | ✅ 100% |
+| 07-Agent 记忆 | 多轮对话记忆 | ✅ 100% |
+| 08-多智能体 | Supervisor/Handoff 编排 | ✅ 100% |
+| 09-Safety & Guardrails | 生产安全（淘天要求"稳定可扩展"） | ✅ 100% |
+| 10-生产部署 | FastAPI + Docker + K8s | ✅ 100% |
+| 12-评估与可观测性 | 质量验证、成本追踪 | ✅ 100% |
+| 13-Agent 设计模式 | ReAct、Reflection 等 | ✅ 100% |
+| 14-综合实战 | Agent/RAG 项目经验（淘天加分项） | ✅ 100% |
+| 15-Agent 平台 | 类 OpenClaw 平台构建 | ✅ 覆盖加分项 |
+| 16-生产级 RAG | 淘天加分项"RAG 架构" | ✅ 100% |
+| 17-MCP Server | MCP 工具注册 | ✅ 覆盖加分项 |
+
+**路线图未直接覆盖的部分**（需要额外学习）：
+
+| 未覆盖 | 建议学习路径 |
+|--------|------------|
+| CUDA / Triton Kernel | 推荐：[CUDA Programming Guide](https://docs.nvidia.com/cuda/) + [Triton 官方教程](https://triton-lang.org/) |
+| 量化技术细节（INT8/FP8） | 推荐：[BitsAndBytes 文档](https://huggingface.co/docs/bitsandbytes/) |
+| 分布式训练（Megatron/Verl） | 推荐：[Megatron-LM GitHub](https://github.com/NVIDIA/Megatron-LM) |
+| GPU 集群调度（K8s + GPU） | 推荐：[K8s Device Plugin for GPU](https://github.com/NVIDIA/k8s-device-plugin) |
+
+---
+
+> **关联阅读**：[FDE 招聘动态](/agentic-ai/18-job-market-analysis) —— 岗位概览、薪资数据、技能频率统计

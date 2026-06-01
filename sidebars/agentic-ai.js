@@ -36,6 +36,10 @@ const sidebars = {
     },
     {
       type: 'doc',
+      id: 'langgraph-deep-dive',
+    },
+    {
+      type: 'doc',
       id: '06-rag-system',
     },
     {
@@ -77,6 +81,46 @@ const sidebars = {
     {
       type: 'doc',
       id: '13-agent-design-patterns',
+    },
+    {
+      type: 'html',
+      value: '<div class="sidebar-stage">L6 实战</div>',
+    },
+    {
+      type: 'doc',
+      id: '14-project-trend-analysis',
+    },
+    {
+      type: 'html',
+      value: '<div class="sidebar-stage">L6 平台构建</div>',
+    },
+    {
+      type: 'doc',
+      id: '15-project-agent-platform',
+    },
+    {
+      type: 'html',
+      value: '<div class="sidebar-stage">L7 RAG 与协议</div>',
+    },
+    {
+      type: 'doc',
+      id: '16-project-rag-system',
+    },
+    {
+      type: 'doc',
+      id: '17-project-mcp-server',
+    },
+    {
+      type: 'html',
+      value: '<div class="sidebar-stage">JD 知识图谱</div>',
+    },
+    {
+      type: 'doc',
+      id: '18-job-market-analysis',
+    },
+    {
+      type: 'doc',
+      id: '19-learning-roadmap',
     },
   ],
 };

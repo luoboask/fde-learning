@@ -31,7 +31,8 @@ Agentic AI 工程的本质不是"学框架"，而是理解**智能体如何安�
 |------|------|------|
 | [第四阶段：Harness 工程](/agentic-ai/04-harness-engineering) | 约束、反馈、验证、六层架构 | 上下文工程 |
 | [第五阶段：框架与工具调用](/agentic-ai/05-frameworks-tools) | 框架选型、工具设计、MCP 协议 | Harness 工程 |
-| [第六阶段：RAG 系统实战](/agentic-ai/06-rag-system) | 分块、检索、重排序、评估 | 工具调用 |
+| [LangGraph 深度指南](/agentic-ai/langgraph-deep-dive) | 状态图、Memory、Streaming、HITL、多智能体、生产部署 | 框架与工具调用 |
+| [第六阶段：RAG 系统实战](/agentic-ai/06-rag-system) | 分块、检索、重排序、评估 | LangGraph |
 
 ### 第 2 层：多智能体与记忆（4-6 周）
 
@@ -54,6 +55,20 @@ Agentic AI 工程的本质不是"学框架"，而是理解**智能体如何安�
 | [学习检查清单与面试锦囊](/agentic-ai/11-checklist-interview) | 10 步清单、STAR 法则、高频考点 |
 | [评估与可观测性](/agentic-ai/12-evaluation-observability) | Langfuse、DeepEval、成本追踪、基准测试 |
 | [Agent 设计模式](/agentic-ai/13-agent-design-patterns) | ReAct、Reflection、Router、HITL、Handoff |
+| [综合实战：趋势分析平台](/agentic-ai/14-project-trend-analysis) | 6 Agent 协作、多源采集、交叉验证、自动发布 |
+
+### 第 5 层：平台构建
+
+| 阶段 | 内容 |
+|------|------|
+| [构建 Agent 平台](/agentic-ai/15-project-agent-platform) | 类 OpenClaw 实现：工作区/记忆/工具/技能/Gateway |
+
+### 第 6 层：RAG 与协议
+
+| 阶段 | 内容 |
+|------|------|
+| [生产级 RAG 系统](/agentic-ai/16-project-rag-system) | 分块/混合检索/重排序/评估/护栏/部署 |
+| [MCP Server 实战](/agentic-ai/17-project-mcp-server) | MCP 协议/工具注册/资源暴露/客户端对接 |
 
 ## 2026 技术栈总览
 
@@ -91,6 +106,13 @@ Python ─→ LLM API ─→ Context Eng ─→ Harness Eng ─→ 框架选型
 | 4 层 Guardrails | 输入/行为/输出/运行时四层护栏成为生产部署标配 |
 | 可观测性标配化 | Langfuse、LangSmith 等 Agent 可观测性平台成为生产必备 |
 | 评估 vs 可观测性分离 | 评估（质量）、可观测性（运行）、基准测试（排名）成为三个独立领域 |
+
+### JD 知识图谱
+
+| 文档 | 内容 |
+|------|------|
+| [FDE 招聘动态](/agentic-ai/18-job-market-analysis) | 14 个真实 JD 概览、薪资数据、24 项技能频率排行、公司分析 |
+| [学习路线图](/agentic-ai/19-learning-roadmap) | 6 层知识体系详解（含 JD 原文引用）、学习优先级、路线图覆盖映射 |
 
 ---
 
