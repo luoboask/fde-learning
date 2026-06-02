@@ -387,4 +387,4 @@ Harness Engineering 六层：
 
 ---
 
-*上一节：[AI 编程工具对比](./ai-coding-comparison) | 下一节：[Karpathy 的 AI 生码观点](./karpathy-ai-coding)*
+*上一节：[AI 编程工具对比](/tools/ai-coding-comparison) | 下一节：[Karpathy 的 AI 生码观点](/tools/karpathy-ai-coding)*

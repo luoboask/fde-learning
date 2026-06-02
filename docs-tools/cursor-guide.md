@@ -383,8 +383,8 @@ llm = LLM(
 | "你平时怎么提升开发效率？" | 用 Cursor Tab 补全减少样板代码，用 Agent Mode 做大型重构，.cursorrules 约束 AI 行为 |
 | "AI 会替代程序员吗？" | AI 替代的是语法层面的工作，架构设计、系统思考、质量判断这些能力反而更重要（参考 Karpathy 的 Agentic Engineering 观点） |
 | "你怎么保证 AI 生成的代码质量？" | 1. 代码审查（逐行检查 AI 输出）2. 单元测试覆盖 3. Harness Engineering 约束（见 Harness Engineering 章节） |
-| "你用过哪些 AI 编程工具？" | Cursor（主力）、Claude Code（终端脚本）、对比过 Copilot，详见 [工具对比](./ai-coding-comparison) |
+| "你用过哪些 AI 编程工具？" | Cursor（主力）、Claude Code（终端脚本）、对比过 Copilot，详见 [工具对比](/tools/ai-coding-comparison) |
 
 ---
 
-*上一节：[工具教程总览](./index.md) | 下一节：[Claude Code 使用指南](./claude-code-guide)*
+*上一节：[工具教程总览](/tools/) | 下一节：[Claude Code 使用指南](/tools/claude-code-guide)*

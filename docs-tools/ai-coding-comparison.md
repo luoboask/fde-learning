@@ -164,9 +164,9 @@ flowchart TD
 
 | 阶段 | 工具 | 学习目标 | 对应文档 |
 |------|------|---------|---------|
-| L1 基础 | Cursor | Tab 补全、Chat、Cmd+K | [Cursor 教程](./cursor-guide) |
-| L2 进阶 | Cursor + Claude Code | Agent Mode、批量操作 | [Claude Code 指南](./claude-code-guide) |
-| L3 高级 | OpenSpec + AI | Spec-first 开发 | [OpenSpec 工作流](./openspec-workflow) |
+| L1 基础 | Cursor | Tab 补全、Chat、Cmd+K | [Cursor 教程](/tools/cursor-guide) |
+| L2 进阶 | Cursor + Claude Code | Agent Mode、批量操作 | [Claude Code 指南](/tools/claude-code-guide) |
+| L3 高级 | OpenSpec + AI | Spec-first 开发 | [OpenSpec 工作流](/tools/openspec-workflow) |
 | L4 专家 | Harness Engineering | 测试约束、自动化 | [Harness Engineering](/agentic-ai/04-harness-engineering) |
 
 ---
@@ -204,4 +204,4 @@ flowchart TD
 
 ---
 
-*上一节：[Claude Code 使用指南](./claude-code-guide) | 下一节：[Karpathy 的 AI 生码观点](./karpathy-ai-coding)*
+*上一节：[Claude Code 使用指南](/tools/claude-code-guide) | 下一节：[Karpathy 的 AI 生码观点](/tools/karpathy-ai-coding)*

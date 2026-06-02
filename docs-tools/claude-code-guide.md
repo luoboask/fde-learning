@@ -351,4 +351,4 @@ flowchart LR
 
 ---
 
-*上一节：[Cursor 使用教程](./cursor-guide) | 下一节：[AI 编程工具对比](./ai-coding-comparison)*
+*上一节：[Cursor 使用教程](/tools/cursor-guide) | 下一节：[AI 编程工具对比](/tools/ai-coding-comparison)*

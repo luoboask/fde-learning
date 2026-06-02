@@ -222,4 +222,4 @@ FDE 需要掌握的 Harness 技能：
 
 ---
 
-*上一节：[OpenSpec 项目开发](./openspec-workflow) | [返回工具教程总览](./index.md)*
+*上一节：[OpenSpec 项目开发](/tools/openspec-workflow) | [返回工具教程总览](/tools/)*
