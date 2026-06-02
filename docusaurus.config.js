@@ -147,14 +147,19 @@ const config = {
             position: 'left',
           },
           {
-            type: 'dropdown',
-            label: '趋势与招聘',
+            to: '/trends/',
+            label: 'AI 行业趋势',
             position: 'left',
-            items: [
-              { to: '/trends/', label: 'AI 行业趋势' },
-              { to: '/jobs/', label: 'FDE 招聘动态' },
-              { to: '/agentic-ai/18-job-market-analysis', label: '岗位知识图谱' },
-            ],
+          },
+          {
+            to: '/jobs/',
+            label: 'FDE 招聘动态',
+            position: 'left',
+          },
+          {
+            to: '/agentic-ai/18-job-market-analysis',
+            label: '岗位知识图谱',
+            position: 'left',
           },
           {
             href: 'https://github.com/luoboask/fde-learning',
