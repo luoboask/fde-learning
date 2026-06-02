@@ -275,6 +275,51 @@ const CATEGORIES: CategoryGroup[] = [
     bg: '#f3e8ff',
     products: [
       {
+        name: 'Mina Meeting Assistant',
+        tagline: '会说话的会议 AI，不只是记笔记',
+        description: '2026 年 6 月 Product Hunt #1。不同于其他被动记录工具，Mina 可以在会议中主动发言——回答实时问题、从内部工具（Notion/CRM/Slack）拉取上下文、帮助团队执行任务。会议不再是单向记录。',
+        category: '独立产品',
+        url: 'https://www.meetmina.ai',
+        highlight: 'PH #1 会发言',
+        launchDate: '2026-06',
+      },
+      {
+        name: 'Granola',
+        tagline: '不加入会议的"隐形"AI 笔记',
+        description: '不需要机器人加入你的 Zoom/Teams 会议——Granola 直接捕获系统音频，本地转写+总结。编辑体验像一个真正的记事本，而不是冰冷的转录稿。2026 年最受欢迎的会议笔记工具。',
+        category: '独立产品',
+        url: 'https://www.granola.ai',
+        highlight: '无机器人参会',
+        launchDate: '2026 热门',
+      },
+      {
+        name: 'OpenClaw (原 Clawdbot/Moltbot)',
+        tagline: '开源个人 AI Agent，控制你的电脑',
+        description: '2026 年最火的开源 AI Agent 项目。自部署在本地，给 AI 一个高级目标（比如"调研这个主题，写报告，起草邮件"），它就能自主使用文件系统、浏览器、App 完成任务。CNBC 报道，衍生出 Moltbook（AI Agent 社交网络）。',
+        category: '独立产品',
+        url: 'https://github.com/openclaw/openclaw',
+        highlight: 'CNBC 报道',
+        launchDate: '2026-01 爆发',
+      },
+      {
+        name: 'Supafax (YC W26)',
+        tagline: '住在你邮箱里的 AI Agent',
+        description: 'Y Combinator W26 孵化项目。不是帮你总结邮件，而是主动管理你的邮箱——查找产品信息、预订时间、回复邮件。从"被动响应"到"主动代理"的 AI Agent。',
+        category: '独立产品',
+        url: 'https://supafax.ai',
+        highlight: 'YC 孵化',
+        launchDate: '2026 Q1',
+      },
+      {
+        name: 'Catch The Signal',
+        tagline: '创业机会雷达——融资/岗位/悬赏一网打尽',
+        description: '从 10+ 数据源追踪创业公司的融资轮次、招聘岗位、Bounty 任务。创业者/开发者一站式发现机会的 AI Agent。PH 2026 年 6 月 1 日上线。',
+        category: '独立产品',
+        url: 'https://catchthesignal.com',
+        highlight: '创业机会雷达',
+        launchDate: '2026-06',
+      },
+      {
         name: 'Cowork',
         tagline: '把 Claude 变成你的数字同事',
         description: '2026 年 1 月 Product Hunt #1 产品。不是聊天机器人，而是像一个坐在你旁边的同事——可以分配任务、跟踪进度、自动完成工作。',
@@ -286,10 +331,10 @@ const CATEGORIES: CategoryGroup[] = [
       {
         name: 'Kilo Code Reviewer',
         tagline: 'PR 打开那一刻 AI 自动 code review',
-        description: '不需要手动触发，GitHub PR 一开就自动做代码审查，给出安全性、性能、架构层面的反馈。PH 2026 年 #2 产品，后来开源为 Kilo CodeOSS。',
+        description: '不需要手动触发，GitHub PR 一开就自动做代码审查，给出安全性、性能、架构层面的反馈。PH 2026 年 #2 产品，后来开源为 Kilo CodeOSS——6 月 PH 月度 #1。',
         category: '独立产品',
         url: 'https://github.com',
-        highlight: '自动化 Review',
+        highlight: 'PH 月度 #1',
         launchDate: '2026-01',
       },
       {
@@ -432,11 +477,13 @@ const CATEGORIES: CategoryGroup[] = [
 ];
 
 const KEY_TRENDS = [
-  '从 Copilot 到 AI Employee：AI 不再是辅助工具，而是能独立完成任务的"员工"',
+  '从 Chat 到 Action：AI 不再只是"给你文字"，而是"帮你做事"——Mina 会发言、OpenClaw 控制电脑、Supafax 管理邮箱',
   '可视化编排平台（Dify/Flowise/n8n）正在降低 AI 应用开发门槛',
   '垂直行业 AI 应用正式爆发——法律、研究、教育、医疗各显神通',
+  '独立开发者正在用 AI 一个人打造整个公司——Agent 37 日入 $5K、PostSyncer 789 upvotes',
   '国内 AI 应用生态加速追赶——Kimi、通义、微信 Agent 各有杀手级场景',
   'AI 视频/音乐/图像生成进入"普通人无法分辨"阶段，内容生产方式被重塑',
+  '"隐形"AI 体验崛起——Granola 无机器人参会、Clipto 完全本地搜索，隐私+体验双升级',
 ];
 
 function ProductCard({ product, color }: { product: Product; color: string }) {
