@@ -269,6 +269,122 @@ const CATEGORIES: CategoryGroup[] = [
     ],
   },
   {
+    icon: '✨',
+    title: '有意思的小众/独立 AI 产品',
+    color: '#a855f7',
+    bg: '#f3e8ff',
+    products: [
+      {
+        name: 'Cowork',
+        tagline: '把 Claude 变成你的数字同事',
+        description: '2026 年 1 月 Product Hunt #1 产品。不是聊天机器人，而是像一个坐在你旁边的同事——可以分配任务、跟踪进度、自动完成工作。',
+        category: '独立产品',
+        url: 'https://producthunt.com',
+        highlight: 'PH #1',
+        launchDate: '2026-01',
+      },
+      {
+        name: 'Kilo Code Reviewer',
+        tagline: 'PR 打开那一刻 AI 自动 code review',
+        description: '不需要手动触发，GitHub PR 一开就自动做代码审查，给出安全性、性能、架构层面的反馈。PH 2026 年 #2 产品，后来开源为 Kilo CodeOSS。',
+        category: '独立产品',
+        url: 'https://github.com',
+        highlight: '自动化 Review',
+        launchDate: '2026-01',
+      },
+      {
+        name: 'Clipto',
+        tagline: '本地化自然语言搜你的所有媒体文件',
+        description: '完全本地运行，支持 TB 级图片/视频/文档的自然语言搜索。不用上传到云端，隐私友好。PH 2026 年 5 月 31 日 #1。',
+        category: '独立产品',
+        url: 'https://producthunt.com',
+        highlight: '完全本地',
+        launchDate: '2026-05',
+      },
+      {
+        name: 'PostSyncer',
+        tagline: 'AI 社交媒体内容制作与发布',
+        description: '2026 年 PH 年度 #1（789 upvotes）。一个 AI Agent 帮你写文案、做图、定时发布、分析数据。一个人就是一支内容团队。',
+        category: '独立产品',
+        url: 'https://producthunt.com',
+        highlight: 'PH 年度 #1',
+        launchDate: '2026',
+      },
+      {
+        name: 'Figr AI',
+        tagline: 'AI 产品设计 Agent，"先思考再动手"',
+        description: '不同于简单的 AI 设计工具，Figr 的 Agent 会先理解需求、分析竞品、产出设计方案，然后直接生成可交互原型。2026 年 4 月 PH 热门。',
+        category: '独立产品',
+        url: 'https://producthunt.com',
+        highlight: 'AI 先思考再设计',
+        launchDate: '2026-04',
+      },
+      {
+        name: 'Macaron AI',
+        tagline: '记住你一切的 AI 私人伴侣',
+        description: '个人 AI companion，记住你的偏好、经历、情绪，主动关心你。不是聊天机器人，而是一个"记得你"的 AI。',
+        category: '独立产品',
+        url: 'https://producthunt.com',
+        highlight: '有记忆的 AI',
+        launchDate: '2026',
+      },
+      {
+        name: 'Elser AI',
+        tagline: '用 AI 把创意变成完整的动画故事',
+        description: '输入一个想法，AI 生成完整的动画故事视频，角色保持一致性。不需要任何动画技能，一个人就是一个动画工作室。',
+        category: '独立产品',
+        url: 'https://producthunt.com',
+        highlight: '角色一致性动画',
+        launchDate: '2026',
+      },
+      {
+        name: 'Voicenotes',
+        tagline: '语音笔记 + AI 对话，你的声音知识库',
+        description: '用语音记录想法，AI 自动转写、总结、打标签。之后可以跟你的笔记"对话"——"上周开会时我说了什么关于定价的？"',
+        category: '独立产品',
+        url: 'https://producthunt.com',
+        highlight: '声音知识库',
+        launchDate: '2026',
+      },
+      {
+        name: 'Supamail AI',
+        tagline: '每天 30 秒 AI 邮件摘要',
+        description: '自动总结你过去 24 小时的邮件为一份简报。不用一封一封看，AI 告诉你"今天有 3 封重要邮件：A 需要你回复、B 只是通知、C 需要你审批"。',
+        category: '独立产品',
+        url: 'https://producthunt.com',
+        highlight: '30 秒邮件摘要',
+        launchDate: '2026',
+      },
+      {
+        name: 'Byterover',
+        tagline: '给编程 AI Agent 装上自改进记忆层',
+        description: 'Cursor/Windsurf/Codex 等编程工具的记忆层插件。跨会话记住你的代码风格、项目上下文、曾经犯的错。让 AI 不再"健忘"。',
+        category: '独立产品',
+        url: 'https://github.com',
+        highlight: 'Agent 记忆',
+        launchDate: '2026',
+      },
+      {
+        name: 'Agent 37',
+        tagline: '$3.99/月的个人 OpenClaw 实例',
+        description: 'Indie Hacker Marc Lou 打造的低成本 AI Agent 托管方案。一天收入近 $5K，Hacker News 655 分最高 AI 故事。独立开发者的 AI Agent 入门方案。',
+        category: '独立产品',
+        url: 'https://github.com',
+        highlight: '$3.99/月',
+        launchDate: '2026-02',
+      },
+      {
+        name: 'Docket',
+        tagline: '给独立开发者和 AI Agent 用的 Jira',
+        description: '不像 Jira 那么重，不像 Trello 那么轻。专为"一个人+AI Agent"团队设计的工作管理工具，发布/创意/启动全流程管理。',
+        category: '独立产品',
+        url: 'https://producthunt.com',
+        highlight: '独立开发者专用',
+        launchDate: '2026',
+      },
+    ],
+  },
+  {
     icon: '🌐',
     title: '国内新兴 AI 应用',
     color: '#ef4444',
@@ -409,7 +525,7 @@ export default function AIApplicationsPage(): React.ReactElement {
             AI 应用趋势
           </h1>
           <p style={{ color: 'var(--fde-text-light)', fontSize: '0.95rem', margin: 0, lineHeight: 1.6 }}>
-            2026 年涌现的新兴 AI 应用与产品，从编程工具到行业垂直方案，{totalProducts} 个值得关注的 AI 产品。
+            2026 年涌现的新兴 AI 应用与产品，从大厂到独立开发者，{totalProducts} 个值得关注的 AI 产品。
           </p>
         </div>
 
@@ -450,7 +566,7 @@ export default function AIApplicationsPage(): React.ReactElement {
           color: 'var(--fde-text-light)',
           textAlign: 'center',
         }}>
-          数据来源于公开渠道，持续更新中。涵盖编程工具、Agent 平台、创意工具、生产力、行业垂直应用等方向。
+          数据来源于 Product Hunt、X/Twitter、Indie Hackers 等公开渠道，持续更新中。涵盖编程工具、Agent 平台、创意工具、生产力、小众独立产品、行业垂直应用等方向。
         </div>
       </div>
     </Layout>
