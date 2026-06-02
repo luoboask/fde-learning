@@ -110,6 +110,14 @@ const sidebars = {
       type: 'doc',
       id: '17-project-mcp-server',
     },
+    {
+      type: 'html',
+      value: '<div class="sidebar-stage">行业观察</div>',
+    },
+    {
+      type: 'doc',
+      id: '20-ai-application-trends',
+    },
   ],
 };
 

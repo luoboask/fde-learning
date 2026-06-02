@@ -113,6 +113,12 @@ Python ─→ LLM API ─→ Context Eng ─→ Harness Eng ─→ 框架选型
 |------|------|
 | [岗位知识图谱](/agentic-ai/18-job-market-analysis) | 14 个真实 JD 概览 + 薪资数据 + 24 项技能频率 + 6 层知识体系详解（含 JD 原文引用）+ 学习路径映射 |
 
+### 行业观察
+
+| 文档 | 内容 |
+|------|------|
+| [AI 应用趋势](/agentic-ai/20-ai-application-trends) | X/Twitter 实时采集：Vibe Coding → Agentic Engineering、MCP 协议、Agent 架构、编程工具生态 |
+
 ---
 
 *返回 [工具教程](/tools/) | 前往 [系统学习](/)*
