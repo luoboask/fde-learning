@@ -152,14 +152,13 @@ const config = {
             position: 'left',
           },
           {
-            to: '/jobs/',
+            type: 'dropdown',
             label: 'FDE 招聘动态',
             position: 'left',
-          },
-          {
-            to: '/agentic-ai/18-job-market-analysis',
-            label: '岗位知识图谱',
-            position: 'left',
+            items: [
+              { to: '/jobs/', label: '岗位列表' },
+              { to: '/agentic-ai/18-job-market-analysis', label: '岗位知识图谱' },
+            ],
           },
           {
             href: 'https://github.com/luoboask/fde-learning',

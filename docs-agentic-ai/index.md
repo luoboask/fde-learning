@@ -111,8 +111,7 @@ Python ─→ LLM API ─→ Context Eng ─→ Harness Eng ─→ 框架选型
 
 | 文档 | 内容 |
 |------|------|
-| [FDE 招聘动态](/agentic-ai/18-job-market-analysis) | 14 个真实 JD 概览、薪资数据、24 项技能频率排行、公司分析 |
-| [学习路线图](/agentic-ai/19-learning-roadmap) | 6 层知识体系详解（含 JD 原文引用）、学习优先级、路线图覆盖映射 |
+| [岗位知识图谱](/agentic-ai/18-job-market-analysis) | 14 个真实 JD 概览 + 薪资数据 + 24 项技能频率 + 6 层知识体系详解（含 JD 原文引用）+ 学习路径映射 |
 
 ---
 
