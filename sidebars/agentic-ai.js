@@ -110,18 +110,6 @@ const sidebars = {
       type: 'doc',
       id: '17-project-mcp-server',
     },
-    {
-      type: 'html',
-      value: '<div class="sidebar-stage">FDE 招聘动态</div>',
-    },
-    {
-      type: 'doc',
-      id: '18-job-market-analysis',
-    },
-    {
-      type: 'doc',
-      id: '19-learning-roadmap',
-    },
   ],
 };
 

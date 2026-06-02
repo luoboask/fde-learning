@@ -153,6 +153,7 @@ const config = {
             items: [
               { to: '/trends/', label: 'AI 行业趋势' },
               { to: '/jobs/', label: 'FDE 招聘动态' },
+              { to: '/agentic-ai/18-job-market-analysis', label: '岗位知识图谱' },
             ],
           },
           {
