@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Layout from '@theme/Layout';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 interface Job {
   title: string;
@@ -31,7 +32,7 @@ interface JobsData {
 
 const CATEGORY_ICONS: Record<string, string> = {
   '大模型推理/部署': '⚡',
-  '大模型应用/Agent': '🤖',
+  '大模型应用/Agent': '',
   '大模型算法/架构': '🧠',
   'AI 平台/基础设施': '🔧',
   'AI 解决方案/架构': '📋',
@@ -356,7 +357,7 @@ function FilterBar({
             }}
             onClick={() => onSourceSelect('')}
             >
-              来源: {selectedSource} ✕
+              来源: {selectedSource}
             </span>
           )}
           {selectedTag && (
@@ -384,7 +385,7 @@ function FilterBar({
             }}
             onClick={() => onSearchChange('')}
             >
-              搜索: {searchKeyword} ✕
+              搜索: {searchKeyword}
             </span>
           )}
           <button
@@ -412,8 +413,9 @@ function FilterBar({
   );
 }
 
-export default function JobsPage(): React.ReactElement {
-  const jobsData = require('../../static/data/jobs.json') as JobsData;
+function JobsContent({ jobsData }: { jobsData: JobsData }) {
+  const { siteConfig } = useDocusaurusContext();
+  const baseUrl = siteConfig.baseUrl || '/';
 
   const [activeCategory, setActiveCategory] = useState(ALL_CATEGORIES);
   const [selectedTag, setSelectedTag] = useState('');
@@ -434,7 +436,7 @@ export default function JobsPage(): React.ReactElement {
       allTags: Array.from(tagSet).sort(),
       allSources: Array.from(sourceSet).sort(),
     };
-  }, []);
+  }, [jobsData]);
 
   // Filter and group jobs
   const filteredCategories = useMemo(() => {
@@ -460,38 +462,38 @@ export default function JobsPage(): React.ReactElement {
         }),
       }))
       .filter((cat) => cat.jobs.length > 0);
-  }, [activeCategory, selectedTag, selectedSource, searchKeyword]);
+  }, [activeCategory, selectedTag, selectedSource, searchKeyword, jobsData]);
 
   const totalFiltered = filteredCategories.reduce((sum, cat) => sum + cat.jobs.length, 0);
 
   return (
-    <Layout title="FDE 招聘动态" description="FDE 岗位信息、薪资趋势、热门公司">
-      <div style={{ padding: '2rem', maxWidth: '900px', margin: '0 auto' }}>
-        {/* Header */}
-        <div style={{ marginBottom: '1.5rem' }}>
-          <h1 style={{ margin: '0 0 0.5rem', fontSize: '2rem', fontWeight: 800 }}>
-            FDE 招聘动态
-          </h1>
-          <p style={{ color: 'var(--fde-text-light)', fontSize: '0.95rem', margin: 0 }}>
-            共 {jobsData.total_jobs} 个岗位 · 更新于 {jobsData.last_updated}
-          </p>
-        </div>
+    <div style={{ padding: '2rem', maxWidth: '900px', margin: '0 auto' }}>
+      {/* Header */}
+      <div style={{ marginBottom: '1.5rem' }}>
+        <h1 style={{ margin: '0 0 0.5rem', fontSize: '2rem', fontWeight: 800 }}>
+          FDE 招聘动态
+        </h1>
+        <p style={{ color: 'var(--fde-text-light)', fontSize: '0.95rem', margin: 0 }}>
+          共 {jobsData.total_jobs} 个岗位 · 更新于 {jobsData.last_updated}
+        </p>
+      </div>
 
-        {/* Filter Bar */}
-        <FilterBar
-          allTags={allTags}
-          selectedTag={selectedTag}
-          onTagSelect={setSelectedTag}
-          activeCategory={activeCategory}
-          onCategorySelect={setActiveCategory}
-          selectedSource={selectedSource}
-          onSourceSelect={setSelectedSource}
-          allSources={allSources}
-          searchKeyword={searchKeyword}
-          onSearchChange={setSearchKeyword}
-        />
+      {/* Filter Bar */}
+      <FilterBar
+        allTags={allTags}
+        selectedTag={selectedTag}
+        onTagSelect={setSelectedTag}
+        activeCategory={activeCategory}
+        onCategorySelect={setActiveCategory}
+        selectedSource={selectedSource}
+        onSourceSelect={setSelectedSource}
+        allSources={allSources}
+        searchKeyword={searchKeyword}
+        onSearchChange={setSearchKeyword}
+      />
 
-        {/* Hot Companies */}
+      {/* Hot Companies */}
+      {jobsData.hot_companies.length > 0 && (
         <div style={{
           background: '#fff',
           borderRadius: '12px',
@@ -519,8 +521,10 @@ export default function JobsPage(): React.ReactElement {
             ))}
           </div>
         </div>
+      )}
 
-        {/* Hot Skills */}
+      {/* Hot Skills */}
+      {jobsData.hot_skills.length > 0 && (
         <div style={{
           background: '#fff',
           borderRadius: '12px',
@@ -550,16 +554,18 @@ export default function JobsPage(): React.ReactElement {
             ))}
           </div>
         </div>
+      )}
 
-        {/* Salary */}
-        <div style={{
-          background: '#fff',
-          borderRadius: '12px',
-          border: '1px solid var(--fde-border)',
-          padding: '1.5rem',
-          marginBottom: '2.5rem',
-        }}>
-          <h3 style={{ margin: '0 0 1rem', fontSize: '1.1rem', fontWeight: 700 }}>💰 薪资参考范围</h3>
+      {/* Salary */}
+      <div style={{
+        background: '#fff',
+        borderRadius: '12px',
+        border: '1px solid var(--fde-border)',
+        padding: '1.5rem',
+        marginBottom: '2.5rem',
+      }}>
+        <h3 style={{ margin: '0 0 1rem', fontSize: '1.1rem', fontWeight: 700 }}>💰 薪资参考范围</h3>
+        {jobsData.salary_insights.by_level.length > 0 && (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem', marginBottom: '1rem' }}>
             {jobsData.salary_insights.by_level.map((r) => (
               <div
@@ -580,70 +586,119 @@ export default function JobsPage(): React.ReactElement {
               </div>
             ))}
           </div>
-          <h4 style={{ margin: '0 0 0.75rem', fontSize: '0.95rem', fontWeight: 600 }}>按类别</h4>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '0.75rem' }}>
-            {Object.entries(jobsData.salary_insights.by_category).map(([cat, range]) => (
-              <div
-                key={cat}
-                style={{
-                  padding: '0.75rem 1rem',
-                  background: 'var(--fde-surface)',
-                  borderRadius: '8px',
-                }}
-              >
-                <div style={{ fontSize: '0.8rem', color: 'var(--fde-text-light)' }}>{cat}</div>
-                <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--fde-text)', marginTop: '0.25rem' }}>
-                  {range}
-                </div>
+        )}
+        <h4 style={{ margin: '0 0 0.75rem', fontSize: '0.95rem', fontWeight: 600 }}>按类别</h4>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '0.75rem' }}>
+          {Object.entries(jobsData.salary_insights.by_category).map(([cat, range]) => (
+            <div
+              key={cat}
+              style={{
+                padding: '0.75rem 1rem',
+                background: 'var(--fde-surface)',
+                borderRadius: '8px',
+              }}
+            >
+              <div style={{ fontSize: '0.8rem', color: 'var(--fde-text-light)' }}>{cat}</div>
+              <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--fde-text)', marginTop: '0.25rem' }}>
+                {range}
               </div>
-            ))}
-          </div>
-          <p style={{ fontSize: '0.75rem', color: 'var(--fde-text-light)', marginTop: '0.75rem', marginBottom: 0 }}>
-            {jobsData.salary_insights.note}
-          </p>
+            </div>
+          ))}
         </div>
+        <p style={{ fontSize: '0.75rem', color: 'var(--fde-text-light)', marginTop: '0.75rem', marginBottom: 0 }}>
+          {jobsData.salary_insights.note}
+        </p>
+      </div>
 
-        {/* Filtered results count */}
-        {totalFiltered !== jobsData.total_jobs && (
-          <div style={{
-            marginBottom: '1.5rem',
-            fontSize: '0.85rem',
-            color: 'var(--fde-text-light)',
-          }}>
-            筛选结果：{totalFiltered} 个岗位
-          </div>
-        )}
-
-        {/* Job Categories */}
-        {filteredCategories.length > 0 ? (
-          filteredCategories.map((cat) => (
-            <CategorySection key={cat.name} category={cat} />
-          ))
-        ) : (
-          <div style={{
-            textAlign: 'center',
-            padding: '3rem',
-            color: 'var(--fde-text-light)',
-          }}>
-            <p style={{ fontSize: '2rem', marginBottom: '1rem' }}>🔍</p>
-            <p>没有找到匹配的岗位，请调整筛选条件</p>
-          </div>
-        )}
-
-        {/* Footer note */}
+      {/* Filtered results count */}
+      {totalFiltered !== jobsData.total_jobs && (
         <div style={{
-          marginTop: '3rem',
-          padding: '1.25rem',
-          background: 'var(--fde-surface)',
-          borderRadius: '8px',
-          border: '1px solid var(--fde-border)',
+          marginBottom: '1.5rem',
           fontSize: '0.85rem',
           color: 'var(--fde-text-light)',
-          textAlign: 'center',
         }}>
-          数据来源于公开渠道，持续更新中。欢迎补充岗位信息。
+          筛选结果：{totalFiltered} 个岗位
         </div>
+      )}
+
+      {/* Job Categories */}
+      {filteredCategories.length > 0 ? (
+        filteredCategories.map((cat) => (
+          <CategorySection key={cat.name} category={cat} />
+        ))
+      ) : (
+        <div style={{
+          textAlign: 'center',
+          padding: '3rem',
+          color: 'var(--fde-text-light)',
+        }}>
+          <p style={{ fontSize: '2rem', marginBottom: '1rem' }}>🔍</p>
+          <p>没有找到匹配的岗位，请调整筛选条件</p>
+        </div>
+      )}
+
+      {/* Footer note */}
+      <div style={{
+        marginTop: '3rem',
+        padding: '1.25rem',
+        background: 'var(--fde-surface)',
+        borderRadius: '8px',
+        border: '1px solid var(--fde-border)',
+        fontSize: '0.85rem',
+        color: 'var(--fde-text-light)',
+        textAlign: 'center',
+      }}>
+        数据来源于公开渠道，持续更新中。欢迎补充岗位信息。
       </div>
+    </div>
+  );
+}
+
+export default function JobsPage(): React.ReactElement {
+  const { siteConfig } = useDocusaurusContext();
+  const baseUrl = siteConfig.baseUrl || '/';
+  const [jobsData, setJobsData] = useState<JobsData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const jobsUrl = `${baseUrl}data/jobs.json`;
+    fetch(jobsUrl)
+      .then((res) => res.json())
+      .then((data) => {
+        setJobsData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Failed to load jobs data:', err);
+        setLoading(false);
+      });
+  }, [baseUrl]);
+
+  return (
+    <Layout title="FDE 招聘动态" description="FDE 岗位信息、薪资趋势、热门公司">
+      {loading ? (
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '6rem 2rem',
+          color: 'var(--fde-text-light)',
+          fontSize: '1rem',
+        }}>
+          加载岗位数据中...
+        </div>
+      ) : jobsData ? (
+        <JobsContent jobsData={jobsData} />
+      ) : (
+        <div style={{
+          textAlign: 'center',
+          padding: '6rem 2rem',
+          color: 'var(--fde-text-light)',
+        }}>
+          <p style={{ fontSize: '2rem', marginBottom: '1rem' }}>⚠️</p>
+          <p>加载岗位数据失败，请稍后重试</p>
+        </div>
+      )}
     </Layout>
   );
 }
