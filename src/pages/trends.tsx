@@ -140,12 +140,13 @@ export default function TrendsPage(): React.ReactElement {
             行业趋势
           </h1>
           <p style={{ color: 'var(--fde-text-light)', fontSize: '0.95rem', margin: 0, lineHeight: 1.6 }}>
-            跟踪 AI 领域的最新动态：模型发布、论文进展、开源项目、行业动态。
+            跟踪 2025.12-2026.06（半年）AI 领域的最新动态：模型发布、论文进展、开源项目、行业动态。
           </p>
-          <div style={{ marginTop: '1rem', display: 'flex', gap: '1.25rem', flexWrap: 'wrap' }}>
+          <div style={{ marginTop: '1rem', display: 'flex', gap: '1.25rem', flexWrap: 'wrap', alignItems: 'center' }}>
             <span style={{ fontSize: '0.85rem' }}><strong>{total}</strong> 条趋势</span>
             <span style={{ fontSize: '0.85rem', color: '#ef4444' }}><strong>{sCount}</strong> S 级突破</span>
             <span style={{ fontSize: '0.85rem', color: '#f59e0b' }}><strong>{aCount}</strong> A 级重要</span>
+            <span style={{ fontSize: '0.85rem', color: 'var(--fde-text-light)' }}>半年数据</span>
             <span style={{ fontSize: '0.85rem', color: 'var(--fde-text-light)' }}>更新于 {trendsData.last_updated}</span>
           </div>
         </div>
