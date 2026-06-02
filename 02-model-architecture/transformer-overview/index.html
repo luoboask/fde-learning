@@ -5,8 +5,8 @@
 <meta name="generator" content="Docusaurus v3.10.1">
 <title data-rh="true">Transformer 架构概述 | FDE 学习中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://luoboask.github.io/fde-learning/02-model-architecture/transformer-overview/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-learn-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-learn-current"><meta data-rh="true" property="og:title" content="Transformer 架构概述 | FDE 学习中心"><meta data-rh="true" name="description" content="理解 Transformer 的内部计算特征，是所有推理优化的基础"><meta data-rh="true" property="og:description" content="理解 Transformer 的内部计算特征，是所有推理优化的基础"><link data-rh="true" rel="icon" href="/fde-learning/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://luoboask.github.io/fde-learning/02-model-architecture/transformer-overview/"><link data-rh="true" rel="alternate" href="https://luoboask.github.io/fde-learning/02-model-architecture/transformer-overview/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://luoboask.github.io/fde-learning/02-model-architecture/transformer-overview/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"模型是怎么工作的","item":"https://luoboask.github.io/fde-learning/02-model-architecture/"},{"@type":"ListItem","position":2,"name":"Transformer 架构概述","item":"https://luoboask.github.io/fde-learning/02-model-architecture/transformer-overview"}]}</script><link rel="alternate" type="application/rss+xml" href="/fde-learning/blog/rss.xml" title="FDE 学习中心 RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/fde-learning/blog/atom.xml" title="FDE 学习中心 Atom Feed"><link rel="stylesheet" href="/fde-learning/assets/css/styles.7c35c428.css">
-<script src="/fde-learning/assets/js/runtime~main.ca5b4010.js" defer="defer"></script>
-<script src="/fde-learning/assets/js/main.a76ddac1.js" defer="defer"></script>
+<script src="/fde-learning/assets/js/runtime~main.1514f580.js" defer="defer"></script>
+<script src="/fde-learning/assets/js/main.8e3f3819.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -42,9 +42,9 @@
 <div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Attention(Q, K, V) = softmax(QK^T / sqrt(d_k)) V</span><br></div></code></pre></div></div>
 <p>各维度：</p>
 <ul>
-<li class=""><code>Q</code>: <code>[batch, seq_len, num_heads, head_dim]</code> → reshape 为 <code>[batch, seq_len, num_heads × head_dim]</code></li>
-<li class=""><code>K</code>: 同 Q 的形状</li>
-<li class=""><code>V</code>: 同 Q 的形状</li>
+<li class=""><code>Q</code>: 线性投影后 <code>[batch, seq_len, d_model]</code>，reshape 为 <code>[batch, seq_len, num_heads, head_dim]</code>，再 transpose 为 <code>[batch, num_heads, seq_len, head_dim]</code></li>
+<li class=""><code>K</code>: 同 Q 的变换过程</li>
+<li class=""><code>V</code>: 同 Q 的变换过程</li>
 <li class=""><code>QK^T</code>: <code>[batch, num_heads, seq_len, seq_len]</code> — 注意力分数矩阵</li>
 <li class=""><code>softmax(...)</code> 在最后一个维度（key 维度）上做归一化</li>
 </ul>
