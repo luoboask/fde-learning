@@ -153,6 +153,7 @@ const config = {
             items: [
               { to: '/trends/', label: '行业趋势' },
               { to: '/ai-applications/', label: '应用趋势' },
+              { to: '/github-trends/', label: 'GitHub 趋势' },
             ],
           },
           {
