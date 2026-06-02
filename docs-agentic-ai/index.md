@@ -107,7 +107,7 @@ Python ─→ LLM API ─→ Context Eng ─→ Harness Eng ─→ 框架选型
 | 可观测性标配化 | Langfuse、LangSmith 等 Agent 可观测性平台成为生产必备 |
 | 评估 vs 可观测性分离 | 评估（质量）、可观测性（运行）、基准测试（排名）成为三个独立领域 |
 
-### JD 知识图谱
+### FDE 招聘动态
 
 | 文档 | 内容 |
 |------|------|

@@ -112,7 +112,7 @@ const sidebars = {
     },
     {
       type: 'html',
-      value: '<div class="sidebar-stage">JD 知识图谱</div>',
+      value: '<div class="sidebar-stage">FDE 招聘动态</div>',
     },
     {
       type: 'doc',
