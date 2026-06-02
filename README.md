@@ -28,6 +28,30 @@ FDE 学习中心是一个面向 AI 前沿部署工程师的**系统性学习平�
 
 ---
 
+## 页面预览
+
+### 首页
+
+![首页](static/screenshots/home-dashboard.png)
+
+### 系统学习 — 什么是 FDE
+
+![系统学习文档](static/screenshots/learn-doc.png)
+
+### Agentic AI — Python 工程基础
+
+![Agentic AI 文档](static/screenshots/agentic-ai-doc.png)
+
+### GitHub AI 趋势（半年数据）
+
+![GitHub 趋势](static/screenshots/github-trends.png)
+
+### AI 应用趋势（40+ 新兴产品）
+
+![AI 应用趋势](static/screenshots/ai-applications.png)
+
+---
+
 ## 平台模块
 
 | 模块 | 路由 | 内容量 | 说明 |
