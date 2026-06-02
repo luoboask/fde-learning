@@ -147,9 +147,13 @@ const config = {
             position: 'left',
           },
           {
-            to: '/trends/',
-            label: 'AI 行业趋势',
+            type: 'dropdown',
+            label: 'AI 趋势',
             position: 'left',
+            items: [
+              { to: '/trends/', label: '行业趋势' },
+              { to: '/ai-applications/', label: '应用趋势' },
+            ],
           },
           {
             type: 'dropdown',
@@ -193,7 +197,7 @@ const config = {
             title: '更多',
             items: [
               {label: '博客文章', to: '/blog/'},
-              {label: 'AI 行业趋势', to: '/trends/'},
+              {label: 'AI 趋势', to: '/trends/'},
               {label: 'FDE 招聘动态', to: '/jobs/'},
               {label: '团队建设', to: '/14-team-building/'},
             ],
