@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 12
 ---
 
 # Decoding 策略 — 从采样到生成的完整指南
@@ -462,5 +462,5 @@ Beam Search (k=5)    | 1,300       | 0.20x   | 需要 5 条并行 decode
 
 ---
 
-*上一节：[Thinking 模型](./thinking-models.md)*
-*下一节：[Attention 机制深入](./attention-mechanism.md)*
+*上一节：[Thinking / Reasoning 模型](./thinking-models.md)*
+*下一节：[大语言模型训练流程](./llm-training.md)*

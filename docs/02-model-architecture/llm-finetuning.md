@@ -255,4 +255,4 @@ graph TD
 ---
 
 *上一节：[多模态大模型](./multimodal-llm.md)*
-*下一节：[Attention 机制深入](./attention-mechanism.md)*
+*下一节：[预训练与后训练](./pre-post-training.md)*

@@ -154,9 +154,9 @@ RMSNorm (Llama, Qwen):
   计算: 只需均方根，参数: γ（无 β）
 
 RMSNorm 的优势:
-  - 少一次减均值操作，计算量减少 ~7%
-  - 少一个可学习参数 β
+  - 少一次减均值操作和一个可学习参数 β
   - 实验表明质量与 LayerNorm 几乎无差异
+  - 在大规模推理中累积节省可观的计算量
 ```
 
 ### Position Encoding 方案对比
@@ -198,8 +198,12 @@ RoPE 的优势:
   4. 兼容 FlashAttention：旋转在 QK^T 之前做，不影响分块计算
 
 RoPE Scaling 技术:
-  NTK-aware: 调整基频，使外推时高频分量不变
-  YaRN: 将位置分为"内插区"和"外推区"，分别处理
+  NTK-aware: 通过缩放旋转基频 θ，使外推时高频分量保持不变
+    - 核心思想：位置编码的频率决定了模型"感知"的相对距离
+    - 缩小 θ → 降低旋转频率 → 使模型能"看到"更远的距离
+  YaRN: 将位置分为"内插区"和"外推区"分别处理
+    - 短距离位置：保持原始编码（内插，模型已学会）
+    - 长距离位置：压缩编码空间（外推，模型没见过）
   效果: 训练 4K → 推理 128K（32 倍外推）质量损失 < 5%
 ```
 
@@ -209,19 +213,24 @@ RoPE Scaling 技术:
 
 ```
 Prefill 阶段 FLOPs 分布（seq_len=4096, Llama 3 8B）:
-  Attention: O(seq_len^2 × num_heads × head_dim)
+  Attention（单层）: O(seq_len^2 × num_heads × head_dim)
     ≈ 4096^2 × 32 × 128 ≈ 68.7 GFLOPs
-  FFN: O(seq_len × d_model × d_ff × num_layers)
-    ≈ 4096 × 4096 × 11008 × 32 ≈ 5,897 GFLOPs
+  FFN（单层）: O(seq_len × d_model × d_ff)
+    ≈ 4096 × 4096 × 11008 ≈ 184.3 GFLOPs
 
-FFN 占 Prefill 计算量的 ~99%！
+  全模型（×32 层）:
+  Attention: 68.7 × 32 ≈ 2,198 GFLOPs
+  FFN:       184.3 × 32 ≈ 5,897 GFLOPs
+  总计:      ~8,095 GFLOPs
+
+  FFN 占 Prefill 计算量的 ~73%！
 
 Decode 阶段（每步 seq_len 增长 1）:
   Attention: O(seq_len × num_heads × head_dim) — 随 seq_len 线性
   FFN: O(d_model × d_ff × num_layers) — 常数
 
 结论:
-  - Prefill 优化重点: FFN（占 ~99% FLOPs）
+  - Prefill 优化重点: FFN（占 ~73% FLOPs），但长 prompt 时 Attention 占比会上升
   - Decode 优化重点: 权重加载速度（memory-bound）
   - FFN 量化对 Prefill 加速效果最明显
 ```

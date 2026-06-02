@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 13
 ---
 
 # 大语言模型训练流程
@@ -288,5 +288,5 @@ Loss = -log σ(β × [log π(y_w|x) - log π(y_l|x)])
 
 ---
 
-*上一节：[MoE 架构](./moe-architecture.md)*
-*下一节：[Attention 机制深入](./attention-mechanism.md)*
+*上一节：[Decoding 策略](./decoding-strategies.md)*
+*下一节：[分布式推理](../05-distributed-inference/distributed-overview.md)*

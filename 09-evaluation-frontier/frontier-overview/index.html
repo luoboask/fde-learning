@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-09-evaluation-frontier/frontier-overview" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">前沿技术概述 | FDE 学习中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://luoboask.github.io/fde-learning/09-evaluation-frontier/frontier-overview/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="前沿技术概述 | FDE 学习中心"><meta data-rh="true" name="description" content="掌握推理加速前沿技术（Speculative Decoding、FP8/FP4、KV Cache Compression、Reasoning 优化等），在面试中展现技术深度和前瞻性。"><meta data-rh="true" property="og:description" content="掌握推理加速前沿技术（Speculative Decoding、FP8/FP4、KV Cache Compression、Reasoning 优化等），在面试中展现技术深度和前瞻性。"><link data-rh="true" rel="icon" href="/fde-learning/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://luoboask.github.io/fde-learning/09-evaluation-frontier/frontier-overview/"><link data-rh="true" rel="alternate" href="https://luoboask.github.io/fde-learning/09-evaluation-frontier/frontier-overview/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://luoboask.github.io/fde-learning/09-evaluation-frontier/frontier-overview/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"前沿技术概述","item":"https://luoboask.github.io/fde-learning/09-evaluation-frontier/frontier-overview"}]}</script><link rel="stylesheet" href="/fde-learning/assets/css/styles.d90d4bab.css">
+<script src="/fde-learning/assets/js/runtime~main.08edaa61.js" defer="defer"></script>
+<script src="/fde-learning/assets/js/main.bfd9610e.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/fde-learning/img/logo.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/fde-learning/"><div class="navbar__logo"><img src="/fde-learning/img/logo.svg" alt="FDE Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/fde-learning/img/logo.svg" alt="FDE Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">FDE 学习中心</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/fde-learning/01-ai-basics/">学习路径</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/luoboask/fde-learning" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1"><div class="sidebar-stage">L1 基础</div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/01-ai-basics/"><span title="AI 基础认知" class="categoryLinkLabel_W154">AI 基础认知</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/02-model-architecture/transformer-overview/"><span title="模型架构" class="categoryLinkLabel_W154">模型架构</span></a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1"><div class="sidebar-stage">L2 进阶</div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/03-gpu-basics/gpu-overview/"><span title="GPU 基础" class="categoryLinkLabel_W154">GPU 基础</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/04-inference-optimization/engine-overview/"><span title="推理优化技术" class="categoryLinkLabel_W154">推理优化技术</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/05-distributed-inference/distributed-overview/"><span title="分布式推理" class="categoryLinkLabel_W154">分布式推理</span></a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1"><div class="sidebar-stage">L3 应用</div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/08-ai-engineering-tech-stack/"><span title="AI 工程核心技术栈" class="categoryLinkLabel_W154">AI 工程核心技术栈</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/fde-learning/09-evaluation-frontier/frontier-overview/"><span title="前沿技术" class="categoryLinkLabel_W154">前沿技术</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/fde-learning/09-evaluation-frontier/frontier-overview/"><span title="前沿技术概述" class="linkLabel_WmDU">前沿技术概述</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/fde-learning/09-evaluation-frontier/speculative-decoding/"><span title="Speculative Decoding" class="linkLabel_WmDU">Speculative Decoding</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/fde-learning/09-evaluation-frontier/fp8-inference/"><span title="FP8 推理" class="linkLabel_WmDU">FP8 推理</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/fde-learning/09-evaluation-frontier/frontier-eval-process/"><span title="前沿技术评估流程" class="linkLabel_WmDU">前沿技术评估流程</span></a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1"><div class="sidebar-stage">L4 实战</div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/06-production-deployment/deployment-architecture/"><span title="生产部署架构" class="categoryLinkLabel_W154">生产部署架构</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/08-cost-operations/cost-breakdown/"><span title="成本运营" class="categoryLinkLabel_W154">成本运营</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/12-labs/"><span title="动手实验" class="categoryLinkLabel_W154">动手实验</span></a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1"><div class="sidebar-stage">L5 面试</div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/10-interview/interview-framework/"><span title="面试答题框架" class="categoryLinkLabel_W154">面试答题框架</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/13-qna/"><span title="面试问答库" class="categoryLinkLabel_W154">面试问答库</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/11-team-building/"><span title="团队建设与管理" class="categoryLinkLabel_W154">团队建设与管理</span></a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1"><div class="sidebar-stage">附录</div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/14-glossary/"><span title="术语表" class="categoryLinkLabel_W154">术语表</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/15-resources/"><span title="推荐资源" class="categoryLinkLabel_W154">推荐资源</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/16-case-studies/"><span title="案例研究" class="categoryLinkLabel_W154">案例研究</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/17-open-source-deep-dive/"><span title="开源项目深度解读" class="categoryLinkLabel_W154">开源项目深度解读</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/fde-learning/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">前沿技术</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">前沿技术概述</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>前沿技术概述</h1></header>
+<blockquote>
+<p>掌握推理加速前沿技术（Speculative Decoding、FP8/FP4、KV Cache Compression、Reasoning 优化等），在面试中展现技术深度和前瞻性。</p>
+</blockquote>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="核心概念推理加速技术全景">核心概念：推理加速技术全景<a href="#核心概念推理加速技术全景" class="hash-link" aria-label="核心概念：推理加速技术全景的直接链接" title="核心概念：推理加速技术全景的直接链接" translate="no">​</a></h2>
+<!-- -->
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="技术分类详解">技术分类详解<a href="#技术分类详解" class="hash-link" aria-label="技术分类详解的直接链接" title="技术分类详解的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-算法层优化减少计算量">1. 算法层优化（减少计算量）<a href="#1-算法层优化减少计算量" class="hash-link" aria-label="1. 算法层优化（减少计算量）的直接链接" title="1. 算法层优化（减少计算量）的直接链接" translate="no">​</a></h3>
+<table><thead><tr><th>技术</th><th>核心思想</th><th>加速比</th><th>状态</th><th>适用场景</th></tr></thead><tbody><tr><td><strong>EAGLE-3 Speculative</strong></td><td>特征预测层，无需独立小模型</td><td>2-6x</td><td>生产标配</td><td>通用文本、代码补全</td></tr><tr><td><strong>SpecForge</strong></td><td>灵活的推测解码训练框架</td><td>2-4x</td><td>2026 新框架</td><td>自定义 draft-target 配对</td></tr><tr><td><strong>FLy (Loosely Speculative)</strong></td><td>放松验证标准，提高接受率</td><td>1.5-3x</td><td>2025-2026</td><td>低确定性场景</td></tr><tr><td><strong>SWIFT</strong></td><td>自推测解码，无需额外训练</td><td>1.5-2.5x</td><td>ICLR 2025</td><td>快速部署场景</td></tr><tr><td><strong>思考 Token 压缩</strong></td><td>压缩 CoT 思考过程 token 数</td><td>1.5-3x</td><td>2026 新方向</td><td>Reasoning 模型推理</td></tr><tr><td><strong>Prefill-Decode 分离</strong></td><td>两类计算分开调度</td><td>吞吐 +2x</td><td>生产标配</td><td>大流量服务</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-数值精度优化减少每操作计算量">2. 数值精度优化（减少每操作计算量）<a href="#2-数值精度优化减少每操作计算量" class="hash-link" aria-label="2. 数值精度优化（减少每操作计算量）的直接链接" title="2. 数值精度优化（减少每操作计算量）的直接链接" translate="no">​</a></h3>
+<table><thead><tr><th>技术</th><th>核心思想</th><th>效果</th><th>硬件要求</th><th>状态</th></tr></thead><tbody><tr><td><strong>FP8</strong></td><td>8-bit 浮点，H100 原生支持</td><td>吞吐 +50-100%</td><td>H100+</td><td>生产标配</td></tr><tr><td><strong>FP4</strong></td><td>4-bit 浮点，极致量化</td><td>吞吐 +2-3x</td><td>Rubin/B200</td><td>2026 前沿</td></tr><tr><td><strong>INT8</strong></td><td>8-bit 整数量化</td><td>吞吐 +50-100%</td><td>通用</td><td>生产标配</td></tr><tr><td><strong>INT4</strong></td><td>4-bit 量化</td><td>显存 -75%</td><td>通用</td><td>生产标配</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-内存优化减少显存瓶颈">3. 内存优化（减少显存瓶颈）<a href="#3-内存优化减少显存瓶颈" class="hash-link" aria-label="3. 内存优化（减少显存瓶颈）的直接链接" title="3. 内存优化（减少显存瓶颈）的直接链接" translate="no">​</a></h3>
+<table><thead><tr><th>技术</th><th>核心思想</th><th>效果</th><th>状态</th></tr></thead><tbody><tr><td><strong>PagedAttention</strong></td><td>分页管理 KV Cache</td><td>显存利用率 +2x</td><td>生产标配</td></tr><tr><td><strong>KV Cache Compression</strong></td><td>压缩/丢弃低重要性 KV</td><td>KV 显存 -50-80%</td><td>生产标配</td></tr><tr><td><strong>FlashAttention-3/4</strong></td><td>分块计算减少 HBM 访问</td><td>Prefill 加速 2-3x</td><td>生产标配</td></tr><tr><td><strong>Reasoning KV 压缩</strong></td><td>思考过程 token 的 KV Cache 压缩</td><td>显存 -30-50%</td><td>2026 新方向</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2026-年推理技术状态">2026 年推理技术状态<a href="#2026-年推理技术状态" class="hash-link" aria-label="2026 年推理技术状态的直接链接" title="2026 年推理技术状态的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="已生产标配2024-之前成熟的技术">已生产标配（2024 之前成熟的技术）<a href="#已生产标配2024-之前成熟的技术" class="hash-link" aria-label="已生产标配（2024 之前成熟的技术）的直接链接" title="已生产标配（2024 之前成熟的技术）的直接链接" translate="no">​</a></h3>
+<p>这些技术已成为推理框架的默认配置，面试中不需要特别强调&quot;前沿&quot;：</p>
+<ol>
+<li class=""><strong>PagedAttention</strong> — vLLM 默认显存管理方案</li>
+<li class=""><strong>Continuous Batching</strong> — 所有主流推理框架标配</li>
+<li class=""><strong>INT8/INT4 量化</strong> — GPTQ/AWQ 成熟生态，单卡部署 70B+ 模型</li>
+<li class=""><strong>FP8 推理</strong> — H100 环境的标准配置，vLLM/TRT-LLM/SGLang 全面支持</li>
+<li class=""><strong>GQA/MQA Attention</strong> — Llama 3/4、Qwen3 等主流模型默认采用</li>
+<li class=""><strong>FlashAttention-3</strong> — 预训练和推理框架默认集成</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2025-年成熟并广泛采用的技术">2025 年成熟并广泛采用的技术<a href="#2025-年成熟并广泛采用的技术" class="hash-link" aria-label="2025 年成熟并广泛采用的技术的直接链接" title="2025 年成熟并广泛采用的技术的直接链接" translate="no">​</a></h3>
+<p>这些技术在 2025 年完成从&quot;实验&quot;到&quot;生产&quot;的过渡，现在是 H100+/B200 环境的推荐配置：</p>
+<ol>
+<li class="">
+<p><strong>EAGLE-2/3 Speculative Decoding</strong></p>
+<ul>
+<li class="">使用训练后的特征预测层替代独立小模型</li>
+<li class="">接受率从 50% 提升到 70%+，加速比 2-6x</li>
+<li class="">vLLM 和 SGLang 原生支持，Vertex AI 已生产采用</li>
+<li class="">FDE 视角：代码补全和结构化输出场景收益最大</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Prefill-Decode 分离架构（DistServe / MoonCake）</strong></p>
+<ul>
+<li class="">Prefill 节点（compute-bound）和 Decode 节点（memory-bound）分开调度</li>
+<li class="">吞吐提升 2x+，延迟降低 40%</li>
+<li class="">FDE 视角：大流量服务（1000+ QPS）的架构首选</li>
+</ul>
+</li>
+<li class="">
+<p><strong>FP8 E4M3 on H100/B200</strong></p>
+<ul>
+<li class="">H100 Tensor Core FP8 吞吐 1,978 TFLOPS vs FP16 989 TFLOPS</li>
+<li class="">B200 进一步优化 FP8 流水线</li>
+<li class="">实际推理加速 1.5-2x，精度损失 &lt; 1%</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2025-2026-前沿研究方向">2025-2026 前沿研究方向<a href="#2025-2026-前沿研究方向" class="hash-link" aria-label="2025-2026 前沿研究方向的直接链接" title="2025-2026 前沿研究方向的直接链接" translate="no">​</a></h3>
+<p>这些是正在从论文走向生产的技术，FDE 应该开始评估和实验：</p>
+<ol>
+<li class="">
+<p><strong>SpecForge (2026-03)</strong> — 灵活的开源推测解码训练框架</p>
+<ul>
+<li class="">优化 draft-target 配对关系，自动搜索最优 draft 配置</li>
+<li class="">比手动选择 draft model 接受率高 10-15%</li>
+</ul>
+</li>
+<li class="">
+<p><strong>FLy — Training-Free Loosely Speculative Decoding (2025-12)</strong></p>
+<ul>
+<li class="">放松传统推测解码的严格验证标准</li>
+<li class="">在低确定性场景（创意写作、开放问答）仍有加速效果</li>
+<li class="">不需要额外训练，即插即用</li>
+</ul>
+</li>
+<li class="">
+<p><strong>CAS-Spec (NeurIPS 2025)</strong> — 级联自适应自推测</p>
+<ul>
+<li class="">单模型内多层级推测，无需额外模型</li>
+<li class="">根据内容复杂度动态调整推测深度</li>
+</ul>
+</li>
+<li class="">
+<p><strong>EdgeLLM (2026)</strong> — 端侧推理 + 推测解码</p>
+<ul>
+<li class="">在手机/边缘设备上跑 LLM 推理</li>
+<li class="">结合 speculative decoding 减少计算量</li>
+<li class="">FDE 视角：边缘部署和 IoT 场景的新方向</li>
+</ul>
+</li>
+<li class="">
+<p><strong>MXFP4/MXFP6 (H200/Rubin)</strong></p>
+<ul>
+<li class="">NVIDIA H200 引入 Microscaling 格式</li>
+<li class="">Rubin GPU 原生 FP4 支持，50 PFLOPS 推理性能</li>
+<li class="">比 FP8 更激进但仍保持可用精度</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="2026-年-fde-新战场">2026 年 FDE 新战场<a href="#2026-年-fde-新战场" class="hash-link" aria-label="2026 年 FDE 新战场的直接链接" title="2026 年 FDE 新战场的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="reasoning-模型推理优化">Reasoning 模型推理优化<a href="#reasoning-模型推理优化" class="hash-link" aria-label="Reasoning 模型推理优化的直接链接" title="Reasoning 模型推理优化的直接链接" translate="no">​</a></h3>
+<p>GPT-5、Claude 4/4.5、Gemini 3 等&quot;思考模型&quot;（Reasoning Models）引入了 Chain-of-Thought (CoT) 中间步骤，产生了全新的推理优化挑战：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">传统模型：Prompt → Token1 → Token2 → ...</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">Reasoning 模型：Prompt → [思考 Token × N] → 最终回答</span><br></div></code></pre></div></div>
+<p><strong>关键挑战：</strong></p>
+<ul>
+<li class="">思考过程产生大量隐藏 token（可达最终回答的 5-10x），大幅增加 TTFT</li>
+<li class="">思考 token 的 KV Cache 占用显著增加显存需求</li>
+<li class="">用户只看到最终回答，但系统需要为所有思考 token 付费</li>
+</ul>
+<p><strong>优化方向：</strong></p>
+<ul>
+<li class=""><strong>思考 Token 压缩</strong>：用更少的思考 token 达到同等推理质量（1.5-3x 加速）</li>
+<li class=""><strong>思考 KV Cache 压缩</strong>：对思考过程的 KV Cache 做激进量化/剪枝</li>
+<li class=""><strong>思考/回答分离架构</strong>：思考阶段用高精度，回答阶段用低精度</li>
+<li class=""><strong>异步思考预计算</strong>：对常见问题的思考过程做离线缓存</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="agentic-推理优化">Agentic 推理优化<a href="#agentic-推理优化" class="hash-link" aria-label="Agentic 推理优化的直接链接" title="Agentic 推理优化的直接链接" translate="no">​</a></h3>
+<p>Agent 系统的核心瓶颈是&quot;多轮工具调用&quot;场景下的推理效率：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">Agent Loop:</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  思考 → 调用工具 → 等待结果 → 继续思考 → 调用下一个工具 → ...</span><br></div></code></pre></div></div>
+<p><strong>优化方向：</strong></p>
+<ul>
+<li class=""><strong>Agentic 前缀缓存</strong>：Agent 多轮对话中，相同系统 prompt 和工具定义的 KV Cache 复用</li>
+<li class=""><strong>并行工具调用调度</strong>：当 Agent 需要调用多个独立工具时，并行生成所有工具调用</li>
+<li class=""><strong>工具结果流式注入</strong>：不等所有工具结果返回，已有结果立即注入继续生成</li>
+<li class=""><strong>多 Agent 并行推理</strong>：多个 Agent 子任务并行执行，最后汇聚结果</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="moe-大规模生产部署">MoE 大规模生产部署<a href="#moe-大规模生产部署" class="hash-link" aria-label="MoE 大规模生产部署的直接链接" title="MoE 大规模生产部署的直接链接" translate="no">​</a></h3>
+<p>Kimi K2（1 万亿参数 MoE）、Mistral Large（675B 总参数 / 41B 激活）等超大 MoE 模型进入生产：</p>
+<p><strong>部署挑战：</strong></p>
+<ul>
+<li class="">Expert 分散在数十张 GPU 上，AllToAll 通信成为瓶颈</li>
+<li class="">动态路由导致负载不均衡，部分 GPU 闲置</li>
+<li class="">显存分布：Expert 权重 + 活跃 token 的 KV Cache 需要精细调度</li>
+</ul>
+<p><strong>优化方向：</strong></p>
+<ul>
+<li class="">Expert 并行 + Tensor 并行混合策略</li>
+<li class="">动态负载均衡：根据 traffic 模式调整 Expert 分布</li>
+<li class="">Expert 缓存：热门 Expert 预加载，冷门 Expert 按需加载</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="fp4-极致量化">FP4 极致量化<a href="#fp4-极致量化" class="hash-link" aria-label="FP4 极致量化的直接链接" title="FP4 极致量化的直接链接" translate="no">​</a></h3>
+<p>Rubin GPU（2026）原生支持 FP4 Tensor Core，50 PFLOPS 推理性能：</p>
+<p><strong>意义：</strong></p>
+<ul>
+<li class="">70B 模型 FP4 量化仅 ~17.5GB，单卡 Rubin 288GB 可部署 4-8 个 70B 实例</li>
+<li class="">相比 FP8 再降 50% 显存，吞吐翻倍</li>
+<li class="">精度损失控制在 1-2pp 以内（最新校准方案）</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="端侧推理优化">端侧推理优化<a href="#端侧推理优化" class="hash-link" aria-label="端侧推理优化的直接链接" title="端侧推理优化的直接链接" translate="no">​</a></h3>
+<p>EdgeLLM、手机 NPU 推理等方向让 LLM 从云端走向边缘：</p>
+<p><strong>挑战：</strong></p>
+<ul>
+<li class="">手机端 8-16GB 内存限制，需要 INT4 甚至更低精度</li>
+<li class="">电池续航要求，功耗 &lt; 5W</li>
+<li class="">离线场景，无法依赖云端</li>
+</ul>
+<p><strong>优化方向：</strong></p>
+<ul>
+<li class="">极致量化（INT2/INT1）+ 模型蒸馏</li>
+<li class="">推测解码减少端侧计算量</li>
+<li class="">混合云-端架构：简单问题端侧处理，复杂问题云端处理</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="如何保持技术敏感度">如何保持技术敏感度<a href="#如何保持技术敏感度" class="hash-link" aria-label="如何保持技术敏感度的直接链接" title="如何保持技术敏感度的直接链接" translate="no">​</a></h2>
+<!-- -->
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="信息来源推荐">信息来源推荐<a href="#信息来源推荐" class="hash-link" aria-label="信息来源推荐的直接链接" title="信息来源推荐的直接链接" translate="no">​</a></h3>
+<table><thead><tr><th>来源</th><th>频率</th><th>内容类型</th></tr></thead><tbody><tr><td>arXiv cs.CL / cs.LG</td><td>每天</td><td>最新论文</td></tr><tr><td>NVIDIA Blog / GTC</td><td>每季度</td><td>硬件和框架更新</td></tr><tr><td>vLLM / SGLang GitHub</td><td>每周</td><td>推理框架更新</td></tr><tr><td>LMSYS Chatbot Arena</td><td>每月</td><td>模型排行榜</td></tr><tr><td>ML 会议 (NeurIPS, ICML, MLSys)</td><td>每年 2-4 次</td><td>前沿技术论文</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="技术评估-checklist">技术评估 Checklist<a href="#技术评估-checklist" class="hash-link" aria-label="技术评估 Checklist的直接链接" title="技术评估 Checklist的直接链接" translate="no">​</a></h3>
+<p>在评估一项新技术时，回答以下问题：</p>
+<ol>
+<li class=""><strong>原理是否清晰？</strong> 能否用 5 分钟向同事解释？</li>
+<li class=""><strong>加速/收益有多少？</strong> 有论文数据吗？开源实现验证了吗？</li>
+<li class=""><strong>适用条件是什么？</strong> 有场景限制吗？（如只适合长文本？）</li>
+<li class=""><strong>精度影响多大？</strong> 是否有 benchmark 证明精度不降？</li>
+<li class=""><strong>部署成本多少？</strong> 需要额外硬件？额外训练？额外依赖？</li>
+<li class=""><strong>生态成熟度？</strong> 主流推理框架支持了吗？（vLLM, TGI, TensorRT-LLM）</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="面试视角">面试视角<a href="#面试视角" class="hash-link" aria-label="面试视角的直接链接" title="面试视角的直接链接" translate="no">​</a></h2>
+<p><strong>面试官可能问：</strong></p>
+<ol>
+<li class="">
+<p><strong>&quot;最近 LLM 推理领域有什么值得关注的新方向？&quot;</strong></p>
+<ul>
+<li class="">EAGLE-3 将 Speculative Decoding 加速提升到 2-6x，vLLM/SGLang 已原生支持</li>
+<li class="">FP8 成为 H100 环境标准配置，FP4 随 Rubin GPU 在 2026 年进入生产</li>
+<li class="">Reasoning 模型的思考 token 压缩是 2026 年最大的新优化方向</li>
+<li class="">Agentic 推理中多轮工具调用的前缀缓存优化</li>
+<li class="">MoE 大规模部署（Kimi K2 1T 参数）的通信优化</li>
+<li class="">端侧推理（EdgeLLM）从实验走向生产</li>
+</ul>
+</li>
+<li class="">
+<p><strong>&quot;这些新技术你怎么评估？&quot;</strong></p>
+<ul>
+<li class="">先看论文数据和开源实现</li>
+<li class="">快速 PoC 验证核心 claim</li>
+<li class="">在自己的 workload 上跑 benchmark</li>
+<li class="">评估部署成本和生态成熟度</li>
+<li class="">给出量化数据后再推荐</li>
+</ul>
+</li>
+<li class="">
+<p><strong>&quot;你怎么保持技术更新？&quot;</strong></p>
+<ul>
+<li class="">日常关注 arXiv 热门论文和 GitHub trending</li>
+<li class="">参与推理框架社区（vLLM SGLang）</li>
+<li class="">定期做技术 PoC 并写内部报告</li>
+<li class="">参加行业会议和社区交流</li>
+</ul>
+</li>
+<li class="">
+<p><strong>&quot;这些技术在实际生产中有什么限制？&quot;</strong></p>
+<ul>
+<li class="">Speculative Decoding 在低接受率场景（如创意写作）加速效果有限，但 FLy 方法正在改善这一点</li>
+<li class="">FP8 需要 H100 或更新硬件，A100 无法加速；FP4 需要 Rubin GPU</li>
+<li class="">Reasoning 模型的思考 token 优化仍在早期，需要模型侧配合</li>
+<li class="">MoE 部署中 Expert 通信和负载均衡是核心瓶颈</li>
+<li class="">端侧推理受限于手机内存和功耗</li>
+<li class="">任何新技术都需要在真实业务数据上验证，不能只看论文数字</li>
+</ul>
+</li>
+<li class="">
+<p><strong>&quot;你会优先考虑引入哪项技术？&quot;</strong></p>
+<ul>
+<li class="">如果已有 H100：FP8 量化 + EAGLE-3 推测解码是第一步（改动最小，收益最大）</li>
+<li class="">如果延迟是瓶颈：EAGLE-3 Speculative Decoding（2-6x 加速）</li>
+<li class="">如果显存是瓶颈：PagedAttention + KV Cache Compression + INT4 量化</li>
+<li class="">如果吞吐是瓶颈：Continuous Batching + Prefill-Decode 分离</li>
+<li class="">如果是 Reasoning 模型：思考 token 压缩 + 异步预计算</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="部署视角">部署视角<a href="#部署视角" class="hash-link" aria-label="部署视角的直接链接" title="部署视角的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="技术成熟度分级2026-年中">技术成熟度分级（2026 年中）<a href="#技术成熟度分级2026-年中" class="hash-link" aria-label="技术成熟度分级（2026 年中）的直接链接" title="技术成熟度分级（2026 年中）的直接链接" translate="no">​</a></h3>
+<table><thead><tr><th>分级</th><th>技术</th><th>状态</th></tr></thead><tbody><tr><td>已采用</td><td>PagedAttention, Continuous Batching, GQA, FlashAttention-3, INT8/INT4</td><td>生产环境标配</td></tr><tr><td>推广中</td><td>FP8 (H100/B200), EAGLE-3 Speculative, Prefill-Decode 分离</td><td>H100+ 环境推荐</td></tr><tr><td>评估中</td><td>FP4 (Rubin), FLy Loosely Speculative, SpecForge, Reasoning KV 压缩</td><td>2026 值得实验</td></tr><tr><td>观望中</td><td>EdgeLLM 端侧部署, 思考/回答分离架构, 多 Agent 并行调度</td><td>早期探索阶段</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="最佳实践">最佳实践<a href="#最佳实践" class="hash-link" aria-label="最佳实践的直接链接" title="最佳实践的直接链接" translate="no">​</a></h2>
+<ol>
+<li class=""><strong>H100 环境：FP8 + EAGLE-3 是当前最优组合</strong> — 改动最小，加速最大（1.5-2x + 2-6x）</li>
+<li class=""><strong>关注 Reasoning 模型优化</strong> — 2026 年最大增量需求，思考 token 的 KV Cache 和延迟是核心瓶颈</li>
+<li class=""><strong>Agentic 场景优先做前缀缓存</strong> — 多轮工具调用中，相同 system prompt 的 KV Cache 复用收益最大</li>
+<li class=""><strong>不要盲目追新</strong> — PagedAttention + FP8 + Continuous Batching 已能解决 80% 的推理问题</li>
+<li class=""><strong>建立技术雷达</strong> — 每季度更新团队的技术雷达，标注&quot;采用/推广/评估/观望&quot;</li>
+<li class=""><strong>MoE 部署从 2025 年开始成熟</strong> — Kimi K2、Mistral Large 等超大 MoE 模型的部署经验是 2026 年差异化竞争力</li>
+</ol>
+<hr>
+<p><em>下一节：<a class="" href="/fde-learning/09-evaluation-frontier/speculative-decoding/">Speculative Decoding</a></em></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/luoboask/fde-learning/edit/master/docs/09-evaluation-frontier/frontier-overview.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/fde-learning/08-ai-engineering-tech-stack/ai-evaluation/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">AI 评测入门指南 — 怎么知道你的 AI 系统好不好</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/fde-learning/09-evaluation-frontier/speculative-decoding/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">Speculative Decoding</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#核心概念推理加速技术全景" class="table-of-contents__link toc-highlight">核心概念：推理加速技术全景</a></li><li><a href="#技术分类详解" class="table-of-contents__link toc-highlight">技术分类详解</a><ul><li><a href="#1-算法层优化减少计算量" class="table-of-contents__link toc-highlight">1. 算法层优化（减少计算量）</a></li><li><a href="#2-数值精度优化减少每操作计算量" class="table-of-contents__link toc-highlight">2. 数值精度优化（减少每操作计算量）</a></li><li><a href="#3-内存优化减少显存瓶颈" class="table-of-contents__link toc-highlight">3. 内存优化（减少显存瓶颈）</a></li></ul></li><li><a href="#2026-年推理技术状态" class="table-of-contents__link toc-highlight">2026 年推理技术状态</a><ul><li><a href="#已生产标配2024-之前成熟的技术" class="table-of-contents__link toc-highlight">已生产标配（2024 之前成熟的技术）</a></li><li><a href="#2025-年成熟并广泛采用的技术" class="table-of-contents__link toc-highlight">2025 年成熟并广泛采用的技术</a></li><li><a href="#2025-2026-前沿研究方向" class="table-of-contents__link toc-highlight">2025-2026 前沿研究方向</a></li></ul></li><li><a href="#2026-年-fde-新战场" class="table-of-contents__link toc-highlight">2026 年 FDE 新战场</a><ul><li><a href="#reasoning-模型推理优化" class="table-of-contents__link toc-highlight">Reasoning 模型推理优化</a></li><li><a href="#agentic-推理优化" class="table-of-contents__link toc-highlight">Agentic 推理优化</a></li><li><a href="#moe-大规模生产部署" class="table-of-contents__link toc-highlight">MoE 大规模生产部署</a></li><li><a href="#fp4-极致量化" class="table-of-contents__link toc-highlight">FP4 极致量化</a></li><li><a href="#端侧推理优化" class="table-of-contents__link toc-highlight">端侧推理优化</a></li></ul></li><li><a href="#如何保持技术敏感度" class="table-of-contents__link toc-highlight">如何保持技术敏感度</a><ul><li><a href="#信息来源推荐" class="table-of-contents__link toc-highlight">信息来源推荐</a></li><li><a href="#技术评估-checklist" class="table-of-contents__link toc-highlight">技术评估 Checklist</a></li></ul></li><li><a href="#面试视角" class="table-of-contents__link toc-highlight">面试视角</a></li><li><a href="#部署视角" class="table-of-contents__link toc-highlight">部署视角</a><ul><li><a href="#技术成熟度分级2026-年中" class="table-of-contents__link toc-highlight">技术成熟度分级（2026 年中）</a></li></ul></li><li><a href="#最佳实践" class="table-of-contents__link toc-highlight">最佳实践</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">学习路径</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/fde-learning/01-ai-basics/01-what-is-fde/">AI 基础认知</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/02-model-architecture/transformer-overview/">模型架构</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/06-production-deployment/deployment-architecture/">生产部署</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/10-interview/interview-framework/">面试答题框架</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">进阶</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/fde-learning/04-inference-optimization/engine-overview/">推理优化</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/04-inference-optimization/quantization-basics/">模型量化</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/03-gpu-basics/gpu-overview/">GPU 基础</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/08-cost-operations/cost-breakdown/">成本运营</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/08-ai-engineering-tech-stack/prompt-engineering/">AI 工程</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">管理</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/fde-learning/11-team-building/team-culture/">团队建设</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/17-open-source-deep-dive/">开源解读</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">FDE Learning Center</div></div></div></footer></div>
+</body>
+</html>

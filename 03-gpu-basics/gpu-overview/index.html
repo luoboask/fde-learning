@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-03-gpu-basics/gpu-overview" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.1">
+<title data-rh="true">GPU 架构概览 | FDE 学习中心</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://luoboask.github.io/fde-learning/03-gpu-basics/gpu-overview/"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="GPU 架构概览 | FDE 学习中心"><meta data-rh="true" name="description" content="GPU 是 LLM 推理的唯一载体，理解其架构是性能优化的前提。"><meta data-rh="true" property="og:description" content="GPU 是 LLM 推理的唯一载体，理解其架构是性能优化的前提。"><link data-rh="true" rel="icon" href="/fde-learning/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://luoboask.github.io/fde-learning/03-gpu-basics/gpu-overview/"><link data-rh="true" rel="alternate" href="https://luoboask.github.io/fde-learning/03-gpu-basics/gpu-overview/" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://luoboask.github.io/fde-learning/03-gpu-basics/gpu-overview/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"GPU 架构概览","item":"https://luoboask.github.io/fde-learning/03-gpu-basics/gpu-overview"}]}</script><link rel="stylesheet" href="/fde-learning/assets/css/styles.d90d4bab.css">
+<script src="/fde-learning/assets/js/runtime~main.08edaa61.js" defer="defer"></script>
+<script src="/fde-learning/assets/js/main.bfd9610e.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/fde-learning/img/logo.svg"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/fde-learning/"><div class="navbar__logo"><img src="/fde-learning/img/logo.svg" alt="FDE Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/fde-learning/img/logo.svg" alt="FDE Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">FDE 学习中心</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/fde-learning/01-ai-basics/">学习路径</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/luoboask/fde-learning" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1"><div class="sidebar-stage">L1 基础</div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/01-ai-basics/"><span title="AI 基础认知" class="categoryLinkLabel_W154">AI 基础认知</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/02-model-architecture/transformer-overview/"><span title="模型架构" class="categoryLinkLabel_W154">模型架构</span></a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1"><div class="sidebar-stage">L2 进阶</div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/fde-learning/03-gpu-basics/gpu-overview/"><span title="GPU 基础" class="categoryLinkLabel_W154">GPU 基础</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/fde-learning/03-gpu-basics/gpu-overview/"><span title="GPU 架构概览" class="linkLabel_WmDU">GPU 架构概览</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/fde-learning/03-gpu-basics/memory-model/"><span title="GPU 显存模型" class="linkLabel_WmDU">GPU 显存模型</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/fde-learning/03-gpu-basics/performance-bottleneck/"><span title="GPU 性能瓶颈分析" class="linkLabel_WmDU">GPU 性能瓶颈分析</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/fde-learning/03-gpu-basics/gpu-interconnect/"><span title="GPU 互联与多卡通信" class="linkLabel_WmDU">GPU 互联与多卡通信</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/04-inference-optimization/engine-overview/"><span title="推理优化技术" class="categoryLinkLabel_W154">推理优化技术</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/05-distributed-inference/distributed-overview/"><span title="分布式推理" class="categoryLinkLabel_W154">分布式推理</span></a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1"><div class="sidebar-stage">L3 应用</div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/08-ai-engineering-tech-stack/"><span title="AI 工程核心技术栈" class="categoryLinkLabel_W154">AI 工程核心技术栈</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/09-evaluation-frontier/frontier-overview/"><span title="前沿技术" class="categoryLinkLabel_W154">前沿技术</span></a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1"><div class="sidebar-stage">L4 实战</div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/06-production-deployment/deployment-architecture/"><span title="生产部署架构" class="categoryLinkLabel_W154">生产部署架构</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/08-cost-operations/cost-breakdown/"><span title="成本运营" class="categoryLinkLabel_W154">成本运营</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/12-labs/"><span title="动手实验" class="categoryLinkLabel_W154">动手实验</span></a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1"><div class="sidebar-stage">L5 面试</div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/10-interview/interview-framework/"><span title="面试答题框架" class="categoryLinkLabel_W154">面试答题框架</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/13-qna/"><span title="面试问答库" class="categoryLinkLabel_W154">面试问答库</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/11-team-building/"><span title="团队建设与管理" class="categoryLinkLabel_W154">团队建设与管理</span></a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1"><div class="sidebar-stage">附录</div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/14-glossary/"><span title="术语表" class="categoryLinkLabel_W154">术语表</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/15-resources/"><span title="推荐资源" class="categoryLinkLabel_W154">推荐资源</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/16-case-studies/"><span title="案例研究" class="categoryLinkLabel_W154">案例研究</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/fde-learning/17-open-source-deep-dive/"><span title="开源项目深度解读" class="categoryLinkLabel_W154">开源项目深度解读</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/fde-learning/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">GPU 基础</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">GPU 架构概览</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">本页总览</button></div><div class="theme-doc-markdown markdown"><header><h1>GPU 架构概览</h1></header>
+<blockquote>
+<p>GPU 是 LLM 推理的唯一载体，理解其架构是性能优化的前提。</p>
+</blockquote>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="前置知识">前置知识<a href="#前置知识" class="hash-link" aria-label="前置知识的直接链接" title="前置知识的直接链接" translate="no">​</a></h2>
+<ul>
+<li class=""><a class="" href="/fde-learning/02-model-architecture/kv-cache/">KV Cache 详解</a> — 理解 KV Cache 显存计算</li>
+<li class=""><a class="" href="/fde-learning/02-model-architecture/transformer-overview/">Transformer 架构概述</a> — 理解 decode 阶段为什么 memory-bound</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="为什么-fde-需要懂-gpu">为什么 FDE 需要懂 GPU<a href="#为什么-fde-需要懂-gpu" class="hash-link" aria-label="为什么 FDE 需要懂 GPU的直接链接" title="为什么 FDE 需要懂 GPU的直接链接" translate="no">​</a></h2>
+<p>推理优化的最终战场在 GPU 上。从模型量化、算子融合、KV Cache 管理到多卡部署，每一项优化都建立在对 GPU 硬件的理解之上。面试中经常考察：为什么 decode 阶段是 memory-bound？为什么要用 Tensor Core？如何选 GPU 性价比最高？这些问题的答案都在架构细节里。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="核心概念gpu-架构概览">核心概念：GPU 架构概览<a href="#核心概念gpu-架构概览" class="hash-link" aria-label="核心概念：GPU 架构概览的直接链接" title="核心概念：GPU 架构概览的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="层级结构">层级结构<a href="#层级结构" class="hash-link" aria-label="层级结构的直接链接" title="层级结构的直接链接" translate="no">​</a></h3>
+<p>GPU 的架构是一个严格的层级树，从大到小：</p>
+<!-- -->
+<p><strong>关键路径</strong>：数据从 HBM 经过 L2、L1/Shared Memory 到达 SM，在 SM 中由 Tensor Core 或 CUDA Core 执行计算，结果写回。每一步的延迟和带宽差异巨大。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="smstreaming-multiprocessor-gpu-的基本执行单元">SM（Streaming Multiprocessor）—— GPU 的基本执行单元<a href="#smstreaming-multiprocessor-gpu-的基本执行单元" class="hash-link" aria-label="SM（Streaming Multiprocessor）—— GPU 的基本执行单元的直接链接" title="SM（Streaming Multiprocessor）—— GPU 的基本执行单元的直接链接" translate="no">​</a></h3>
+<p>SM 是 GPU 中真正的 &quot;计算核心&quot;。可以把它类比为 CPU 的一个核心，但设计理念完全不同：</p>
+<ul>
+<li class=""><strong>H100</strong>：132 个 SM（SXM 版本 168 个），每个 SM 包含 4 个 warp scheduler、128 个 FP32 Core、4 个 Tensor Core（第五代）</li>
+<li class=""><strong>A100</strong>：108 个 SM（SXM 版本），每个 SM 含 64 个 FP32 Core、1 个 Tensor Core（第三代）</li>
+<li class="">每个 SM 可以同时调度多个 <strong>warp</strong>（32 个线程为一组）</li>
+</ul>
+<p>SM 的核心优势是 <strong>极高并发度</strong>：单个 SM 可容纳 2048 个线程（Hopper），整个 H100 SXM 可以同时运行超过 34 万个活跃线程。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="warp--simt-执行的基本单位">Warp —— SIMT 执行的基本单位<a href="#warp--simt-执行的基本单位" class="hash-link" aria-label="Warp —— SIMT 执行的基本单位的直接链接" title="Warp —— SIMT 执行的基本单位的直接链接" translate="no">​</a></h3>
+<p>Warp 是 32 个线程的组。SM 以 warp 为单位调度指令：</p>
+<ul>
+<li class=""><strong>SIMT（Single Instruction, Multiple Threads）</strong>：一个 warp 中的 32 个线程执行同一条指令，但各自操作不同的数据</li>
+<li class="">如果 warp 中的线程走不同分支（if-else），会发生 <strong>warp divergence</strong>，两条路径串行执行，性能减半</li>
+<li class="">这就是为什么 GPU kernel 要尽量保证相邻线程执行相同路径</li>
+</ul>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">示例：warp divergence</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    if (thread_id % 2 == 0) {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        // 路径 A: 偶数线程执行</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    } else {</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">        // 路径 B: 奇数线程执行</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    }</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    // 结果：路径 A 和路径 B 串行执行，总时间 = A + B</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tensor-core--llm-推理的核心引擎">Tensor Core —— LLM 推理的核心引擎<a href="#tensor-core--llm-推理的核心引擎" class="hash-link" aria-label="Tensor Core —— LLM 推理的核心引擎的直接链接" title="Tensor Core —— LLM 推理的核心引擎的直接链接" translate="no">​</a></h3>
+<p>Tensor Core 是 NVIDIA Volta（2017）引入的专用矩阵乘法单元，到 Hopper 已经进化到第五代。</p>
+<p><strong>为什么 Tensor Core 是 LLM 推理的核心？</strong></p>
+<ol>
+<li class="">
+<p><strong>MMA（Matrix Multiply-Accumulate）指令</strong>：一次指令完成 D = A 乘以 B + C，其中 A、B、C 都是矩阵块。Hopper 第五代 Tensor Core 支持 FP8 精度下的 512 TOPS/SM，比 FP32 快 1000 倍以上。</p>
+</li>
+<li class="">
+<p><strong>混合精度推理</strong>：权重和激活用 FP8/FP16/BF16（低精度、省带宽），累加用 FP32（高精度、保精度）。这种精度策略大幅降低了显存带宽需求。</p>
+</li>
+<li class="">
+<p><strong>LLM 的本质是矩阵乘法</strong>：Attention 的 QKV 投影、MLP 的线性层全部是 GEMM（General Matrix Multiply），这正是 Tensor Core 最擅长的操作。LLM 中 95% 以上的计算量在 GEMM 上。</p>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="cuda-core-vs-tensor-core">CUDA Core vs Tensor Core<a href="#cuda-core-vs-tensor-core" class="hash-link" aria-label="CUDA Core vs Tensor Core的直接链接" title="CUDA Core vs Tensor Core的直接链接" translate="no">​</a></h3>
+<table><thead><tr><th>维度</th><th>CUDA Core（FP32）</th><th>Tensor Core</th></tr></thead><tbody><tr><td>运算类型</td><td>标量（1 次 FP32 FMA）</td><td>矩阵块（4x4、8x8、16x16）</td></tr><tr><td>峰值吞吐（H100 SXM）</td><td>约 67 TFLOPS</td><td>约 989 TFLOPS（FP8 密集）</td></tr><tr><td>适用场景</td><td>通用计算、后处理</td><td>GEMM、卷积、LLM 推理</td></tr><tr><td>精度</td><td>FP32、INT32</td><td>FP8、FP16、BF16、INT8、INT4</td></tr><tr><td>在 SM 中的数量</td><td>128 个/SM</td><td>4 个/SM（第五代）</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="simt-vs-mimd--gpu-与-cpu-的本质差异">SIMT vs MIMD —— GPU 与 CPU 的本质差异<a href="#simt-vs-mimd--gpu-与-cpu-的本质差异" class="hash-link" aria-label="SIMT vs MIMD —— GPU 与 CPU 的本质差异的直接链接" title="SIMT vs MIMD —— GPU 与 CPU 的本质差异的直接链接" translate="no">​</a></h3>
+<p>理解这一点是理解一切 GPU 性能优化的基础：</p>
+<table><thead><tr><th>维度</th><th>CPU（MIMD）</th><th>GPU（SIMT）</th></tr></thead><tbody><tr><td>设计理念</td><td>低延迟、强串行</td><td>高吞吐、大规模并行</td></tr><tr><td>核心数</td><td>8-128</td><td>数千至数万</td></tr><tr><td>缓存</td><td>大而复杂（L1/L2/L3）</td><td>小但极快</td></tr><tr><td>适合场景</td><td>控制流复杂、分支多</td><td>数据并行、规则计算</td></tr><tr><td>矩阵运算</td><td>不擅长</td><td>天生适合（一个 warp 32 线程同时处理 32 个元素）</td></tr></tbody></table>
+<p>GPU 适合矩阵运算的根本原因：<strong>矩阵乘法的每个输出元素计算是独立的</strong>，可以分配给不同的 warp 同时执行。GEMM 的 O(n 的三次方) 计算量和 O(n 平方) 数据量使得计算强度高，能够充分利用 GPU 的算力。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="nvidia-gpu-产品线对比">NVIDIA GPU 产品线对比<a href="#nvidia-gpu-产品线对比" class="hash-link" aria-label="NVIDIA GPU 产品线对比的直接链接" title="NVIDIA GPU 产品线对比的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="推理场景关键参数表">推理场景关键参数表<a href="#推理场景关键参数表" class="hash-link" aria-label="推理场景关键参数表的直接链接" title="推理场景关键参数表的直接链接" translate="no">​</a></h3>
+<table><thead><tr><th>参数</th><th>H100 SXM</th><th>B200 SXM</th><th>Rubin (2026)</th><th>A100 SXM</th><th>L40S</th><th>RTX 4090</th></tr></thead><tbody><tr><td>架构</td><td>Hopper</td><td>Blackwell</td><td>Vera Rubin</td><td>Ampere</td><td>Ada Lovelace</td><td>Ada Lovelace</td></tr><tr><td>GPU 显存</td><td>80GB HBM3</td><td>192GB HBM3e</td><td>288GB HBM4</td><td>80GB HBM2e</td><td>48GB GDDR6X</td><td>24GB GDDR6X</td></tr><tr><td>显存带宽</td><td>3.35 TB/s</td><td>8.0 TB/s</td><td>~16 TB/s</td><td>2.0 TB/s</td><td>864 GB/s</td><td>1.0 TB/s</td></tr><tr><td>FP16 Tensor</td><td>989 TFLOPS</td><td>~2.5 PFLOPS</td><td>-</td><td>312 TFLOPS</td><td>366 TFLOPS</td><td>330 TFLOPS</td></tr><tr><td>FP8 Tensor</td><td>1978 TFLOPS</td><td>~5 PFLOPS</td><td>-</td><td>不支持</td><td>731 TFLOPS</td><td>660 TFLOPS</td></tr><tr><td>FP4 Tensor</td><td>不支持</td><td>~10 PFLOPS</td><td>50 PFLOPS</td><td>不支持</td><td>不支持</td><td>不支持</td></tr><tr><td>NVLink</td><td>900 GB/s</td><td>1.8 TB/s</td><td>~2.5 TB/s</td><td>600 GB/s</td><td>不支持</td><td>不支持</td></tr><tr><td>TDP</td><td>700W</td><td>1000W</td><td>~1100W</td><td>500W</td><td>350W</td><td>450W</td></tr><tr><td>推理定位</td><td>主力生产</td><td>高性能生产</td><td>下一代旗舰</td><td>主力通用</td><td>性价比推理</td><td>实验/开发</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="h100-vs-a100-关键差异">H100 vs A100 关键差异<a href="#h100-vs-a100-关键差异" class="hash-link" aria-label="H100 vs A100 关键差异的直接链接" title="H100 vs A100 关键差异的直接链接" translate="no">​</a></h3>
+<p>H100 相比 A100 的改进是代际性的，不只是 &quot;更快一点&quot;：</p>
+<ol>
+<li class="">
+<p><strong>HBM3 vs HBM2e</strong>：带宽从 2.0 TB/s 提升到 3.35 TB/s（提升 67.5%）。这直接决定了 decode 阶段的 throughput 上限。</p>
+</li>
+<li class="">
+<p><strong>NVLink 4.0</strong>：带宽从 600 GB/s 提升到 900 GB/s（提升 50%）。对于 TP（张量并行）通信延迟影响巨大。</p>
+</li>
+<li class="">
+<p><strong>FP8 支持</strong>：H100 原生支持 FP8 Tensor Core，相比 FP16 几乎 <strong>双倍 throughput</strong>。这是 H100 推理性能的核心优势。FP8 量化正在成为 LLM 推理的事实标准。</p>
+</li>
+<li class="">
+<p><strong>Transformer Engine</strong>：H100 内置硬件级的自动混合精度引擎，可自动选择 FP8/FP16/BF16。</p>
+</li>
+<li class="">
+<p><strong>SM 数量</strong>：H100 SXM 168 个 vs A100 SXM 108 个（增加 56%），FP16 Tensor 吞吐增加 217%。</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="深入gpu-硬件层次详解">深入：GPU 硬件层次详解<a href="#深入gpu-硬件层次详解" class="hash-link" aria-label="深入：GPU 硬件层次详解的直接链接" title="深入：GPU 硬件层次详解的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="gpc-与-tpc">GPC 与 TPC<a href="#gpc-与-tpc" class="hash-link" aria-label="GPC 与 TPC的直接链接" title="GPC 与 TPC的直接链接" translate="no">​</a></h3>
+<p>在 SM 之上，GPU 还有两层组织结构：</p>
+<ul>
+<li class=""><strong>GPC（Graphics Processing Cluster）</strong>：GPU 中最大的功能单元。H100 有 7 个 GPC，每个 GPC 包含多个 TPC 和一个 Raster Engine（光栅引擎，渲染用，推理不相关）。GPC 之间共享 L2 Cache。</li>
+<li class=""><strong>TPC（Texture Processing Cluster）</strong>：GPC 的子单元，通常包含 2 个 SM。TPC 是 NVIDIA 管理功耗和频率的基本单位。</li>
+</ul>
+<p>对推理而言，我们主要关心 SM 和 Tensor Core，GPC/TPC 是物理组织层面，不影响编程模型。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="gpu-代际演进从-cuda-到-blackwell">GPU 代际演进：从 CUDA 到 Blackwell<a href="#gpu-代际演进从-cuda-到-blackwell" class="hash-link" aria-label="GPU 代际演进：从 CUDA 到 Blackwell的直接链接" title="GPU 代际演进：从 CUDA 到 Blackwell的直接链接" translate="no">​</a></h3>
+<table><thead><tr><th>架构</th><th>年份</th><th>Tensor Core 代数</th><th>关键特性</th></tr></thead><tbody><tr><td>Volta</td><td>2017</td><td>第一代</td><td>首次引入 Tensor Core（FP16）</td></tr><tr><td>Turing</td><td>2018</td><td>第二代</td><td>INT8 推理支持</td></tr><tr><td>Ampere</td><td>2020</td><td>第三代</td><td>FP32 翻倍、BF16 支持、TF32</td></tr><tr><td>Ada Lovelace</td><td>2022</td><td>第四代</td><td>FP8 实验性支持、AV1 编码</td></tr><tr><td>Hopper</td><td>2022</td><td>第五代</td><td>FP8 原生、Transformer Engine</td></tr><tr><td>Blackwell</td><td>2025</td><td>第六代</td><td>FP8 成为标配、FP4 实验、1.8 TB/s NVLink</td></tr><tr><td>Vera Rubin</td><td>2026</td><td>第七代</td><td>FP4 原生 50 PFLOPS、HBM4、2.75x B200 带宽</td></tr></tbody></table>
+<p><strong>对 FDE 的意义</strong>：架构代际直接决定了你能用什么精度。Ampere（A100）不支持 FP8，所以 FP8 量化在 A100 上无法使用 Tensor Core 加速。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="migmulti-instance-gpu">MIG（Multi-Instance GPU）<a href="#migmulti-instance-gpu" class="hash-link" aria-label="MIG（Multi-Instance GPU）的直接链接" title="MIG（Multi-Instance GPU）的直接链接" translate="no">​</a></h3>
+<p>MIG 是 Ampere（A100/A30）引入的功能，可以将一张物理 GPU 切分成最多 7 个完全隔离的 GPU 实例：</p>
+<ul>
+<li class=""><strong>隔离级别</strong>：每个 MIG 实例有独立的 SM、显存、L2 Cache，互不干扰</li>
+<li class=""><strong>切分模式</strong>：1g.5gb（1/7 SM + 5GB）、2g.10gb、3g.20gb、4g.20gb、7g.40gb 等</li>
+<li class=""><strong>适用场景</strong>：多租户小模型部署、开发环境共享</li>
+<li class=""><strong>不适用</strong>：大模型部署（单个 MIG 实例 SM 数太少，无法支撑大模型的 TP）</li>
+</ul>
+<!-- -->
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="部署视角gpu-选型指南">部署视角：GPU 选型指南<a href="#部署视角gpu-选型指南" class="hash-link" aria-label="部署视角：GPU 选型指南的直接链接" title="部署视角：GPU 选型指南的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="按场景选-gpu">按场景选 GPU<a href="#按场景选-gpu" class="hash-link" aria-label="按场景选 GPU的直接链接" title="按场景选 GPU的直接链接" translate="no">​</a></h3>
+<table><thead><tr><th>场景</th><th>推荐 GPU</th><th>理由</th></tr></thead><tbody><tr><td>生产级 LLM 服务（70B+）</td><td>H100/B200 SXM x 8</td><td>HBM3/HBM3e 带宽 + NVLink + FP8</td></tr><tr><td>生产级 LLM 服务（7B-13B）</td><td>A100-80G x 2-4</td><td>性价比最优</td></tr><tr><td>下一代旗舰（2026+）</td><td>Rubin x 4-8</td><td>FP4 极致量化，单卡 288GB，4-8 个 70B 实例</td></tr><tr><td>成本敏感推理（7B）</td><td>L40S x 1-2</td><td>GDDR6X 够用，价格友好</td></tr><tr><td>开发/测试</td><td>RTX 4090</td><td>单卡开发，FP16 性能强，但无 NVLink</td></tr><tr><td>边缘推理（小于 1B 参数）</td><td>A10 / L4</td><td>低功耗，PCIe 单槽</td></tr><tr><td>多租户小模型</td><td>A100 MIG</td><td>一张卡切 7 份独立实例</td></tr></tbody></table>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="选型核心指标">选型核心指标<a href="#选型核心指标" class="hash-link" aria-label="选型核心指标的直接链接" title="选型核心指标的直接链接" translate="no">​</a></h3>
+<ol>
+<li class=""><strong>显存容量</strong>：决定能部署多大的模型。70B FP16 需要约 140GB，至少需要 2 张 A100-80G 或 2 张 H100-80G。</li>
+<li class=""><strong>显存带宽</strong>：决定 decode 阶段的 token 生成速度。HBM3 大于 HBM2e 远大于 GDDR6。</li>
+<li class=""><strong>NVLink</strong>：多卡 TP 通信的关键。没有 NVLink（如 RTX 4090），多卡只能走 PCIe，TP 通信延迟高 10 倍。</li>
+<li class=""><strong>FP8 支持</strong>：H100 独有，FP8 量化可几乎翻倍 throughput。</li>
+<li class=""><strong>TCO</strong>：考虑 TDP（电费）、机架空间、冷却成本。H100 700W vs RTX 4090 450W。</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="面试视角">面试视角<a href="#面试视角" class="hash-link" aria-label="面试视角的直接链接" title="面试视角的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="进阶问题">进阶问题<a href="#进阶问题" class="hash-link" aria-label="进阶问题的直接链接" title="进阶问题的直接链接" translate="no">​</a></h3>
+<ol start="6">
+<li class="">
+<p><strong>&quot;GPU 的 GPC、TPC、SM 之间是什么关系？&quot;</strong></p>
+<ul>
+<li class="">GPU -&gt; GPC（7 个）-&gt; TPC（每 GPC 多个）-&gt; SM（每 TPC 2 个）</li>
+<li class="">GPC 是最大功能单元，TPC 是功耗管理单元，SM 是执行单元</li>
+<li class="">对推理编程，只关心 SM 数量（决定并行度）</li>
+</ul>
+</li>
+<li class="">
+<p><strong>&quot;CUDA Core 和 Tensor Core 的数量关系？&quot;</strong></p>
+<ul>
+<li class="">H100：每 SM 有 128 个 CUDA Core + 4 个 Tensor Core</li>
+<li class="">Tensor Core 数量少但吞吐高（每个一次处理 16x16 矩阵块）</li>
+<li class="">LLM 中 95% 以上计算走 Tensor Core，CUDA Core 只做后处理（layernorm、softmax 等）</li>
+</ul>
+</li>
+<li class="">
+<p><strong>&quot;Blackwell（B200）相比 H100 有什么改进？&quot;</strong></p>
+<ul>
+<li class="">NVLink 5.0：1.8 TB/s（H100 的 2 倍）</li>
+<li class="">第六代 Tensor Core：FP8 吞吐翻倍，FP4 实验支持</li>
+<li class="">192GB HBM3e 显存，8 TB/s 带宽（H100 的 2.4x）</li>
+<li class="">双 die 设计：两个 GPU die 封装，通过 10 TB/s 内部互连</li>
+</ul>
+</li>
+<li class="">
+<p><strong>&quot;Vera Rubin（2026）有什么突破？&quot;</strong></p>
+<ul>
+<li class="">FP4 原生支持：50 PFLOPS 推理性能，极致量化</li>
+<li class="">288GB HBM4 显存，带宽约 16 TB/s（B200 的 2x）</li>
+<li class="">单卡可部署 4-8 个 INT4 量化的 70B 模型实例</li>
+<li class="">面向推理专门优化，而非训练</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="常考问题">常考问题<a href="#常考问题" class="hash-link" aria-label="常考问题的直接链接" title="常考问题的直接链接" translate="no">​</a></h3>
+<ol>
+<li class="">
+<p><strong>&quot;GPU 和 CPU 的架构区别是什么？为什么 GPU 适合 LLM 推理？&quot;</strong></p>
+<ul>
+<li class="">GPU 是 SIMT（大量简单核心同时执行相同指令），CPU 是 MIMD（少量复杂核心执行不同指令）</li>
+<li class="">LLM 推理本质是大矩阵乘法（GEMM），高度数据并行，天然适合 SIMT</li>
+<li class="">GPU 有 Tensor Core 专用矩阵单元，FP16 吞吐是 CPU 的 100 倍以上</li>
+</ul>
+</li>
+<li class="">
+<p><strong>&quot;什么是 Tensor Core？它和普通 CUDA Core 的区别？&quot;</strong></p>
+<ul>
+<li class="">Tensor Core 执行 MMA 指令（矩阵乘累加），一次操作处理矩阵块（如 16x16）</li>
+<li class="">CUDA Core 执行标量运算（一次 FP32 FMA）</li>
+<li class="">H100 上 Tensor Core FP8 吞吐约 1978 TFLOPS，FP32 只有约 67 TFLOPS</li>
+</ul>
+</li>
+<li class="">
+<p><strong>&quot;H100 相比 A100 有哪些关键升级？对推理有什么影响？&quot;</strong></p>
+<ul>
+<li class="">HBM3（3.35 TB/s vs 2 TB/s）：decode throughput 提升 60% 以上</li>
+<li class="">FP8 Tensor Core：几乎双倍吞吐</li>
+<li class="">NVLink 4.0（900 GB/s vs 600 GB/s）：多卡 TP 延迟降低</li>
+</ul>
+</li>
+<li class="">
+<p><strong>&quot;什么是 warp？什么是 warp divergence？&quot;</strong></p>
+<ul>
+<li class="">Warp = 32 个线程的调度组，SIMT 执行</li>
+<li class="">Warp divergence = warp 内线程走不同分支，导致两条路径串行执行</li>
+</ul>
+</li>
+<li class="">
+<p><strong>&quot;70B 模型怎么部署？需要什么样的 GPU 配置？&quot;</strong></p>
+<ul>
+<li class="">FP16 权重约 140GB，至少需要 2 张 A100-80G 或 2 张 H100-80G</li>
+<li class="">还需要预留 KV Cache 空间，实际建议 4 张 A100-80G 或 4 张 H100-80G</li>
+<li class="">多卡之间需要 NVLink 做 TP 通信</li>
+</ul>
+</li>
+<li class="">
+<p><strong>&quot;MIG 是什么？什么场景适合用？&quot;</strong></p>
+<ul>
+<li class="">MIG 把一张 A100 切分成最多 7 个独立 GPU 实例</li>
+<li class="">适合多租户小模型部署，每个实例有独立 SM 和显存</li>
+<li class="">不适合大模型（SM 太少，无法支撑大模型 TP）</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="最佳实践">最佳实践<a href="#最佳实践" class="hash-link" aria-label="最佳实践的直接链接" title="最佳实践的直接链接" translate="no">​</a></h2>
+<ol>
+<li class=""><strong>生产环境优先选 HBM 显存的 GPU</strong>：HBM 带宽是 GDDR 的 3-5 倍，对 LLM decode 阶段影响巨大。</li>
+<li class=""><strong>多卡部署必须用 NVLink</strong>：不要尝试用 PCIe 做 TP 通信，延迟差 10 倍以上。</li>
+<li class=""><strong>关注 FP8 量化</strong>：H100/B200 上 FP8 推理已成熟，吞吐接近 FP16 的两倍。Rubin GPU 进一步引入 FP4 原生支持。</li>
+<li class=""><strong>关注 FP4 极致量化</strong>：Rubin GPU（2026）原生 FP4，70B 模型仅 17.5GB，单卡可部署多个实例。</li>
+<li class=""><strong>开发用 RTX 4090，生产用 A100/H100</strong>：开发环境不需要 NVLink，单卡 FP16 够用；生产环境必须考虑多卡和显存带宽。</li>
+<li class=""><strong>关注架构代际</strong>：确认 GPU 是否支持你需要的精度（A100 不支持 FP8，H100 才支持）。</li>
+<li class=""><strong>不要只看 FP32 TFLOPS</strong>：LLM 推理几乎全部走 Tensor Core（FP16/FP8/INT8），FP32 数据仅供参考。H100 FP32 只有 67 TFLOPS，但 FP8 有 1978 TFLOPS，差约 30 倍。</li>
+<li class=""><strong>SXM vs PCIe 版本</strong>：同型号 GPU 的 SXM 版本比 PCIe 版本有更高带宽（NVLink only on SXM），推理部署优先选 SXM。</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="快速参考关键公式">快速参考：关键公式<a href="#快速参考关键公式" class="hash-link" aria-label="快速参考：关键公式的直接链接" title="快速参考：关键公式的直接链接" translate="no">​</a></h2>
+<ul>
+<li class=""><strong>模型权重大小（GB）</strong> = 参数量 乘以 bytes_per_param（FP16=2, INT8=1, INT4=0.5）</li>
+<li class=""><strong>单卡 decode throughput（token/s）</strong> 约等于 显存带宽（GB/s）/ 权重大小（GB）</li>
+<li class=""><strong>KV Cache（GB）</strong> = batch 乘以 seq_len 乘以 2 乘以 n_layers 乘以 n_heads 乘以 head_dim 乘以 bytes</li>
+<li class=""><strong>70B FP16 最低配置</strong> = 2 张 A100-80G（仅权重），推荐 4 张 A100-80G（含 KV Cache）</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="术语速查表">术语速查表<a href="#术语速查表" class="hash-link" aria-label="术语速查表的直接链接" title="术语速查表的直接链接" translate="no">​</a></h2>
+<table><thead><tr><th>术语</th><th>全称</th><th>一句话解释</th></tr></thead><tbody><tr><td>SM</td><td>Streaming Multiprocessor</td><td>GPU 的基本执行单元，类似 CPU 核心</td></tr><tr><td>GPC</td><td>Graphics Processing Cluster</td><td>GPU 中最大的功能分组</td></tr><tr><td>TPC</td><td>Texture Processing Cluster</td><td>GPC 的子单元，功耗管理单位</td></tr><tr><td>Warp</td><td>-</td><td>32 个线程的 SIMT 调度组</td></tr><tr><td>Tensor Core</td><td>-</td><td>专用矩阵乘法加速单元</td></tr><tr><td>CUDA Core</td><td>-</td><td>标量运算单元（FP32 FMA）</td></tr><tr><td>HBM</td><td>High Bandwidth Memory</td><td>3D 堆叠高带宽显存</td></tr><tr><td>MMA</td><td>Matrix Multiply-Accumulate</td><td>Tensor Core 的核心指令</td></tr><tr><td>SIMT</td><td>Single Instruction Multiple Threads</td><td>GPU 的执行模型</td></tr><tr><td>MIG</td><td>Multi-Instance GPU</td><td>GPU 硬件分区技术</td></tr></tbody></table>
+<hr>
+<p><em>下一节：<a class="" href="/fde-learning/03-gpu-basics/memory-model/">显存模型</a></em></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/luoboask/fde-learning/edit/master/docs/03-gpu-basics/gpu-overview.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>编辑此页</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/fde-learning/02-model-architecture/thinking-models/"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">Thinking / Reasoning 模型 — 推理部署的新范式</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/fde-learning/03-gpu-basics/memory-model/"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">GPU 显存模型</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#前置知识" class="table-of-contents__link toc-highlight">前置知识</a></li><li><a href="#为什么-fde-需要懂-gpu" class="table-of-contents__link toc-highlight">为什么 FDE 需要懂 GPU</a></li><li><a href="#核心概念gpu-架构概览" class="table-of-contents__link toc-highlight">核心概念：GPU 架构概览</a><ul><li><a href="#层级结构" class="table-of-contents__link toc-highlight">层级结构</a></li><li><a href="#smstreaming-multiprocessor-gpu-的基本执行单元" class="table-of-contents__link toc-highlight">SM（Streaming Multiprocessor）—— GPU 的基本执行单元</a></li><li><a href="#warp--simt-执行的基本单位" class="table-of-contents__link toc-highlight">Warp —— SIMT 执行的基本单位</a></li><li><a href="#tensor-core--llm-推理的核心引擎" class="table-of-contents__link toc-highlight">Tensor Core —— LLM 推理的核心引擎</a></li><li><a href="#cuda-core-vs-tensor-core" class="table-of-contents__link toc-highlight">CUDA Core vs Tensor Core</a></li><li><a href="#simt-vs-mimd--gpu-与-cpu-的本质差异" class="table-of-contents__link toc-highlight">SIMT vs MIMD —— GPU 与 CPU 的本质差异</a></li></ul></li><li><a href="#nvidia-gpu-产品线对比" class="table-of-contents__link toc-highlight">NVIDIA GPU 产品线对比</a><ul><li><a href="#推理场景关键参数表" class="table-of-contents__link toc-highlight">推理场景关键参数表</a></li><li><a href="#h100-vs-a100-关键差异" class="table-of-contents__link toc-highlight">H100 vs A100 关键差异</a></li></ul></li><li><a href="#深入gpu-硬件层次详解" class="table-of-contents__link toc-highlight">深入：GPU 硬件层次详解</a><ul><li><a href="#gpc-与-tpc" class="table-of-contents__link toc-highlight">GPC 与 TPC</a></li><li><a href="#gpu-代际演进从-cuda-到-blackwell" class="table-of-contents__link toc-highlight">GPU 代际演进：从 CUDA 到 Blackwell</a></li><li><a href="#migmulti-instance-gpu" class="table-of-contents__link toc-highlight">MIG（Multi-Instance GPU）</a></li></ul></li><li><a href="#部署视角gpu-选型指南" class="table-of-contents__link toc-highlight">部署视角：GPU 选型指南</a><ul><li><a href="#按场景选-gpu" class="table-of-contents__link toc-highlight">按场景选 GPU</a></li><li><a href="#选型核心指标" class="table-of-contents__link toc-highlight">选型核心指标</a></li></ul></li><li><a href="#面试视角" class="table-of-contents__link toc-highlight">面试视角</a><ul><li><a href="#进阶问题" class="table-of-contents__link toc-highlight">进阶问题</a></li><li><a href="#常考问题" class="table-of-contents__link toc-highlight">常考问题</a></li></ul></li><li><a href="#最佳实践" class="table-of-contents__link toc-highlight">最佳实践</a></li><li><a href="#快速参考关键公式" class="table-of-contents__link toc-highlight">快速参考：关键公式</a></li><li><a href="#术语速查表" class="table-of-contents__link toc-highlight">术语速查表</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">学习路径</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/fde-learning/01-ai-basics/01-what-is-fde/">AI 基础认知</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/02-model-architecture/transformer-overview/">模型架构</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/06-production-deployment/deployment-architecture/">生产部署</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/10-interview/interview-framework/">面试答题框架</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">进阶</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/fde-learning/04-inference-optimization/engine-overview/">推理优化</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/04-inference-optimization/quantization-basics/">模型量化</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/03-gpu-basics/gpu-overview/">GPU 基础</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/08-cost-operations/cost-breakdown/">成本运营</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/08-ai-engineering-tech-stack/prompt-engineering/">AI 工程</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">管理</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/fde-learning/11-team-building/team-culture/">团队建设</a></li><li class="footer__item"><a class="footer__link-item" href="/fde-learning/17-open-source-deep-dive/">开源解读</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">FDE Learning Center</div></div></div></footer></div>
+</body>
+</html>

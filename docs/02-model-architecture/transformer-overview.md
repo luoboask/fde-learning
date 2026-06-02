@@ -69,9 +69,9 @@ Attention(Q, K, V) = softmax(QK^T / sqrt(d_k)) V
 ```
 
 各维度：
-- `Q`: `[batch, seq_len, num_heads, head_dim]` → reshape 为 `[batch, seq_len, num_heads × head_dim]`
-- `K`: 同 Q 的形状
-- `V`: 同 Q 的形状
+- `Q`: 线性投影后 `[batch, seq_len, d_model]`，reshape 为 `[batch, seq_len, num_heads, head_dim]`，再 transpose 为 `[batch, num_heads, seq_len, head_dim]`
+- `K`: 同 Q 的变换过程
+- `V`: 同 Q 的变换过程
 - `QK^T`: `[batch, num_heads, seq_len, seq_len]` — 注意力分数矩阵
 - `softmax(...)` 在最后一个维度（key 维度）上做归一化
 

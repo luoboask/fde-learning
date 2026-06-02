@@ -118,6 +118,7 @@ const sidebars = {
       label: '成本与运营',
       link: { type: 'doc', id: '08-cost-operations/cost-breakdown' },
       items: [
+        '08-cost-operations/cost-breakdown',
         '08-cost-operations/optimization-strategies',
         '08-cost-operations/capacity-planning',
         '08-cost-operations/self-hosted-vs-cloud',
