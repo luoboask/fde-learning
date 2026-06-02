@@ -1,262 +1,388 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '@theme/Layout';
 
-interface SectionItem {
-  title: string;
-  source: string;
-  summary: string;
-  date: string;
-  url?: string;
-  likes?: number;
+interface Product {
+  name: string;
+  tagline: string;
+  description: string;
+  category: string;
+  url: string;
+  stars?: string;
+  pricing?: string;
+  highlight?: string;
+  launchDate: string;
 }
 
-interface Section {
+interface CategoryGroup {
   icon: string;
   title: string;
-  subtitle: string;
   color: string;
   bg: string;
-  items: SectionItem[];
+  products: Product[];
 }
 
-const SECTIONS: Section[] = [
+const CATEGORIES: CategoryGroup[] = [
   {
-    icon: '⚡',
-    title: 'Vibe Coding → Agentic Engineering',
-    subtitle: '开发范式从"生成代码"转向"交付系统"',
+    icon: '💻',
+    title: 'AI 编程与开发工具',
     color: '#8b5cf6',
     bg: '#ede9fe',
-    items: [
+    products: [
       {
-        title: 'Vibe coding got everyone shipping, agentic engineering decides who\'s still shipping in 12 months',
-        source: 'Anton Abyzov',
-        summary: '差距在于 agent 是否有 memory、skills 和 spec，而不仅仅是 vibes。',
-        date: '2026-05-20',
-        url: 'https://x.com/aabyzov/status/2057249655520408034',
+        name: 'Cursor',
+        tagline: 'AI 原生代码编辑器',
+        description: '基于 VS Code Fork 的 AI 编程编辑器，支持多文件编辑、终端命令生成、代码库感知。2025 年底突破 1000 万用户，2026 年持续迭代 Agent 模式。',
+        category: '编程工具',
+        url: 'https://cursor.com',
+        stars: '',
+        pricing: '免费 / $20/月 Pro',
+        highlight: 'AI 编程标杆',
+        launchDate: '2023 起步，2026 成熟',
       },
       {
-        title: '模型能力差距已缩小到个位数百分比',
-        source: 'Jay.TL',
-        summary: 'Qwen3.7-Max 在 Terminal-Bench 2.0 上排第一（69.7），超过 Codex 的 DeepSeek V4-Pro（67.9）和 Claude Opus 4.6（65.4）。竞争不在 benchmark，在生态——工作流锁定 > 模型优势。',
-        date: '2026-06-02',
+        name: 'Windsurf (Codeium)',
+        tagline: 'AI 编程 IDE 中的 Cursor 最强竞争者',
+        description: '2026 年推出"多 Agent 协作"模式，多个 AI Agent 可以同时处理不同文件，自动协调冲突。Flow 模式支持多步骤复杂任务自动执行。',
+        category: '编程工具',
+        url: 'https://codeium.com/windsurf',
+        pricing: '免费 / $15/月',
+        highlight: '多 Agent 协作',
+        launchDate: '2026 Q1 重大更新',
       },
       {
-        title: 'Anthropic 把最强能力定向灌入 Claude Code',
-        source: 'Jay.TL',
-        summary: 'Opus 4.8 在 Claude Code 里表现极强，但在网页端体验糟糕。这不是 bug——工作流锁定正在发生。GPT-5.6 传闻本周发布，OpenAI 从 5.5 到 5.6 只用了 40 天。',
-        date: '2026-06-02',
+        name: 'Bolt.new',
+        tagline: '浏览器内从零构建全栈应用',
+        description: '在浏览器中通过自然语言描述直接生成并运行全栈 Web 应用。2026 年增加数据库集成、API 调用、部署一键发布，成为"非程序员的第一选择"。',
+        category: '编程工具',
+        url: 'https://bolt.new',
+        pricing: '免费 / 付费额度',
+        highlight: '零代码构建全栈',
+        launchDate: '2025 发布，2026 进化',
       },
       {
-        title: '2026 最牛逼的 AI 编程 stack',
-        source: '老白',
-        summary: 'Codex 负责 vibe coding，Claude Code + Opus 4.8 啃复杂任务，Hermes Agent 调度，本地模型处理简单活，Linear 统一管理所有 Agent 任务。',
-        date: '2026-06-01',
-        likes: 15,
-      },
-    ],
-  },
-  {
-    icon: '🏗️',
-    title: 'NVIDIA GTC Taipei 2026: Agent 架构定义',
-    subtitle: '黄仁勋系统阐述 AI Agent 的新计算范式',
-    color: '#10b981',
-    bg: '#d1fae5',
-    items: [
-      {
-        title: '大语言模型负责思考、推理和规划；外部编排引擎（Harness）如同操作系统',
-        source: '思维怪怪',
-        summary: '将模型与电子表格、浏览器、数据库等工具连接，管理工作记忆与长期记忆。全新计算模式：向 AI 描述意图，AI 生成代码、调用工具、产出结果。',
-        date: '2026-06-01',
+        name: 'Lovable',
+        tagline: '从想法到产品的 AI 全栈开发平台',
+        description: '类似于 Bolt.new，但更专注于产品化——自动生成前端+后端+数据库+部署。2026 年用户量暴涨，成为独立开发者的首选工具。',
+        category: '编程工具',
+        url: 'https://lovable.dev',
+        pricing: '免费 / $25/月',
+        highlight: '独立开发者首选',
+        launchDate: '2026 爆发',
       },
       {
-        title: 'CUDA X 库全面面向 Agent 开放',
-        source: 'GTC Taipei 2026',
-        summary: '黄仁勋现场展示多个 Agent 实例，用自然语言生成完整应用代码，甚至照片 → Agent 调用 CAD 工具生成 3D 打印替换零件。"我们这里用的是 Claude Code，但 Codex 同样表现出色"。',
-        date: '2026-06-01',
-      },
-      {
-        title: 'AI Agent PC: 下一代办公入口',
-        source: '大鹏',
-        summary: 'NVIDIA RTX Spark 将 CPU、GPU 和 128GB 统一内存集成到单芯片，1 petaflop 本地 AI 性能。未来 3 年 AI PC 先卷企业员工生产力，而非消费者炫技。',
-        date: '2026-06-02',
+        name: 'Replit Agent',
+        tagline: '一句话生成并部署应用',
+        description: 'Replit 的 AI Agent 可以从自然语言描述出发，自动规划、编码、调试、部署完整应用。内置数据库、认证、支付等模板。',
+        category: '编程工具',
+        url: 'https://replit.com',
+        pricing: '免费 / Core $25/月',
+        launchDate: '2025 发布，2026 成熟',
       },
     ],
   },
   {
-    icon: '🔗',
-    title: 'MCP 协议: Agent-Tool 连接标准',
-    subtitle: '有 MCP Server 的软件公司才重要',
+    icon: '🤖',
+    title: 'AI Agent 平台与应用',
     color: '#3b82f6',
     bg: '#dbeafe',
-    items: [
+    products: [
       {
-        title: 'There are 2 types of software companies: ones with an MCP server, and ones that don\'t matter',
-        source: 'Tom Alder',
-        summary: 'MCP（Model Context Protocol）让 AI 工具直接插入你使用的应用。Kajabi 刚发布 MCP：一句话建着陆页、起草邮件序列、设置订单页——全部在对话中完成。',
-        date: '2026-05-28',
-        likes: 39,
-        url: 'https://x.com/tomaldertweets/status/2059967599841103944',
+        name: 'Dify',
+        tagline: '开源 AI 应用开发平台',
+        description: '生产级 Agentic AI 开发平台，支持可视化编排、RAG、Agent 编排、MCP 协议。50K+ GitHub Stars，国内团队开源，社区活跃。',
+        category: 'Agent 平台',
+        url: 'https://dify.ai',
+        stars: '50K+',
+        pricing: '开源免费 / 企业版',
+        highlight: '国内开源明星',
+        launchDate: '2024 开源，2026 成熟',
       },
       {
-        title: 'Perplexity 发布 Search as Code',
-        source: '大鹏',
-        summary: '不再让模型一轮一轮 function call 搜索工具，而是让模型直接生成 Python 代码调用 search primitives，在 sandbox 里一次性编排复杂搜索流程。已上线 Perplexity Agent API。',
-        date: '2026-06-02',
+        name: 'Flowise',
+        tagline: '可视化拖拽构建 AI Agent 工作流',
+        description: '拖拽式 AI Agent 构建工具，支持 Chatflow/Agentflow/RAG/人在回路/100+ LLM 集成/可嵌入 Widget。23,300+ forks，社区贡献极其活跃。',
+        category: 'Agent 平台',
+        url: 'https://flowiseai.com',
+        stars: '50.9K',
+        pricing: '开源免费',
+        highlight: '可视化编排之王',
+        launchDate: '2023 开源，2026 爆发',
       },
       {
-        title: 'Nous Research 集成 NVIDIA Agent Skills 到 Hermes Skills Hub',
-        source: 'k19646',
-        summary: 'Agent 可利用 CUDA-X、Omniverse 和 Physical AI 工作流。',
-        date: '2026-06-02',
+        name: 'n8n',
+        tagline: '工作流自动化 + AI Agent 引擎',
+        description: '开源工作流自动化工具，2026 年全面拥抱 AI——内置 AI Agent 节点、LangChain 集成、AI 辅助工作流生成。从"IFTTT 替代品"进化为"AI 自动化平台"。',
+        category: 'Agent 平台',
+        url: 'https://n8n.io',
+        stars: '50K+',
+        pricing: '自部署免费 / 云版付费',
+        highlight: 'AI 自动化平台',
+        launchDate: '2019 起步，2026 AI 化',
+      },
+      {
+        name: 'Coze (扣子)',
+        tagline: '字节跳动 AI Bot 开发平台',
+        description: '零代码构建 AI Bot，支持插件、工作流、知识库、定时任务。国内版和国际版并行，2026 年增加 Agent 编排和多智能体协作能力。',
+        category: 'Agent 平台',
+        url: 'https://coze.com',
+        pricing: '免费',
+        highlight: '国内零代码 Agent',
+        launchDate: '2024 发布，2026 进化',
       },
     ],
   },
   {
-    icon: '🛡️',
-    title: 'Agent 工程最佳实践',
-    subtitle: '从"偶尔能用"到"生产可用"',
+    icon: '🎨',
+    title: 'AI 内容与创意工具',
+    color: '#ec4899',
+    bg: '#fce7f3',
+    products: [
+      {
+        name: 'Midjourney v7',
+        tagline: 'AI 图像生成领域的天花板',
+        description: '2026 年发布的 v7 版本在细节、一致性、风格控制上达到新高度。新增视频生成能力（从图片生成短视频），成为设计师和内容创作者的标配。',
+        category: '创意工具',
+        url: 'https://midjourney.com',
+        pricing: '$10-60/月',
+        highlight: '图像生成天花板',
+        launchDate: '2026 发布 v7',
+      },
+      {
+        name: 'Sora / Kling / Vidu',
+        tagline: 'AI 视频生成三巨头',
+        description: 'OpenAI Sora、快手 Kling、生数 Vidu 三足鼎立。2026 年视频质量达到 1080p、60 秒以上，可控制角色动作一致性。国内 Kling 和 Vidu 在中文场景领先。',
+        category: '创意工具',
+        url: 'https://klingai.com',
+        pricing: '免费额度 + 付费',
+        highlight: '视频生成爆发年',
+        launchDate: '2026 商用爆发',
+      },
+      {
+        name: 'Suno / Udio',
+        tagline: 'AI 音乐生成',
+        description: '输入文字描述即可生成完整歌曲（含人声、编曲、混音）。Suno v4 和 Udio 2026 年均达到"普通人听不出区别"的水准。国内 Suno 已被广泛使用。',
+        category: '创意工具',
+        url: 'https://suno.com',
+        pricing: '免费额度 + $10/月',
+        launchDate: '2026 成熟',
+      },
+      {
+        name: 'HeyGen / D-ID',
+        tagline: 'AI 数字人视频生成',
+        description: '上传照片+文字即可生成"真人"讲解视频。2026 年唇形同步、表情自然度大幅提升，企业培训和营销视频大量采用。',
+        category: '创意工具',
+        url: 'https://heygen.com',
+        pricing: '$24/月起',
+        highlight: '数字人视频',
+        launchDate: '2026 爆发',
+      },
+    ],
+  },
+  {
+    icon: '📊',
+    title: 'AI 生产力与办公',
+    color: '#10b981',
+    bg: '#d1fae5',
+    products: [
+      {
+        name: 'Notion AI',
+        tagline: 'AI 赋能知识管理与协作',
+        description: 'Notion 内置 AI 能力：自动总结、翻译、生成、表格分析。2026 年增加 AI Agent 自动执行工作流（定期报告、数据整理、任务分配）。',
+        category: '生产力',
+        url: 'https://notion.so',
+        pricing: '$10/用户/月',
+        launchDate: '2023 集成，2026 Agent 化',
+      },
+      {
+        name: 'Perplexity AI',
+        tagline: 'AI 搜索与研究的下一代入口',
+        description: '不同于传统搜索，Perplexity 直接给出整合答案并附带来源引用。2026 年发布"Search as Code"——模型直接生成 Python 代码调用搜索原语，支持复杂研究流程。',
+        category: '生产力',
+        url: 'https://perplexity.ai',
+        pricing: '免费 / $20/月 Pro',
+        highlight: 'Search as Code',
+        launchDate: '2022 起步，2026 爆发',
+      },
+      {
+        name: 'Mem.ai',
+        tagline: 'AI 驱动的个人信息管理系统',
+        description: '自动整理笔记、邮件、会议记录，AI 主动关联相关信息并提醒。2026 年增加"AI 助手"——可以主动建议你"该回复这封邮件了"或"这个会议要准备的材料"。',
+        category: '生产力',
+        url: 'https://get.mem.ai',
+        pricing: '免费 / $10/月',
+        launchDate: '2026 重大更新',
+      },
+      {
+        name: 'Tome',
+        tagline: 'AI 一键生成演示文稿',
+        description: '输入主题或文档链接，AI 自动生成精美的 PPT/Slides，支持多种模板。2026 年增加实时数据图表生成、品牌模板、团队协作编辑。',
+        category: '生产力',
+        url: 'https://tome.app',
+        pricing: '免费 / $8/月',
+        launchDate: '2026 成熟',
+      },
+    ],
+  },
+  {
+    icon: '🏥',
+    title: '行业垂直 AI 应用',
     color: '#f59e0b',
     bg: '#fef3c7',
-    items: [
+    products: [
       {
-        title: '模型只提议行动，Harness 负责验证、授权、执行、日志和返回观察',
-        source: 'Zev ai',
-        summary: 'Agents Best Practices 仓库（1.2k+ stars）定义了 Harness Engineering 的核心哲学。聚焦运行时严谨性，而非仅依赖 prompt。包含 Agentic Loop、窄工具权限、规划模式、上下文管理等实战资源。',
-        date: '2026-06-01',
+        name: 'Claude for Legal',
+        tagline: 'Anthropic 官方法律 AI 套件',
+        description: 'Anthropic 官方开源的法律 AI 工具包：80+ AI Agent、12 个实践领域插件、20 个 MCP 连接器。合同审查、法律研究、合规检查——生产级工作流，不是聊天机器人。',
+        category: '垂直应用',
+        url: 'https://github.com/anthropics/claude-for-legal',
+        stars: '25K',
+        highlight: 'Anthropic 官方',
+        launchDate: '2026 发布',
       },
       {
-        title: 'Garbage in, catastrophic failure out',
-        source: 'Tarun Mathur',
-        summary: '企业级数据合同要求：来源追溯（不可变记录）、质量门控（自动检查）、数据主权（严格遵守驻留义务）。如果无法追溯决策，就无法扩展 Agent。',
-        date: '2026-06-02',
+        name: 'Harvey AI',
+        tagline: 'AI 法律助手，服务顶级律所',
+        description: '服务于 Allen & Overy、Akin Gump 等顶级律所的 AI 法律平台。2026 年完成 5000 万美元融资，支持合同分析、法律研究、尽职调查、合规审查。',
+        category: '垂直应用',
+        url: 'https://harvey.ai',
+        pricing: '企业定价',
+        highlight: '顶级律所采用',
+        launchDate: '2026 规模化',
       },
       {
-        title: '理解验证工作流：Claude Code 核心开发者分享',
-        source: 'meng shao',
-        summary: '增量教学：每步让用户复述 → 按缺口补课 → 小范围验证 → 过关才前进。问题/方案/语境三维度清单。对抗"智能体黑箱"，把 tacit knowledge 外显化。',
-        date: '2026-06-02',
-        likes: 6,
+        name: 'Consensus / Elicit',
+        tagline: 'AI 学术研究助手',
+        description: '从 2 亿+ 学术论文中搜索、总结、提取洞见。Consensus 侧重证据搜索结果，Elicit 侧重系统综述自动化。2026 年成为研究生和研究机构的标配工具。',
+        category: '垂直应用',
+        url: 'https://consensus.app',
+        pricing: '免费 / $15/月',
+        launchDate: '2026 普及',
+      },
+      {
+        name: 'Tess AI / Pictory',
+        tagline: 'AI 教育内容生成与个性化学习',
+        description: '根据教学目标自动生成课件、测验、练习题。2026 年增加"自适应学习路径"——AI 根据学生表现动态调整难度和内容。',
+        category: '垂直应用',
+        url: 'https://tessai.com',
+        launchDate: '2026 增长',
       },
     ],
   },
   {
-    icon: '📈',
-    title: 'AI 应用落地行业动态',
-    subtitle: '腾讯微信 Agent 内测、港股 A 股动态',
+    icon: '🌐',
+    title: '国内新兴 AI 应用',
     color: '#ef4444',
     bg: '#fee2e2',
-    items: [
+    products: [
       {
-        title: '腾讯计划在小范围用户中测试微信 AI Agent',
-        source: 'Techmeme / Financial Times',
-        summary: '腾讯在国内 AI 模型竞争中落后，正在加速追赶，微信 Agent 测试后分阶段推广。',
-        date: '2026-06-02',
+        name: 'Kimi (月之暗面)',
+        tagline: '长上下文 AI 助手',
+        description: '支持 200 万字上下文的国产 AI 助手，擅长长文档分析、论文阅读、代码审查。2026 年推出"Kimi 探索版"——支持深度研究和多步推理。',
+        category: '国内应用',
+        url: 'https://kimi.moonshot.cn',
+        pricing: '免费',
+        highlight: '国产长上下文',
+        launchDate: '2026 探索版',
       },
       {
-        title: '6月1日 A 股/H 股：AI 应用/SaaS 修复，半导体退潮',
-        source: 'StephenRyn',
-        summary: '最强方向：金蝶国际 +19.39%、金山软件 +10.69%、商汤 +6.02%。最弱方向：MiniMax -15.71%、智谱 -8.09%。资金从硬件退潮切到软件和 SaaS。',
-        date: '2026-06-01',
+        name: '通义千问 / 腾讯元宝',
+        tagline: '大厂 AI 助手矩阵',
+        description: '阿里通义千问和腾讯元宝 2026 年均完成重大升级，深度搜索、代码生成、多模态能力追平 GPT-4 级别。接入各自生态（钉钉、微信）。',
+        category: '国内应用',
+        url: 'https://tongyi.aliyun.com',
+        pricing: '免费',
+        launchDate: '2026 重大升级',
       },
       {
-        title: '微软内部因 Claude Code 太贵而砍掉使用',
-        source: 'Jay.TL',
-        summary: 'token 计费的脆弱性首次在 3 万亿美元公司暴露。推动免费模型路由层和本地模型处理简单任务的方案。',
-        date: '2026-06-02',
-      },
-    ],
-  },
-  {
-    icon: '📦',
-    title: '值得关注的开源项目',
-    subtitle: 'AI 编程工具生态',
-    color: '#06b6d4',
-    bg: '#cffafe',
-    items: [
-      {
-        title: 'Everything Claude Code — 163K+ stars',
-        source: 'smrati tiwari',
-        summary: 'Anthropic hackathon 冠军开源：183 个 Agent Skills、48 个子 Agent、79 个即用命令。支持 Claude Code、Codex、Cursor、Gemini、OpenCode。',
-        date: '2026-06-01',
+        name: '智谱清言 / 文心一言',
+        tagline: '国产大模型应用代表',
+        description: '智谱清言（GLM 系列）和百度文心一言 2026 年在中文理解、本地化服务、企业集成方面持续迭代。智谱在代码能力上进步显著。',
+        category: '国内应用',
+        url: 'https://chatglm.cn',
+        pricing: '免费',
+        launchDate: '2026 持续迭代',
       },
       {
-        title: 'codegraph — 36K stars（一周增长 13,925）',
-        source: 'Isra',
-        summary: '预索引知识图谱，自动为每个 Agent 提供 symbol search 和上下文，减少 47% token 浪费。支持 Claude Code、Cursor、Hermes、Gemini、Codex 等。',
-        date: '2026-06-01',
-        likes: 39,
-      },
-      {
-        title: 'ktx — 跨会话自改进上下文层',
-        source: 'Bryan',
-        summary: '追踪模式跨会话、适配代码库，为 Claude Code 和 Codex 设计。解决 AI 编程 Agent 跨会话上下文丢失的痛点。',
-        date: '2026-06-01',
+        name: '微信 AI Agent（内测）',
+        tagline: '微信生态中的 AI 智能体',
+        description: '腾讯在微信小范围测试 AI Agent，预计将接入微信支付、小程序、公众号生态。一旦开放，将成为国内最大的 AI 应用入口。',
+        category: '国内应用',
+        pricing: '尚未开放',
+        highlight: '潜在最大入口',
+        launchDate: '2026 内测中',
       },
     ],
   },
 ];
 
-const KEY_JUDGMENTS = [
-  'Vibe Coding → Agentic Engineering：行业从"快速出代码"转向"构建可交付系统"，记忆、技能、规范是核心差异',
-  'Harness Engineering 是生产部署的关键：模型只提议，Harness 负责验证、执行、日志',
-  'MCP 是 Agent-Tool 连接标准：没有 MCP Server 的软件公司将被淘汰',
-  '工作流锁定 > 模型优势：Claude Code 赌的是开发者路径依赖，不是模型领先 2%',
-  'AI Agent PC 是下一代入口：本地 Agent 常驻后，PC 变成"工作流操作系统"',
+const KEY_TRENDS = [
+  '从 Copilot 到 AI Employee：AI 不再是辅助工具，而是能独立完成任务的"员工"',
+  '可视化编排平台（Dify/Flowise/n8n）正在降低 AI 应用开发门槛',
+  '垂直行业 AI 应用正式爆发——法律、研究、教育、医疗各显神通',
+  '国内 AI 应用生态加速追赶——Kimi、通义、微信 Agent 各有杀手级场景',
+  'AI 视频/音乐/图像生成进入"普通人无法分辨"阶段，内容生产方式被重塑',
 ];
 
-function ItemCard({ item, color }: { item: SectionItem; color: string }) {
+function ProductCard({ product, color }: { product: Product; color: string }) {
+  const [hovered, setHovered] = useState(false);
   return (
-    <div
+    <a
+      href={product.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       style={{
+        display: 'block',
         padding: '1.25rem',
-        background: '#fff',
-        borderRadius: '8px',
-        border: '1px solid var(--fde-border)',
+        background: hovered ? `${color}08` : '#fff',
+        borderRadius: '10px',
+        border: `1px solid ${hovered ? `${color}40` : 'var(--fde-border)'}`,
+        textDecoration: 'none',
         transition: 'all 0.15s ease',
       }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = color;
-        e.currentTarget.style.boxShadow = `0 2px 12px ${color}15`;
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = 'var(--fde-border)';
-        e.currentTarget.style.boxShadow = 'none';
-      }}
     >
-      <h4 style={{ margin: 0, fontSize: '0.95rem', fontWeight: 600, color: 'var(--fde-text)', lineHeight: 1.5 }}>
-        {item.title}
-      </h4>
-      <p style={{ margin: '0.5rem 0 0', fontSize: '0.85rem', color: 'var(--fde-text-light)', lineHeight: 1.6 }}>
-        {item.summary}
-      </p>
-      <div style={{ marginTop: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-        <span style={{ fontSize: '0.75rem', color: color, fontWeight: 600 }}>{item.source}</span>
-        <span style={{ fontSize: '0.75rem', color: 'var(--fde-text-light)' }}>{item.date}</span>
-        {item.likes && (
-          <span style={{ fontSize: '0.75rem', color: '#ef4444' }}>❤ {item.likes}</span>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.375rem' }}>
+        <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: 700, color: 'var(--ifm-color-primary)' }}>
+          {product.name}
+        </h3>
+        {product.highlight && (
+          <span style={{ fontSize: '0.7rem', fontWeight: 600, padding: '0.15rem 0.5rem', borderRadius: '4px', background: `${color}18`, color, flexShrink: 0 }}>
+            {product.highlight}
+          </span>
         )}
       </div>
-    </div>
+      <p style={{ margin: '0 0 0.25rem', fontSize: '0.8rem', color: 'var(--ifm-color-primary)', fontWeight: 500 }}>
+        {product.tagline}
+      </p>
+      <p style={{ margin: '0.5rem 0 0.75rem', fontSize: '0.85rem', color: 'var(--fde-text-light)', lineHeight: 1.6 }}>
+        {product.description}
+      </p>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '0.75rem', flexWrap: 'wrap' }}>
+        {product.pricing && (
+          <span style={{ color: '#10b981', fontWeight: 600 }}>{product.pricing}</span>
+        )}
+        {product.stars && (
+          <span style={{ color: '#f59e0b', fontWeight: 600 }}>⭐ {product.stars}</span>
+        )}
+        <span style={{ color: 'var(--fde-text-light)' }}>{product.launchDate}</span>
+      </div>
+    </a>
   );
 }
 
-function TrendSection({ section }: { section: Section }) {
+function CategoryBlock({ cat }: { cat: CategoryGroup }) {
   return (
     <section style={{ marginBottom: '3rem' }}>
-      <div style={{ marginBottom: '1.25rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.375rem' }}>
-          <span style={{ fontSize: '1.5rem' }}>{section.icon}</span>
-          <h2 style={{ margin: 0, fontSize: '1.25rem', fontWeight: 700, color: section.color }}>
-            {section.title}
-          </h2>
+      <div style={{ marginBottom: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+          <span style={{ fontSize: '1.3rem' }}>{cat.icon}</span>
+          <h2 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 700, color: cat.color }}>{cat.title}</h2>
         </div>
-        <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--fde-text-light)', paddingLeft: '2.5rem' }}>
-          {section.subtitle}
-        </p>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '1rem' }}>
-        {section.items.map((item, i) => (
-          <ItemCard key={i} item={item} color={section.color} />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '0.75rem' }}>
+        {cat.products.map((product, i) => (
+          <ProductCard key={i} product={product} color={cat.color} />
         ))}
       </div>
     </section>
@@ -264,47 +390,53 @@ function TrendSection({ section }: { section: Section }) {
 }
 
 export default function AIApplicationsPage(): React.ReactElement {
+  const totalProducts = CATEGORIES.reduce((s, c) => s + c.products.length, 0);
+
   return (
-    <Layout title="AI 应用趋势" description="来自 X/Twitter 的 AI 应用一线观察">
+    <Layout title="AI 应用趋势" description="2026 年新兴 AI 应用与产品全景">
       <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '2rem 1.5rem' }}>
         {/* Header */}
         <div style={{ marginBottom: '2.5rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-            <span style={{ fontSize: '0.8rem', padding: '0.2rem 0.6rem', background: '#ede9fe', color: '#8b5cf6', borderRadius: '999px', fontWeight: 600 }}>X/Twitter</span>
-            <span style={{ fontSize: '0.8rem', padding: '0.2rem 0.6rem', background: '#dbeafe', color: '#3b82f6', borderRadius: '999px', fontWeight: 600 }}>实时采集</span>
+            <span style={{ fontSize: '0.8rem', padding: '0.2rem 0.6rem', background: '#d1fae5', color: '#10b981', borderRadius: '999px', fontWeight: 600 }}>
+              AI 产品
+            </span>
+            <span style={{ fontSize: '0.8rem', padding: '0.2rem 0.6rem', background: '#dbeafe', color: '#3b82f6', borderRadius: '999px', fontWeight: 600 }}>
+              新兴应用
+            </span>
           </div>
           <h1 style={{ margin: '0 0 0.5rem', fontSize: '2rem', fontWeight: 800 }}>
             AI 应用趋势
           </h1>
           <p style={{ color: 'var(--fde-text-light)', fontSize: '0.95rem', margin: 0, lineHeight: 1.6 }}>
-            基于 2026 年 5-6 月 X（Twitter）实时采集的行业讨论，涵盖 AI Agent、Coding Agent、MCP 协议、Vibe Coding 到 Agentic Engineering 的演进。
+            2026 年涌现的新兴 AI 应用与产品，从编程工具到行业垂直方案，{totalProducts} 个值得关注的 AI 产品。
           </p>
         </div>
 
-        {/* Key Judgments */}
+        {/* Key Trends */}
         <div style={{
-          background: 'linear-gradient(135deg, #fef3c7, #fde68a)',
+          background: 'linear-gradient(135deg, #ede9fe, #dbeafe)',
           borderRadius: '12px',
           padding: '1.5rem',
           marginBottom: '3rem',
-          border: '1px solid #f59e0b33',
+          border: '1px solid #8b5cf633',
         }}>
-          <h3 style={{ margin: '0 0 1rem', fontSize: '1.1rem', fontWeight: 700, color: '#92400e' }}>
-            💡 2026 年 AI 应用的 5 个关键判断
+          <h3 style={{ margin: '0 0 1rem', fontSize: '1.1rem', fontWeight: 700, color: '#5b21b6' }}>
+            🔍 2026 年 AI 应用 5 大趋势
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.625rem' }}>
-            {KEY_JUDGMENTS.map((j, i) => (
+            {KEY_TRENDS.map((p, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#d97706', flexShrink: 0 }}>{i + 1}.</span>
-                <span style={{ fontSize: '0.85rem', color: '#78350f', lineHeight: 1.5 }}>{j}</span>
+                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#8b5cf6', flexShrink: 0 }}>{i + 1}.</span>
+                <span style={{ fontSize: '0.85rem', color: '#4c1d95', lineHeight: 1.5 }}>{p}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Sections */}
-        {SECTIONS.map((section, i) => (
-          <TrendSection key={i} section={section} />
+        {/* Categories */}
+        {CATEGORIES.map((cat, i) => (
+          <CategoryBlock key={i} cat={cat} />
         ))}
 
         {/* Footer */}
@@ -318,7 +450,7 @@ export default function AIApplicationsPage(): React.ReactElement {
           color: 'var(--fde-text-light)',
           textAlign: 'center',
         }}>
-          数据来源于 X/Twitter 实时采集，持续更新中。
+          数据来源于公开渠道，持续更新中。涵盖编程工具、Agent 平台、创意工具、生产力、行业垂直应用等方向。
         </div>
       </div>
     </Layout>
