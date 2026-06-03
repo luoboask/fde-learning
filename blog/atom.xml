@@ -2,11 +2,255 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://luoboask.github.io/fde-learning/blog/</id>
     <title>FDE 学习中心 Blog</title>
-    <updated>2026-05-29T10:09:45.000Z</updated>
+    <updated>2026-06-03T02:04:11.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://luoboask.github.io/fde-learning/blog/"/>
     <subtitle>FDE 学习中心 Blog</subtitle>
     <icon>https://luoboask.github.io/fde-learning/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Agent Harness Cluster：跨越 Virtuoso 门槛的架构]]></title>
+        <id>https://luoboask.github.io/fde-learning/blog/agent-harness-cluster/</id>
+        <link href="https://luoboask.github.io/fde-learning/blog/agent-harness-cluster/"/>
+        <updated>2026-06-03T02:04:11.000Z</updated>
+        <summary type="html"><![CDATA[单 Agent + 单 Harness 是物理极限。要解决 Virtuoso 级别的问题，需要多个不同领域的专家团协作寻优。]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>单 Agent + 单 Harness 是物理极限。要解决 Virtuoso 级别的问题，需要多个不同领域的专家团协作寻优。</p>
+</blockquote>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="三条-scaling-law">三条 Scaling Law<a href="https://luoboask.github.io/fde-learning/blog/agent-harness-cluster/#%E4%B8%89%E6%9D%A1-scaling-law" class="hash-link" aria-label="三条 Scaling Law的直接链接" title="三条 Scaling Law的直接链接" translate="no">​</a></h2>
+<p>过去两年 AI 的发展可以归结为三条 Scaling Law：</p>
+<ol>
+<li class=""><strong>数据/参数 Scaling（系统一）</strong>：加大模型、加数据。这条曲线已经进入收益递减区</li>
+<li class=""><strong>推理 Scaling（系统二）</strong>：加大推理深度，Chain-of-Thought、Tree-of-Thought。仍在快速演进但天花板可见</li>
+<li class=""><strong>Agent Scaling（自学习环境）</strong>：这是当前和未来 2-3 年的核心增长引擎</li>
+</ol>
+<p><strong>为什么 Agent Scaling 是核心？</strong> 因为前两条 Scaling Law 是在"提升单个模型的能力"，而 Agent Scaling 是在"构建一个能持续自我学习的环境"。单模型的天花板是硬的，自学习环境的天花板远得多。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="为什么卡在-expert--virtuoso">为什么卡在 Expert → Virtuoso<a href="https://luoboask.github.io/fde-learning/blog/agent-harness-cluster/#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8D%A1%E5%9C%A8-expert--virtuoso" class="hash-link" aria-label="为什么卡在 Expert → Virtuoso的直接链接" title="为什么卡在 Expert → Virtuoso的直接链接" translate="no">​</a></h2>
+<p>现实中的 Agent 表现：</p>
+<ul>
+<li class=""><strong>Novice → Apprentice</strong>：解决简单任务没问题（写个脚本、查个 API）</li>
+<li class=""><strong>Apprentice → Expert</strong>：在特定领域能胜任（部署 vLLM 集群、搭建 RAG 系统）</li>
+<li class=""><strong>Expert → Virtuoso</strong>： <strong>卡在这里了</strong></li>
+</ul>
+<p>为什么？因为 Virtuoso 级别的问题需要<strong>跨领域协作</strong>：</p>
+<ul>
+<li class="">设计一个生产级推理系统，需要懂 GPU 架构、网络拓扑、调度算法、可观测性</li>
+<li class="">搭建一个多智能体应用，需要懂 Agent 设计模式、记忆管理、安全治理、成本控制</li>
+</ul>
+<p><strong>单 Agent + 单 Harness 是物理极限。</strong> 一个 Agent 无法同时是 GPU 专家、网络专家、调度专家、安全专家。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="agent-harness-cluster-三层架构">Agent Harness Cluster 三层架构<a href="https://luoboask.github.io/fde-learning/blog/agent-harness-cluster/#agent-harness-cluster-%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84" class="hash-link" aria-label="Agent Harness Cluster 三层架构的直接链接" title="Agent Harness Cluster 三层架构的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="layer-1agent-harness-scale-out">Layer 1：Agent Harness Scale-Out<a href="https://luoboask.github.io/fde-learning/blog/agent-harness-cluster/#layer-1agent-harness-scale-out" class="hash-link" aria-label="Layer 1：Agent Harness Scale-Out的直接链接" title="Layer 1：Agent Harness Scale-Out的直接链接" translate="no">​</a></h3>
+<p>解决"如何让多个 Agent 协作"的问题。三个子问题：</p>
+<p><strong>Agent 拓扑优化</strong>：GPTSwarm、MASS、AgentNet、DyLAN 等研究在探索不同的 Agent 连接方式——是全连接？星型？还是动态路由？拓扑结构直接影响信息流动效率和决策质量。</p>
+<p><strong>Agent 调度优化</strong>：AIOS、MegaAgent、Quine 等在解决"什么时候派哪个 Agent 上场"——不是所有任务都需要所有 Agent 参与，调度决定了资源利用率和响应速度。</p>
+<p><strong>Agent 动态生成</strong>：AOrchestra、TDAG、EvoAgent、AutoAgents 在解决"遇到新问题时自动创建新 Agent"——不需要预先定义所有 Agent，系统能按需生成。</p>
+<p><strong>Multi-Agent Scaling</strong>：多个 Agent 协作 + Memory &amp; Skill Scaling + Meta-Harness 调度。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="layer-2data-scale-out">Layer 2：Data Scale-Out<a href="https://luoboask.github.io/fde-learning/blog/agent-harness-cluster/#layer-2data-scale-out" class="hash-link" aria-label="Layer 2：Data Scale-Out的直接链接" title="Layer 2：Data Scale-Out的直接链接" translate="no">​</a></h3>
+<p>数据从原始的数仓层 → 语义层 → 本体层（Ontology）。</p>
+<ul>
+<li class=""><strong>数仓层</strong>：结构化数据，Agent 可以查询</li>
+<li class=""><strong>语义层</strong>：业务含义的抽象，Agent 可以理解和推理</li>
+<li class=""><strong>本体层</strong>：跨领域的概念关联，Agent 可以进行跨领域迁移学习</li>
+</ul>
+<p>这一步的关键是<strong>让数据从"可查询"变成"可推理"</strong>。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="layer-3agent-harness-runtime">Layer 3：Agent Harness Runtime<a href="https://luoboask.github.io/fde-learning/blog/agent-harness-cluster/#layer-3agent-harness-runtime" class="hash-link" aria-label="Layer 3：Agent Harness Runtime的直接链接" title="Layer 3：Agent Harness Runtime的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>生命周期管理</strong>：Agent 的创建、暂停、恢复、销毁</li>
+<li class=""><strong>资源调度</strong>：计算资源、GPU 资源、内存的动态分配</li>
+<li class=""><strong>可观测性</strong>：每个 Agent 的决策链路、工具调用、上下文变更的全链路追踪</li>
+<li class=""><strong>安全治理</strong>：权限控制、沙箱隔离、审计日志</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="对-fde-的实战意义">对 FDE 的实战意义<a href="https://luoboask.github.io/fde-learning/blog/agent-harness-cluster/#%E5%AF%B9-fde-%E7%9A%84%E5%AE%9E%E6%88%98%E6%84%8F%E4%B9%89" class="hash-link" aria-label="对 FDE 的实战意义的直接链接" title="对 FDE 的实战意义的直接链接" translate="no">​</a></h2>
+<p>如果你是一个 FDE，怎么应用 Agent Harness Cluster？</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="场景生产级推理系统部署">场景：生产级推理系统部署<a href="https://luoboask.github.io/fde-learning/blog/agent-harness-cluster/#%E5%9C%BA%E6%99%AF%E7%94%9F%E4%BA%A7%E7%BA%A7%E6%8E%A8%E7%90%86%E7%B3%BB%E7%BB%9F%E9%83%A8%E7%BD%B2" class="hash-link" aria-label="场景：生产级推理系统部署的直接链接" title="场景：生产级推理系统部署的直接链接" translate="no">​</a></h3>
+<p>传统方式：一个人或一个小团队，从头搭建。需要懂太多东西，容易遗漏关键决策。</p>
+<p>Agent Harness Cluster 方式：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">─────────────────────────────────────────────┐</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│              Meta-Harness                    │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   目标：部署 70B 模型生产级推理服务           │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│   约束：延迟&lt;50ms, 可用性&gt;99.9%, 成本&lt;X/月    │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">└─────────────────┬───────────────────────────</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    ┌─────────────┼─────────────┐</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    │             │             │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">┌───▼───┐   ┌────▼────  ┌────▼────┐</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│GPU    │   │网络     │  │调度     │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">│架构师 │   │拓扑专家 │  │优化专家 │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">└───┬───┘   └────┬────┘  └────────┘</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    │             │             │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    └─────────────┼─────────────┘</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">                  │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          ┌───────▼───────┐</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          │   Reviewer    │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          │  一致性校验    │</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">          └───────────────┘</span><br></div></code></pre></div></div>
+<p>每个 Agent 专注自己的领域，Meta-Harness 负责协调和一致性校验。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="关键收益">关键收益<a href="https://luoboask.github.io/fde-learning/blog/agent-harness-cluster/#%E5%85%B3%E9%94%AE%E6%94%B6%E7%9B%8A" class="hash-link" aria-label="关键收益的直接链接" title="关键收益的直接链接" translate="no">​</a></h3>
+<ol>
+<li class=""><strong>质量提升</strong>：每个领域都有专家负责，不会遗漏关键点</li>
+<li class=""><strong>速度提升</strong>：并行探索多个方案，而不是串行试错</li>
+<li class=""><strong>可复用性</strong>：每个 Agent 的 Skill 可以复用到其他项目</li>
+<li class=""><strong>可观测性</strong>：每个决策都可以追溯，出了问题知道哪个环节有问题</li>
+</ol>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="现在的成熟度">现在的成熟度<a href="https://luoboask.github.io/fde-learning/blog/agent-harness-cluster/#%E7%8E%B0%E5%9C%A8%E7%9A%84%E6%88%90%E7%86%9F%E5%BA%A6" class="hash-link" aria-label="现在的成熟度的直接链接" title="现在的成熟度的直接链接" translate="no">​</a></h2>
+<p>坦诚地说，Agent Harness Cluster 还在早期阶段。开源工具有 GPTSwarm、AutoGen、LangGraph 的 Multi-Agent 模式，但距离生产级还有一段路。</p>
+<p><strong>最接近可用的方案</strong>：LangGraph 的 Supervisor + Handoff 模式。虽然不是完整的 Cluster 架构，但已经能解决大部分跨领域协作的问题。</p>
+<p>这也正是我们的 LangGraph 实战教程覆盖到的——从单 Agent 到多 Agent 协作，是 LangGraph 学习的第六阶段。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="总结">总结<a href="https://luoboask.github.io/fde-learning/blog/agent-harness-cluster/#%E6%80%BB%E7%BB%93" class="hash-link" aria-label="总结的直接链接" title="总结的直接链接" translate="no">​</a></h2>
+<p>Agent Harness Cluster 不是"多加几个 Agent"，而是<strong>一套完整的架构范式</strong>：</p>
+<ul>
+<li class="">从"单模型"到"多模型协作"</li>
+<li class="">从"人工调度"到"自动拓扑优化"</li>
+<li class="">从"一次性任务"到"持续自学习"</li>
+</ul>
+<p>跨过 Expert → Virtuoso 这道门槛，靠的不是更大的模型，而是更好的架构。</p>]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[AI Native 组织新基建：OpenSpec + Harness + Memory]]></title>
+        <id>https://luoboask.github.io/fde-learning/blog/ai-native-organization-infra/</id>
+        <link href="https://luoboask.github.io/fde-learning/blog/ai-native-organization-infra/"/>
+        <updated>2026-06-03T02:04:11.000Z</updated>
+        <summary type="html"><![CDATA[AI 不是来"加速"传统工作流的，而是来重构它的。Yoho.AI 给出了一个具体答案：用 OpenSpec 规范意图、用 Harness 约束执行、用 Memory 沉淀知识。]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>AI 不是来"加速"传统工作流的，而是来重构它的。Yoho.AI 给出了一个具体答案：用 OpenSpec 规范意图、用 Harness 约束执行、用 Memory 沉淀知识。</p>
+</blockquote>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="问题为什么-ai-加速了开发却没有重构组织">问题：为什么 AI 加速了开发，却没有重构组织？<a href="https://luoboask.github.io/fde-learning/blog/ai-native-organization-infra/#%E9%97%AE%E9%A2%98%E4%B8%BA%E4%BB%80%E4%B9%88-ai-%E5%8A%A0%E9%80%9F%E4%BA%86%E5%BC%80%E5%8F%91%E5%8D%B4%E6%B2%A1%E6%9C%89%E9%87%8D%E6%9E%84%E7%BB%84%E7%BB%87" class="hash-link" aria-label="问题：为什么 AI 加速了开发，却没有重构组织？的直接链接" title="问题：为什么 AI 加速了开发，却没有重构组织？的直接链接" translate="no">​</a></h2>
+<p>大多数公司用 AI 的方式是这样的：</p>
+<ul>
+<li class="">工程师用 Cursor/Claude Code 写代码 → <strong>快了 2-3 倍</strong></li>
+<li class="">PM 还是写传统 PRD → 没变</li>
+<li class="">设计师还是出 Figma → 没变</li>
+<li class="">QA 还是写测试用例 → 没变</li>
+<li class="">管理层还是看人力排期 → 没变</li>
+</ul>
+<p>结果是什么？<strong>每个环节都快了，但整体流程没变。</strong> 组织还是那个组织，只是每个人手里多了一个 AI 工具。</p>
+<p>这就像在马车时代给每匹马装了电动马达——马跑得更快了，但你还是在马车上。</p>
+<p>Yoho.AI 做的事情是<strong>换车</strong>。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="新基建三件套">新基建三件套<a href="https://luoboask.github.io/fde-learning/blog/ai-native-organization-infra/#%E6%96%B0%E5%9F%BA%E5%BB%BA%E4%B8%89%E4%BB%B6%E5%A5%97" class="hash-link" aria-label="新基建三件套的直接链接" title="新基建三件套的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-openspec--意图规范">1. OpenSpec — 意图规范<a href="https://luoboask.github.io/fde-learning/blog/ai-native-organization-infra/#1-openspec--%E6%84%8F%E5%9B%BE%E8%A7%84%E8%8C%83" class="hash-link" aria-label="1. OpenSpec — 意图规范的直接链接" title="1. OpenSpec — 意图规范的直接链接" translate="no">​</a></h3>
+<p><strong>传统方式</strong>：产品读 PRD，人写设计文档，设计师出原型，开发估工时。每个环节都有大量信息损耗。</p>
+<p><strong>Yoho.AI 方式</strong>：AI 自动结构化需求，生成 OpenSpec 规范文档。</p>
+<p>OpenSpec 不是一份文档，而是一个<strong>可执行的意图契约</strong>：</p>
+<ul>
+<li class="">用户意图被 AI 解析为结构化需求（谁、在什么场景、要达成什么目标、成功标准是什么）</li>
+<li class="">自动生成验收标准（Acceptance Criteria），每个标准都是可测试的</li>
+<li class="">生成技术方案骨架，标注出不确定性和需要人工确认的部分</li>
+</ul>
+<p><strong>核心差异</strong>：从"人写文档 → 人读文档"变成"AI 结构化 → 人工确认 → 自动执行"。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-harness--约束执行">2. Harness — 约束执行<a href="https://luoboask.github.io/fde-learning/blog/ai-native-organization-infra/#2-harness--%E7%BA%A6%E6%9D%9F%E6%89%A7%E8%A1%8C" class="hash-link" aria-label="2. Harness — 约束执行的直接链接" title="2. Harness — 约束执行的直接链接" translate="no">​</a></h3>
+<p><strong>传统方式</strong>：AI 补全代码片段，人负责组装、编译、测试、部署。</p>
+<p><strong>Yoho.AI 方式</strong>：Harness 约束下，AI 自主完成编译 → 安装 → 验证全流程。</p>
+<p>Harness 的核心理念是<strong>定义硬性不变量，在范围内给 AI 完全自由</strong>。具体做法是 C3 不变量守卫系统：</p>
+<ul>
+<li class=""><strong>guard-compile-required</strong>：改代码必须编译通过，不能只写不管跑不跑得通</li>
+<li class=""><strong>guard-gate-check</strong>：进入下一阶段必须满足前置条件，不允许跳步</li>
+<li class=""><strong>guard-path-boundary</strong>：AI 只能访问声明的工作空间，不能越界</li>
+<li class=""><strong>guard-stop</strong>：未完成必要阶段不许停止，防止"做了一半就跑"</li>
+<li class=""><strong>guard-evolution</strong>：Harness 自我修改每次会话上限 2 次，防止无限漂移</li>
+</ul>
+<p><strong>关键洞察</strong>：不是给 AI 加更多的"审批节点"（那是 workflow），而是定义<strong>不变量</strong>（invariants）。不变量守卫的是底线，不变量之内 AI 可以自由发挥。这是 Harness 和 Workflow 的本质区别。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="3-memory--知识沉淀">3. Memory — 知识沉淀<a href="https://luoboask.github.io/fde-learning/blog/ai-native-organization-infra/#3-memory--%E7%9F%A5%E8%AF%86%E6%B2%89%E6%B7%80" class="hash-link" aria-label="3. Memory — 知识沉淀的直接链接" title="3. Memory — 知识沉淀的直接链接" translate="no">​</a></h3>
+<p><strong>传统方式</strong>：知识散落在飞书文档、代码注释、Slack 聊天记录里。新员工入职靠"问人"。</p>
+<p><strong>Yoho.AI 方式</strong>：所有决策过程、失败经验、成功模式自动沉淀为结构化记忆。</p>
+<ul>
+<li class="">每次会话的决策链路自动记录（为什么选 A 不选 B）</li>
+<li class="">失败的尝试和修复过程成为知识库（下次不再踩同样的坑）</li>
+<li class="">成功模式固化为 Skill（可复用的解决方案模板）</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="组织升级四个角色的-ai-native-化">组织升级：四个角色的 AI Native 化<a href="https://luoboask.github.io/fde-learning/blog/ai-native-organization-infra/#%E7%BB%84%E7%BB%87%E5%8D%87%E7%BA%A7%E5%9B%9B%E4%B8%AA%E8%A7%92%E8%89%B2%E7%9A%84-ai-native-%E5%8C%96" class="hash-link" aria-label="组织升级：四个角色的 AI Native 化的直接链接" title="组织升级：四个角色的 AI Native 化的直接链接" translate="no">​</a></h2>
+<table><thead><tr><th>角色</th><th>传统模式</th><th>AI Native 模式</th></tr></thead><tbody><tr><td>产品</td><td>写 PRD，人脑转化需求</td><td>用自然语言描述意图，OpenSpec 自动结构化</td></tr><tr><td>设计</td><td>手工出 Figma 原型</td><td>AI 根据 OpenSpec 生成初稿，人工调整</td></tr><tr><td>开发</td><td>写代码 + 修 Bug</td><td>定义 Harness 不变量，AI 自主执行</td></tr><tr><td>测试</td><td>手工写测试用例</td><td>AI 根据验收标准自动生成，持续验证</td></tr></tbody></table>
+<p><strong>关键变化</strong>：从"人做执行、AI 做辅助"变成"人做决策、AI 做执行"。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="为什么大多数公司做不到">为什么大多数公司做不到？<a href="https://luoboask.github.io/fde-learning/blog/ai-native-organization-infra/#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%85%AC%E5%8F%B8%E5%81%9A%E4%B8%8D%E5%88%B0" class="hash-link" aria-label="为什么大多数公司做不到？的直接链接" title="为什么大多数公司做不到？的直接链接" translate="no">​</a></h2>
+<p>三个障碍：</p>
+<ol>
+<li class=""><strong>惯性思维</strong>：PM 不愿意放下写 PRD 的习惯，工程师不愿意放下自己写代码的控制感</li>
+<li class=""><strong>信任问题</strong>：让 AI 自主执行全流程，需要极大的信任。信任建立在 Harness 的可靠性上</li>
+<li class=""><strong>短期 ROI 诱惑</strong>：用 AI 加速现有流程，短期收益立竿见影。重构组织，短期看不到收益</li>
+</ol>
+<p>Yoho.AI 的做法是<strong>渐进式替代</strong>：先用 AI 加速每个环节（让大家尝到甜头），然后逐步引入 OpenSpec/Harness/Memory（让 AI 接管更多），最终完成组织升级。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="对-fde-的启示">对 FDE 的启示<a href="https://luoboask.github.io/fde-learning/blog/ai-native-organization-infra/#%E5%AF%B9-fde-%E7%9A%84%E5%90%AF%E7%A4%BA" class="hash-link" aria-label="对 FDE 的启示的直接链接" title="对 FDE 的启示的直接链接" translate="no">​</a></h2>
+<p>作为 AI 前沿部署工程师，你在 AI Native 组织中扮演的角色是什么？</p>
+<ol>
+<li class=""><strong>Harness 架构师</strong>：定义不变量系统，设计安全边界。这是 FDE 的核心能力——把概率模型放进确定系统</li>
+<li class=""><strong>Memory 工程师</strong>：设计知识沉淀系统，让组织的经验成为 AI 可理解的结构化数据</li>
+<li class=""><strong>基础设施提供者</strong>：搭建支持 AI Native 工作流的技术栈（计算资源、模型路由、可观测性）</li>
+</ol>
+<p><strong>一句话总结</strong>：AI Native 组织不是"每个人多用 AI"，而是"组织的工作方式从以人为中心变成以 AI 为中心"。</p>]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Claude Code 内部机制：从日志蒸馏出来的 6 个发现]]></title>
+        <id>https://luoboask.github.io/fde-learning/blog/claude-code-internals/</id>
+        <link href="https://luoboask.github.io/fde-learning/blog/claude-code-internals/"/>
+        <updated>2026-06-03T02:04:11.000Z</updated>
+        <summary type="html"><![CDATA[通过完整记录一次 Claude Code 任务的 LLM 日志，我们看到了它告诉模型有哪些工具、如何处理上下文压缩、如何并行执行工具、以及如何保证多指令的 JSON 完整性。]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>通过完整记录一次 Claude Code 任务的 LLM 日志，我们看到了它告诉模型有哪些工具、如何处理上下文压缩、如何并行执行工具、以及如何保证多指令的 JSON 完整性。</p>
+</blockquote>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="背景">背景<a href="https://luoboask.github.io/fde-learning/blog/claude-code-internals/#%E8%83%8C%E6%99%AF" class="hash-link" aria-label="背景的直接链接" title="背景的直接链接" translate="no">​</a></h2>
+<p>Claude Code 是一个黑盒产品。你输入指令，它输出代码——中间发生了什么？通过分析一次完整任务执行过程中 Claude Code 与 LLM 之间的完整交互日志，我们蒸馏出了 6 个关键机制。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="发现-1多指令分割与-json-完整性保证">发现 1：多指令分割与 JSON 完整性保证<a href="https://luoboask.github.io/fde-learning/blog/claude-code-internals/#%E5%8F%91%E7%8E%B0-1%E5%A4%9A%E6%8C%87%E4%BB%A4%E5%88%86%E5%89%B2%E4%B8%8E-json-%E5%AE%8C%E6%95%B4%E6%80%A7%E4%BF%9D%E8%AF%81" class="hash-link" aria-label="发现 1：多指令分割与 JSON 完整性保证的直接链接" title="发现 1：多指令分割与 JSON 完整性保证的直接链接" translate="no">​</a></h2>
+<p>当用户同时发出多个指令时（比如"先创建项目结构，再写配置文件，最后跑测试"），Claude Code 需要确保每个指令都被正确执行，且不会因为 JSON 格式不完整而中断。</p>
+<p><strong>机制</strong>：</p>
+<ul>
+<li class="">指令被分割为独立的任务单元，每个单元有明确的开始和结束标记</li>
+<li class="">在执行过程中，Claude Code 维护一个 JSON 缓冲区，只有确认当前单元的 JSON 完整后才提交</li>
+<li class="">如果 JSON 不完整（模型输出被截断），Claude Code 会发起补全请求，而不是直接失败</li>
+</ul>
+<p><strong>启示</strong>：AI 编程工具的可靠性很大程度上取决于<strong>输出完整性校验</strong>。模型本身是不可靠的（可能截断、可能格式错误），工具层必须做校验和补全。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="发现-2上下文压缩与任务连贯性">发现 2：上下文压缩与任务连贯性<a href="https://luoboask.github.io/fde-learning/blog/claude-code-internals/#%E5%8F%91%E7%8E%B0-2%E4%B8%8A%E4%B8%8B%E6%96%87%E5%8E%8B%E7%BC%A9%E4%B8%8E%E4%BB%BB%E5%8A%A1%E8%BF%9E%E8%B4%AF%E6%80%A7" class="hash-link" aria-label="发现 2：上下文压缩与任务连贯性的直接链接" title="发现 2：上下文压缩与任务连贯性的直接链接" translate="no">​</a></h2>
+<p>随着任务执行，上下文会越来越长。Claude Code 怎么处理？</p>
+<p><strong>机制</strong>：</p>
+<ul>
+<li class="">不是简单截断，而是<strong>语义压缩</strong>——保留关键决策点、删除冗余的中间推理步骤</li>
+<li class="">压缩时保持任务的"连贯性"——即使删除了某些中间步骤，模型仍然知道"现在进行到哪一步"</li>
+<li class="">使用一种类似"摘要 + 锚点"的策略：用摘要概括已完成的工作，用锚点标记当前进度</li>
+</ul>
+<p><strong>启示</strong>：上下文管理不是"删旧留新"，而是"保留决策链路"。好的上下文管理让模型不会"失忆"。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="发现-3工具列表的动态呈现">发现 3：工具列表的动态呈现<a href="https://luoboask.github.io/fde-learning/blog/claude-code-internals/#%E5%8F%91%E7%8E%B0-3%E5%B7%A5%E5%85%B7%E5%88%97%E8%A1%A8%E7%9A%84%E5%8A%A8%E6%80%81%E5%91%88%E7%8E%B0" class="hash-link" aria-label="发现 3：工具列表的动态呈现的直接链接" title="发现 3：工具列表的动态呈现的直接链接" translate="no">​</a></h2>
+<p>Claude Code 不会把所有可用工具一次性灌给模型。</p>
+<p><strong>机制</strong>：</p>
+<ul>
+<li class="">根据当前任务阶段，<strong>动态选择</strong>哪些工具对模型可见</li>
+<li class="">比如写代码阶段，文件操作工具优先级高；部署阶段，Shell 命令工具优先级高</li>
+<li class="">工具描述中包含使用约束（比如"这个工具只能读，不能写"），减少误用</li>
+</ul>
+<p><strong>启示</strong>：不是给模型"所有能力"，而是给模型"当前需要的能力"。能力过多反而增加混淆和错误率。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="发现-4system-prompt-的层次结构">发现 4：System Prompt 的层次结构<a href="https://luoboask.github.io/fde-learning/blog/claude-code-internals/#%E5%8F%91%E7%8E%B0-4system-prompt-%E7%9A%84%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84" class="hash-link" aria-label="发现 4：System Prompt 的层次结构的直接链接" title="发现 4：System Prompt 的层次结构的直接链接" translate="no">​</a></h2>
+<p>Claude Code 的 System Prompt 不是一个大段落，而是分层的：</p>
+<ul>
+<li class=""><strong>身份层</strong>：你是谁（编程助手）、你的目标是什么</li>
+<li class=""><strong>规则层</strong>：你必须遵守的规则（比如"先思考再行动"、"不确定的事情问用户"）</li>
+<li class=""><strong>工具层</strong>：你能调用哪些工具、每个工具的契约</li>
+<li class=""><strong>格式层</strong>：你的输出必须是什么格式（JSON schema 等）</li>
+</ul>
+<p><strong>启示</strong>：System Prompt 的层次化设计让模型更容易理解自己的角色边界。这也是为什么 CLAUDE.md 能生效——它补充了规则层的内容。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="发现-5流式输出中的并行工具调用">发现 5：流式输出中的并行工具调用<a href="https://luoboask.github.io/fde-learning/blog/claude-code-internals/#%E5%8F%91%E7%8E%B0-5%E6%B5%81%E5%BC%8F%E8%BE%93%E5%87%BA%E4%B8%AD%E7%9A%84%E5%B9%B6%E8%A1%8C%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8" class="hash-link" aria-label="发现 5：流式输出中的并行工具调用的直接链接" title="发现 5：流式输出中的并行工具调用的直接链接" translate="no">​</a></h2>
+<p>在用户看到流式输出的同时，Claude Code 在后台并行执行多个工具调用。</p>
+<p><strong>机制</strong>：</p>
+<ul>
+<li class="">模型输出一个"计划"（接下来要做 A、B、C），Claude Code 解析计划</li>
+<li class="">如果 A、B、C 之间没有依赖关系，并行执行</li>
+<li class="">流式输出给用户的是"正在做什么"的进度，而不是等待所有工具执行完才输出</li>
+</ul>
+<p><strong>启示</strong>：流式输出的核心价值不是"让用户看到 token 逐字出现"，而是<strong>让用户知道系统正在工作</strong>，同时后台最大化并行度。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="发现-6压缩后的任务连贯性">发现 6：压缩后的任务连贯性<a href="https://luoboask.github.io/fde-learning/blog/claude-code-internals/#%E5%8F%91%E7%8E%B0-6%E5%8E%8B%E7%BC%A9%E5%90%8E%E7%9A%84%E4%BB%BB%E5%8A%A1%E8%BF%9E%E8%B4%AF%E6%80%A7" class="hash-link" aria-label="发现 6：压缩后的任务连贯性的直接链接" title="发现 6：压缩后的任务连贯性的直接链接" translate="no">​</a></h2>
+<p>这是发现 2 的补充。上下文压缩后，Claude Code 如何确保模型不"迷路"？</p>
+<p><strong>机制</strong>：</p>
+<ul>
+<li class="">每次压缩时生成一个"进度快照"——当前状态、已完成项、待办项、阻塞项</li>
+<li class="">这个快照作为新的上下文的"锚点"，模型以此为起点继续推理</li>
+<li class="">快照中包含关键的决策理由（为什么选了 A 方案），防止模型在后续执行中做出矛盾的决策</li>
+</ul>
+<p><strong>启示</strong>：<strong>决策理由的保留比决策结果更重要</strong>。模型可能忘记"做了什么"，但只要记得"为什么这么做"，就能保持一致性。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="对-fde-的启示">对 FDE 的启示<a href="https://luoboask.github.io/fde-learning/blog/claude-code-internals/#%E5%AF%B9-fde-%E7%9A%84%E5%90%AF%E7%A4%BA" class="hash-link" aria-label="对 FDE 的启示的直接链接" title="对 FDE 的启示的直接链接" translate="no">​</a></h2>
+<p>如果你要自己搭建一个类似 Claude Code 的系统，这 6 个发现直接对应了你需要解决的技术问题：</p>
+<table><thead><tr><th>发现</th><th>对应技术问题</th></tr></thead><tbody><tr><td>JSON 完整性</td><td>输出校验与补全机制</td></tr><tr><td>上下文压缩</td><td>语义摘要 + 进度快照</td></tr><tr><td>动态工具列表</td><td>工具路由与权限管理</td></tr><tr><td>System Prompt 分层</td><td>规则引擎设计</td></tr><tr><td>并行工具调用</td><td>任务依赖图解析与调度</td></tr><tr><td>压缩后连贯性</td><td>决策理由持久化</td></tr></tbody></table>
+<p>这些问题不是"大模型"的问题，而是<strong>工程系统</strong>的问题。这也正是 FDE 岗位的核心价值——把概率模型变成可靠的工程系统。</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="总结">总结<a href="https://luoboask.github.io/fde-learning/blog/claude-code-internals/#%E6%80%BB%E7%BB%93" class="hash-link" aria-label="总结的直接链接" title="总结的直接链接" translate="no">​</a></h2>
+<p>Claude Code 看起来"智能"的背后，是一层又一层的工程机制在支撑。模型提供了"理解"和"生成"的能力，但<strong>可靠性、效率、用户体验</strong>，全靠工具层的工程实现。</p>
+<p>这 6 个发现告诉我们：AI 编程工具的竞争力不在于"用了多大的模型"，而在于<strong>工程机制的设计质量</strong>。</p>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[2026 年了，人类工程师到底该做什么]]></title>
         <id>https://luoboask.github.io/fde-learning/blog/2026-engineer-role/</id>

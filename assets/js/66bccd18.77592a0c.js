@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkfde_learning=globalThis.webpackChunkfde_learning||[]).push([[4044],{98874(e){e.exports=JSON.parse('{"metadata":{"permalink":"/fde-learning/blog","page":1,"postsPerPage":20,"totalPages":1,"totalCount":9,"blogDescription":"Blog","blogTitle":"Blog"}}')}}]);
