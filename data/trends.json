@@ -1,11 +1,56 @@
 {
-  "last_updated": "2026-06-02",
-  "total_trends": 30,
+  "last_updated": "2026-06-08",
+  "total_trends": 60,
   "data_period": "2025.12-2026.06",
   "categories": [
     {
       "name": "模型发布",
       "trends": [
+        {
+          "title": "Anthropic发布Claude Opus 4.8：动态工作流与更强诚实度",
+          "source": "TechCrunch / Anthropic",
+          "url": "https://techcrunch.com/2026/05/28/anthropic-releases-opus-4-8-with-new-dynamic-workflow-tool/",
+          "date": "2026-05-28",
+          "summary": "Claude Opus 4.8发布，引入Dynamic Workflows（编排多智能体swarm）、Effort Controls（控制模型努力程度），编码能力大幅提升，幻觉率降低4倍，支持1000个并行智能体。",
+          "impact_level": "S",
+          "fde_relevance": "Dynamic Workflows直接涉及多智能体编排与自动化工作流，是FDE Agent开发的核心能力，需重点关注其API集成方式。"
+        },
+        {
+          "title": "阿里发布Qwen3.7-Plus多模态智能体模型",
+          "source": "阿里云 / Qwen",
+          "url": "https://qwen.ai/blog?id=qwen3.7-plus",
+          "date": "2026-06-02",
+          "summary": "Qwen3.7-Plus正式发布，多模态混合智能体模型，统一视觉与语言，具备屏幕操控能力（GUI+CLI），屏幕操作得分超越GPT-5.4，可自主完成约11小时的应用开发。",
+          "impact_level": "S",
+          "fde_relevance": "多模态Agent的GUI/CLI操控能力对前端智能体开发具有标杆意义，其自主开发应用的闭环能力值得研究。"
+        },
+        {
+          "title": "微软Build 2026发布MAI-Thinking-1：首个自研推理模型",
+          "source": "Microsoft AI",
+          "url": "https://microsoft.ai/news/introducing-mai-thinking-1/",
+          "date": "2026-06-02",
+          "summary": "微软发布首个自研高级推理模型MAI-Thinking-1，不依赖OpenAI数据训练，350亿活跃参数，AIME 2025得分97%、AIME 2026得分94.5%，同时发布MAI-Code-1-Flash等7款模型。",
+          "impact_level": "A",
+          "fde_relevance": "微软首次摆脱OpenAI依赖自研推理模型，标志着云平台AI能力选择的多样化，FDE需关注Azure AI生态中新增的模型选项。"
+        },
+        {
+          "title": "Google发布Gemini 3.5 Flash：Agent时代的速度怪兽",
+          "source": "Google Blog / TechCrunch",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-5/",
+          "date": "2026-05-19",
+          "summary": "Gemini 3.5 Flash在Google I/O 2026发布，编码与自主Agent能力显著增强，速度为GPT-5.5的4倍，引入Interactions API支持Agent独立规划工作流和部署任务。",
+          "impact_level": "A",
+          "fde_relevance": "Interactions API为智能体提供了标准化的Agent交互接口，4倍速提升使实时Agent交互成为可能。"
+        },
+        {
+          "title": "NVIDIA发布Cosmos 3：面向物理AI的全模态世界模型",
+          "source": "NVIDIA Research",
+          "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+          "date": "2026-06-03",
+          "summary": "NVIDIA Cosmos 3发布，面向机器人和物理AI的全模态世界模型，联合处理并生成语言、图像、视频和音频，被称为'机器人与物理AI的世界基础模型'。",
+          "impact_level": "B",
+          "fde_relevance": "虽主要面向机器人/物理AI，但其全模态能力展示了AI多模态融合的前沿方向，对理解Agent多模态交互有参考价值。"
+        },
         {
           "title": "DeepSeek V4 / V4-Flash 系列发布",
           "source": "DeepSeek",
@@ -82,6 +127,51 @@
       "name": "研究论文",
       "trends": [
         {
+          "title": "YouZhi：面向高并发金融大模型的自适应GQA到MLA转换",
+          "source": "arXiv:2606.05868",
+          "url": "https://arxiv.org/abs/2606.05868",
+          "date": "2026-06-04",
+          "summary": "提出YouZhi-LLM，通过层自适应的GQA-to-MLA转换框架，在保持模型表征能力的同时最大化KV cache压缩，显著提升高并发场景下的推理效率。",
+          "impact_level": "A",
+          "fde_relevance": "理解GQA到MLA的转换对FDE岗位涉及的大模型推理优化和注意力机制研究有直接参考价值。"
+        },
+        {
+          "title": "MemTrain：自监督上下文记忆训练",
+          "source": "arXiv:2606.03197",
+          "url": "https://arxiv.org/abs/2606.03197",
+          "date": "2026-06-03",
+          "summary": "首个自监督训练框架，通过增强LLM Agent的记忆行为来普遍提升其上下文记忆能力，由北京大学和三星研究院联合提出。",
+          "impact_level": "A",
+          "fde_relevance": "自监督记忆训练是提升LLM Agent长期上下文理解能力的核心方法，对Agent系统开发、长上下文优化有直接指导意义。"
+        },
+        {
+          "title": "大语言模型中的时间偏好概念及其函数",
+          "source": "arXiv:2606.05194",
+          "url": "https://arxiv.org/abs/2606.05194",
+          "date": "2026-06-05",
+          "summary": "研究大语言模型如何权衡近期收益与长期后果，揭示LLM在需要时间偏好的决策场景中的行为模式和内在机制。",
+          "impact_level": "B",
+          "fde_relevance": "理解LLM的时间偏好机制对于构建需要长期规划和多步推理的AI Agent系统非常重要。"
+        },
+        {
+          "title": "长文本输出评估中LLM-as-a-Judge基准测试",
+          "source": "arXiv:2606.01629",
+          "url": "https://arxiv.org/abs/2606.01629",
+          "date": "2026-06-02",
+          "summary": "提出LongJudgeBench基准，系统评估LLM作为评审员在长文本输出评估中的可靠性，发现当前LLM裁判在不同场景下仍存在显著稳定性问题。",
+          "impact_level": "B",
+          "fde_relevance": "LLM-as-a-Judge是模型评估和自动化评测的核心范式，该论文揭示了其在长文本场景下的局限性。"
+        },
+        {
+          "title": "大字节模型：教语言模型理解编译后代码",
+          "source": "arXiv:2606.02834",
+          "url": "https://arxiv.org/abs/2606.02834",
+          "date": "2026-06-02",
+          "summary": "提出Large Byte Model，通过词汇扩展技术和自定义字节tokenizer，使语言模型能够直接理解和推理编译后的二进制代码。",
+          "impact_level": "B",
+          "fde_relevance": "字节级模型是超越传统tokenization的前沿方向，对理解大模型底层表征能力和代码理解任务有启发意义。"
+        },
+        {
           "title": "Post Reasoning：零成本提升非推理模型性能 28%",
           "source": "arXiv (2605.06165)",
           "url": "https://arxiv.org/abs/2605.06165",
@@ -119,7 +209,8 @@
           "category": "研究论文",
           "summary": "自组织记忆操作系统，支持结构化长程推理，Hugging Face 5 月趋势榜 91 upvote。",
           "impact_level": "B",
-          "fde_relevance": "长程记忆对 Agent 部署至关重要，可能影响未来推理服务的 KV Cache 设计。"
+          "fde_relevance": "长程记忆对 Agent 部署至关重要，可能影响未来推理服务的 KV Cache 设计。",
+          "archived": true
         },
         {
           "title": "LLM Reasoning Is Latent, Not the Chain of Thought",
@@ -136,6 +227,51 @@
     {
       "name": "开源项目",
       "trends": [
+        {
+          "title": "智谱AI开源GLM-5新一代基座模型",
+          "source": "GitHub / 智谱AI",
+          "url": "https://github.com/zai-org/GLM-5",
+          "date": "2026-02-11",
+          "summary": "智谱AI发布并开源744B参数MoE架构的GLM-5模型，主打Agentic Engineering和智能体编程，SWE-bench得分77.8，支持128K上下文，在华为昇腾芯片上训练完成。",
+          "impact_level": "S",
+          "fde_relevance": "GLM-5的开源对FDE的模型部署和推理优化有直接参考价值，尤其是MoE架构的部署策略和128K长上下文处理能力。"
+        },
+        {
+          "title": "LangGraph v1.2.x 持续迭代至v1.2.4",
+          "source": "GitHub / LangChain AI",
+          "url": "https://github.com/langchain-ai/langgraph/releases",
+          "date": "2026-06-02",
+          "summary": "LangGraph v1.2.4于6月2日发布，引入asyncio自定义并行执行、混合工作流（并行+顺序链组合）等企业级特性。",
+          "impact_level": "S",
+          "fde_relevance": "LangGraph v1.2的并行执行和混合链能力直接影响FDE在前端Agent编排和复杂推理流程上的架构设计。"
+        },
+        {
+          "title": "Google ADK (Agent Development Kit) 正式开源",
+          "source": "GitHub / Google",
+          "url": "https://github.com/google/adk-python",
+          "date": "2026-02-15",
+          "summary": "Google正式将内部使用的Agent Development Kit开源，提供Python和Go双语言支持，支持构建、评估和部署企业级AI Agent，已更新至ADK 2.0版本。",
+          "impact_level": "A",
+          "fde_relevance": "Google ADK作为官方开源Agent框架，为FDE提供了除LangGraph外的另一套多智能体构建方案。"
+        },
+        {
+          "title": "Claude Agent SDK 更名及计费政策更新",
+          "source": "Anthropic",
+          "url": "https://www.anthropic.com/transparency",
+          "date": "2026-05-13",
+          "summary": "Anthropic将Claude Code SDK正式更名为Claude Agent SDK，并宣布新计费政策（6月15日生效），$200 credit政策调整，部分场景价格涨幅达12x-175x。",
+          "impact_level": "A",
+          "fde_relevance": "计费政策的重大变化直接影响FDE在使用Claude Agent SDK构建自动化Agent时的成本预算和架构选型。"
+        },
+        {
+          "title": "OpenAI Agents SDK 默认模型升级至gpt-5.4-mini",
+          "source": "GitHub / OpenAI",
+          "url": "https://github.com/openai/openai-agents-python",
+          "date": "2026-05-20",
+          "summary": "OpenAI Agents SDK持续更新，Python版已超18K star，默认模型升级为gpt-5.4-mini，新增MCPConfig支持，提供轻量级多智能体编排能力，同时发布JS/TS版本。",
+          "impact_level": "A",
+          "fde_relevance": "OpenAI Agents SDK的JS/TS版本对前端FDE开发者尤为友好，gpt-5.4-mini默认模型的升级意味着更低的推理成本。"
+        },
         {
           "title": "SGLang 成为 LLM 推理事实标准（40 万+ GPU 部署）",
           "source": "GitHub Trending",
@@ -181,6 +317,51 @@
     {
       "name": "行业动态",
       "trends": [
+        {
+          "title": "Anthropic秘密提交IPO申请，估值达9650亿美元",
+          "source": "Fortune / Forbes",
+          "url": "https://fortune.com/2026/06/01/anthropic-confidentially-files-ipo-965-billion-valuation/",
+          "date": "2026-06-01",
+          "summary": "Anthropic于6月1日向SEC秘密提交IPO申请，此前5月完成了650亿美元的融资轮次，估值达到9650亿美元，成为全球估值最高的AI初创公司。",
+          "impact_level": "S",
+          "fde_relevance": "Anthropic作为Claude的开发公司即将上市，其估值、增长速度和财务数据对理解AI行业格局有重大意义。"
+        },
+        {
+          "title": "微软Build 2026发布7款自研AI模型，减少对OpenAI依赖",
+          "source": "CNBC",
+          "url": "https://www.cnbc.com/2026/06/02/microsoft-unveils-new-ai-models-lessen-reliance-on-openai-lower-costs.html",
+          "date": "2026-06-02",
+          "summary": "微软在Build 2026大会上发布7款自研MAI系列AI模型，包括首个推理模型MAI-Thinking-1、代码模型MAI-Code-1-Flash等，标志着微软正式寻求摆脱对OpenAI的依赖。",
+          "impact_level": "S",
+          "fde_relevance": "微软-OpenAI关系重组是2026年AI行业最大变化之一，直接影响Azure生态、AI基础设施竞争格局。"
+        },
+        {
+          "title": "OpenAI将前沿模型和Codex部署至AWS，结束Azure独占时代",
+          "source": "TechCrunch",
+          "url": "https://techcrunch.com/2026/06/02/openai-launches-new-codex-tools-for-white-collar-work/",
+          "date": "2026-06-02",
+          "summary": "OpenAI宣布其前沿模型和Codex工具正式登陆AWS平台，结束了长期以来Azure独占分发的局面，同时推出面向白领工作的六款Codex插件。",
+          "impact_level": "A",
+          "fde_relevance": "多云部署策略意味着AI工程岗位的技能和基础设施选择更丰富，AWS+OpenAI的组合对企业AI落地方案有直接影响。"
+        },
+        {
+          "title": "欧盟AI法案将于2026年8月全面生效，全球合规窗口临近",
+          "source": "EU Commission",
+          "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+          "date": "2026-08-02",
+          "summary": "欧盟AI法案将于2026年8月2日起全面适用，对高风险AI系统和通用AI模型施加严格的透明度、数据治理和人工监督要求。",
+          "impact_level": "A",
+          "fde_relevance": "AI合规正成为AI工程岗位的重要考量，了解AI法案的风险分级体系是基本技能。"
+        },
+        {
+          "title": "OpenAI完成1220亿美元创纪录融资，估值8520亿美元",
+          "source": "CNBC / OpenAI",
+          "url": "https://www.cnbc.com/2026/03/31/openai-funding-round-ipo.html",
+          "date": "2026-03-31",
+          "summary": "OpenAI完成史上最大规模私募融资，累计融资1220亿美元，投后估值达8520亿美元。主要投资者包括亚马逊（500亿）、NVIDIA（300亿）、软银（300亿）。",
+          "impact_level": "S",
+          "fde_relevance": "该融资规模和投资者阵容显示了AI基础设施竞争的白热化，对理解AI行业资本流向和巨头战略布局至关重要。"
+        },
         {
           "title": "Q1 2026 创纪录：$297B 风投，AI 占 80%",
           "source": "Crunchbase / KPMG",
@@ -249,7 +430,8 @@
           "category": "行业动态",
           "summary": "Meta 与 NVIDIA 宣布长期基础设施合作，部署百万级 GPU，2026 年资本支出 $115-135B。",
           "impact_level": "A",
-          "fde_relevance": "大规模 GPU 集群部署经验是 FDE 的核心竞争力之一。"
+          "fde_relevance": "大规模 GPU 集群部署经验是 FDE 的核心竞争力之一。",
+          "archived": true
         },
         {
           "title": "Gartner：2028 年 50% GenAI 预算投入可观测性",
@@ -266,6 +448,24 @@
     {
       "name": "推理部署",
       "trends": [
+        {
+          "title": "NVIDIA Blackwell Ultra 推理性能数据公布：Agentic AI 成本降低 35 倍",
+          "source": "NVIDIA Blog / SemiAnalysis",
+          "url": "https://blogs.nvidia.com/blog/data-blackwell-ultra-performance-lower-cost-agentic-ai/",
+          "date": "2026-02-25",
+          "summary": "SemiAnalysis InferenceX数据显示Blackwell Ultra相比Hopper架构实现高达50倍性能提升和35倍token成本下降，GB300 NVL72达到50x tokens/watt。",
+          "impact_level": "S",
+          "fde_relevance": "Blackwell是目前推理性能最强的数据中心GPU，了解其FP4/FP8原生支持和成本优势对推理基础设施选型至关重要。"
+        },
+        {
+          "title": "FP8 量化成为 2026 年推理生产默认方案，FP4 开始进入生产部署",
+          "source": "Aussie AI",
+          "url": "https://www.aussieai.com/research/fp8-quantization",
+          "date": "2026-05-20",
+          "summary": "FP8已成为2026年推理生产的量化标准（质量接近BF16，成本降低约40%，吞吐量翻倍），FP4随Blackwell和AMD MI355硬件原生支持开始有限生产部署。",
+          "impact_level": "S",
+          "fde_relevance": "量化策略直接影响推理成本和模型质量，FP8是当前生产首选，FP4是Blackwell时代的演进方向。"
+        },
         {
           "title": "Q2 2026 推理引擎 Benchmark：vLLM vs SGLang vs TGI vs Triton",
           "source": "行业基准测试",
@@ -311,6 +511,51 @@
     {
       "name": "Agent 应用",
       "trends": [
+        {
+          "title": "微软BUILD 2026发布Agent框架：支持Agent Harness模式与全面MCP集成",
+          "source": "Microsoft Developer Blog",
+          "url": "https://devblogs.microsoft.com/agent-framework/microsoft-agent-framework-at-build-2026-announce/",
+          "date": "2026-06-03",
+          "summary": "微软在BUILD 2026发布统一Agent框架，引入Agent Harness编程模型，并宣布在GitHub、Copilot Studio、Dynamics 365、Azure AI Foundry、Semantic Kernel和Windows 11全线支持MCP协议。",
+          "impact_level": "S",
+          "fde_relevance": "微软将MCP作为AI Agent互操作标准全面铺开，FDE需关注Azure AI Foundry中的Agent Harness架构。"
+        },
+        {
+          "title": "A2A协议突破150家组织采用，v1.0正式发布并进入主流云平台",
+          "source": "Linux Foundation",
+          "url": "https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year",
+          "date": "2026-04-09",
+          "summary": "Google发起的A2A协议在发布一年内超过150家组织采用，v1.0正式版本于2026年3月发布，Microsoft、AWS、IBM、Salesforce、SAP等均为重要成员，已进入企业生产环境使用。",
+          "impact_level": "S",
+          "fde_relevance": "A2A正成为多Agent协作的行业标准协议，FDE在设计和实现跨Agent协作时应优先采用A2A标准。"
+        },
+        {
+          "title": "LangChain发布《2026年Agent工程现状报告》：57%企业已将Agent投入生产",
+          "source": "LangChain",
+          "url": "https://www.langchain.com/state-of-agent-engineering",
+          "date": "2026-02-15",
+          "summary": "LangChain调研1300+工程师和领导者，发现57%受访者已将Agent部署到生产环境，大型企业领先采用；关注点从'是否构建Agent'转向'如何可靠、可扩展地部署'。",
+          "impact_level": "A",
+          "fde_relevance": "报告揭示了Agent从原型到生产的工程实践和常见陷阱，FDE可参考其关于框架选型、可观测性栈和评估方法的建议。"
+        },
+        {
+          "title": "Anthropic调整Agent SDK计费模式，6月15日起Claude Pro/Max计划启用独立信用池",
+          "source": "The New Stack",
+          "url": "https://thenewstack.io/anthropic-agent-sdk-credits/",
+          "date": "2026-06-06",
+          "summary": "Anthropic收购Stainless后，宣布Claude Agent SDK和交互式聊天使用独立信用池：Claude Pro获$20 API额度，Max 5x获$100；部分分析认为实际价格涨幅达12-175倍。",
+          "impact_level": "A",
+          "fde_relevance": "计费模式变化直接影响Agent应用的成本模型，FDE在评估Claude Agent SDK用于生产环境时需重新测算TCO。"
+        },
+        {
+          "title": "MCP协议2026路线图：无状态核心重构，解决生产环境扩展性痛点",
+          "source": "The New Stack / MCP Official",
+          "url": "https://thenewstack.io/model-context-protocol-roadmap-2026/",
+          "date": "2026-05-20",
+          "summary": "MCP发布2026路线图，核心方向为无状态协议核心重构和Extensions框架，以解决当前Streamable HTTP传输在水平扩展方面的缺陷；同时发布'MCP安全Top 10'。",
+          "impact_level": "A",
+          "fde_relevance": "MCP正从有状态向无状态架构演进，FDE在设计Agent与外部工具的集成层时需关注这一架构变化。"
+        },
         {
           "title": "MCP + A2A 协议标准化完成，Agent 互操作进入新阶段",
           "source": "freeCodeCamp / Google / Anthropic",
@@ -366,27 +611,31 @@
   ],
   "highlights": [
     {
-      "title": "本周 S 级亮点",
+      "title": "S级亮点",
       "items": [
-        "DeepSeek V4 系列：1.6T MoE 架构，重新定义开源模型性能天花板",
-        "Meta Muse Spark：从开源 Llama 转向闭源个人超级智能模型，战略大转变",
-        "SGLang 成为全球部署最广的 LLM 推理引擎（40 万+ GPU）",
-        "MCP + A2A 协议标准化完成，Agent 互操作进入新阶段",
-        "Q1 2026 创纪录：$297B 风投，AI 占 80%"
+        "Claude Opus 4.8发布：Dynamic Workflows多智能体编排，幻觉率降低4倍",
+        "Qwen3.7-Plus：多模态智能体模型，具备GUI+CLI屏幕操控能力",
+        "Anthropic秘密提交IPO申请，估值达9650亿美元",
+        "微软Build 2026发布7款自研AI模型，正式减少OpenAI依赖",
+        "OpenAI完成$1220亿创纪录融资，估值$8520亿",
+        "FP8量化成为推理生产默认方案，FP4进入部署阶段",
+        "微软Agent框架发布：全线支持MCP协议，引入Agent Harness模式",
+        "A2A协议突破150家组织采用，v1.0进入企业生产环境"
       ]
     },
     {
-      "title": "A 级趋势速览",
+      "title": "A级趋势速览",
       "items": [
-        "GPT-5.5 / Claude Opus 4.7 + Mythos / Gemini 3.5 Flash / Qwen 3.7-Max 密集发布",
-        "Llama 4 系列开源可用，FDE 自部署主力更新",
-        "vLLM v0.20.1 + SGLang benchmark 对比更新",
-        "Google 自研推理芯片 + Meta MTIA，硬件多元化趋势",
-        "LangGraph 超越 CrewAI 成为 Agent 编排 #1",
-        "中国发布全球首个 Agentic AI 政策框架",
-        "OpenAI 提交 IPO 申请，Anthropic $1000 亿投资承诺",
-        "Post Reasoning：零成本提升模型性能 28%",
-        "SpaceX $600 亿收购 Cursor，AI 编程工具估值创新高"
+        "MAI-Thinking-1：微软首个自研推理模型，AIME得分94.5%",
+        "Gemini 3.5 Flash：速度为GPT-5.5的4倍，引入Interactions API",
+        "OpenAI将前沿模型和Codex部署至AWS，结束Azure独占",
+        "EU AI Act 8月全面生效，合规窗口临近",
+        "YouZhi：自适应GQA到MLA转换，提升高并发推理效率",
+        "MemTrain：首个自监督上下文记忆训练框架",
+        "GLM-5开源：744B参数MoE，SWE-bench 77.8",
+        "LangGraph v1.2.4：asyncio并行执行、混合工作流",
+        "vLLM v0.22.1：持续模型支持与FP8推理优化",
+        "LangChain Agent工程报告：57%企业已将Agent投入生产"
       ]
     }
   ]
