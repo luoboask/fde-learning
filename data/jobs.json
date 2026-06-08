@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-06-01",
-  "total_jobs": 153,
+  "last_updated": "2026-06-08",
+  "total_jobs": 239,
   "categories": [
     {
       "name": "大模型推理/部署",
@@ -394,6 +394,188 @@
             "vLLM",
             "RL"
           ]
+        },
+        {
+          "title": "LLM推理优化实习生",
+          "company": "NVIDIA（英伟达）",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/7fde36740a98c53003Nz09y0F1NQ.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "LLM推理优化",
+            "GPU",
+            "CUDA"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "LLM推理优化工程师（SGLang/vLLM引擎优化）",
+          "company": "京东科技集团",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/f6107cf10652e30803x-2dS_ElpV.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "SGLang",
+            "vLLM",
+            "推理引擎"
+          ],
+          "salary": "40K-70K"
+        },
+        {
+          "title": "大模型部署工程师",
+          "company": "华为技术有限公司",
+          "location": "深圳",
+          "url": "https://www.zhipin.com/job_detail/a0dd57c0ec9afd861HJy29u6GVJW.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型部署",
+            "昇腾",
+            "MindSpore"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "推理性能优化-SGLang方向",
+          "company": "阿里云",
+          "location": "北京/杭州/上海",
+          "url": "https://www.zhipin.com/job_detail/73cd0f392f188d3e03x-2tu-F1tX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "SGLang",
+            "推理引擎",
+            "Transformer"
+          ],
+          "salary": "35K-60K·16薪"
+        },
+        {
+          "title": "大模型推理引擎研发工程师",
+          "company": "上海天数智芯半导体",
+          "location": "上海",
+          "url": "https://www.zhipin.com/job_detail/cec6bd597262ceae1H142NS4GFVT.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "推理引擎",
+            "GPU芯片",
+            "推理框架"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "混元大模型推理加速工程师",
+          "company": "腾讯",
+          "location": "北京/深圳",
+          "url": "https://www.zhipin.com/job_detail/ca1580182a98051f1Hx43d6-FFBV.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "混元大模型",
+            "推理加速",
+            "高吞吐"
+          ],
+          "salary": "40K-70K·15薪"
+        },
+        {
+          "title": "大模型性能优化研发专家",
+          "company": "腾讯",
+          "location": "北京",
+          "url": "https://www.zhipin.com/zhaopin/44f8b0f1255a588c1nF80924Fg~~/",
+          "source": "BOSS直聘",
+          "tags": [
+            "性能优化",
+            "推理系统",
+            "大模型基础设施"
+          ],
+          "salary": "50K-65K·15薪"
+        },
+        {
+          "title": "大模型推理解决方案负责人",
+          "company": "某头部芯片/AI公司",
+          "location": "上海",
+          "url": "https://www.liepin.com/job/1978442621.shtml",
+          "source": "猎聘",
+          "tags": [
+            "推理芯片",
+            "端到端方案",
+            "部署架构"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "大模型推理服务专家",
+          "company": "某头部互联网公司",
+          "location": "上海",
+          "url": "https://m.liepin.com/job/1972598693.shtml",
+          "source": "猎聘",
+          "tags": [
+            "LLM推理服务",
+            "分布式架构",
+            "推理框架"
+          ],
+          "salary": "35K-55K·14薪"
+        },
+        {
+          "title": "大模型推理引擎研发工程师",
+          "company": "美团",
+          "location": "北京",
+          "url": "https://www.nowcoder.com/jobs/detail/308782",
+          "source": "牛客",
+          "tags": [
+            "LLM推理部署",
+            "性能优化",
+            "推理系统"
+          ],
+          "salary": "300-360元/天（实习）"
+        },
+        {
+          "title": "大模型推理加速工程师",
+          "company": "华为2012实验室",
+          "location": "北京",
+          "url": "https://www.nowcoder.com/jobs/detail/372750",
+          "source": "牛客",
+          "tags": [
+            "LLM推理",
+            "多模态推理",
+            "推理加速"
+          ],
+          "salary": "面议（实习）"
+        },
+        {
+          "title": "大模型训练/推理优化工程师",
+          "company": "字节跳动（Seed团队）",
+          "location": "北京",
+          "url": "https://jobs.bytedance.com/experienced/position/7468565406682761480/detail",
+          "source": "字节跳动招聘",
+          "tags": [
+            "推理优化",
+            "训练优化",
+            "CUDA"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "语音大模型推理优化工程师",
+          "company": "美团",
+          "location": "北京/上海",
+          "url": "https://jobs.niuqizp.com/job-vYl5LNNCL.html",
+          "source": "牛企直聘",
+          "tags": [
+            "语音大模型",
+            "推理优化",
+            "基础研发"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "华为昇腾大模型应用开发工程师",
+          "company": "华为",
+          "location": "深圳",
+          "url": "https://m.liepin.com/job/1972617347.shtml",
+          "source": "猎聘",
+          "tags": [
+            "昇腾",
+            "MindSpore",
+            "推理框架"
+          ],
+          "salary": "30-60万/年"
         }
       ]
     },
@@ -702,6 +884,253 @@
             "Python",
             "HTTP/WebSocket"
           ]
+        },
+        {
+          "title": "AI Agent 开发（可转正）",
+          "company": "精准学",
+          "location": "深圳",
+          "url": "https://m.zhipin.com/job_detail/aa970be01e58260f03N52925GVdZ.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "Coze",
+            "Dify",
+            "Workflow"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI Agent 开发工程师",
+          "company": "起源计划",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/754b9b1f3d57b01f1HJ92tW_FVRW.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "Agent",
+            "LLM",
+            "Backend"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI Agent 产品运营",
+          "company": "杭州斑头雁智能科技",
+          "location": "杭州",
+          "url": "https://m.zhipin.com/job_detail/be08fd466beec9391Hd729q1FVNR.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI Agent",
+            "Product Operations",
+            "Strategy"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "大模型应用开发工程师",
+          "company": "宏诚创新",
+          "location": "北京",
+          "url": "https://m.zhipin.com/job_detail/5a5507451f0417801HN92du1GFpT.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型应用",
+            "LLM",
+            "Engineering"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "Agent开发",
+          "company": "北京探微杜渐科技",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/e6012d2d27c4a85f03dz2Nm0EltX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "Agent",
+            "AI Security",
+            "Enterprise AI"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI工程师（Agent/RAG）",
+          "company": "边锋",
+          "location": "杭州",
+          "url": "https://www.zhipin.com/job_detail/5518121d615ec667031z09i7EVVU.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "LangChain",
+            "RAG",
+            "Agent"
+          ],
+          "salary": "3-5年经验/本科"
+        },
+        {
+          "title": "QQ浏览器-RAG算法工程师",
+          "company": "腾讯",
+          "location": "深圳",
+          "url": "https://www.zhipin.com/job_detail/ea6dbef6bbe5e28403V62tm8EFZT.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "RAG",
+            "LLM",
+            "Search Algorithm"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI大模型工程师（RAG方向）",
+          "company": "中电金信",
+          "location": "珠海",
+          "url": "https://m.zhipin.com/job_detail/4315ebbc9e72365103Ny3ty0GFdY.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "Python",
+            "LangChain",
+            "RAG"
+          ],
+          "salary": "3-5年经验/本科"
+        },
+        {
+          "title": "知识库/RAG系统算法专家",
+          "company": "聚好看",
+          "location": "杭州",
+          "url": "https://www.zhipin.com/job_detail/263a79eadf3c15ce0nV63dy1EVVT.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "RAG",
+            "算法专家",
+            "Knowledge Base"
+          ],
+          "salary": "3-5年经验/本科"
+        },
+        {
+          "title": "AI-Agent 算法工程师",
+          "company": "某科技公司",
+          "location": "北京",
+          "url": "https://www.liepin.com/job/1970784621.shtml",
+          "source": "猎聘",
+          "tags": [
+            "AI Agent",
+            "LLM",
+            "Multi-Agent"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "大模型应用开发-Agent研发",
+          "company": "某科技企业",
+          "location": "北京",
+          "url": "https://www.liepin.com/job/1973698607.shtml",
+          "source": "猎聘",
+          "tags": [
+            "Agent",
+            "大模型应用",
+            "LLM"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI Agent 研发工程师",
+          "company": "某科技企业",
+          "location": "北京",
+          "url": "https://www.liepin.com/job/1975031465.shtml",
+          "source": "猎聘",
+          "tags": [
+            "AI Agent",
+            "R&D",
+            "LLM"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI Agent开发工程师",
+          "company": "长安科技/长安汽车",
+          "location": "重庆",
+          "url": "https://m.liepin.com/job/1980763799.shtml",
+          "source": "猎聘",
+          "tags": [
+            "AI Agent",
+            "Automotive AI",
+            "Engineering"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI Agent 工程师（医疗 x AI）",
+          "company": "某医疗科技公司",
+          "location": "北京",
+          "url": "https://m.liepin.com/job/1983209103.shtml",
+          "source": "猎聘",
+          "tags": [
+            "AI Agent",
+            "Healthcare AI",
+            "LiteLLM"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI Agent研发工程师 - AI Coding方向",
+          "company": "阿里云智能",
+          "location": "杭州",
+          "url": "https://www.liepin.com/job/1974901719.shtml",
+          "source": "猎聘",
+          "tags": [
+            "AI Agent",
+            "AI Coding",
+            "Autonomous Agent"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI Agent开发工程师",
+          "company": "阿里巴巴集团",
+          "location": "杭州",
+          "url": "https://www.nowcoder.com/jobs/detail/438256",
+          "source": "牛客",
+          "tags": [
+            "AI Agent",
+            "LLM",
+            "Internship"
+          ],
+          "salary": "400-500元/天"
+        },
+        {
+          "title": "高级AI Agent开发工程师（排障平台方向）",
+          "company": "某科技公司",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/833373e48f06a08f03J-39W5E1FX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI Agent",
+            "Troubleshooting Platform",
+            "5-10年经验"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI Agent 开发专家（急招）",
+          "company": "某科技企业",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/ea394b4920f7a5d903xy3NW5EFFX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "MultiAgent",
+            "Agent Memory",
+            "Architecture"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI应用开发工程师",
+          "company": "深信服科技",
+          "location": "深圳",
+          "url": "https://www.zhipin.com/job_detail/7e697ef1a0b35faa03F_2d-5FVpY.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "RAG",
+            "Enterprise AI",
+            "LLM Application"
+          ],
+          "salary": "面议"
         }
       ]
     },
@@ -1071,6 +1500,149 @@
             "MoE",
             "视频生成"
           ]
+        },
+        {
+          "title": "大模型算法工程师",
+          "company": "软通动力",
+          "location": "北京",
+          "url": "https://m.zhipin.com/job_detail/f6fd77e06557b8760nV43tu-GVNR.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型",
+            "LLM",
+            "算法"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "数字座舱大模型算法工程师/专家",
+          "company": "NIO蔚来",
+          "location": "上海",
+          "url": "https://www.zhipin.com/job_detail/fdf423cd44aabc7f1HNz3N69GFFV.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型",
+            "数字座舱",
+            "车载AI"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "大模型算法实习生",
+          "company": "明略科技",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/4a26b3a5e5e2a5af03Zz3di8E1FS.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型",
+            "LLM",
+            "实习"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "大模型算法工程师",
+          "company": "速腾聚创",
+          "location": "深圳",
+          "url": "https://m.zhipin.com/job_detail/08022c7f82c747ff1HN40ty6FVNW.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型",
+            "激光雷达",
+            "算法"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "大模型算法工程师/专家",
+          "company": "马上消费",
+          "location": "杭州",
+          "url": "https://activity.zhipin.com/job_detail/898fc346ad313c9b03V_29S5FVFT.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型",
+            "LLM",
+            "算法"
+          ],
+          "salary": "40-70K·14薪"
+        },
+        {
+          "title": "具身智能多模态融合算法实习生",
+          "company": "原力灵机",
+          "location": "北京",
+          "url": "https://m.zhipin.com/job_detail/25a757eac47fbdb10nR609y_FVJS.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "具身智能",
+            "多模态",
+            "世界模型"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "多模态大模型专家",
+          "company": "某科技公司",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/c29385f3692d5d301HBz3Nu8FlJT.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "多模态",
+            "大模型",
+            "联合表示学习"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "多模态大模型算法工程师",
+          "company": "高德地图",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/acb98b2e33b6a54003x_3tW9GFZW.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "多模态",
+            "大模型",
+            "地图AI"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "多模态搜索算法实习生",
+          "company": "抖音",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/2e7db0541efd4f36031y09S-FVdX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "多模态",
+            "搜索",
+            "后训练"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "算法工程师-多模态",
+          "company": "美的",
+          "location": "佛山/顺德",
+          "url": "https://www.zhipin.com/job_detail/cabb29dd230fa0e003F62dS1GFdV.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "多模态",
+            "预训练",
+            "自监督学习"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "大模型算法工程师",
+          "company": "某大型科技企业",
+          "location": "上海",
+          "url": "https://www.liepin.com/zpdmxyykfgcsz24g/",
+          "source": "猎聘",
+          "tags": [
+            "大模型应用",
+            "LLM",
+            "Engineering"
+          ],
+          "salary": "45-65k*18薪"
         }
       ]
     },
@@ -1367,6 +1939,240 @@
             "多物理统一架构",
             "并行计算"
           ]
+        },
+        {
+          "title": "大模型训练&推理加速工程师",
+          "company": "腾讯",
+          "location": "北京/上海/深圳/杭州",
+          "url": "https://www.zhipin.com/job_detail/e8e1f736e1dcd3ba0nR-2N-4E1JT.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型",
+            "推理加速",
+            "LLM"
+          ],
+          "salary": "25-50K"
+        },
+        {
+          "title": "AI推理/加速工程师",
+          "company": "华为",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/dbc64ca07d24c9dd1Hx-29q1GVVW.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI推理",
+            "加速",
+            "AI框架"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "大模型推理加速工程师（腾讯视频）",
+          "company": "腾讯",
+          "location": "杭州",
+          "url": "https://www.zhipin.com/job_detail/cb03d5cebd2229750nR809S_FVVT.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型",
+            "推理加速",
+            "视频AI"
+          ],
+          "salary": "25-50K·15薪"
+        },
+        {
+          "title": "混元大模型推理加速工程师",
+          "company": "腾讯",
+          "location": "北京/深圳",
+          "url": "https://m.zhipin.com/job_detail/4d452ab9d5ebd7b81HRy0t61FVRR.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "混元",
+            "大模型",
+            "推理加速"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "混元多模态大模型推理加速工程师",
+          "company": "腾讯",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/2f9accbbe2a9e40f0nRz2Nq9EFNQ.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "多模态",
+            "大模型",
+            "推理加速"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI平台研发工程师",
+          "company": "京东科技",
+          "location": "北京",
+          "url": "https://www.zhipin.com/zhaopin/4c159a2f644e04ba1Hd409-7/",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI平台",
+            "集群调度",
+            "异构计算"
+          ],
+          "salary": "30-60K"
+        },
+        {
+          "title": "AI系统架构师/团队负责人",
+          "company": "小米",
+          "location": "北京",
+          "url": "https://www.zhipin.com/zhaopin/73231094e22e82491nB92tW7GA~~/",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI架构",
+            "大模型",
+            "Agent"
+          ],
+          "salary": "50-80K·18薪"
+        },
+        {
+          "title": "大模型推理加速算法工程师",
+          "company": "PPIO",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/ccafec52b2e3b86d03V82Ni-F1dZ.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型",
+            "推理加速",
+            "深度学习"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "大模型推理加速工程师实习生",
+          "company": "中电信人工智能公司",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/22ff6203aa6bfadd1HN70t20EltS.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型",
+            "推理加速",
+            "实习"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "GPU并行开发工程师/GPU算子优化工程师",
+          "company": "云道智能",
+          "location": "北京",
+          "url": "https://m.liepin.com/job/1973842867.shtml",
+          "source": "猎聘",
+          "tags": [
+            "GPU",
+            "算子优化",
+            "并行计算"
+          ],
+          "salary": "30-55K·15薪"
+        },
+        {
+          "title": "GPU工程师",
+          "company": "荣耀终端",
+          "location": "北京",
+          "url": "https://www.liepin.com/job/1972815121.shtml",
+          "source": "猎聘",
+          "tags": [
+            "GPU",
+            "终端",
+            "图形"
+          ],
+          "salary": "25-40K"
+        },
+        {
+          "title": "AI平台系统工程师",
+          "company": "上海宇量昇科技",
+          "location": "上海",
+          "url": "https://m.liepin.com/company/13332211/",
+          "source": "猎聘",
+          "tags": [
+            "AI平台",
+            "系统工程",
+            "云计算"
+          ],
+          "salary": "40-60K·15薪"
+        },
+        {
+          "title": "Cuda工程师",
+          "company": "元戎 (DeepRoute.ai)",
+          "location": "深圳",
+          "url": "https://www.nowcoder.com/jobs/detail/24460",
+          "source": "牛客",
+          "tags": [
+            "CUDA",
+            "自动驾驶",
+            "性能优化"
+          ],
+          "salary": "20-40K"
+        },
+        {
+          "title": "【25届校招】云原生AI平台研发工程师",
+          "company": "阿里云",
+          "location": "杭州",
+          "url": "https://www.nowcoder.com/jobs/detail/346371",
+          "source": "牛客",
+          "tags": [
+            "AI平台",
+            "云原生",
+            "GPU调度"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "GPU编译器研发工程师",
+          "company": "沐曦 (MetaX)",
+          "location": "上海",
+          "url": "https://www.nowcoder.com/jobs/detail/349613",
+          "source": "牛客",
+          "tags": [
+            "GPU",
+            "编译器",
+            "LLVM"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI 平台研发实习生",
+          "company": "智源 (BAAI)",
+          "location": "北京",
+          "url": "https://www.nowcoder.com/jobs/detail/127617",
+          "source": "牛客",
+          "tags": [
+            "AI平台",
+            "大模型",
+            "研究"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "云计算-推理优化工程师（2026校招）",
+          "company": "阿里云",
+          "location": "北京",
+          "url": "https://www.nowcoder.com/jobs/detail/434606",
+          "source": "牛客",
+          "tags": [
+            "推理优化",
+            "AI基础设施",
+            "大模型"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI平台开发工程师",
+          "company": "安世腾科技",
+          "location": "深圳",
+          "url": "https://m.liepin.com/company/21368121/",
+          "source": "猎聘",
+          "tags": [
+            "AI平台",
+            "后端开发",
+            "大模型"
+          ],
+          "salary": "30-50K"
         }
       ]
     },
@@ -1579,6 +2385,149 @@
             "RAG",
             "Agent框架"
           ]
+        },
+        {
+          "title": "应用架构师（AI大模型）",
+          "company": "金蝶软件",
+          "location": "深圳",
+          "url": "https://www.zhipin.com/job_detail/eebeae67d502facd0nV43tq0FFdW.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI大模型",
+            "应用架构",
+            "企业软件"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI大模型架构师",
+          "company": "中经社",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/f2a4c5a6ef1d33e503R409S8FVZW.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型",
+            "架构师",
+            "新华社"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "云与AI解决方案架构师",
+          "company": "字节跳动-火山引擎",
+          "location": "北京",
+          "url": "https://www.zhipin.com/job_detail/30c298ab0295296103N909i1F1ZV.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "火山引擎",
+            "云架构",
+            "解决方案"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI解决方案架构师",
+          "company": "科大讯飞",
+          "location": "合肥",
+          "url": "https://www.zhipin.com/job_detail/ed344e10f5f343be0nV539-9E1VQ.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI解决方案",
+            "语音大模型",
+            "教育/医疗"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI解决方案架构师（传媒/能源/政务/企业）",
+          "company": "阿里云",
+          "location": "北京",
+          "url": "https://m.zhipin.com/job_detail/5f77b9f18e3f37ba03xz2t67EFFU.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "通义大模型",
+            "行业解决方案",
+            "阿里云"
+          ],
+          "salary": "40-60K·16薪"
+        },
+        {
+          "title": "AI解决方案架构师（正编）",
+          "company": "华为",
+          "location": "杭州",
+          "url": "https://www.zhipin.com/job_detail/82e9eba4c8e8d0ca03d429m5ElVQ.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "昇腾生态",
+            "AI算力",
+            "政企方案"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "云与AI解决方案架构师-火山引擎（泛互）",
+          "company": "火山引擎",
+          "location": "武汉",
+          "url": "https://m.liepin.com/job/1982527961.shtml",
+          "source": "猎聘",
+          "tags": [
+            "火山引擎",
+            "泛互行业",
+            "云原生"
+          ],
+          "salary": "50-70K"
+        },
+        {
+          "title": "数据及AI架构师",
+          "company": "柳工机械",
+          "location": "柳州",
+          "url": "https://m.liepin.com/job/1983155857.shtml",
+          "source": "猎聘",
+          "tags": [
+            "数据架构",
+            "工业AI",
+            "数字化转型"
+          ],
+          "salary": "15-28K"
+        },
+        {
+          "title": "AI架构师(J19736)",
+          "company": "传音控股",
+          "location": "深圳",
+          "url": "https://www.nowcoder.com/jobs/detail/449758",
+          "source": "牛客",
+          "tags": [
+            "手机AI",
+            "端侧模型",
+            "架构设计"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI架构及应用开发",
+          "company": "经纬恒润",
+          "location": "天津",
+          "url": "https://mnowpick.nowcoder.com/m/detail/index?jobId=392772",
+          "source": "牛客",
+          "tags": [
+            "自动驾驶",
+            "AI应用",
+            "嵌入式"
+          ],
+          "salary": "15-50K·12薪"
+        },
+        {
+          "title": "AI架构师",
+          "company": "亚信科技",
+          "location": "郑州",
+          "url": "https://www.nowcoder.com/jobs/detail/432007",
+          "source": "牛客",
+          "tags": [
+            "电信行业",
+            "AI架构",
+            "BSS/OSS"
+          ],
+          "salary": "12-22K·12薪"
         }
       ]
     },
@@ -1808,6 +2757,175 @@
             "对齐",
             "评测"
           ]
+        },
+        {
+          "title": "AGI实习生（北京）",
+          "company": "DeepSeek",
+          "location": "北京",
+          "url": "https://m.liepin.com/job/1972404537.shtml",
+          "source": "猎聘",
+          "tags": [
+            "AGI",
+            "GPU集群",
+            "实习生"
+          ],
+          "salary": "500-1000元/天"
+        },
+        {
+          "title": "AI安全研究员",
+          "company": "微步在线",
+          "location": "北京",
+          "url": "https://www.zhipin.com/zhaopin/d0239403d8f743aa0nZy29--GA~~/",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI安全",
+            "威胁情报",
+            "漏洞分析"
+          ],
+          "salary": "20-40K·13薪"
+        },
+        {
+          "title": "AI安全研究员",
+          "company": "360集团",
+          "location": "北京",
+          "url": "https://www.zhipin.com/gongsi/job/825f0be0dd10b3991nZ-3N-8EFQ~.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI安全",
+            "Security for AI",
+            "对抗攻击"
+          ],
+          "salary": "28-40K·15薪"
+        },
+        {
+          "title": "AI安全研究员（2026校招）",
+          "company": "华为",
+          "location": "深圳",
+          "url": "https://www.zhipin.com/job_detail/d6aa663415e2830703R93Nm7ElRR.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI安全",
+            "校招",
+            "模型安全"
+          ],
+          "salary": "25-45K·15薪"
+        },
+        {
+          "title": "AI安全工程师",
+          "company": "腾讯",
+          "location": "深圳",
+          "url": "https://www.zhipin.com/job_detail/f3fb0fbd90ef5f1703J73tm0FFNX.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI安全",
+            "大模型",
+            "安全治理"
+          ],
+          "salary": "20-40K·15薪"
+        },
+        {
+          "title": "大模型AI安全工程师",
+          "company": "腾讯",
+          "location": "深圳",
+          "url": "https://www.zhipin.com/zhaopin/c77af7b5ad67916103J42dS8/",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型安全",
+            "红蓝对抗",
+            "安全评测"
+          ],
+          "salary": "40-70K·16薪"
+        },
+        {
+          "title": "AI安全工程师（华为校招）",
+          "company": "华为",
+          "location": "上海",
+          "url": "https://www.zhipin.com/job_detail/edf966fbd2d3498e03J82ti6EFFY.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI安全",
+            "校招",
+            "隐私保护"
+          ],
+          "salary": "25-45K·15薪"
+        },
+        {
+          "title": "AI安全研发工程师",
+          "company": "斑马智能",
+          "location": "杭州",
+          "url": "https://www.liepin.com/zpaiaqyfgcsct53a/",
+          "source": "猎聘",
+          "tags": [
+            "AI安全",
+            "研发",
+            "隐私计算"
+          ],
+          "salary": "15-30K·14薪"
+        },
+        {
+          "title": "AI研究实习生",
+          "company": "华为深圳AI应用研究中心",
+          "location": "深圳",
+          "url": "https://www.zhipin.com/job_detail/ed42349f34f2f1cb0XZ-29m1FFc~.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "AI研究",
+            "前沿应用",
+            "实习生"
+          ],
+          "salary": "100-400元/天"
+        },
+        {
+          "title": "AI研究工程师（2026届）",
+          "company": "网易游戏",
+          "location": "广州",
+          "url": "https://mnowpick.nowcoder.com/m/detail/index?jobId=377333",
+          "source": "牛客",
+          "tags": [
+            "AI研究",
+            "3D建模",
+            "深度学习"
+          ],
+          "salary": "180-500元/天"
+        },
+        {
+          "title": "AGI产品研发工程师-应届生-TOP Talent",
+          "company": "某科技公司",
+          "location": "北京",
+          "url": "https://www.nowcoder.com/jobs/detail/429551",
+          "source": "牛客",
+          "tags": [
+            "AGI",
+            "多模态",
+            "大模型"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI研究算法工程师-视觉生成方向",
+          "company": "科大讯飞",
+          "location": "合肥",
+          "url": "https://www.nowcoder.com/jobs/detail/323586",
+          "source": "牛客",
+          "tags": [
+            "AI研究",
+            "视觉生成",
+            "算法"
+          ],
+          "salary": "面议"
+        },
+        {
+          "title": "AI安全高级工程师/经理",
+          "company": "某科技公司",
+          "location": "北京",
+          "url": "https://m.zhipin.com/job_detail/68d226b35aaed87b03x92NS4EVZU.html",
+          "source": "BOSS直聘",
+          "tags": [
+            "大模型安全",
+            "渗透测试",
+            "攻防技术"
+          ],
+          "salary": "面议"
         }
       ]
     }
@@ -1842,92 +2960,107 @@
     }
   },
   "hot_companies": [
-    "字节跳动",
-    "北京某科技公司",
-    "快手",
-    "美团",
-    "摩尔线程",
-    "智谱华章",
-    "京东科技",
-    "阿里云",
-    "上海人工智能创新中心",
-    "上海 AI Lab",
-    "腾讯",
-    "阶跃星辰",
-    "智源人工智能研究院",
-    "蚂蚁集团",
-    "大疆 DJI",
-    "荣耀",
-    "京东集团",
+    "360集团",
+    "DeepSeek",
+    "NIO蔚来",
+    "NVIDIA",
+    "NVIDIA（英伟达）",
+    "PPIO",
+    "上海天数智芯半导体",
+    "上海宇量昇科技",
+    "中电信人工智能公司",
+    "中电金信",
+    "中经社",
+    "云道智能",
     "云道智造",
+    "亚信科技",
+    "京东科技",
+    "京东科技集团",
+    "京东集团",
+    "传音控股",
+    "元戎 (DeepRoute.ai)",
+    "华为",
+    "华为2012实验室",
+    "华为技术有限公司",
+    "华为深圳AI应用研究中心",
+    "大疆 DJI",
+    "字节跳动",
+    "字节跳动-火山引擎",
+    "字节跳动-火山方舟",
+    "字节跳动（Seed团队）",
     "小米",
-    "火山方舟",
-    "幻方-深度求索",
-    "中国科学院计算技术研究所",
-    "平安健康保险",
-    "滴滴",
-    "Momenta",
-    "招商局集团",
-    "元石",
-    "联汇科技",
-    "某大型互联网公司",
-    "理想汽车",
-    "某半导体公司",
-    "Dobot",
-    "MiMo",
-    "超聚变技术",
-    "淘天集团"
+    "微步在线",
+    "快手",
+    "抖音",
+    "斑马智能",
+    "明略科技",
+    "智源 (BAAI)",
+    "智源人工智能研究院",
+    "智谱华章",
+    "柳工机械",
+    "沐曦 (MetaX)",
+    "深信服科技"
   ],
   "hot_skills": [
-    "AI Agent",
-    "推理优化",
-    "多模态",
-    "CUDA",
-    "RAG",
-    "解决方案",
-    "推理引擎",
-    "vLLM",
-    "AI安全",
-    "推理加速",
-    "推理框架",
-    "具身智能",
-    "RLHF",
-    "GPU",
-    "高性能计算",
+    "3D建模",
+    "5-10年经验",
     "AGI",
-    "推理",
-    "性能优化",
-    "研发",
-    "量化",
-    "MoE",
-    "SGLang",
-    "多智能体协作",
-    "大模型应用",
-    "Agent",
-    "SFT",
-    "硬件",
-    "预训练",
-    "豆包",
-    "火山方舟",
-    "系统研发",
-    "部署",
-    "语音",
-    "视频生成",
-    "部署工具",
-    "PyTorch",
-    "Agent框架",
-    "LangGraph",
-    "DPO",
-    "数据",
-    "可信AI",
-    "安全",
-    "机器人",
-    "基座模型",
-    "后训练",
-    "分布式训练",
+    "AI",
+    "AI Agent",
+    "AI Coding",
+    "AI Infra",
+    "AI Security",
+    "AI System",
+    "AIGC",
+    "AI场景",
+    "AI基础设施",
+    "AI大模型",
+    "AI安全",
+    "AI安全与隐私",
+    "AI安全评估",
+    "AI对齐",
     "AI平台",
-    "并行计算",
-    "实习生",
-    "产品解决方案"
+    "AI应用",
+    "AI技术中台",
+    "AI推理",
+    "AI架构",
+    "AI框架",
+    "AI理论",
+    "AI研究",
+    "AI算力",
+    "AI算法",
+    "AI芯片",
+    "AI解决方案",
+    "Agent",
+    "Agent Memory",
+    "Agent平台",
+    "Agent框架",
+    "Alignment",
+    "Architecture",
+    "Ascend",
+    "Automotive AI",
+    "Autonomous Agent",
+    "BSS/OSS",
+    "Backend",
+    "CUDA",
+    "Coze",
+    "DPO",
+    "DeepResearch",
+    "Dify",
+    "Engineering",
+    "Enterprise AI",
+    "GPU",
+    "GPU/NPU",
+    "GPU原生",
+    "GPU芯片",
+    "GPU虚拟化",
+    "GPU调度",
+    "GPU资源调度",
+    "GPU集群",
+    "HPC",
+    "HTTP/WebSocket",
+    "Healthcare AI",
+    "Infra",
+    "Intel"
   ]
 }
